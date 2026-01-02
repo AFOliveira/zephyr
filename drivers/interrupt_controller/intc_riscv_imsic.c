@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Synopsys, Inc.
+ * SPDX-FileCopyrightText: Copyright The Zephyr Project Contributors
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -59,6 +59,13 @@ inline uint32_t riscv_imsic_claim(void)
 	uint32_t topei = csr_swap(CSR_MTOPEI, 0);
 
 	return topei & MTOPEI_EIID_MASK;
+}
+
+/* Runtime API: complete interrupt (write back to clear) */
+void riscv_imsic_complete(uint32_t eiid)
+{
+	/* Write back to mtopei to complete the claim */
+	csr_write(CSR_MTOPEI, eiid);
 }
 
 /* Helper to calculate EIE register index and bit position for an EIID */
@@ -188,24 +195,29 @@ static void imsic_mext_isr(const void *arg)
 
 	LOG_DBG("MEXT ISR entered");
 
-	uint32_t eiid = riscv_imsic_claim();
+	while (1) {
+		uint32_t eiid = riscv_imsic_claim();
 
-	if (eiid == 0U) {
-		return; /* Spurious or already claimed */
+		if (eiid == 0U) {
+			break; /* No more pending interrupts */
+		}
+
+		/* 1:1 mapping: EIID is the IRQ number */
+		uint32_t irq = eiid;
+
+		LOG_DBG("MEXT claimed EIID/IRQ %u", irq);
+
+		/* Bounds check */
+		if (irq >= cfg->nr_irqs) {
+			LOG_ERR("IRQ %u out of range (>= %u)", irq, cfg->nr_irqs);
+			riscv_imsic_complete(eiid);
+			z_irq_spurious(NULL);
+		}
+
+		_sw_isr_table[irq].isr(_sw_isr_table[irq].arg);
+
+		riscv_imsic_complete(eiid);
 	}
-
-	/* 1:1 mapping: EIID is the IRQ number */
-	uint32_t irq = eiid;
-
-	LOG_DBG("MEXT claimed EIID/IRQ %u", irq);
-
-	/* Bounds check */
-	if (irq >= cfg->nr_irqs) {
-		LOG_ERR("IRQ %u out of range (>= %u)", irq, cfg->nr_irqs);
-		z_irq_spurious(NULL);
-	}
-
-	_sw_isr_table[irq].isr(_sw_isr_table[irq].arg);
 }
 
 #ifdef CONFIG_SMP
