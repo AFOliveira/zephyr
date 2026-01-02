@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Synopsys, Inc.
+ * SPDX-FileCopyrightText: Copyright The Zephyr Project Contributors
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -48,6 +48,7 @@
 
 /* IMSIC API functions (implemented by drivers) */
 uint32_t riscv_imsic_claim(void);
+void riscv_imsic_complete(uint32_t eiid);
 
 /**
  * @brief Enable an EIID in the CURRENT CPU's IMSIC
