@@ -49,6 +49,7 @@ schema;platform-schema:
                   "armfvp",
                   "native",
                   "custom",
+                  "et-emu",
                 ]
             "exec":
               type: str

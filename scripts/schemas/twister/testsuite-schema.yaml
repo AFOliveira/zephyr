@@ -255,6 +255,7 @@ schema;scenario-schema:
               "armfvp",
               "native",
               "custom",
+              "et-emu",
             ]
     "tags":
       type: any
