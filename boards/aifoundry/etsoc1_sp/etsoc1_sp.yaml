@@ -2,11 +2,14 @@ identifier: etsoc1_sp
 name: ET-SOC1 Service Processor
 type: mcu
 arch: riscv
+simulation:
+  - name: et-emu
 toolchain:
   - zephyr
   - cross-compile
 ram: 1024
 testing:
+  timeout_multiplier: 10
   ignore_tags:
     - net
     - bluetooth
