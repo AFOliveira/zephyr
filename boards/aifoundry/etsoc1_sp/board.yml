@@ -1,0 +1,5 @@
+boards:
+  - name: etsoc1_sp
+    vendor: aifoundry
+    socs:
+      - name: etsoc1_sp
