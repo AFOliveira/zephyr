@@ -184,6 +184,7 @@ $defs:
             - tsim
             - armfvp
             - native
+            - et-emu
             - custom
       tags: {}
       timeout:
