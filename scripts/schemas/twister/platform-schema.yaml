@@ -41,6 +41,7 @@ $defs:
                 - armfvp
                 - native
                 - custom
+                - et-emu
             exec:
               type: string
           required:
