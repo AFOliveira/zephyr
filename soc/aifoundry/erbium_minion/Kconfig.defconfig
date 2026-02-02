@@ -1,0 +1,16 @@
+# Copyright (c) 2025 AIFoundry
+# SPDX-License-Identifier: Apache-2.0
+
+if SOC_ERBIUM_MINION
+
+config SYS_CLOCK_HW_CYCLES_PER_SEC
+	default 10000000
+
+config NUM_IRQS
+	default 12
+
+# Single-hart timer: arch_proc_id() must return 0 for correct mtimecmp access
+config RISCV_HART_MASK
+	default 0
+
+endif

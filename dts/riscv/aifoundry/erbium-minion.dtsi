@@ -1,0 +1,58 @@
+/*
+ * Copyright (c) 2025 AIFoundry
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/ {
+	#address-cells = <2>;
+	#size-cells = <2>;
+	compatible = "aifoundry,erbium-minion";
+
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		cpu0: cpu@0 {
+			compatible = "riscv";
+			device_type = "cpu";
+			reg = <0>;
+			riscv,isa = "rv64imfc_zicsr_zifencei";
+			status = "okay";
+
+			hlic: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+	};
+
+	soc {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "simple-bus";
+		ranges;
+
+		mram: memory@0_40000000 {
+			compatible = "mmio-sram";
+			reg = <0x0 0x40000000 0x0 0x1000000>;  /* 16 MiB MRAM */
+		};
+
+		mtimer: timer@0_80f40200 {
+			compatible = "riscv,machine-timer";
+			interrupts-extended = <&hlic 7>;
+			reg = <0x0 0x80f40200 0x0 0x8
+			       0x0 0x80f40208 0x0 0x8>;
+			reg-names = "mtime", "mtimecmp";
+		};
+
+		uart0: serial@0_02002000 {
+			compatible = "ns16550";
+			reg = <0x0 0x02002000 0x0 0x1000>;
+			reg-shift = <2>;
+			clock-frequency = <25000000>;
+			status = "disabled";
+		};
+	};
+};
