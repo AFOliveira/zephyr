@@ -1,0 +1,12 @@
+# Copyright (c) 2025 AIFoundry
+# SPDX-License-Identifier: Apache-2.0
+
+# 2-CPU SMP configuration overlay for Erbium Minion
+
+# SMP with 2 CPUs (harts 0-1)
+CONFIG_SMP=y
+CONFIG_MP_MAX_NUM_CPUS=2
+CONFIG_IDLE_STACK_SIZE=2048
+
+# No XIP for SMP
+CONFIG_XIP=n

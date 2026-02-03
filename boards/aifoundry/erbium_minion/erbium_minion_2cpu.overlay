@@ -1,0 +1,50 @@
+/*
+ * Copyright (c) 2025 AIFoundry
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Device tree overlay for 2-CPU SMP configuration
+ */
+
+/ {
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		/* Redefine cpu0 */
+		cpu@0 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <0>;  /* hartid = 0 */
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+
+			cpu0_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		/* Add second CPU (hartid 1) */
+		cpu@1 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <1>;  /* hartid = 1 */
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+
+			cpu1_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+	};
+};
+
+/* Update timer to handle both CPUs */
+&mtimer {
+	interrupts-extended = <&cpu0_intc 7>, <&cpu1_intc 7>;
+};

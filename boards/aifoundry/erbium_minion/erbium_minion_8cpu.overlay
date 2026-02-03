@@ -1,0 +1,133 @@
+/*
+ * Copyright (c) 2025 AIFoundry
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Device tree overlay for 8-CPU SMP configuration
+ */
+
+/ {
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		cpu@0 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <0>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu0_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		cpu@1 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <1>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu1_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		cpu@2 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <2>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu2_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		cpu@3 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <3>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu3_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		cpu@4 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <4>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu4_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		cpu@5 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <5>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu5_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		cpu@6 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <6>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu6_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		cpu@7 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <7>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu7_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+	};
+};
+
+/* Update timer to handle 8 CPUs */
+&mtimer {
+	interrupts-extended = <&cpu0_intc 7>, <&cpu1_intc 7>,
+			      <&cpu2_intc 7>, <&cpu3_intc 7>,
+			      <&cpu4_intc 7>, <&cpu5_intc 7>,
+			      <&cpu6_intc 7>, <&cpu7_intc 7>;
+};

@@ -1,0 +1,266 @@
+/*
+ * Copyright (c) 2025 AIFoundry
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Device tree overlay for 16-CPU SMP configuration
+ * All 16 harts: 8 ET-Minion cores × 2 hardware threads
+ */
+
+/ {
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		/* Minion 0 - Thread 0 */
+		cpu@0 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <0>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu0_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		/* Minion 0 - Thread 1 */
+		cpu@1 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <1>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu1_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		/* Minion 1 - Thread 0 */
+		cpu@2 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <2>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu2_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		/* Minion 1 - Thread 1 */
+		cpu@3 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <3>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu3_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		/* Minion 2 - Thread 0 */
+		cpu@4 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <4>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu4_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		/* Minion 2 - Thread 1 */
+		cpu@5 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <5>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu5_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		/* Minion 3 - Thread 0 */
+		cpu@6 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <6>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu6_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		/* Minion 3 - Thread 1 */
+		cpu@7 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <7>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu7_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		/* Minion 4 - Thread 0 */
+		cpu@8 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <8>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu8_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		/* Minion 4 - Thread 1 */
+		cpu@9 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <9>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu9_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		/* Minion 5 - Thread 0 */
+		cpu@10 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <10>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu10_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		/* Minion 5 - Thread 1 */
+		cpu@11 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <11>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu11_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		/* Minion 6 - Thread 0 */
+		cpu@12 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <12>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu12_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		/* Minion 6 - Thread 1 */
+		cpu@13 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <13>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu13_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		/* Minion 7 - Thread 0 */
+		cpu@14 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <14>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu14_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+
+		/* Minion 7 - Thread 1 */
+		cpu@15 {
+			device_type = "cpu";
+			compatible = "riscv";
+			reg = <15>;
+			riscv,isa = "rv64imafdc_zicsr_zifencei";
+			status = "okay";
+			cpu15_intc: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+	};
+};
+
+/* Update timer to handle all 16 CPUs */
+&mtimer {
+	interrupts-extended = <&cpu0_intc 7>, <&cpu1_intc 7>,
+			      <&cpu2_intc 7>, <&cpu3_intc 7>,
+			      <&cpu4_intc 7>, <&cpu5_intc 7>,
+			      <&cpu6_intc 7>, <&cpu7_intc 7>,
+			      <&cpu8_intc 7>, <&cpu9_intc 7>,
+			      <&cpu10_intc 7>, <&cpu11_intc 7>,
+			      <&cpu12_intc 7>, <&cpu13_intc 7>,
+			      <&cpu14_intc 7>, <&cpu15_intc 7>;
+};
