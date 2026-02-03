@@ -45,6 +45,13 @@ SECTION_FUNC(TEXT, __initialize)
 	j boot_secondary_core
 
 boot_first_core:
+	/* Initialize mscratch EARLY for primary CPU to prevent exception handler crashes.
+	 * Set to _kernel base - will be corrected later to &_kernel.cpus[0].
+	 */
+#if defined(CONFIG_SMP) || defined(CONFIG_USERSPACE)
+	la t0, _kernel
+	csrw mscratch, t0
+#endif
 
 #ifdef CONFIG_FPU
 	/*
@@ -99,6 +106,14 @@ aa_loop:
 
 boot_secondary_core:
 #if CONFIG_MP_MAX_NUM_CPUS > 1
+	/* Initialize mscratch for secondary CPU BEFORE waiting for wake-up.
+	 * This prevents exception handler failures if an exception occurs early.
+	 * Set to _kernel base as a safe temporary value - will be corrected later
+	 * by arch_secondary_cpu_init() to point to the correct CPU structure.
+	 */
+	la t0, _kernel
+	csrw mscratch, t0
+
 	la t0, riscv_cpu_wake_flag
 	li t1, -1
 	sr t1, 0(t0)
