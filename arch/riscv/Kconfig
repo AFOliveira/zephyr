@@ -96,7 +96,7 @@ config RISCV_SMP_IPI_CLINT
 config RISCV_SMP_IPI_CUSTOM
 	bool "Custom IPI implementation"
 	help
-	  Allow custom IPI implementation.
+	  Allow custom IPI implementation provided by the SoC or board.
 
 	  When this is selected, the following functions must be provided:
 	   - arch_sched_directed_ipi()

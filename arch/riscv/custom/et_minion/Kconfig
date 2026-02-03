@@ -1,0 +1,17 @@
+# Copyright (c) 2025 AIFoundry
+# SPDX-License-Identifier: Apache-2.0
+
+config RISCV_SOC_HAS_ET_MINION
+	bool
+	help
+	  Enable ET-Minion specific features including cache management.
+
+if RISCV_SOC_HAS_ET_MINION
+
+config DCACHE_LINE_SIZE
+	default 64
+
+config ICACHE_LINE_SIZE
+	default 64
+
+endif # RISCV_SOC_HAS_ET_MINION
