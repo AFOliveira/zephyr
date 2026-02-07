@@ -75,13 +75,21 @@ void riscv_imsic_enable_eiid(uint32_t eiid)
 	uint32_t bit = eiid % 32U;       /* 0..31 */
 	uint32_t icsr_addr = ICSR_EIE0 + reg_index;
 
-	/* CSR writes execute on current hart and route to that hart's IMSIC */
+	/*
+	 * Lock IRQs around the read-modify-write + all icsr_* calls to prevent
+	 * an interrupt from changing MISELECT between the icsr_read/icsr_write
+	 * steps.
+	 */
+	unsigned int key = irq_lock();
+
 	uint32_t cur = icsr_read(icsr_addr);
 
 	LOG_DBG("IMSIC enable EIID %u on CPU %u: EIE[%u] before=0x%08x", eiid, arch_proc_id(),
 		reg_index, cur);
 	cur |= BIT(bit);
 	icsr_write(icsr_addr, cur);
+
+	irq_unlock(key);
 
 	LOG_DBG("IMSIC enable EIID %u on CPU %u: EIE[%u] after=0x%08lx (bit %u)", eiid,
 		arch_proc_id(), reg_index, (unsigned long)icsr_read(icsr_addr), bit);
@@ -94,10 +102,14 @@ void riscv_imsic_disable_eiid(uint32_t eiid)
 	uint32_t bit = eiid % 32U;
 	uint32_t icsr_addr = ICSR_EIE0 + reg_index;
 
+	unsigned int key = irq_lock();
+
 	uint32_t cur = icsr_read(icsr_addr);
 
 	cur &= ~BIT(bit);
 	icsr_write(icsr_addr, cur);
+
+	irq_unlock(key);
 
 	LOG_DBG("IMSIC disable EIID %u on CPU %u", eiid, arch_proc_id());
 }
@@ -109,7 +121,10 @@ int riscv_imsic_is_enabled(uint32_t eiid)
 	uint32_t bit = eiid % 32U;
 	uint32_t icsr_addr = ICSR_EIE0 + reg_index;
 
+	unsigned int key = irq_lock();
 	uint32_t cur = icsr_read(icsr_addr);
+
+	irq_unlock(key);
 
 	return !!(cur & BIT(bit));
 }
