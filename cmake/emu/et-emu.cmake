@@ -5,12 +5,21 @@
 
 zephyr_get(ET_EMU_PATH)
 
-find_program(ET_EMU sys_emu
-  HINTS
-    ${ET_EMU_PATH}
-    $ENV{ET_EMU_PATH}
-    $ENV{SYSEMU_PATH}
-)
+if(DEFINED ENV{SYS_EMU})
+  if(EXISTS "$ENV{SYS_EMU}" AND NOT IS_DIRECTORY "$ENV{SYS_EMU}")
+    set(ET_EMU "$ENV{SYS_EMU}")
+  endif()
+endif()
+
+if(NOT ET_EMU)
+  find_program(ET_EMU sys_emu
+    HINTS
+      ${ET_EMU_PATH}
+      $ENV{ET_EMU_PATH}
+      $ENV{SYSEMU_PATH}
+      $ENV{SYS_EMU}
+  )
+endif()
 
 if(NOT ET_EMU)
   message(WARNING "sys_emu not found. Set ET_EMU_PATH to enable emulation.")
