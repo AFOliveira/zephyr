@@ -19,6 +19,7 @@
 };
 
 &uart0 {
+	compatible = "aifoundry,etsoc-dw-apb-uart";
 	status = "okay";
 	current-speed = <115200>;
 };
