@@ -84,6 +84,7 @@ class EtEmuBinaryRunner(ZephyrBinaryRunner):
         parser.add_argument(
             '--max-cycles',
             type=int,
+            default=20000000000,
             help='stop execution after this many cycles'
         )
         parser.add_argument(
