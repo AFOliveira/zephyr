@@ -34,6 +34,7 @@ _names = [
     'dfu',
     'ecpprog',
     'esp32',
+    'etemu',
     'ezflashcli',
     'gd32isp',
     'hifive1',
