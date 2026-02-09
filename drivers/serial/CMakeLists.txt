@@ -113,20 +113,6 @@ zephyr_library_sources_ifdef(CONFIG_USART_SAM usart_sam.c)
 zephyr_library_sources_ifdef(CONFIG_USERSPACE uart_handlers.c)
 # zephyr-keep-sorted-stop
 
-if(CONFIG_UART_ETSOC_DW_APB)
-  zephyr_library_include_directories(
-    /home/afonso/et-platform/et-common-libs/include
-    /home/afonso/et-platform/etsoc-hal/include
-  )
-  zephyr_library_sources(
-    /home/afonso/et-platform/et-common-libs/src/etsoc/drivers/serial/serial.c
-  )
-  set_source_files_properties(
-    /home/afonso/et-platform/et-common-libs/src/etsoc/drivers/serial/serial.c
-    PROPERTIES COMPILE_DEFINITIONS "asm=__asm__"
-  )
-endif()
-
 if(CONFIG_UART_NATIVE_PTY)
   zephyr_library_sources(uart_native_pty.c)
   target_sources(native_simulator INTERFACE uart_native_pty_bottom.c)
