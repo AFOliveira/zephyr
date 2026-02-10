@@ -39,6 +39,10 @@ set(env_et_emu $ENV{ET_EMU_EXTRA_FLAGS})
 separate_arguments(env_et_emu)
 list(APPEND ET_EMU_EXTRA_FLAGS ${env_et_emu})
 
+if(DEFINED ENV{SYS_EMU_TIMER_DIV})
+  list(APPEND ET_EMU_EXTRA_FLAGS -timer_div $ENV{SYS_EMU_TIMER_DIV})
+endif()
+
 add_custom_target(run_et-emu
   COMMAND
   ${ET_EMU}

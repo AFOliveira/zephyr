@@ -1,5 +1,6 @@
 boards:
   - name: etsoc1_sp
+    full_name: AIFoundry ET-SOC1 Service Processor
     vendor: aifoundry
     socs:
       - name: etsoc1_sp

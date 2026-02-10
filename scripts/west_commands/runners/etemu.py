@@ -119,6 +119,10 @@ class EtEmuBinaryRunner(ZephyrBinaryRunner):
     def do_create(cls, cfg, args: argparse.Namespace):
         sys_emu = args.sys_emu or os.environ.get('SYS_EMU') or 'sys_emu'
         bootrom = args.bootrom or os.environ.get('BOOTROM_TRAMPOLINE_TO_BL2_ELF')
+        extra_args = list(args.sys_emu_arg or [])
+        timer_div = os.environ.get('SYS_EMU_TIMER_DIV')
+        if timer_div:
+            extra_args.append(f'-timer_div={timer_div}')
 
         return EtEmuBinaryRunner(
             cfg,
@@ -133,7 +137,7 @@ class EtEmuBinaryRunner(ZephyrBinaryRunner):
             uart1_tx_file=args.uart1_tx_file,
             uart0_rx_file=args.uart0_rx_file,
             uart1_rx_file=args.uart1_rx_file,
-            extra_args=args.sys_emu_arg,
+            extra_args=extra_args,
         )
 
     def do_run(self, command, **kwargs):
