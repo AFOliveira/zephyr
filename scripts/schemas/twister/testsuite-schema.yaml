@@ -185,6 +185,7 @@ $defs:
             - armfvp
             - native
             - custom
+            - et-emu
       tags: {}
       timeout:
         type: integer
