@@ -1,0 +1,9 @@
+identifier: etsoc1_sp
+name: ET-SOC1 Service Processor
+type: mcu
+arch: riscv
+toolchain:
+  - zephyr
+  - cross-compile
+ram: 1024
+vendor: aifoundry
