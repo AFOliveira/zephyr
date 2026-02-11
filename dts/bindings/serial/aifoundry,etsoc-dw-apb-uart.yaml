@@ -1,0 +1,10 @@
+description: AIFoundry ET-SOC1 DW_apb_uart
+
+compatible: "aifoundry,etsoc-dw-apb-uart"
+
+include: uart-controller.yaml
+
+properties:
+  reg-shift:
+    type: int
+    description: Register offset shift (kept for compatibility with ns16550 DTS).

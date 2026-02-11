@@ -1,0 +1,7 @@
+config UART_ETSOC_DW_APB
+	bool "AIFoundry ET-SOC1 DW_apb_uart"
+	depends on DT_HAS_AIFOUNDRY_ETSOC_DW_APB_UART_ENABLED
+	select SERIAL_HAS_DRIVER
+	help
+	  Enable the AIFoundry ET-SOC1 DW_apb_uart driver. This programs the
+	  UART with FIFO + PTIME enabled so THRE indicates FIFO-full (Mode B).
