@@ -1,0 +1,30 @@
+# Copyright (c) 2025 AIFoundry
+# SPDX-License-Identifier: Apache-2.0
+
+if SOC_ERBIUM_MINION
+
+config SYS_CLOCK_HW_CYCLES_PER_SEC
+	default 2000000
+
+config NUM_IRQS
+	default 12
+
+# ET-Minion has 8 cores × 2 hardware threads = 16 harts
+config MP_MAX_NUM_CPUS
+	range 1 16
+
+# Single-hart timer: arch_proc_id() must return 0 for correct mtimecmp access
+# For SMP builds, don't set HART_MASK (let it use multiple harts)
+config RISCV_HART_MASK
+	default 0 if !SMP
+
+# ET-Minion has custom IPI hardware (not CLINT), so use custom implementation
+choice RISCV_SMP_IPI_IMPL
+	default RISCV_SMP_IPI_CUSTOM if SMP
+endchoice
+
+# ET-Minion requires mtvec/stvec to be 4KB aligned (ET PRM Section 1.3, line 348)
+config RISCV_TRAP_HANDLER_ALIGNMENT
+	default 4096
+
+endif
