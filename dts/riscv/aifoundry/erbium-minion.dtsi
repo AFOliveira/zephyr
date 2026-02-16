@@ -47,12 +47,10 @@
 			reg-names = "mtime", "mtimecmp";
 		};
 
-		uart0: serial@0_02002000 {
-			compatible = "ns16550";
-			reg = <0x0 0x02002000 0x0 0x1000>;
-			reg-shift = <2>;
-			clock-frequency = <25000000>;
-			status = "disabled";
+		uart0: serial@0_02004000 {
+			compatible = "aifoundry,shakti-uart";
+			reg = <0x0 0x02004000 0x0 0x1000>;
+			status = "okay";
 		};
 	};
 };
