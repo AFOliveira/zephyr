@@ -1,0 +1,57 @@
+/*
+ * Copyright (c) 2026 AIFoundry
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/ {
+	#address-cells = <2>;
+	#size-cells = <2>;
+	compatible = "aifoundry,erbium-minion";
+
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		cpu0: cpu@0 {
+			compatible = "riscv";
+			device_type = "cpu";
+			reg = <0>;
+			riscv,isa-base = "rv64i";
+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicsr", "zifencei";
+			status = "okay";
+
+			hlic: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+	};
+
+	soc {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "simple-bus";
+		ranges;
+
+		mram: memory@40000000 {
+			compatible = "mmio-sram";
+			reg = <0x0 0x40000000 0x0 0x1000000>;  /* 16 MiB MRAM */
+		};
+
+		mtimer: timer@80f40200 {
+			compatible = "riscv,machine-timer";
+			interrupts-extended = <&hlic 7>;
+			reg = <0x0 0x80f40200 0x0 0x8
+			       0x0 0x80f40208 0x0 0x8>;
+			reg-names = "mtime", "mtimecmp";
+		};
+
+		uart0: serial@2004000 {
+			compatible = "aifoundry,shakti-uart";
+			reg = <0x0 0x02004000 0x0 0x1000>;
+			status = "okay";
+		};
+	};
+};
