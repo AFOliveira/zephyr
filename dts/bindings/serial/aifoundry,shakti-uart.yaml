@@ -3,3 +3,9 @@ description: AIFoundry Shakti UART
 compatible: "aifoundry,shakti-uart"
 
 include: uart-controller.yaml
+
+properties:
+  clock-frequency:
+    required: true
+  current-speed:
+    required: true

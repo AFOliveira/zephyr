@@ -2,6 +2,7 @@ config UART_SHAKTI
 	bool "AIFoundry Shakti UART driver"
 	depends on DT_HAS_AIFOUNDRY_SHAKTI_UART_ENABLED
 	select SERIAL_HAS_DRIVER
+	select SERIAL_SUPPORT_INTERRUPT
 	help
 	  Enable the AIFoundry Shakti UART driver for Erbium.
 
