@@ -6,8 +6,17 @@ if SOC_ERBIUM_MINION
 config SYS_CLOCK_HW_CYCLES_PER_SEC
 	default 2000000
 
-config NUM_IRQS
+config 2ND_LVL_ISR_TBL_OFFSET
 	default 12
+
+config 2ND_LVL_INTR_00_OFFSET
+	default 11
+
+config MAX_IRQ_PER_AGGREGATOR
+	default 32
+
+config NUM_IRQS
+	default 44
 
 # Single-hart timer: arch_proc_id() must return 0 for correct mtimecmp access
 config RISCV_HART_MASK
@@ -16,5 +25,13 @@ config RISCV_HART_MASK
 # ET-Minion requires mtvec/stvec to be 4KB aligned (ET PRM Section 1.3, line 348)
 config RISCV_TRAP_HANDLER_ALIGNMENT
 	default 4096
+
+# The erbium emulator only ticks UART/PLIC while a hart is actively executing.
+# Use a spin-loop idle so that peripheral clock_tick keeps running.
+config ARCH_HAS_CUSTOM_CPU_IDLE
+	default y
+
+config ARCH_HAS_CUSTOM_CPU_ATOMIC_IDLE
+	default y
 
 endif
