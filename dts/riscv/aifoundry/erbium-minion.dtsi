@@ -40,9 +40,9 @@
 			reg = <0x0 0x02000000 0x0 0x1000>;
 		};
 
-		mram: memory@40000000 {
+		mram: memory@40000200 {
 			compatible = "mmio-sram";
-			reg = <0x0 0x40000000 0x0 0x1000000>;  /* 16 MiB MRAM */
+			reg = <0x0 0x40000200 0x0 0xFFFE00>;  /* 16 MiB MRAM, skip first 512 bytes */
 		};
 
 		plic: interrupt-controller@a0000000 {
