@@ -6,8 +6,17 @@ if SOC_ERBIUM_MINION
 config SYS_CLOCK_HW_CYCLES_PER_SEC
 	default 2000000
 
-config NUM_IRQS
+config 2ND_LVL_ISR_TBL_OFFSET
 	default 12
+
+config 2ND_LVL_INTR_00_OFFSET
+	default 11
+
+config MAX_IRQ_PER_AGGREGATOR
+	default 32
+
+config NUM_IRQS
+	default 44
 
 # Single-hart timer: arch_proc_id() must return 0 for correct mtimecmp access
 config RISCV_HART_MASK
