@@ -35,6 +35,7 @@
 
 /* IEN (Interrupt Enable) register bits — mirror STATUS bit positions */
 #define IEN_TX_EMPTY        BIT(0)
+#define IEN_TX_FULL         BIT(1)
 #define IEN_RX_NOT_EMPTY    BIT(2)
 
 #ifdef CONFIG_UART_INTERRUPT_DRIVEN
@@ -45,17 +46,19 @@ struct uart_shakti_config {
 	uintptr_t base;
 	uint32_t clock_freq;
 	uint32_t baud_rate;
+	uint16_t baud_divisor;
 #ifdef CONFIG_UART_INTERRUPT_DRIVEN
 	irq_cfg_func_t irq_cfg_func;
 #endif
 };
 
-#ifdef CONFIG_UART_INTERRUPT_DRIVEN
 struct uart_shakti_data {
+	uint32_t ien_shadow;
+#ifdef CONFIG_UART_INTERRUPT_DRIVEN
 	uart_irq_callback_user_data_t callback;
 	void *cb_data;
-};
 #endif
+};
 
 static int uart_shakti_poll_in(const struct device *dev, unsigned char *c)
 {
@@ -70,12 +73,28 @@ static int uart_shakti_poll_in(const struct device *dev, unsigned char *c)
 	return 0;
 }
 
+static void uart_shakti_tx_trigger(const struct device *dev)
+{
+	const struct uart_shakti_config *cfg = dev->config;
+	struct uart_shakti_data *data = dev->data;
+
+	/*
+	 * V3 TX sequence step 2: write baud, TX delay, interrupt enable,
+	 * and receiver threshold registers to trigger transmission.
+	 * Use cached values to avoid slow MMIO reads.
+	 */
+	sys_write32(cfg->baud_divisor, cfg->base + SHAKTI_UART_BAUD);
+	sys_write32(0U, cfg->base + SHAKTI_UART_DELAY);
+	sys_write32(data->ien_shadow, cfg->base + SHAKTI_UART_IEN);
+	sys_write32(0U, cfg->base + SHAKTI_UART_RX_THRESHOLD);
+}
+
 static void uart_shakti_poll_out(const struct device *dev, unsigned char c)
 {
 	const struct uart_shakti_config *cfg = dev->config;
 
-	/* Wait until transmitter is ready (matches upstream Shakti uart_busy) */
-	while ((sys_read32(cfg->base + SHAKTI_UART_STATUS) & STATUS_TX_EMPTY) == 0U) {
+	/* Wait while TX FIFO is full */
+	while ((sys_read32(cfg->base + SHAKTI_UART_STATUS) & STATUS_TX_FULL) != 0U) {
 		;
 	}
 
@@ -123,17 +142,19 @@ static int uart_shakti_fifo_read(const struct device *dev, uint8_t *rx_data, con
 static void uart_shakti_irq_tx_enable(const struct device *dev)
 {
 	const struct uart_shakti_config *cfg = dev->config;
-	uint32_t ien = sys_read32(cfg->base + SHAKTI_UART_IEN);
+	struct uart_shakti_data *data = dev->data;
 
-	sys_write32(ien | IEN_TX_EMPTY, cfg->base + SHAKTI_UART_IEN);
+	data->ien_shadow |= IEN_TX_FULL;
+	sys_write32(data->ien_shadow, cfg->base + SHAKTI_UART_IEN);
 }
 
 static void uart_shakti_irq_tx_disable(const struct device *dev)
 {
 	const struct uart_shakti_config *cfg = dev->config;
-	uint32_t ien = sys_read32(cfg->base + SHAKTI_UART_IEN);
+	struct uart_shakti_data *data = dev->data;
 
-	sys_write32(ien & ~IEN_TX_EMPTY, cfg->base + SHAKTI_UART_IEN);
+	data->ien_shadow &= ~IEN_TX_FULL;
+	sys_write32(data->ien_shadow, cfg->base + SHAKTI_UART_IEN);
 }
 
 static int uart_shakti_irq_tx_ready(const struct device *dev)
@@ -155,17 +176,19 @@ static int uart_shakti_irq_tx_complete(const struct device *dev)
 static void uart_shakti_irq_rx_enable(const struct device *dev)
 {
 	const struct uart_shakti_config *cfg = dev->config;
-	uint32_t ien = sys_read32(cfg->base + SHAKTI_UART_IEN);
+	struct uart_shakti_data *data = dev->data;
 
-	sys_write32(ien | IEN_RX_NOT_EMPTY, cfg->base + SHAKTI_UART_IEN);
+	data->ien_shadow |= IEN_RX_NOT_EMPTY;
+	sys_write32(data->ien_shadow, cfg->base + SHAKTI_UART_IEN);
 }
 
 static void uart_shakti_irq_rx_disable(const struct device *dev)
 {
 	const struct uart_shakti_config *cfg = dev->config;
-	uint32_t ien = sys_read32(cfg->base + SHAKTI_UART_IEN);
+	struct uart_shakti_data *data = dev->data;
 
-	sys_write32(ien & ~IEN_RX_NOT_EMPTY, cfg->base + SHAKTI_UART_IEN);
+	data->ien_shadow &= ~IEN_RX_NOT_EMPTY;
+	sys_write32(data->ien_shadow, cfg->base + SHAKTI_UART_IEN);
 }
 
 static int uart_shakti_irq_rx_ready(const struct device *dev)
@@ -225,21 +248,27 @@ static void uart_shakti_irq_handler(const struct device *dev)
 static int uart_shakti_init(const struct device *dev)
 {
 	const struct uart_shakti_config *cfg = dev->config;
+	struct uart_shakti_data *data = dev->data;
+
+	data->ien_shadow = 0U;
 
 	/* Configure baud rate: baud_value = clk_freq / (16 * baud_rate) */
 	if (cfg->baud_rate > 0U) {
-		uint16_t divisor = (uint16_t)(cfg->clock_freq / (16U * cfg->baud_rate));
-
-		sys_write32(divisor, cfg->base + SHAKTI_UART_BAUD);
+		sys_write32(cfg->baud_divisor, cfg->base + SHAKTI_UART_BAUD);
 	}
 
 	/* Configure 8N1: charsize=8, parity=none(0), stopbits=1(0) */
 	sys_write32(8U << 5, cfg->base + SHAKTI_UART_CONTROL);
 
-#ifdef CONFIG_UART_INTERRUPT_DRIVEN
-	/* Disable all UART interrupts at init */
+	/*
+	 * V3 TX sequence step 2 (one-time): write baud, delay, IEN,
+	 * and rx_threshold to configure the transmitter.
+	 */
+	sys_write32(0U, cfg->base + SHAKTI_UART_DELAY);
 	sys_write32(0U, cfg->base + SHAKTI_UART_IEN);
+	sys_write32(0U, cfg->base + SHAKTI_UART_RX_THRESHOLD);
 
+#ifdef CONFIG_UART_INTERRUPT_DRIVEN
 	/* Connect and enable the IRQ */
 	cfg->irq_cfg_func();
 #endif
@@ -280,17 +309,16 @@ static DEVICE_API(uart, uart_shakti_driver_api) = {
 	}
 
 #define UART_SHAKTI_IRQ_CFG_FUNC_INIT(n) .irq_cfg_func = uart_shakti_irq_cfg_func_##n,
-#define UART_SHAKTI_DATA(n) static struct uart_shakti_data uart_shakti_data_##n;
-#define UART_SHAKTI_DATA_REF(n) &uart_shakti_data_##n,
 
 #else
 
 #define UART_SHAKTI_IRQ_CFG_FUNC(n)
 #define UART_SHAKTI_IRQ_CFG_FUNC_INIT(n)
-#define UART_SHAKTI_DATA(n)
-#define UART_SHAKTI_DATA_REF(n) NULL,
 
 #endif /* CONFIG_UART_INTERRUPT_DRIVEN */
+
+#define UART_SHAKTI_DATA(n) static struct uart_shakti_data uart_shakti_data_##n;
+#define UART_SHAKTI_DATA_REF(n) &uart_shakti_data_##n,
 
 #define UART_SHAKTI_INIT(n)                                                    \
 	UART_SHAKTI_IRQ_CFG_FUNC(n)                                            \
@@ -299,6 +327,8 @@ static DEVICE_API(uart, uart_shakti_driver_api) = {
 		.base = DT_INST_REG_ADDR(n),                                  \
 		.clock_freq = DT_INST_PROP(n, clock_frequency),               \
 		.baud_rate = DT_INST_PROP(n, current_speed),                  \
+		.baud_divisor = (uint16_t)(DT_INST_PROP(n, clock_frequency) / \
+			(16U * DT_INST_PROP(n, current_speed))),              \
 		UART_SHAKTI_IRQ_CFG_FUNC_INIT(n)                              \
 	};                                                                     \
 	DEVICE_DT_INST_DEFINE(n,                                               \
