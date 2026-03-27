@@ -1,0 +1,16 @@
+config UART_SHAKTI
+	bool "AIFoundry Shakti UART driver"
+	depends on DT_HAS_AIFOUNDRY_SHAKTI_UART_ENABLED
+	select SERIAL_HAS_DRIVER
+	select SERIAL_SUPPORT_INTERRUPT
+	help
+	  Enable the AIFoundry Shakti UART driver for Erbium.
+
+config UART_SHAKTI_REG_SHIFT
+	int "Shakti UART register address shift"
+	depends on UART_SHAKTI
+	default 2
+	help
+	  Number of bits to shift register indices to get byte offsets.
+	  Use 2 for 32-bit aligned registers (stride 4, offsets 0x00, 0x04, 0x08, ...).
+	  Use 3 for 64-bit aligned registers (stride 8, offsets 0x00, 0x08, 0x10, ...).
