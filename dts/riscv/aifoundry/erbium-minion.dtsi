@@ -67,7 +67,7 @@
 		uart0: serial@2004000 {
 			compatible = "aifoundry,shakti-uart";
 			reg = <0x0 0x02004000 0x0 0x1000>;
-			clock-frequency = <18432000>;
+			clock-frequency = <400000000>;
 			current-speed = <115200>;
 			interrupt-parent = <&plic>;
 			interrupts = <3 1>;
