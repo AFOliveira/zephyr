@@ -1,0 +1,9 @@
+# Copyright (c) 2026 AIFoundry
+# SPDX-License-Identifier: Apache-2.0
+
+if BOARD_ETSOC1_MINION_UMODE
+
+config BOARD
+	default "etsoc1_minion_umode"
+
+endif

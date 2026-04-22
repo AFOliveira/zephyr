@@ -1,0 +1,6 @@
+board:
+  name: etsoc1_minion_umode
+  full_name: ET-SoC1 Minion (Zephyr-in-U-mode)
+  vendor: aifoundry
+  socs:
+  - name: etsoc1_minion_umode

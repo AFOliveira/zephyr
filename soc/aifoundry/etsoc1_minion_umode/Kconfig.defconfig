@@ -1,0 +1,30 @@
+# Copyright (c) 2026 AIFoundry
+# SPDX-License-Identifier: Apache-2.0
+
+if SOC_ETSOC1_MINION_UMODE
+
+# Medany is required because the LARGE code model is not supported by the
+# RISC-V GCC shipped in zephyr-sdk-0.17.4.  With SRAM_BASE_ADDRESS above
+# 4 GiB the generic Kconfig default would pick LARGE; explicitly force
+# MEDANY here.
+choice RISCV_CMODEL
+	default RISCV_CMODEL_MEDANY
+endchoice
+
+config SYS_CLOCK_HW_CYCLES_PER_SEC
+	default 1000000
+
+config NUM_IRQS
+	default 1
+
+# ET-SoC1 cm-umode kernels are loaded at 0x8006335000 by default.
+config SRAM_BASE_ADDRESS
+	default 0x8006335000
+
+config SRAM_SIZE
+	default 1024
+
+config KERNEL_ENTRY
+	default "_start"
+
+endif # SOC_ETSOC1_MINION_UMODE

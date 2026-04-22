@@ -1,0 +1,9 @@
+# Copyright (c) 2026 AIFoundry
+# SPDX-License-Identifier: Apache-2.0
+
+config SOC_ETSOC1_MINION_UMODE
+	bool
+	select RISCV_SOC_HAS_CUSTOM_IRQ_LOCK_OPS
+
+config SOC
+	default "etsoc1_minion_umode" if SOC_ETSOC1_MINION_UMODE
