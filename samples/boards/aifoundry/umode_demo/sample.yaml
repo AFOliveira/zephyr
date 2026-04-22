@@ -1,0 +1,22 @@
+sample:
+  name: aifoundry erbium umode round-trip demo
+  description: >
+    Boot Zephyr in M-mode on the Erbium Minion, drop into a tiny U-mode
+    blob via mret, service an INVALIDATE syscall and a RETURN_FROM_KERNEL
+    syscall, and verify that the launcher regains control with the
+    U-mode-supplied return code.
+common:
+  tags: aifoundry erbium umode
+  harness: console
+  harness_config:
+    type: multi_line
+    ordered: true
+    regex:
+      - "launching kernel"
+      - "kernel returned: 0"
+      - "=== done ==="
+tests:
+  sample.boards.aifoundry.umode_demo:
+    platform_allow: erbium_minion
+    integration_platforms:
+      - erbium_minion
