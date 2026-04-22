@@ -1,0 +1,48 @@
+/*
+ * Copyright (c) 2026 AIFoundry
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Minimal device tree for Zephyr running as an ET-SoC1 U-mode kernel.
+ * Only the CPU and a single RAM region (where the cm-umode kernel is
+ * loaded) are described; no UART, no PLIC, no machine timer.
+ */
+
+/ {
+	#address-cells = <2>;
+	#size-cells = <2>;
+	compatible = "aifoundry,etsoc1-minion-umode";
+
+	cpus {
+		#address-cells = <1>;
+		#size-cells = <0>;
+
+		cpu0: cpu@0 {
+			compatible = "riscv";
+			device_type = "cpu";
+			reg = <0>;
+			riscv,isa-base = "rv64i";
+			riscv,isa-extensions = "i", "m", "a", "f", "d", "c",
+				"zicsr", "zifencei";
+			status = "okay";
+
+			hlic: interrupt-controller {
+				compatible = "riscv,cpu-intc";
+				#address-cells = <0>;
+				#interrupt-cells = <1>;
+				interrupt-controller;
+			};
+		};
+	};
+
+	soc {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "simple-bus";
+		ranges;
+
+		umode_region: memory@8006335000 {
+			compatible = "mmio-sram";
+			reg = <0x80 0x06335000 0x0 0x00100000>; /* 1 MiB */
+		};
+	};
+};
