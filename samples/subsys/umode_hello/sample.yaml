@@ -1,0 +1,13 @@
+sample:
+  name: Zephyr in U-mode Hello
+  description: Hello-world sanity check for Zephyr running as an ET-SoC1 cm-umode kernel.
+tests:
+  sample.subsys.umode_hello:
+    platform_allow:
+      - etsoc1_minion_umode
+    tags: riscv umode
+    harness: console
+    harness_config:
+      type: one_line
+      regex:
+        - "Hello from Zephyr in U-mode"
