@@ -1,0 +1,12 @@
+# Copyright (c) 2026 AIFoundry
+# SPDX-License-Identifier: Apache-2.0
+
+config SOC_AIFOUNDRY_ERBIUM_UMODE
+	bool "AIFoundry Erbium M->U->M round-trip launcher"
+	depends on SOC_ERBIUM_MINION
+	help
+	  Enable the minimal M-mode launcher / U-mode return-trip dispatcher
+	  used to run a compute kernel in RISC-V U-mode on an Erbium Minion
+	  core.  This is a self-contained slice (no Zephyr userspace/PMP) that
+	  provides aifoundry_launch_umode() and handles the cm-umode syscall
+	  ABI for SYSCALL_CACHE_OPS_INVALIDATE and SYSCALL_RETURN_FROM_KERNEL.

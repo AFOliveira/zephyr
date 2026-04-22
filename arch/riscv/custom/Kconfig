@@ -19,3 +19,5 @@ rsource "thead/Kconfig"
 rsource "thead/Kconfig.core"
 
 endif # DT_HAS_XUANTIE_E907_ENABLED
+
+rsource "aifoundry/Kconfig"
