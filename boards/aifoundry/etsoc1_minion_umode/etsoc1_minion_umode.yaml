@@ -1,0 +1,7 @@
+identifier: etsoc1_minion_umode
+name: ET-SoC1 Minion (Zephyr-in-U-mode)
+type: mcu
+arch: riscv
+toolchain:
+  - zephyr
+vendor: aifoundry
