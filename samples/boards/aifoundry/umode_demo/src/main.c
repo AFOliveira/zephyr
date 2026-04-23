@@ -2,16 +2,16 @@
  * Copyright (c) 2026 AIFoundry
  * SPDX-License-Identifier: Apache-2.0
  *
- * Minimal M->U->M round-trip demo for the Erbium Minion.
+ * Syscall-sweep M->U->M demo for the Erbium Minion.
  *
- *   1. Zephyr boots in M-mode and prints "launching kernel".
+ *   1. Zephyr boots in M-mode, prints the banner.
  *   2. aifoundry_launch_umode() mret's into _umode_entry in MRAM.
- *   3. The U-mode blob issues two syscalls:
- *        a0 = SYSCALL_CACHE_OPS_INVALIDATE, a1 = 1
- *        a0 = SYSCALL_RETURN_FROM_KERNEL,   a1 = 0
- *   4. The M-mode dispatcher services the first via CSR 0x7d0 and
- *      long-jumps back out of the second, restoring the launcher's context.
- *   5. main() prints "kernel returned: <code>" and "=== done ===".
+ *   3. The U-mode blob ecalls every cm-umode U-mode syscall (ids 1..11 minus
+ *      the one used to exit, id=8) and stores each return value in the
+ *      shared syscall_results[] array.
+ *   4. Blob ecalls SYSCALL_RETURN_FROM_KERNEL to unwind to the launcher.
+ *   5. Zephyr main() prints the per-syscall return code so the operator can
+ *      see which were serviced (ret=0) vs stubbed (ret=-1 / SYSCALL_INVALID_ID).
  */
 
 #include <stdint.h>
@@ -20,26 +20,40 @@
 
 #include "umode_abi.h"
 
-/* Symbol defined by src/umode_kernel.S. */
 extern void _umode_entry(uint64_t arg);
+extern int64_t syscall_results[10];
 
-/* 4 KiB U-mode stack.  Aligned for RISC-V ABI (sp = 16-byte aligned). */
+static const char *const syscall_labels[10] = {
+	"id  1 EVICT_SW           ",
+	"id  2 FLUSH_SW           ",
+	"id  3 LOCK_SW            ",
+	"id  4 UNLOCK_SW          ",
+	"id  5 INVALIDATE         ",
+	"id  6 EVICT_L1           ",
+	"id  7 SHIRE_CACHE_BANK_OP",
+	"id  9 PMC_SC_SAMPLE      ",
+	"id 10 PMC_MS_SAMPLE      ",
+	"id 11 EVICT_WHOLE_L1_L2  ",
+};
+
+/* 4 KiB U-mode stack. */
 static uint8_t umode_stack[4096] __aligned(16);
 
 int main(void)
 {
-	printk("launching kernel\n");
+	printk("syscall sweep: launching U-mode kernel\n");
 
-	/* MPROT is already in its reset-all-zero state (mprot_en = 0, i.e.
-	 * enforcement disabled) on emulator boot, but do the write anyway so
-	 * the behaviour is deterministic even if a future boot stage pokes it.
-	 */
 	erbium_mprot_allow_all();
 
 	void *stack_top = &umode_stack[sizeof(umode_stack)];
 	int64_t ret = aifoundry_launch_umode((void *)_umode_entry, stack_top, 0);
 
 	printk("kernel returned: %lld\n", (long long)ret);
+	printk("--- per-syscall results ---\n");
+	for (int i = 0; i < 10; i++) {
+		printk("  %s -> %lld\n", syscall_labels[i],
+		       (long long)syscall_results[i]);
+	}
 	printk("=== done ===\n");
 
 	return 0;
