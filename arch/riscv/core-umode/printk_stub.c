@@ -15,6 +15,7 @@
 #include <stdint.h>
 #include <stddef.h>
 #include <zephyr/toolchain.h>
+#include <isa/common/syscall.h>
 
 #ifndef CONFIG_UMODE_PRINTK_BUFFER_SIZE
 #define CONFIG_UMODE_PRINTK_BUFFER_SIZE 2048
@@ -41,5 +42,15 @@ int arch_printk_char_out(int c)
 	if (__umode_printk_ring.length < CONFIG_UMODE_PRINTK_BUFFER_SIZE) {
 		__umode_printk_ring.length++;
 	}
+
+	/* Also echo to the host UART via the CONSOLE_WRITE OSKERN syscall.
+	 * The MM handler busy-waits on THR-empty and streams one byte at a
+	 * time; slow but reliable for the MVP.  This path is only live
+	 * when MULTITHREADING=y (the OSKERN ABI is wired up then). */
+#ifdef CONFIG_MULTITHREADING
+	uint8_t byte = (uint8_t)c;
+	(void)syscall(SYSCALL_OSKERN_CONSOLE_WRITE,
+		      (uint64_t)(uintptr_t)&byte, 1U, 0U);
+#endif
 	return c;
 }

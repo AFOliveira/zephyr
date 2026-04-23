@@ -304,9 +304,11 @@ config USE_ISR_WRAPPER
 
 config GEN_ISR_TABLES
 	default y if !RISCV_RUN_IN_UMODE
+	default y if RISCV_RUN_IN_UMODE && MULTITHREADING
 
 config GEN_SW_ISR_TABLE
 	default y if !RISCV_RUN_IN_UMODE
+	default y if RISCV_RUN_IN_UMODE && MULTITHREADING
 	select USE_ISR_WRAPPER if !RISCV_RUN_IN_UMODE
 
 config GEN_IRQ_VECTOR_TABLE
@@ -576,17 +578,9 @@ config USERSPACE
 config SMP
 	default n
 
-config MULTITHREADING
-	default n
-
-config GEN_ISR_TABLES
-	default n
-
-config GEN_SW_ISR_TABLE
-	default n
-
-config USE_ISR_WRAPPER
-	default n
+# MULTITHREADING is allowed when RUN_IN_UMODE=y (preempt via the
+# OSKERN IRQ upcall + timer driver).  Leave the Kconfig default
+# unforced; boards/samples choose.
 
 config RISCV_PMP
 	default n
@@ -596,6 +590,28 @@ config RISCV_MACHINE_TIMER
 
 config INCLUDE_RESET_VECTOR
 	default n
+
+# Use the U-mode timer driver by default: standard RISCV_MACHINE_TIMER
+# touches mtvec/CLINT directly which is impossible from U-mode.
+config RISCV_UMODE_TIMER
+	bool "U-mode RISC-V system timer (OSKERN syscall)"
+	default y if MULTITHREADING
+	select TICKLESS_CAPABLE
+	select TIMER_HAS_64BIT_CYCLE_COUNTER
+	help
+	  Timer driver for Zephyr-U-mode that reads `time` via rdtime (a
+	  U-readable CSR on standard RISC-V) and arms mtimecmp via the
+	  SYSCALL_OSKERN_SET_TIMEOUT cm-umode syscall.  Paired with the
+	  MachineMinion IRQ upcall on ET-SoC1.
+
+config RISCV_UMODE_TIMER_IRQ
+	int "Timer PLIC IRQ number (fallback when not in DT)"
+	default 7
+	depends on RISCV_UMODE_TIMER
+	help
+	  PLIC source number the U-mode timer driver enables + awaits.
+	  Overridden if the board DT declares a compatible "riscv,umode-timer"
+	  node with `interrupts`.
 
 endif # RISCV_RUN_IN_UMODE
 

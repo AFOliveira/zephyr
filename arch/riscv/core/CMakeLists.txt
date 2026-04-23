@@ -19,6 +19,18 @@ zephyr_library_sources(
   ${CMAKE_CURRENT_SOURCE_DIR}/../core-umode/printk_stub.c
 )
 
+# arch_irq_enable/disable + upcall entry point live here.  Only pulled in
+# when MULTITHREADING is on; otherwise a U-mode kernel without IRQs
+# doesn't need them (and would force the whole sw_isr_table cost).
+if(CONFIG_MULTITHREADING)
+  zephyr_library_sources(
+    ${CMAKE_CURRENT_SOURCE_DIR}/../core-umode/irq_entry.c
+    # Cooperative context-switch primitive.  z_riscv_switch is pure
+    # register save/restore (no CSRs) so it's safe from U-mode.
+    switch.S
+  )
+endif()
+
 # cm-umode integration (ET-SoC1): headers only for phase 1.  `asm` is not a
 # reserved keyword under Zephyr's strict C mode, so alias it to __asm__ for
 # cm-umode headers that use it (e.g. isa/common/syscall.h).  utils.c and the
