@@ -9,26 +9,12 @@
 
 #include <stdint.h>
 #include <zephyr/sys/printk.h>
-
-#define SYSCALL_RETURN_FROM_KERNEL    8
-#define KERNEL_RETURN_SUCCESS         0
-
-static inline void umode_return_from_kernel(int64_t status)
-{
-	register uint64_t a0 __asm__("a0") = SYSCALL_RETURN_FROM_KERNEL;
-	register uint64_t a1 __asm__("a1") = (uint64_t)status;
-	register uint64_t a2 __asm__("a2") = KERNEL_RETURN_SUCCESS;
-
-	__asm__ volatile("ecall"
-			 : "+r"(a0)
-			 : "r"(a1), "r"(a2)
-			 : "memory");
-}
+#include <isa/common/syscall.h>   /* cm-umode ABI */
 
 int main(void)
 {
 	printk("Hello from Zephyr in U-mode\n");
-	umode_return_from_kernel(0);
+	(void)syscall(SYSCALL_RETURN_FROM_KERNEL, 0, KERNEL_RETURN_SUCCESS, 0);
 
 	/* Should not reach here; MasterMinion tears down the kernel. */
 	for (;;) {

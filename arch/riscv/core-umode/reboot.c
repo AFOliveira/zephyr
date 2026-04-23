@@ -9,22 +9,13 @@
 
 #include <zephyr/kernel.h>
 #include <zephyr/sys/reboot.h>
-
-#define SYSCALL_RETURN_FROM_KERNEL    8
-#define KERNEL_RETURN_SUCCESS         0
+#include <isa/common/syscall.h>   /* cm-umode ABI */
 
 void sys_arch_reboot(int type)
 {
 	ARG_UNUSED(type);
 
-	register uint64_t a0 __asm__("a0") = SYSCALL_RETURN_FROM_KERNEL;
-	register uint64_t a1 __asm__("a1") = 0;
-	register uint64_t a2 __asm__("a2") = KERNEL_RETURN_SUCCESS;
-
-	__asm__ volatile("ecall"
-			 : "+r"(a0)
-			 : "r"(a1), "r"(a2)
-			 : "memory");
+	(void)syscall(SYSCALL_RETURN_FROM_KERNEL, 0, KERNEL_RETURN_SUCCESS, 0);
 
 	for (;;) {
 	}

@@ -15,10 +15,7 @@
 
 #include <zephyr/toolchain.h>
 #include <zephyr/linker/sections.h>
-
-#define SYSCALL_RETURN_FROM_KERNEL   8
-#define KERNEL_RETURN_SUCCESS        0
-#define KERNEL_RETURN_SYSTEM_ABORT   2
+#include <isa/common/syscall.h>   /* cm-umode ABI: SYSCALL_RETURN_FROM_KERNEL, KERNEL_RETURN_* */
 
 GTEXT(_start)
 GTEXT(z_prep_c)
