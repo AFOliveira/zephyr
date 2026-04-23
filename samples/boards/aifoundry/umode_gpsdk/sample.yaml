@@ -1,0 +1,13 @@
+sample:
+  name: aifoundry erbium gp-sdk umode kernel launcher
+  description: >
+    Boot Zephyr-M on the Erbium Minion and launch a gp-sdk compute kernel
+    binary loaded into MRAM at a fixed offset.  Services the kernel's cm-umode
+    ecalls via the Zephyr-M dispatcher and prints the kernel return code on
+    RETURN_FROM_KERNEL.  Use in conjunction with `erbium_emu -file_load
+    0x40010000,<kernel.bin>`.
+tests:
+  sample.boards.aifoundry.umode_gpsdk:
+    platform_allow: erbium_minion
+    integration_platforms:
+      - erbium_minion
