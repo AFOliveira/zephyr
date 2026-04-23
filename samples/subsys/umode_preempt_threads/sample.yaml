@@ -1,0 +1,13 @@
+sample:
+  name: Zephyr-U preempt threads demo
+  description: Two preemptible k_threads driven by the U-mode timer IRQ on ET-SoC1.
+tests:
+  sample.subsys.umode_preempt_threads:
+    platform_allow:
+      - etsoc1_minion_umode
+    tags: riscv umode preempt
+    harness: console
+    harness_config:
+      type: one_line
+      regex:
+        - "umode_preempt_threads: main exiting"

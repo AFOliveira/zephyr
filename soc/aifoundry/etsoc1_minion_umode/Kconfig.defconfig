@@ -14,8 +14,17 @@ endchoice
 config SYS_CLOCK_HW_CYCLES_PER_SEC
 	default 1000000
 
+# PLIC sources 0..15 cover the timer (7) plus a little headroom.
 config NUM_IRQS
-	default 1
+	default 16
+
+# U-mode timer on by default when MULTITHREADING is on.
+config RISCV_UMODE_TIMER
+	default y if MULTITHREADING
+
+# Enable preemptive scheduling when MULTITHREADING is chosen.
+config MULTITHREADING
+	default n
 
 # ET-SoC1 cm-umode kernels are loaded at 0x8006335000 by default.
 config SRAM_BASE_ADDRESS
