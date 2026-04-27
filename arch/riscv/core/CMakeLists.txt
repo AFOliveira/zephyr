@@ -19,6 +19,16 @@ zephyr_library_sources(
   ${CMAKE_CURRENT_SOURCE_DIR}/../core-umode/printk_stub.c
 )
 
+# cm-umode integration (ET-SoC1): headers only for phase 1.  `asm` is not a
+# reserved keyword under Zephyr's strict C mode, so alias it to __asm__ for
+# cm-umode headers that use it (e.g. isa/common/syscall.h).  utils.c and the
+# other cm-umode .c sources are skipped here because they transitively pull
+# in <et-trace/encoder.h>, which requires the external esperantoTrace package
+# we deliberately aren't linking in phase 1.
+set(CM_UMODE_ROOT /home/afonso/et-platform/et-common-libs)
+zephyr_include_directories(${CM_UMODE_ROOT}/include)
+zephyr_compile_definitions(asm=__asm__)
+
 else()
 
 zephyr_library_sources(

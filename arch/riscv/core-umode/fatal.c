@@ -10,22 +10,12 @@
 #include <zephyr/kernel.h>
 #include <zephyr/fatal.h>
 #include <zephyr/toolchain.h>
-
-#define SYSCALL_RETURN_FROM_KERNEL    8
-#define KERNEL_RETURN_SYSTEM_ABORT    2
+#include <isa/common/syscall.h>   /* cm-umode ABI */
 
 FUNC_NORETURN void arch_system_halt(unsigned int reason)
 {
-	ARG_UNUSED(reason);
-
-	register uint64_t a0 __asm__("a0") = SYSCALL_RETURN_FROM_KERNEL;
-	register uint64_t a1 __asm__("a1") = reason;
-	register uint64_t a2 __asm__("a2") = KERNEL_RETURN_SYSTEM_ABORT;
-
-	__asm__ volatile("ecall"
-			 : "+r"(a0)
-			 : "r"(a1), "r"(a2)
-			 : "memory");
+	(void)syscall(SYSCALL_RETURN_FROM_KERNEL, reason,
+		      KERNEL_RETURN_SYSTEM_ABORT, 0);
 
 	/* If for any reason the firmware doesn't tear us down, hang. */
 	for (;;) {
