@@ -26,3 +26,5 @@ if(CONFIG_RISCV_RUN_IN_UMODE)
     target_include_directories(app PRIVATE ${CM_UMODE_ROOT}/include)
     target_compile_definitions(app PRIVATE asm=__asm__)
 endif()
+
+zephyr_ld_options(-Wl,--emit-relocs)
