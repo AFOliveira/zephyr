@@ -32,6 +32,25 @@ GDATA(z_main_stack)
 .type  _start, @function
 
 _start:
+	/* When the host (e.g. ET-SoC1 MasterMinion + WorkerMinion DM-API
+	 * dispatch) launches a kernel across an entire shire, every minion
+	 * srets to this _start in parallel.  Zephyr-U is single-hart only
+	 * (no SMP support in the U-mode arch), so non-zero harts must not
+	 * touch shared data — they would race with hart-0 on .bss, the
+	 * printk ring, scheduler state, etc.  Filter here: any hart with
+	 * non-zero ET-Minion `hartid` (custom CSR 0xcd0) immediately ecalls
+	 * RETURN_FROM_KERNEL and parks.
+	 *
+	 * On hosts that launch only a single hart (M+U direct, S-trampoline)
+	 * `hartid` is 0 and the check is a single branch — no harm. */
+	csrr  t0, 0xcd0          /* ET-Minion hartid */
+	beqz  t0, 2f
+	li    a0, SYSCALL_RETURN_FROM_KERNEL
+	li    a1, 0
+	li    a2, KERNEL_RETURN_SUCCESS
+	ecall
+1:	j 1b
+2:
 	/* Initialize global pointer (gp) if the linker defined one; under
 	 * CONFIG_RISCV_GP=n the symbol is absent and the compiler emits
 	 * plain absolute addressing, so we skip this entirely. */
