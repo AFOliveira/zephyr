@@ -102,14 +102,14 @@ void arch_flush_local_fpu(void);
 void arch_flush_fpu_ipi(unsigned int cpu);
 #endif
 
-#ifndef CONFIG_MULTITHREADING
+#if !defined(CONFIG_MULTITHREADING) && !defined(CONFIG_RISCV_RUN_IN_UMODE)
 extern FUNC_NORETURN void z_riscv_switch_to_main_no_multithreading(
 	k_thread_entry_t main_func, void *p1, void *p2, void *p3);
 
 #define ARCH_SWITCH_TO_MAIN_NO_MULTITHREADING \
 	z_riscv_switch_to_main_no_multithreading
 
-#endif /* !CONFIG_MULTITHREADING */
+#endif /* !CONFIG_MULTITHREADING && !CONFIG_RISCV_RUN_IN_UMODE */
 
 #endif /* _ASMLANGUAGE */
 

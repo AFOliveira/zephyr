@@ -1,0 +1,23 @@
+# Copyright (c) 2026 AIFoundry
+# SPDX-License-Identifier: Apache-2.0
+#
+# ET-SoC1 Zephyr-U board defaults.  Any U-mode kernel built for this
+# board inherits these constraints from the production firmware:
+#
+# - No UART access from U-mode (MPROT-blocked; cause-7 trap on direct
+#   MMIO poke).  Drop printk + serial + console entirely; logging on
+#   U-mode is via the et-trace ring (Trace_Format_String_V from
+#   <et-trace/encoder.h>) wrapped behind aifoundry_log().
+# - libc malloc's default arena setup walks __kernel_ram_end →
+#   end-of-DTS-sram and writes a heap header into memory that isn't
+#   reliably accessible on real silicon (sysemu papers over it).
+#   Disable the heap pool + libc malloc arena.
+
+CONFIG_RISCV_RUN_IN_UMODE=y
+CONFIG_XIP=n
+CONFIG_PRINTK=n
+CONFIG_CONSOLE=n
+CONFIG_SERIAL=n
+CONFIG_HEAP_MEM_POOL_SIZE=0
+CONFIG_COMMON_LIBC_MALLOC=n
+CONFIG_COMMON_LIBC_MALLOC_ARENA_SIZE=0

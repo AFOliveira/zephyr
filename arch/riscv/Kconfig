@@ -303,11 +303,11 @@ config USE_ISR_WRAPPER
 	  use only irq vector table.
 
 config GEN_ISR_TABLES
-	default y
+	default y if !RISCV_RUN_IN_UMODE
 
 config GEN_SW_ISR_TABLE
-	default y
-	select USE_ISR_WRAPPER
+	default y if !RISCV_RUN_IN_UMODE
+	select USE_ISR_WRAPPER if !RISCV_RUN_IN_UMODE
 
 config GEN_IRQ_VECTOR_TABLE
 	default n
@@ -552,6 +552,52 @@ config RISCV_NO_MTVAL_ON_FP_TRAP
 	  When this option is enabled, the mtval content cannot be relied upon
 	  to contain the faulting FP instruction, requiring alternative methods
 	  to handle FP exceptions.
+
+config RISCV_RUN_IN_UMODE
+	bool "Run Zephyr as a RISC-V U-mode kernel"
+	help
+	  Build Zephyr so that it runs entirely in U-mode, as a "compute
+	  kernel" launched by an external M/S-mode firmware (for example the
+	  ET-SoC1 MasterMinion).  Under this configuration the kernel must
+	  not touch M-mode-only CSRs (mstatus, mie, mtvec, ...), must not
+	  install a trap vector, and exits by issuing an ecall to the host.
+
+	  Implies:
+	    * CONFIG_USERSPACE=n, CONFIG_SMP=n, CONFIG_MULTITHREADING=n
+	    * no interrupt controller, no machine timer, no PMP
+	    * alternate entry.S / irq_mask / cpu_idle / fatal in
+	      arch/riscv/core-umode/
+
+if RISCV_RUN_IN_UMODE
+
+config USERSPACE
+	default n
+
+config SMP
+	default n
+
+config MULTITHREADING
+	default n
+
+config GEN_ISR_TABLES
+	default n
+
+config GEN_SW_ISR_TABLE
+	default n
+
+config USE_ISR_WRAPPER
+	default n
+
+config RISCV_PMP
+	default n
+
+config RISCV_MACHINE_TIMER
+	default n
+
+config INCLUDE_RESET_VECTOR
+	default n
+
+endif # RISCV_RUN_IN_UMODE
 
 rsource "Kconfig.isa"
 
