@@ -23,6 +23,8 @@ manifest:
       url-base: https://github.com/zephyrproject-rtos
     - name: babblesim
       url-base: https://github.com/BabbleSim
+    - name: emlearn-org
+      url-base: https://github.com/emlearn
 
   group-filter: [-babblesim, -optional, -testing]
 
@@ -138,6 +140,11 @@ manifest:
       path: tools/edtt
       groups:
         - tools
+    - name: emlearn
+      remote: emlearn-org
+      repo-path: emlearn
+      revision: master
+      path: modules/lib/emlearn
     - name: fatfs
       revision: f4ead3bf4a6dab3a07d7b5f5315795c073db568d
       path: modules/fs/fatfs
