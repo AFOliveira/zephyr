@@ -256,10 +256,10 @@ FUNC_NORETURN void z_riscv_switch_to_main_no_multithreading(k_thread_entry_t mai
 	: "r" (main_stack), "r" (main_entry)
 	: "memory");
 
-	/* infinite loop */
-	irq_lock();
-	while (true) {
-	}
+	/* main() returned in a no-threading build. Let the platform decide
+	 * whether that means spin forever, reset, or notify an emulator.
+	 */
+	arch_system_halt(0);
 
 	CODE_UNREACHABLE; /* LCOV_EXCL_LINE */
 }
