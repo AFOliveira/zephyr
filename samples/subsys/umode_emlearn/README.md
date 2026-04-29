@@ -2,8 +2,8 @@
 
 Portable emlearn inference demo. The ET-SoC1 U-mode build uses the ET
 Platform surface directly: `et_printf()` for trace logging, the U-mode
-cache-op helper before returning results, and `SYSCALL_RETURN_FROM_KERNEL`
-for launch completion.
+cache-op helper before returning results, and the Zephyr U-mode runtime
+for launch completion after `main()` returns.
 
 ## Build
 

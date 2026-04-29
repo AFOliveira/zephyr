@@ -7,8 +7,8 @@
  * vectors.
  *
  * On ET-SoC1 U-mode this uses Vidas' ET surface directly: et_printf()
- * for logs, cache_ops_priv_evict_whole_l1_l2() for host-visible writes,
- * and SYSCALL_RETURN_FROM_KERNEL for exit.
+ * for logs and cache_ops_priv_evict_whole_l1_l2() for host-visible writes.
+ * Exit is handled by the platform runtime after main() returns.
  */
 
 #include <stdint.h>
@@ -52,19 +52,8 @@ static void emlearn_publish_results(const void *src, size_t size)
 	for (size_t i = 0; i < size; i++) {
 		d[i] = s[i];
 	}
-}
-
-__attribute__((noreturn))
-static void emlearn_kernel_exit(int rc)
-{
-	int code = (rc == 0) ? KERNEL_RETURN_SUCCESS : KERNEL_RETURN_SELF_ABORT;
 
 	(void)cache_ops_priv_evict_whole_l1_l2();
-	(void)syscall(SYSCALL_RETURN_FROM_KERNEL, 0, code, 0);
-
-	for (;;) {
-		__asm__ volatile("nop");
-	}
 }
 #else
 #define emlearn_log(...) printk(__VA_ARGS__)
@@ -73,11 +62,6 @@ static void emlearn_publish_results(const void *src, size_t size)
 {
 	ARG_UNUSED(src);
 	ARG_UNUSED(size);
-}
-
-static void emlearn_kernel_exit(int rc)
-{
-	ARG_UNUSED(rc);
 }
 #endif
 
@@ -128,5 +112,5 @@ int main(void)
 	}
 	emlearn_publish_results(out_packed, sizeof(out_packed));
 
-	emlearn_kernel_exit(0);
+	return 0;
 }
