@@ -5,6 +5,7 @@
 
 #include <zephyr/init.h>
 #include <zephyr/irq.h>
+#include <zephyr/toolchain.h>
 #include <zephyr/sys/util.h>
 #include <zephyr/devicetree.h>
 
@@ -44,4 +45,34 @@ void arch_cpu_idle(void)
 void arch_cpu_atomic_idle(unsigned int key)
 {
 	irq_unlock(key);
+}
+
+#define ERBIUM_CSR_VALIDATION0       0x8d0
+#define ERBIUM_VALIDATION_PASS       0x1FEED000UL
+#define ERBIUM_VALIDATION_FAIL       0x50BAD000UL
+#define ERBIUM_UART_DRAIN_LOOPS      1000000
+
+FUNC_NORETURN void arch_system_halt(unsigned int reason)
+{
+	unsigned long code = (reason == 0U) ? ERBIUM_VALIDATION_PASS :
+					      ERBIUM_VALIDATION_FAIL;
+
+	(void)irq_lock();
+
+	/* Let polled UART output drain before making the hart unavailable. */
+	for (volatile int i = 0; i < ERBIUM_UART_DRAIN_LOOPS; i++) {
+		__asm__ volatile("nop");
+	}
+
+	/* Erbium sys-emu completion ABI: validation0 PASS/FAIL. */
+	__asm__ volatile("fence; csrw %0, %1"
+			 :
+			 : "i"(ERBIUM_CSR_VALIDATION0), "r"(code)
+			 : "memory");
+
+	for (;;) {
+		__asm__ volatile("nop");
+	}
+
+	CODE_UNREACHABLE;
 }

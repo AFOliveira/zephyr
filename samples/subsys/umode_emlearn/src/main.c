@@ -78,20 +78,6 @@ static void emlearn_publish_results(const void *src, size_t size)
 static void emlearn_kernel_exit(int rc)
 {
 	ARG_UNUSED(rc);
-
-	__asm__ volatile("csrci mstatus, 0x8");
-
-	/* Let UART output drain before reporting completion to the emulator. */
-	for (volatile int i = 0; i < 1000000; i++) {
-		__asm__ volatile("nop");
-	}
-
-	/* Vidas's Erbium emulator exit ABI: PASS via validation0 CSR. */
-	__asm__ volatile("fence; csrw 0x8d0, %0" :: "r"((uintptr_t)0x1FEED000));
-
-	for (;;) {
-		__asm__ volatile("nop");
-	}
 }
 #endif
 
