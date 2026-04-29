@@ -1,0 +1,52 @@
+# Copyright (c) 2026 AIFoundry
+# SPDX-License-Identifier: Apache-2.0
+
+if SOC_ETSOC1_MINION_UMODE
+
+# Medany is required because the LARGE code model is not supported by the
+# RISC-V GCC shipped in zephyr-sdk-0.17.4.  With SRAM_BASE_ADDRESS above
+# 4 GiB the generic Kconfig default would pick LARGE; explicitly force
+# MEDANY here.
+choice RISCV_CMODEL
+	default RISCV_CMODEL_MEDANY
+endchoice
+
+config SYS_CLOCK_HW_CYCLES_PER_SEC
+	default 1000000
+
+config NUM_IRQS
+	default 1
+
+config AIFOUNDRY_ETSOC1_UMODE_REGION0_BASE
+	hex "ET-SoC1 U-mode region 0 base address"
+	default 0x8006335000
+
+config AIFOUNDRY_ETSOC1_UMODE_REGION0_SIZE
+	hex "ET-SoC1 U-mode region 0 size"
+	default 0x00100000
+
+config AIFOUNDRY_ETSOC1_UMODE_MMODE_RESERVED_SIZE
+	hex "ET-SoC1 U-mode M-mode reserved window size"
+	default 0x0
+
+config AIFOUNDRY_ETSOC1_UMODE_NUM_HARTS
+	int "ET-SoC1 U-mode launched hart count"
+	default 1
+
+config AIFOUNDRY_ETSOC1_UMODE_STACK_SIZE
+	int "ET-SoC1 U-mode stack size per hart"
+	default 4096
+
+# Keep Zephyr's generated headers/devicetree consistent with the
+# soc1sim region contract. The linker wrapper is authoritative for
+# final placement.
+config SRAM_BASE_ADDRESS
+	default AIFOUNDRY_ETSOC1_UMODE_REGION0_BASE
+
+config SRAM_SIZE
+	default 1024
+
+config KERNEL_ENTRY
+	default "_boot"
+
+endif # SOC_ETSOC1_MINION_UMODE

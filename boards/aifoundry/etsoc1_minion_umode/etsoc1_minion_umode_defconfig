@@ -1,0 +1,9 @@
+# Copyright (c) 2026 AIFoundry
+# SPDX-License-Identifier: Apache-2.0
+
+CONFIG_RISCV_RUN_IN_UMODE=y
+CONFIG_FPU=y
+CONFIG_PRINTK=y
+CONFIG_XIP=n
+CONFIG_SERIAL=n
+CONFIG_CONSOLE=n

@@ -10,6 +10,7 @@
 		 * sorted in the order they will be initialized (i.e. ordered
 		 * by level, sorted by priority within a level)
 		 */
+		. = ALIGN(Z_LINK_ITERABLE_SUBALIGN);
 		PLACE_SYMBOL_HERE(__init_start);
 		CREATE_OBJ_LEVEL(init, EARLY)
 		CREATE_OBJ_LEVEL(init, PRE_KERNEL_1)
