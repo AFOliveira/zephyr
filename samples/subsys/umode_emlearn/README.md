@@ -37,3 +37,12 @@ modules/lib/emlearn/examples/classifiers.py
 That example uses the same inline C header generation path as these
 classifiers.  Adapt its iris and wine dataset setup to regenerate this
 sample's DecisionTree and RandomForest headers.
+
+## ET-SoC1 per-launch memory
+
+The ET-SoC1 U-mode board reserves a 16 MiB region 0.  The Zephyr linker
+wrapper exposes the unused tail of that region as the NOLOAD `.heap0`
+area, so the ELF program header's `p_memsz` spans the full 16 MiB while
+the file remains small.  Loading the same ELF into multiple runtime slots
+therefore gives each launch its own physical 16 MiB heap/fake-MRAM window
+without the application computing a shire-local offset.

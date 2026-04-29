@@ -23,7 +23,7 @@ config AIFOUNDRY_ETSOC1_UMODE_REGION0_BASE
 
 config AIFOUNDRY_ETSOC1_UMODE_REGION0_SIZE
 	hex "ET-SoC1 U-mode region 0 size"
-	default 0x00100000
+	default 0x01000000
 
 config AIFOUNDRY_ETSOC1_UMODE_MMODE_RESERVED_SIZE
 	hex "ET-SoC1 U-mode M-mode reserved window size"
@@ -44,7 +44,7 @@ config SRAM_BASE_ADDRESS
 	default AIFOUNDRY_ETSOC1_UMODE_REGION0_BASE
 
 config SRAM_SIZE
-	default 1024
+	default 16384
 
 config KERNEL_ENTRY
 	default "_boot"

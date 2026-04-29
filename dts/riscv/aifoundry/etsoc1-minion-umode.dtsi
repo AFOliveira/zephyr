@@ -42,7 +42,7 @@
 
 		umode_region: memory@8006335000 {
 			compatible = "mmio-sram";
-			reg = <0x80 0x06335000 0x0 0x00100000>; /* 1 MiB */
+			reg = <0x80 0x06335000 0x0 0x01000000>; /* 16 MiB */
 		};
 	};
 };
