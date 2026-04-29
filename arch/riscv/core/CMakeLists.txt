@@ -2,6 +2,32 @@
 
 zephyr_library()
 
+if(CONFIG_RISCV_RUN_IN_UMODE)
+
+include(${ZEPHYR_BASE}/cmake/modules/aifoundry_etsoc1_umode.cmake)
+aifoundry_configure_etsoc1_umode()
+
+# U-mode build: use the minimal crt0-style sources under arch/riscv/core-umode/.
+# None of the standard M-mode core sources (reset.S, prep_c.c, thread.c,
+# switch.S, irq_manage.c, fatal.c, cpu_idle.c, reboot.c) are compiled because
+# they touch privileged CSRs that are not accessible from U-mode.
+zephyr_library_sources(
+  ${CMAKE_CURRENT_SOURCE_DIR}/../core-umode/entry.S
+  ${CMAKE_CURRENT_SOURCE_DIR}/../core-umode/prep_c.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/../core-umode/thread.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/../core-umode/cpu_idle.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/../core-umode/irq_mask.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/../core-umode/fatal.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/../core-umode/reboot.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/../core-umode/kernel_runtime_storage.c
+)
+
+zephyr_library_sources_ifdef(CONFIG_PRINTK
+  ${CMAKE_CURRENT_SOURCE_DIR}/../core-umode/printk_stub.c
+)
+
+else()
+
 zephyr_library_sources(
   cpu_idle.c
   fatal.c
@@ -43,3 +69,5 @@ if(CONFIG_GEN_SW_ISR_TABLE)
     zephyr_linker_sources(RODATA swi_tables.ld)
   endif()
 endif()
+
+endif() # CONFIG_RISCV_RUN_IN_UMODE

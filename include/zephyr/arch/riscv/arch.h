@@ -228,6 +228,12 @@ struct arch_mem_domain {
 
 extern void z_irq_spurious(const void *unused);
 
+#ifdef CONFIG_RISCV_SOC_HAS_CUSTOM_IRQ_LOCK_OPS
+unsigned int z_soc_irq_lock(void);
+void z_soc_irq_unlock(unsigned int key);
+bool z_soc_irq_unlocked(unsigned int key);
+#endif
+
 /*
  * use atomic instruction csrrc to lock global irq
  * csrrc: atomic read and clear bits in CSR register
