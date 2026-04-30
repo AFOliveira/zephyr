@@ -11,22 +11,24 @@ completion after `main()` returns.
 
 ```sh
 # ET-SoC1 (U-mode under MachineMinion + DM-API)
-cd /home/afonso/zephyr
+export ZEPHYR_ROOT=/path/to/zephyr
+export ET_PLATFORM_ROOT=/path/to/et-platform
+export ZEPHYR_SDK_INSTALL_DIR=/path/to/zephyr-sdk-0.17.4
+
+cd "${ZEPHYR_ROOT}"
 
 ZEPHYR_TOOLCHAIN_VARIANT=zephyr \
-ZEPHYR_SDK_INSTALL_DIR=/home/afonso/toolchains/zephyr-sdk-0.17.4 \
 west build \
   --build-dir build-etsoc1-lp64f-test \
   -b etsoc1_minion_umode \
   samples/subsys/umode_emlearn \
   -p always \
-  -- -DET_PLATFORM_ROOT=/home/afonso/et-platform-vidas
+  -- -DET_PLATFORM_ROOT="${ET_PLATFORM_ROOT}"
 
 # Erbium (M-mode native)
-cd /home/afonso/zephyr
+cd "${ZEPHYR_ROOT}"
 
 ZEPHYR_TOOLCHAIN_VARIANT=zephyr \
-ZEPHYR_SDK_INSTALL_DIR=/home/afonso/toolchains/zephyr-sdk-0.17.4 \
 west build \
   --build-dir build-erbium-emlearn-test \
   -b erbium_minion \
@@ -95,7 +97,8 @@ The Erbium build is the same emlearn source built for `erbium_minion`
 and run in native M-mode through `erbium_emu`.
 
 ```sh
-export ERBIUM_EMU=/home/afonso/et-platform/build-emu/erbium_emu
+export ET_PLATFORM_ROOT=/path/to/et-platform
+export ERBIUM_EMU="${ET_PLATFORM_ROOT}/build-emu/erbium_emu"
 export ERBIUM_UART=/tmp/erbium_emlearn_uart.txt
 
 rm -f "${ERBIUM_UART}"

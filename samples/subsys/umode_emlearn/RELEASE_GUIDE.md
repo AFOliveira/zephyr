@@ -45,7 +45,8 @@ loadKernel() kernel 0 loaded at 0x8006335000
 Run the same emlearn source as native Erbium M-mode:
 
 ```sh
-export ERBIUM_EMU=/home/afonso/et-platform/build-emu/erbium_emu
+export ET_PLATFORM_ROOT=/path/to/et-platform
+export ERBIUM_EMU="${ET_PLATFORM_ROOT}/build-emu/erbium_emu"
 export ERBIUM_UART=/tmp/erbium_emlearn_uart.txt
 
 rm -f "${ERBIUM_UART}"
@@ -87,13 +88,12 @@ export ROOT_DIR=${ROOT_DIR:-$HOME/zephyr-etsoc1-emlearn}
 export RELEASE_TAG=etsoc1-umode-emlearn-2026-04-30
 export ET_PLATFORM_COMMIT=261d33188cfc767607781fc476f93fc1d514ee2b
 export ET_PLATFORM_REPO=ssh://git@github.com/vidas/et-platform.git
+export ZEPHYR_SDK_INSTALL_DIR=/path/to/zephyr-sdk-0.17.4
 
 mkdir -p "${ROOT_DIR}/src" "${ROOT_DIR}/bundle"
 cd "${ROOT_DIR}/src"
 
-git clone git@github.com:aifoundry-org/zephyr.git zephyr
-git -C zephyr fetch --depth=1 origin "refs/tags/${RELEASE_TAG}:refs/tags/${RELEASE_TAG}"
-git -C zephyr checkout --detach "${RELEASE_TAG}"
+git clone --branch "${RELEASE_TAG}" --depth 1 git@github.com:aifoundry-org/zephyr.git zephyr
 
 git clone "${ET_PLATFORM_REPO}" et-platform
 git -C et-platform fetch --depth=1 origin "${ET_PLATFORM_COMMIT}"
@@ -111,7 +111,6 @@ west zephyr-export
 
 export ET_PLATFORM_ROOT="${ROOT_DIR}/src/et-platform"
 export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
-export ZEPHYR_SDK_INSTALL_DIR=/home/afonso/toolchains/zephyr-sdk-0.17.4
 
 west build \
   --build-dir build-etsoc1-umode-emlearn \
@@ -144,22 +143,40 @@ cmake .. \
 cmake --build . --target basic_launcher -j"$(nproc)"
 ```
 
-Package the release bundle:
+The source build produces these artifacts:
+
+```text
+${ROOT_DIR}/src/zephyr/build-etsoc1-umode-emlearn/zephyr/zephyr.elf
+${ROOT_DIR}/src/zephyr/build-erbium-mmode-emlearn/zephyr/zephyr.elf
+${ROOT_DIR}/src/et-platform/gp-sdk/host/build/sdk/basic_launcher
+```
+
+Run the source-built ET-SoC1 U-mode ELF:
 
 ```sh
-export LAUNCHER_BIN="${ROOT_DIR}/src/et-platform/gp-sdk/host/build/sdk/basic_launcher"
+source "${ET_SDK_HOME}/.builds/host/conanrunenv-debug-x86_64.sh"
 
-cp "${ROOT_DIR}/src/zephyr/build-etsoc1-umode-emlearn/zephyr/zephyr.elf" \
-  "${ROOT_DIR}/bundle/zephyr_etsoc1_umode_emlearn.elf"
-cp "${ROOT_DIR}/src/zephyr/build-erbium-mmode-emlearn/zephyr/zephyr.elf" \
-  "${ROOT_DIR}/bundle/zephyr_erbium_mmode_emlearn.elf"
-cp "${LAUNCHER_BIN}" "${ROOT_DIR}/bundle/"
+"${ROOT_DIR}/src/et-platform/gp-sdk/host/build/sdk/basic_launcher" \
+  --kernel_path="${ROOT_DIR}/src/zephyr/build-etsoc1-umode-emlearn/zephyr/zephyr.elf" \
+  --device_type=silicon \
+  --shire_mask=0x1 \
+  --kernel_launch_timeout=30 \
+  --num_launches=1
+```
 
-ldd "${LAUNCHER_BIN}" \
-  | awk '/=>/ { print $3 }' \
-  | grep -E '/(libetrt|libdeviceLayer|libsw-sysemu|lib.*boost|libglog|libgflags|libunwind|liblz4|libgtest|libgmock|libdebugging|libthreadPool|libactionList|liblogging|libg3logger|libeasy_profiler|libbacktrace|libcap|libbz2|libz|liblzma)' \
-  | xargs -r cp -t "${ROOT_DIR}/bundle/"
+Run the source-built Erbium M-mode ELF:
 
-tar -czf "${ROOT_DIR}/zephyr-etsoc1-emlearn-release.tar.gz" \
-  -C "${ROOT_DIR}/bundle" .
+```sh
+export ERBIUM_EMU="${ET_PLATFORM_ROOT}/build-emu/erbium_emu"
+export ERBIUM_UART=/tmp/erbium_emlearn_uart.txt
+
+rm -f "${ERBIUM_UART}"
+"${ERBIUM_EMU}" \
+  -reset_pc 0x40000200 \
+  -single_thread \
+  -max_cycles 500000000 \
+  -elf_load "${ROOT_DIR}/src/zephyr/build-erbium-mmode-emlearn/zephyr/zephyr.elf" \
+  -uart_tx_file "${ERBIUM_UART}"
+
+cat "${ERBIUM_UART}"
 ```
