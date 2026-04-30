@@ -1,9 +1,11 @@
 # umode_emlearn
 
-Portable emlearn inference demo. The ET-SoC1 U-mode build uses the ET
-Platform surface directly: `et_printf()` for trace logging, the U-mode
-cache-op helper before returning results, and the Zephyr U-mode runtime
-for launch completion after `main()` returns.
+Portable emlearn inference demo.  The same sample source runs as
+ET-SoC1 U-mode and as native Erbium M-mode because the target-specific
+parts are behind the AIFoundry/ET HAL surfaces.  The ET-SoC1 U-mode
+build uses `et_printf()` for trace logging, the U-mode cache-op helper
+before returning results, and the Zephyr U-mode runtime for launch
+completion after `main()` returns.
 
 ## Build Locally
 
@@ -32,10 +34,11 @@ west build \
   -p always
 ```
 
-The ET-SoC1 build output is:
+The build outputs are:
 
 ```text
 build-etsoc1-lp64f-test/zephyr/zephyr.elf
+build-erbium-emlearn-test/zephyr/zephyr.elf
 ```
 
 For release asset packaging and a fully pinned source rebuild flow, see
@@ -84,6 +87,37 @@ LD_LIBRARY_PATH=$PWD ./basic_launcher \
   --shire_mask=0x1 \
   --kernel_launch_timeout=120 \
   --num_launches=1
+```
+
+## Run On Erbium
+
+The Erbium build is the same emlearn source built for `erbium_minion`
+and run in native M-mode through `erbium_emu`.
+
+```sh
+export ERBIUM_EMU=/home/afonso/et-platform/build-emu/erbium_emu
+export ERBIUM_UART=/tmp/erbium_emlearn_uart.txt
+
+rm -f "${ERBIUM_UART}"
+"${ERBIUM_EMU}" \
+  -reset_pc 0x40000200 \
+  -single_thread \
+  -max_cycles 500000000 \
+  -elf_load build-erbium-emlearn-test/zephyr/zephyr.elf \
+  -uart_tx_file "${ERBIUM_UART}"
+
+cat "${ERBIUM_UART}"
+```
+
+Expected UART output includes:
+
+```text
+emlearn-demo: start
+emlearn-demo: iris (DecisionTree, 4 features, 5 vectors)
+  iris-tree[0] -> 0
+  iris-tree[1] -> 1
+  iris-tree[2] -> 2
+emlearn-demo: done
 ```
 
 ## Generated classifier headers

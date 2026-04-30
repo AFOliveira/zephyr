@@ -15,6 +15,11 @@ curl -L -O "${RELEASE_URL}/zephyr-etsoc1-emlearn-release.tar.gz"
 tar -xzf zephyr-etsoc1-emlearn-release.tar.gz
 ```
 
+The bundle contains the stock ET Platform `basic_launcher`, its runtime
+shared libraries, the ET-SoC1 U-mode ELF
+`zephyr_etsoc1_umode_emlearn.elf`, and the Erbium M-mode ELF
+`zephyr_erbium_mmode_emlearn.elf`.
+
 Run the Zephyr ET-SoC1 U-mode emlearn demo on shire 0:
 
 ```sh
@@ -36,6 +41,38 @@ loadKernel() kernel 0 loaded at 0x8006335000
     [1] -> class 1 (versicolor)
     [2] -> class 2 (virginica)
 ```
+
+Run the same emlearn source as native Erbium M-mode:
+
+```sh
+export ERBIUM_EMU=/home/afonso/et-platform/build-emu/erbium_emu
+export ERBIUM_UART=/tmp/erbium_emlearn_uart.txt
+
+rm -f "${ERBIUM_UART}"
+"${ERBIUM_EMU}" \
+  -reset_pc 0x40000200 \
+  -single_thread \
+  -max_cycles 500000000 \
+  -elf_load "${ROOT_DIR}/zephyr_erbium_mmode_emlearn.elf" \
+  -uart_tx_file "${ERBIUM_UART}"
+
+cat "${ERBIUM_UART}"
+```
+
+Expected UART output includes:
+
+```text
+emlearn-demo: start
+emlearn-demo: iris (DecisionTree, 4 features, 5 vectors)
+  iris-tree[0] -> 0
+  iris-tree[1] -> 1
+  iris-tree[2] -> 2
+emlearn-demo: done
+```
+
+The same source can run in both places because the application uses the
+AIFoundry/ET HAL-backed runtime, logging, and completion surfaces instead
+of directly depending on one platform's firmware details.
 
 The Zephyr source for this release is the same `RELEASE_TAG` in
 `git@github.com:aifoundry-org/zephyr.git`.
