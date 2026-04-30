@@ -90,19 +90,38 @@ west build \
   -p always
 ```
 
-Package the release bundle.  `LAUNCHER_DIR` must point at a directory
-that contains the stock `basic_launcher` and its `lib*.so*` runtime
-dependencies.
+Build the stock ET Platform launcher:
 
 ```sh
-export LAUNCHER_DIR=/path/to/et-platform-launcher-deploy
+export ET_SDK_HOME=/usr/local/et
+source "${ET_SDK_HOME}/.builds/host/conanrunenv-debug-x86_64.sh"
+
+cd "${ROOT_DIR}/src/et-platform/gp-sdk/host"
+mkdir -p build
+cd build
+
+cmake .. \
+  -DCMAKE_TOOLCHAIN_FILE="${ET_SDK_HOME}/.builds/host/conan_toolchain.cmake" \
+  -DCMAKE_BUILD_TYPE=Debug
+
+cmake --build . --target basic_launcher -j"$(nproc)"
+```
+
+Package the release bundle:
+
+```sh
+export LAUNCHER_BIN="${ROOT_DIR}/src/et-platform/gp-sdk/host/build/sdk/basic_launcher"
 
 cp "${ROOT_DIR}/src/zephyr/build-etsoc1-umode-emlearn/zephyr/zephyr.elf" \
   "${ROOT_DIR}/bundle/zephyr_etsoc1_umode_emlearn.elf"
 cp "${ROOT_DIR}/src/zephyr/build-erbium-mmode-emlearn/zephyr/zephyr.elf" \
   "${ROOT_DIR}/bundle/zephyr_erbium_mmode_emlearn.elf"
-cp "${LAUNCHER_DIR}/basic_launcher" "${ROOT_DIR}/bundle/"
-cp "${LAUNCHER_DIR}"/lib*.so* "${ROOT_DIR}/bundle/"
+cp "${LAUNCHER_BIN}" "${ROOT_DIR}/bundle/"
+
+ldd "${LAUNCHER_BIN}" \
+  | awk '/=>/ { print $3 }' \
+  | grep -E '/(libetrt|libdeviceLayer|libsw-sysemu|lib.*boost|libglog|libgflags|libunwind|liblz4|libgtest|libgmock|libdebugging|libthreadPool|libactionList|liblogging|libg3logger|libeasy_profiler|libbacktrace|libcap|libbz2|libz|liblzma)' \
+  | xargs -r cp -t "${ROOT_DIR}/bundle/"
 
 tar -czf "${ROOT_DIR}/zephyr-etsoc1-emlearn-release.tar.gz" \
   -C "${ROOT_DIR}/bundle" .
