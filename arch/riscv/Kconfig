@@ -597,6 +597,40 @@ config RISCV_MACHINE_TIMER
 config INCLUDE_RESET_VECTOR
 	default n
 
+config AIFOUNDRY_PER_SHIRE_STACK
+	bool "Carve z_main_stack into per-shire slices in entry.S"
+	default n
+	help
+	  When a single Zephyr-U ELF is launched across multiple shires by a
+	  multi-bit shire_mask (e.g. 0xF for shires 0..3), the lead hart of
+	  every shire enters _start and runs main() concurrently.  Without
+	  per-shire stack carving each lead hart sets sp to the same address
+	  (top of z_main_stack) and the four mains race on the same stack
+	  region.  Trivial workloads (just write a sentinel and exit) tend to
+	  survive this; anything with real frames does not.
+
+	  When this option is enabled, entry.S computes:
+
+	      shire_id = (CSR 0xcd0 >> 6) & 0x1F
+	      sp       = &z_main_stack[(shire_id + 1) *
+	                               CONFIG_AIFOUNDRY_PER_SHIRE_STACK_SIZE]
+
+	  giving each shire its own non-overlapping slice of z_main_stack.
+	  CONFIG_MAIN_STACK_SIZE must be at least
+	  N_SHIRES * CONFIG_AIFOUNDRY_PER_SHIRE_STACK_SIZE so the array has
+	  room for all slices (the sample sets it to 4 * 4096 = 16384).
+
+	  Default n: single-shire launches keep the stock SP setup and
+	  existing samples are unaffected.
+
+config AIFOUNDRY_PER_SHIRE_STACK_SIZE
+	int "Per-shire stack slice size (bytes)"
+	default 4096
+	depends on AIFOUNDRY_PER_SHIRE_STACK
+	help
+	  Size in bytes of each per-shire stack slice carved out of
+	  z_main_stack.  See CONFIG_AIFOUNDRY_PER_SHIRE_STACK.
+
 endif # RISCV_RUN_IN_UMODE
 
 rsource "Kconfig.isa"

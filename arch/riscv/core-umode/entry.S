@@ -37,8 +37,12 @@ _start:
 	/* Hartid filter: only hart-0 enters the boot path; everyone else
 	 * RETURN_FROM_KERNELs immediately.  The host launches the kernel
 	 * across all minions of a shire; without this filter they race
-	 * on .bss / printk ring / scheduler state. */
+	 * on .bss / printk ring / scheduler state.  Mask to local-in-shire
+	 * (64 harts/shire = 6 bits) so hart 0 of every shire passes the
+	 * filter — required for multi-shire launches like the parallel
+	 * dual_shire_launcher experiment. */
 	csrr  t0, 0xcd0
+	andi  t0, t0, 0x3F
 	beqz  t0, 2f
 	li    a0, SYSCALL_RETURN_FROM_KERNEL
 	li    a1, 0
@@ -97,10 +101,35 @@ _start:
 
 	/* Point sp at the top of the main stack.  K_THREAD_STACK_BUFFER
 	 * is a macro, but the stack symbol itself is laid out as a plain
-	 * array by the linker.  We add CONFIG_MAIN_STACK_SIZE at runtime. */
+	 * array by the linker.  We add CONFIG_MAIN_STACK_SIZE at runtime.
+	 *
+	 * When CONFIG_AIFOUNDRY_PER_SHIRE_STACK=y the single z_main_stack
+	 * is carved into one slice per shire so a single multi-shire
+	 * kernelLaunch can have lead harts on different shires running
+	 * non-trivial workloads without racing on the stack:
+	 *
+	 *     shire_id = (CSR 0xcd0 >> 6) & 0x1F
+	 *     sp       = &z_main_stack[(shire_id + 1) *
+	 *                              CONFIG_AIFOUNDRY_PER_SHIRE_STACK_SIZE]
+	 *
+	 * Each shire's slice is [shire_id*SIZE .. (shire_id+1)*SIZE), and
+	 * sp points one past the end of that slice (stacks grow down).  The
+	 * existing single-shire path (Kconfig=n, default) is byte-identical
+	 * to the pre-patch behavior. */
+#ifdef CONFIG_AIFOUNDRY_PER_SHIRE_STACK
+	csrr t1, 0xcd0
+	srli t1, t1, 6
+	andi t1, t1, 0x1F           /* t1 = shire_id */
+	addi t1, t1, 1              /* t1 = shire_id + 1 */
+	li   t2, CONFIG_AIFOUNDRY_PER_SHIRE_STACK_SIZE
+	mul  t1, t1, t2             /* t1 = (shire_id+1) * SIZE */
+	la   sp, z_main_stack
+	add  sp, sp, t1
+#else
 	la   sp, z_main_stack
 	li   t0, CONFIG_MAIN_STACK_SIZE
 	add  sp, sp, t0
+#endif
 	andi sp, sp, -16          /* RISC-V psABI: 16-byte aligned sp */
 
 	/* Hand off to the C runtime.  z_prep_c zeros .bss, runs the

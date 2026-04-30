@@ -1,0 +1,14 @@
+sample:
+  name: emlearn-style inference on Zephyr
+  description: Pure-compute decision tree classifier, exits via RETURN_FROM_KERNEL syscall.
+tests:
+  sample.subsys.umode_emlearn:
+    platform_allow:
+      - etsoc1_minion_umode
+      - erbium_minion
+    tags: riscv umode emlearn ml
+    harness: console
+    harness_config:
+      type: one_line
+      regex:
+        - "emlearn-app: done, exiting kernel"
