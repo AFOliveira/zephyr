@@ -38,18 +38,21 @@ The ET-SoC1 build output is:
 build-etsoc1-lp64f-test/zephyr/zephyr.elf
 ```
 
+For release asset packaging and a fully pinned source rebuild flow, see
+`RELEASE_GUIDE.md`.
+
 ## Run On ET-SoC1
 
-The ET-SoC1 launchers run on the board host, not inside Zephyr.  The
-commands below assume the desired ELF is already present in the launcher
-bundle directory.
+The ET-SoC1 launcher runs on the board host, not inside Zephyr.  The
+commands below use the stock gp-sdk `basic_launcher` and assume the
+desired ELF is already present in the launcher bundle directory.
 
 ```sh
 ssh root@esperanto-soc4
 cd /root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2
 ```
 
-Single-shire smoke run:
+Single-kernel smoke run on shire 0:
 
 ```sh
 LD_LIBRARY_PATH=$PWD ./basic_launcher \
@@ -60,7 +63,7 @@ LD_LIBRARY_PATH=$PWD ./basic_launcher \
   --num_launches=1
 ```
 
-Repeated single-shire run:
+Repeated run of the same loaded kernel:
 
 ```sh
 LD_LIBRARY_PATH=$PWD ./basic_launcher \
@@ -71,29 +74,16 @@ LD_LIBRARY_PATH=$PWD ./basic_launcher \
   --num_launches=5
 ```
 
-Four-shire concurrent run:
+The same stock launcher can use the ET-SoC1 system emulator by switching
+the device type:
 
 ```sh
-LD_LIBRARY_PATH=$PWD ./quad_shire_launcher \
-  --kernel_path_0=zephyr_halified_emlearn_16m.elf \
-  --kernel_path_1=zephyr_halified_emlearn_16m.elf \
-  --kernel_path_2=zephyr_halified_emlearn_16m.elf \
-  --kernel_path_3=zephyr_halified_emlearn_16m.elf \
-  --device_type=silicon \
-  --kernel_launch_timeout=30
-```
-
-The same launcher commands can use the ET-SoC1 system emulator by
-switching the device type:
-
-```sh
-LD_LIBRARY_PATH=$PWD ./quad_shire_launcher \
-  --kernel_path_0=zephyr_halified_emlearn_16m.elf \
-  --kernel_path_1=zephyr_halified_emlearn_16m.elf \
-  --kernel_path_2=zephyr_halified_emlearn_16m.elf \
-  --kernel_path_3=zephyr_halified_emlearn_16m.elf \
+LD_LIBRARY_PATH=$PWD ./basic_launcher \
+  --kernel_path=zephyr_halified_emlearn_16m.elf \
   --device_type=sysemu \
-  --kernel_launch_timeout=120
+  --shire_mask=0x1 \
+  --kernel_launch_timeout=120 \
+  --num_launches=1
 ```
 
 ## Generated classifier headers
@@ -116,13 +106,9 @@ sample's DecisionTree and RandomForest headers.
 The ET-SoC1 U-mode board reserves a 16 MiB region 0.  The Zephyr linker
 wrapper exposes the unused tail of that region as the NOLOAD `.heap0`
 area, so the ELF program header's `p_memsz` spans the full 16 MiB while
-the file remains small.  Loading the same ELF into multiple runtime slots
-therefore gives each launch its own physical 16 MiB heap/fake-MRAM window
-without the application computing a shire-local offset.
+the file remains small.
 
-`quad_shire_launcher` is gp-sdk host infrastructure.  It calls
-`loadKernel()` four times, which delegates ELF allocation to
+`basic_launcher` calls `loadKernel()`, which delegates ELF allocation to
 `IRuntime::loadCode()`.  The runtime allocates device DRAM from its host
-memory manager based on the ELF program headers, relocates each copy, and
-then launches the four kernel IDs on shire masks `0x1`, `0x2`, `0x4`,
-and `0x8`.
+memory manager based on the ELF program headers, relocates the loaded
+copy, and then launches that kernel ID on the requested shire mask.
