@@ -36,18 +36,25 @@ _start:
 	 * dispatch) launches a kernel across an entire shire, every minion
 	 * srets to this _start in parallel.  Zephyr-U is single-hart only
 	 * (no SMP support in the U-mode arch), so non-zero harts must not
-	 * touch shared data — they would race with hart-0 on .bss, the
-	 * printk ring, scheduler state, etc.  Filter here: any hart with
-	 * non-zero ET-Minion `hartid` (custom CSR 0xcd0) immediately ecalls
-	 * RETURN_FROM_KERNEL and parks.  The CSR also encodes the shire, so
-	 * mask down to the local-in-shire hart id; otherwise hart 0 in shires
-	 * above 0 would be incorrectly filtered out.
+	 * touch shared data — they would race with the selected Zephyr hart on
+	 * .bss, the printk ring, scheduler state, etc.  Filter here: every
+	 * non-selected ET-Minion `hartid` (custom CSR 0xcd0) immediately
+	 * ecalls RETURN_FROM_KERNEL and parks.
+	 *
+	 * For the four-neighborhood ET-SoC1 flow, the launched hart for shires
+	 * 0..3 appears at local-in-shire hart 0, 16, 32, 48 respectively.  Use
+	 * the shire id encoded above bit 6 to choose that local hart; otherwise
+	 * only shire 0 runs Zephyr C code and the other shires return before
+	 * publishing results.
 	 *
 	 * On hosts that launch only a single hart (M+U direct, S-trampoline)
 	 * `hartid` is 0 and the check is a single branch — no harm. */
 	csrr  t0, 0xcd0          /* ET-Minion hartid */
-	andi  t0, t0, 0x3F       /* 64 harts per shire */
-	beqz  t0, 2f
+	srli  t1, t0, 6          /* shire id */
+	andi  t1, t1, 0x3        /* neighborhood id in this 4-shire flow */
+	slli  t1, t1, 4          /* selected local hart: 0, 16, 32, 48 */
+	andi  t0, t0, 0x3F       /* local-in-shire hart id */
+	beq   t0, t1, 2f
 	li    a0, SYSCALL_RETURN_FROM_KERNEL
 	li    a1, 0
 	li    a2, KERNEL_RETURN_SUCCESS
