@@ -158,6 +158,7 @@ comment "Serial Drivers"
 
 # zephyr-keep-sorted-start
 rsource "Kconfig.aesc"
+rsource "Kconfig.aifoundry_trace"
 rsource "Kconfig.altera"
 rsource "Kconfig.altera_jtag"
 rsource "Kconfig.ambiq"

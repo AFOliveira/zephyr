@@ -1,0 +1,18 @@
+# Copyright (c) 2026 AIFoundry
+# SPDX-License-Identifier: Apache-2.0
+
+mainmenu "AIFoundry Arduino emlearn sample"
+
+config AIFOUNDRY_ARDUINO_LOOP_COUNT
+	int "Number of loop() iterations before kernel exit"
+	default 3
+	help
+	  Arduino's `loop()` is normally an infinite cycle.  The
+	  ET-SoC1 launcher (basic_launcher) kills the kernel after
+	  --kernel_launch_timeout seconds if it never returns, which
+	  loses the exit code and can clip the trace ring.  This
+	  caps the sketch's loop count so the kernel exits cleanly
+	  via aifoundry_kernel_exit() — set to 0 to disable the cap
+	  and let the sketch run forever.
+
+source "Kconfig.zephyr"

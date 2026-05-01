@@ -32,6 +32,22 @@
  *       either target (U-mode ecalls RETURN_FROM_KERNEL; M-mode spins
  *       in cpu_idle so Zephyr can complete teardown but main never
  *       comes back).
+ *
+ *   aifoundry_delay_ms(ms)
+ *       Block for at least `ms` milliseconds before returning.  On
+ *       M-mode this maps to k_busy_wait; on U-mode this is a software
+ *       loop calibrated against the busy-wait cycles we already use
+ *       in aifoundry_kernel_exit (no usable hardware clock from U).
+ *
+ *   aifoundry_delay_us(us)
+ *       Microsecond-resolution variant.  May round up to ms granularity
+ *       on targets without a finer-grained clock source.
+ *
+ *   aifoundry_uptime_ms() / aifoundry_uptime_us()
+ *       Elapsed milli/microseconds since kernel entry.  On M-mode
+ *       wraps k_uptime_get_32; on U-mode returns a software counter
+ *       incremented inside the delay primitives — sketches that don't
+ *       call delay() will see 0 forever, acceptable v1 limitation.
  */
 
 #ifndef ZEPHYR_AIFOUNDRY_RUNTIME_H_
@@ -49,6 +65,11 @@ void *aifoundry_kernel_args(void);
 void  aifoundry_publish_results(const void *src, size_t size);
 __attribute__((noreturn))
 void  aifoundry_kernel_exit(int rc);
+
+void     aifoundry_delay_ms(uint32_t ms);
+void     aifoundry_delay_us(uint32_t us);
+uint32_t aifoundry_uptime_ms(void);
+uint32_t aifoundry_uptime_us(void);
 
 #ifdef __cplusplus
 }

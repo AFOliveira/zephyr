@@ -41,6 +41,30 @@ void aifoundry_publish_results(const void *src, size_t size)
 	(void)size;
 }
 
+void aifoundry_delay_ms(uint32_t ms)
+{
+	/* k_busy_wait takes microseconds; busy-wait is correct here even
+	 * without MULTITHREADING (k_sleep would no-op without a scheduler). */
+	k_busy_wait((uint32_t)ms * 1000U);
+}
+
+void aifoundry_delay_us(uint32_t us)
+{
+	k_busy_wait(us);
+}
+
+uint32_t aifoundry_uptime_ms(void)
+{
+	return k_uptime_get_32();
+}
+
+uint32_t aifoundry_uptime_us(void)
+{
+	/* k_uptime_get_32 is millisecond-resolution; scale up to expose
+	 * the same coarse value on the microsecond side. */
+	return k_uptime_get_32() * 1000U;
+}
+
 void aifoundry_kernel_exit(int rc)
 {
 	(void)rc;
@@ -55,12 +79,20 @@ void aifoundry_kernel_exit(int rc)
 	for (volatile int i = 0; i < 1000000; i++) {
 		__asm__ volatile("nop");
 	}
-	/* Disable M-mode interrupts and spin.  k_cpu_idle() would
-	 * re-enable interrupts, which fires the timer ISR — without
-	 * MULTITHREADING the dispatcher can't service it and Zephyr
-	 * lands in z_riscv_fatal_error → arch_system_halt.  Plain spin
-	 * keeps the final PC inside this function so the test
-	 * harness reads it as a clean termination. */
+	/* Signal "kernel done, PASS" to erbium_emu via vidas's native-
+	 * erbium exit ABI: write 0x1FEED000 to validation0 (CSR 0x8D0).
+	 * The emulator stops cleanly the moment all participating harts
+	 * have done this — no more wasted cycles up to -max_cycles, and
+	 * no half-decoded UART traffic.  On real Erbium hardware this is
+	 * a harmless diagnostic CSR write. */
+	__asm__ volatile("csrw 0x8d0, %0" :: "r"((uintptr_t)0x1FEED000));
+	/* Belt + suspenders for any other runtime: disable M-mode
+	 * interrupts and spin.  k_cpu_idle() would re-enable interrupts,
+	 * which fires the timer ISR — without MULTITHREADING the
+	 * dispatcher can't service it and Zephyr lands in
+	 * z_riscv_fatal_error → arch_system_halt.  Plain spin keeps the
+	 * final PC inside this function so the test harness reads it as
+	 * a clean termination. */
 	__asm__ volatile("csrci mstatus, 0x8");   /* clear MIE */
 	for (;;) {
 		__asm__ volatile("nop");

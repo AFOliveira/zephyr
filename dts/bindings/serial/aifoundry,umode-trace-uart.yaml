@@ -1,0 +1,15 @@
+# Copyright (c) 2026 AIFoundry
+# SPDX-License-Identifier: Apache-2.0
+
+description: |
+  Virtual UART that forwards bytes through the AIFoundry runtime HAL
+  (aifoundry_log).  On etsoc1_minion_umode this lands in the per-hart
+  et-trace ring; on any other target it is just an aifoundry_log sink.
+
+  Has no register window, no IRQ line, no clock — purely a software
+  shim so generic Zephyr UART consumers (e.g. ArduinoCore-zephyr's
+  ZephyrSerial) work on a U-mode target with no UART access.
+
+compatible: "aifoundry,umode-trace-uart"
+
+include: uart-controller.yaml

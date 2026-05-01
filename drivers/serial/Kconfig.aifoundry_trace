@@ -1,0 +1,15 @@
+# Copyright (c) 2026 AIFoundry
+# SPDX-License-Identifier: Apache-2.0
+
+config UART_AIFOUNDRY_TRACE
+	bool "AIFoundry trace-ring UART driver"
+	default y
+	depends on DT_HAS_AIFOUNDRY_UMODE_TRACE_UART_ENABLED
+	select SERIAL_HAS_DRIVER
+	select SERIAL_SUPPORT_INTERRUPT
+	help
+	  Virtual UART driver that forwards bytes through aifoundry_log
+	  (the AIFoundry runtime HAL).  Intended for U-mode targets where
+	  the kernel has no direct UART access, so generic Zephyr UART
+	  consumers (printk, ArduinoCore-zephyr's Serial) can still emit
+	  to the et-trace ring.

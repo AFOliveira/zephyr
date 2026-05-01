@@ -21,6 +21,8 @@
 #include <stddef.h>
 
 #include <zephyr/aifoundry/runtime.h>
+#include <zephyr/init.h>
+#include <zephyr/sys/printk-hooks.h>
 #include <erbium-soc1sim/isa/syscall.h>
 #include <trace/trace_umode_cb.h>
 #include <et-trace/encoder.h>
@@ -65,6 +67,91 @@ void aifoundry_publish_results(const void *src, size_t size)
 		d[i] = s[i];
 	}
 }
+
+/*
+ * U-mode software clock.
+ *
+ * Real hardware counters (rdcycle/rdtime/rdinstret) trap on ET-SoC1
+ * U-mode because the firmware sets mcounteren=0.  Our compromise is
+ * a software counter advanced inside the delay primitives — sketches
+ * that don't call delay() observe millis() == 0 forever.  Documented
+ * in the HAL header.  Callers needing finer grain should batch into
+ * larger delays.
+ *
+ * The "1000 spin iterations per microsecond" calibration is a coarse
+ * guess.  ET-SoC1 minions clock around ~1 GHz with rv64imafc; a simple
+ * volatile-asm loop dispatches on the order of 1 cycle per nop on the
+ * scalar pipe but issue-rate / fetch effects bring real wall-clock
+ * iteration time closer to single-digit nanoseconds.  We tune by
+ * picking an iteration count that produces *visible* delay (Arduino
+ * sketches use delay(1000) typically).  Refining the constant is a
+ * follow-up; a dedicated cycle source would be the right v2 story.
+ */
+#define UMODE_NOPS_PER_US 1000U
+
+static volatile uint64_t umode_us_counter;
+
+static inline void umode_busy_us(uint32_t us)
+{
+	for (uint32_t outer = 0; outer < us; outer++) {
+		for (volatile uint32_t inner = 0; inner < UMODE_NOPS_PER_US; inner++) {
+			__asm__ volatile("nop");
+		}
+		umode_us_counter++;
+	}
+}
+
+void aifoundry_delay_ms(uint32_t ms)
+{
+	umode_busy_us(ms * 1000U);
+}
+
+void aifoundry_delay_us(uint32_t us)
+{
+	umode_busy_us(us);
+}
+
+uint32_t aifoundry_uptime_ms(void)
+{
+	return (uint32_t)(umode_us_counter / 1000U);
+}
+
+uint32_t aifoundry_uptime_us(void)
+{
+	return (uint32_t)umode_us_counter;
+}
+
+#ifdef CONFIG_PRINTK
+/*
+ * printk → aifoundry_log shim.
+ *
+ * When the application enables CONFIG_PRINTK on this board (e.g. the
+ * Arduino-flavoured emlearn sample uses ZephyrSerialStub which calls
+ * printk), every byte of formatted output would otherwise need to
+ * route through Zephyr's uart_console driver onto a chosen UART
+ * device.  On U-mode that path is fragile (early callers can
+ * deref wild format-string args via picolibc's vfprintf, observed
+ * as a load access fault during boot on silicon).
+ *
+ * Installing this hook at PRE_KERNEL_1 makes printk emit one trace
+ * ring entry per character — exactly the same end channel as
+ * aifoundry_log itself, just one byte at a time.  Samples that don't
+ * enable CONFIG_PRINTK (e.g. umode_emlearn) skip this glue entirely.
+ */
+static int aifoundry_printk_hook(int c)
+{
+	aifoundry_log("%c", c);
+	return c;
+}
+
+static int aifoundry_install_printk_hook(void)
+{
+	__printk_hook_install(aifoundry_printk_hook);
+	return 0;
+}
+
+SYS_INIT(aifoundry_install_printk_hook, PRE_KERNEL_1, 0);
+#endif /* CONFIG_PRINTK */
 
 void aifoundry_kernel_exit(int rc)
 {
