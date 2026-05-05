@@ -126,6 +126,42 @@ Full-logits allclose is intentionally not available in this mode because those
 tiles are not fetched; the correctness gate is token sequence match plus
 per-tile argmax/value agreement against ONNXRuntime.
 
+## Final decoder LayerNorm plus logits argmax on silicon
+
+2026-05-05 update: the hybrid path now moves the final decoder LayerNorm onto
+ET-SoC1 as well.  The host supplies the ONNXRuntime tensor before
+`/ln/LayerNormalization`; ET-SoC1 computes the final LayerNorm, then computes
+the vocab logits tile argmax from the silicon-computed normalized vector.  The
+host remains the audit oracle and compares both the token sequence and the
+device LayerNorm/logits argmax summaries against ONNXRuntime.
+
+Full transcript run:
+`phase0/e2e_audit_runs_tail_ln/both_20260505-103351/e2e_audit_report.json`
+
+| Metric | Result |
+| --- | ---: |
+| Generated non-prompt tokens | 23 |
+| Silicon tail steps | 26 |
+| Host/silicon token sequence match | true |
+| Host/silicon text match | true |
+| Silicon tail audit pass | true |
+| Silicon tile active mask | `0xffff` |
+| Max final LayerNorm abs diff vs ONNXRuntime | 2.2e-05 |
+| Max tile-argmax value diff vs ONNXRuntime logits | 1.9073486328125e-05 |
+| Silicon tail wait | 1.10474496 s |
+| Silicon tail token rate | 20.819285 token/s |
+| Hybrid host-orchestrated wall token rate | 0.057767 token/s |
+
+Transcript:
+
+` And so my fellow Americans ask not what your country can do for you ask what you can do for your country`
+
+This is the current most autonomous audited audio-to-text path.  It still uses
+host ONNXRuntime for audio preprocessing, encoder execution, the remaining
+decoder graph, KV-cache updates, token control, and text decode.  The next
+native step is to keep the decoder state and a sequence of graph kernels resident
+on ET-SoC1 so we stop paying one host launcher round trip per vocab tile.
+
 ## Real encoder and decoder pieces already on silicon
 
 Encoder block-0 MatMul audit:

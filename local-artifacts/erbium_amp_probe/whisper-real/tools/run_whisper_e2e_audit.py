@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Auditable Whisper Tiny EN host-only vs ET-SoC1 hybrid runner.
 
-The hybrid mode keeps audio preprocessing, graph orchestration, non-MatMul
-decoder work, tokenization, and final text decoding on the host.  ET-SoC1
-computes the final decoder logits projection used for greedy token choice.
-That is intentionally narrower than a native on-chip ONNX executor, but it is
-audio-to-text, comparable against host-only, and every silicon logits tensor is
-checked against the ONNXRuntime logits tensor for the same token step.
+The hybrid mode keeps audio preprocessing, graph orchestration, most decoder
+work, tokenization, and final text decoding on the host. ET-SoC1 computes the
+final decoder logits projection, and can optionally compute the final decoder
+LayerNorm before that projection. That is intentionally narrower than a native
+on-chip ONNX executor, but it is audio-to-text and comparable against host-only.
+Silicon outputs are audited against ONNXRuntime tensors or argmax summaries for
+the same token step.
 """
 from __future__ import annotations
 
@@ -45,6 +46,7 @@ DEFAULT_DECODER = MODELS / "whisper_tiny_en_decoder_qaihub.onnx" / "whisper_tiny
 DEFAULT_AUDIO = Path("/usr/share/sounds/speech-dispatcher/test.wav")
 
 SRC = ROOT / "whisper_decoder_colmatmul_vpu_argbuf.c"
+TAIL_SRC = ROOT / "whisper_decoder_tail_ln_logits_argbuf.c"
 CRT = AMP_ROOT / "hart-report" / "hart_report_crt.S"
 
 GCC = os.environ.get("GCC", "/home/afonso/et/bin/riscv64-unknown-elf-gcc")
@@ -70,6 +72,7 @@ SSH_CMD = ["ssh", *SSH_OPTS, REMOTE_HOST]
 RSYNC_RSH = "ssh " + shlex.join(SSH_OPTS)
 
 MAGIC = 0x57444C47
+TAIL_MAGIC = 0x57444C54
 ALIGN = 0x10000
 
 BASE_FLAGS = [
@@ -245,15 +248,45 @@ def layout_for(k_dim: int, n_cols: int, active_harts: int) -> dict[str, int]:
     }
 
 
+def tail_layout_for(k_dim: int, n_cols: int, active_harts: int) -> dict[str, int]:
+    del active_harts
+    ln_out_offset = 0x4000
+    partial_offset = 0x8000
+    ln_param_offset = 0x9000
+    ln_in_offset = 0x10000
+    ln_weight_offset = 0x20000
+    ln_bias_offset = 0x30000
+    ln_ref_offset = 0x40000
+    wt_offset = 0x50000
+    end = wt_offset + n_cols * k_dim * 4
+    if end > 16 * 1024 * 1024:
+        raise SystemExit(f"tail argument buffer layout exceeds 16 MiB: 0x{end:x}")
+    return {
+        "ln_out_offset": ln_out_offset,
+        "partial_offset": partial_offset,
+        "ln_param_offset": ln_param_offset,
+        "ln_in_offset": ln_in_offset,
+        "ln_weight_offset": ln_weight_offset,
+        "ln_bias_offset": ln_bias_offset,
+        "ln_ref_offset": ln_ref_offset,
+        "wt_offset": wt_offset,
+        "end": end,
+    }
+
+
 class SiliconLogitsRunner:
     def __init__(self, run_dir: Path, weight: np.ndarray, active_harts: int,
-                 timeout: int, tile_cols: int, device_argmax_only: bool = False) -> None:
+                 timeout: int, tile_cols: int, device_argmax_only: bool = False,
+                 tail_layernorm: bool = False,
+                 ln_weight: np.ndarray | None = None,
+                 ln_bias: np.ndarray | None = None) -> None:
         self.run_dir = run_dir
         self.local = run_dir / "silicon_logits"
         self.local.mkdir(parents=True, exist_ok=True)
         self.active_harts = active_harts
         self.timeout = timeout
-        self.device_argmax_only = device_argmax_only
+        self.tail_layernorm = tail_layernorm
+        self.device_argmax_only = device_argmax_only or tail_layernorm
         self.k_dim, self.n_total = weight.shape
         if self.k_dim % 16 != 0:
             raise SystemExit(f"logits K must be divisible by 16, got {self.k_dim}")
@@ -267,16 +300,30 @@ class SiliconLogitsRunner:
                 raise SystemExit(f"odd logits tile cols {col0}:{col1}")
             self.tiles.append((len(self.tiles), col0, col1))
         self.weight_t = weight.T.astype(np.float32).copy()
+        if self.tail_layernorm:
+            if ln_weight is None or ln_bias is None:
+                raise SystemExit("tail LayerNorm mode requires ln_weight and ln_bias")
+            self.ln_weight = np.asarray(ln_weight, dtype=np.float32).reshape(self.k_dim)
+            self.ln_bias = np.asarray(ln_bias, dtype=np.float32).reshape(self.k_dim)
+        else:
+            self.ln_weight = None
+            self.ln_bias = None
         self.remote = f"{REMOTE_ROOT}/{run_dir.name}"
         self.remote_static = (
             f"{REMOTE_ROOT}/static_logits_k{self.k_dim}_n{self.n_total}"
             f"_h{self.active_harts}_tile{self.tile_cols}_auditref0"
             f"_argmax{int(self.device_argmax_only)}"
+            f"_tail{int(self.tail_layernorm)}"
+            f"{'_fastinvsqrt3_linepart' if self.tail_layernorm else ''}"
         )
         self._build_and_stage_static_assets()
 
     def _build_elf(self, bdir: Path, n_cols: int) -> Path:
-        mem = layout_for(self.k_dim, n_cols, self.active_harts)
+        mem = (
+            tail_layout_for(self.k_dim, n_cols, self.active_harts)
+            if self.tail_layernorm
+            else layout_for(self.k_dim, n_cols, self.active_harts)
+        )
         elf = bdir / f"logits_colmatmul_n{n_cols}.elf"
         cmd = [
             GCC,
@@ -289,18 +336,36 @@ class SiliconLogitsRunner:
             f"-DNUM_HARTS={self.active_harts}",
             f"-DACTIVE_HARTS={self.active_harts}u",
             f"-DK_DIM={self.k_dim}u",
+            f"-DLN_DIM={self.k_dim}u",
             f"-DN_COLS={n_cols}u",
-            f"-DOUT_OFFSET=0x{mem['out_offset']:x}u",
-            f"-DTMP_OFFSET=0x{mem['tmp_offset']:x}u",
-            f"-DACT_OFFSET=0x{mem['act_offset']:x}u",
-            f"-DWT_OFFSET=0x{mem['wt_offset']:x}u",
-            f"-DREF_OFFSET=0x{mem['ref_offset']:x}u",
             "-o",
             str(elf),
-            str(SRC),
+        ]
+        if self.tail_layernorm:
+            cmd.extend([
+                f"-DLN_OUT_OFFSET=0x{mem['ln_out_offset']:x}u",
+                f"-DPARTIAL_OFFSET=0x{mem['partial_offset']:x}u",
+                f"-DLN_PARAM_OFFSET=0x{mem['ln_param_offset']:x}u",
+                f"-DLN_IN_OFFSET=0x{mem['ln_in_offset']:x}u",
+                f"-DLN_WEIGHT_OFFSET=0x{mem['ln_weight_offset']:x}u",
+                f"-DLN_BIAS_OFFSET=0x{mem['ln_bias_offset']:x}u",
+                f"-DLN_REF_OFFSET=0x{mem['ln_ref_offset']:x}u",
+                f"-DWT_OFFSET=0x{mem['wt_offset']:x}u",
+                str(TAIL_SRC),
+            ])
+        else:
+            cmd.extend([
+                f"-DOUT_OFFSET=0x{mem['out_offset']:x}u",
+                f"-DTMP_OFFSET=0x{mem['tmp_offset']:x}u",
+                f"-DACT_OFFSET=0x{mem['act_offset']:x}u",
+                f"-DWT_OFFSET=0x{mem['wt_offset']:x}u",
+                f"-DREF_OFFSET=0x{mem['ref_offset']:x}u",
+                str(SRC),
+            ])
+        cmd.extend([
             str(CRT),
             str(LAYOUT),
-        ]
+        ])
         run(cmd)
         return elf
 
@@ -322,7 +387,20 @@ class SiliconLogitsRunner:
             path = self.local / f"weight_t{tile_id:02d}_{col0}_{col1}.bin"
             self.weight_t[col0:col1].astype("<f4").tofile(path)
             weight_paths.append(path)
-        static_names = [p.name for p in self.elf_for_width.values()] + [p.name for p in weight_paths]
+        extra_static_paths: list[Path] = []
+        if self.tail_layernorm:
+            assert self.ln_weight is not None
+            assert self.ln_bias is not None
+            ln_weight_path = self.local / "ln_weight.bin"
+            ln_bias_path = self.local / "ln_bias.bin"
+            self.ln_weight.astype("<f4").tofile(ln_weight_path)
+            self.ln_bias.astype("<f4").tofile(ln_bias_path)
+            extra_static_paths.extend([ln_weight_path, ln_bias_path])
+        static_names = (
+            [p.name for p in self.elf_for_width.values()]
+            + [p.name for p in weight_paths]
+            + [p.name for p in extra_static_paths]
+        )
         static_check = " && ".join(f"test -s {shlex.quote(name)}" for name in static_names)
         have_static = subprocess.run(
             [*SSH_CMD, f"cd {shlex.quote(self.remote_static)} && {static_check}"],
@@ -332,6 +410,7 @@ class SiliconLogitsRunner:
             run_retry(["rsync", "-e", RSYNC_RSH, "-aq", "--partial", "--inplace",
                        *(str(p) for p in self.elf_for_width.values()),
                        *(str(p) for p in weight_paths),
+                       *(str(p) for p in extra_static_paths),
                        f"{REMOTE_HOST}:{self.remote_static}/"],
                       attempts=5, delay_s=10.0)
 
@@ -341,15 +420,23 @@ class SiliconLogitsRunner:
         )
         run_retry([*SSH_CMD, link_cmd], timeout=30)
 
-    def run_logits(self, step: int, act: np.ndarray, ref: np.ndarray) -> tuple[np.ndarray, dict[str, Any]]:
+    def run_logits(self, step: int, act: np.ndarray, ref: np.ndarray,
+                   ln_ref: np.ndarray | None = None) -> tuple[np.ndarray | None, dict[str, Any]]:
         step_dir = self.local / f"step_{step:03d}"
         step_dir.mkdir(parents=True, exist_ok=True)
         act = np.asarray(act, dtype=np.float32).reshape(self.k_dim)
         ref = np.asarray(ref, dtype=np.float32).reshape(self.n_total)
         act_path = step_dir / "act.bin"
         act.astype("<f4").tofile(act_path)
+        rsync_inputs = [str(act_path)]
+        if self.tail_layernorm:
+            if ln_ref is None:
+                raise SystemExit("tail LayerNorm mode requires ln_ref")
+            ln_ref_path = step_dir / "ln_ref.bin"
+            np.asarray(ln_ref, dtype=np.float32).reshape(self.k_dim).astype("<f4").tofile(ln_ref_path)
+            rsync_inputs.append(str(ln_ref_path))
         run(["rsync", "-e", RSYNC_RSH, "-aq", "--partial", "--inplace",
-             str(act_path), f"{REMOTE_HOST}:{self.remote}/"])
+             *rsync_inputs, f"{REMOTE_HOST}:{self.remote}/"])
 
         script = f"""set -euo pipefail
 BASE={REMOTE_BASE}
@@ -362,19 +449,37 @@ export LD_LIBRARY_PATH=$BASE:$PARENT:${{LD_LIBRARY_PATH:-}}
 """
         for tile_id, col0, col1 in self.tiles:
             width = col1 - col0
-            mem = layout_for(self.k_dim, width, self.active_harts)
+            mem = (
+                tail_layout_for(self.k_dim, width, self.active_harts)
+                if self.tail_layernorm
+                else layout_for(self.k_dim, width, self.active_harts)
+            )
             elf = self.elf_for_width[width].name
             out_extract = ""
-            if not self.device_argmax_only:
+            if not self.device_argmax_only and not self.tail_layernorm:
                 out_extract = (
                     f'Path("out_s{step:03d}_t{tile_id:02d}.bin").write_bytes('
                     f"data[0x{mem['out_offset']:x}:0x{mem['out_offset']:x} + {width} * 4])"
                 )
+            if self.tail_layernorm:
+                file_loads = (
+                    f"--file_load 0x{mem['ln_in_offset']:x},act.bin \\\n"
+                    f"  --file_load 0x{mem['ln_weight_offset']:x},ln_weight.bin \\\n"
+                    f"  --file_load 0x{mem['ln_bias_offset']:x},ln_bias.bin \\\n"
+                    f"  --file_load 0x{mem['ln_ref_offset']:x},ln_ref.bin \\\n"
+                    f"  --file_load 0x{mem['wt_offset']:x},weight_t{tile_id:02d}_{col0}_{col1}.bin"
+                )
+                magic = TAIL_MAGIC
+            else:
+                file_loads = (
+                    f"--file_load 0x{mem['act_offset']:x},act.bin \\\n"
+                    f"  --file_load 0x{mem['wt_offset']:x},weight_t{tile_id:02d}_{col0}_{col1}.bin"
+                )
+                magic = MAGIC
             script += f"""
 echo "=== step {step} tile {tile_id:02d} cols {col0}:{col1} ==="
 "$LAUNCH" --elf-load ./{elf} --shire 0 --file_load 0x0,$ZERO \\
-  --file_load 0x{mem['act_offset']:x},act.bin \\
-  --file_load 0x{mem['wt_offset']:x},weight_t{tile_id:02d}_{col0}_{col1}.bin \\
+  {file_loads} \\
   --dump_after dump_s{step:03d}_t{tile_id:02d}.bin --timeout {self.timeout} \\
   > run_s{step:03d}_t{tile_id:02d}.log 2>&1
 grep -oE 'Kernel wait seconds: [0-9.]+' run_s{step:03d}_t{tile_id:02d}.log | tail -1 || true
@@ -388,7 +493,7 @@ done = 0
 active_mask = 0
 for h in range({self.active_harts}):
     f = slot_struct.unpack_from(data, h * 64)
-    if f[0] == {MAGIC} and f[8] == 1:
+    if f[0] == {magic} and f[8] == 1:
         done += 1
         active_mask |= 1 << f[1]
 summary = struct.unpack_from("<16I", data, 0x1000)
@@ -401,6 +506,9 @@ Path("summary_s{step:03d}_t{tile_id:02d}.json").write_text(json.dumps({{
     "slot_done_count": done, "slot_active_mask": active_mask,
     "summary_magic": summary[0],
     "summary_output_hash": summary[7],
+    "summary_reference_hash": summary[8],
+    "summary_ln_max_abs_scaled": summary[9],
+    "summary_ln_mean_abs_scaled": summary[10],
     "summary_argmax_local_col": summary[13],
     "summary_argmax_global_col": {col0} + summary[13],
     "summary_argmax_value_bits": summary[14],
@@ -418,11 +526,15 @@ PY
                 f"{REMOTE_HOST}:{self.remote}/run_s{step:03d}_t{tile_id:02d}.log",
                 f"{REMOTE_HOST}:{self.remote}/summary_s{step:03d}_t{tile_id:02d}.json",
             ])
-            if not self.device_argmax_only:
+            if not self.device_argmax_only and not self.tail_layernorm:
                 fetch_paths.append(f"{REMOTE_HOST}:{self.remote}/out_s{step:03d}_t{tile_id:02d}.bin")
         run(["rsync", "-e", RSYNC_RSH, "-aq", *fetch_paths, str(step_dir) + "/"])
 
-        stitched = None if self.device_argmax_only else np.zeros((self.n_total,), dtype=np.float32)
+        stitched = (
+            None
+            if (self.device_argmax_only or self.tail_layernorm)
+            else np.zeros((self.n_total,), dtype=np.float32)
+        )
         tile_reports = []
         total_wait = 0.0
         tile_ok = True
@@ -448,14 +560,21 @@ PY
             )
             tile_argmax_match = local_argmax_ok and local_argmax == local_ref_argmax
             summary_ok = (
-                summary["summary_magic"] == MAGIC
+                summary["summary_magic"] == (TAIL_MAGIC if self.tail_layernorm else MAGIC)
                 and summary["slot_done_count"] == self.active_harts
                 and not summary["stream_error"]
                 and not summary["kernel_launch_error"]
             )
+            ln_max_abs = summary["summary_ln_max_abs_scaled"] / 1_000_000.0
+            ln_mean_abs = summary["summary_ln_mean_abs_scaled"] / 1_000_000.0
 
-            if self.device_argmax_only:
-                ok = summary_ok and tile_argmax_match and summary_value_abs <= 1e-4
+            if self.device_argmax_only or self.tail_layernorm:
+                ok = (
+                    summary_ok
+                    and tile_argmax_match
+                    and summary_value_abs <= 1e-4
+                    and (not self.tail_layernorm or ln_max_abs <= 1e-4)
+                )
                 max_abs: float | None = None
                 mean_abs: float | None = None
             else:
@@ -498,14 +617,17 @@ PY
                 "tile_argmax_match": tile_argmax_match,
                 "slot_done_count": summary["slot_done_count"],
                 "active_mask": hex(summary["slot_active_mask"]),
-                "summary_present": summary["summary_magic"] == MAGIC,
+                "summary_present": summary["summary_magic"] == (TAIL_MAGIC if self.tail_layernorm else MAGIC),
+                "tail_layernorm": self.tail_layernorm,
+                "ln_max_abs": ln_max_abs,
+                "ln_mean_abs": ln_mean_abs,
                 "summary_argmax_only": summary["summary_argmax_only"],
                 "summary_output_hash": summary["summary_output_hash"],
                 "stream_error": summary["stream_error"],
                 "status": "ok" if ok else "fail",
             })
 
-        if self.device_argmax_only:
+        if self.device_argmax_only or self.tail_layernorm:
             argmax_silicon = int(best_global_col)
             argmax_host = int(ref.argmax())
             max_abs = None
@@ -525,7 +647,8 @@ PY
         report = {
             "step": step,
             "device_argmax_only": self.device_argmax_only,
-            "logits_full_audit_available": not self.device_argmax_only,
+            "tail_layernorm": self.tail_layernorm,
+            "logits_full_audit_available": not (self.device_argmax_only or self.tail_layernorm),
             "total_wait_s": total_wait,
             "max_abs": max_abs,
             "mean_abs": mean_abs,
@@ -541,7 +664,7 @@ PY
         report["audit_pass"] = bool(
             report["tile_ok"]
             and report["argmax_match"]
-            and (self.device_argmax_only or report["allclose_1e4"])
+            and (self.device_argmax_only or self.tail_layernorm or report["allclose_1e4"])
         )
         if stitched is not None:
             stitched.astype("<f4").tofile(step_dir / "stitched_logits.bin")
@@ -579,16 +702,26 @@ def decode_loop(
             "k_cache_self": k_self,
             "v_cache_self": v_self,
         }
-        act, host_logits, k_next, v_next = decoder.run(
-            ["/ln/LayerNormalization_output_0", "logits", "k_cache", "v_cache"], inputs
+        raw_ln_in, act, host_logits, k_next, v_next = decoder.run(
+            ["/3/Add_2_output_0", "/ln/LayerNormalization_output_0", "logits", "k_cache", "v_cache"], inputs
         )
         host_logits_1d = np.asarray(host_logits, dtype=np.float32).reshape(-1)
         host_argmax = int(host_logits_1d.argmax())
         silicon_report = None
         if mode == "hybrid-silicon":
             assert silicon is not None
+            silicon_act = (
+                np.asarray(raw_ln_in, dtype=np.float32).reshape(-1)
+                if silicon.tail_layernorm
+                else np.asarray(act, dtype=np.float32).reshape(-1)
+            )
+            silicon_ln_ref = (
+                np.asarray(act, dtype=np.float32).reshape(-1)
+                if silicon.tail_layernorm
+                else None
+            )
             silicon_logits, silicon_report = silicon.run_logits(
-                step, np.asarray(act, dtype=np.float32).reshape(-1), host_logits_1d
+                step, silicon_act, host_logits_1d, silicon_ln_ref
             )
             if silicon_logits is not None:
                 chosen_argmax = int(silicon_logits.argmax())
@@ -688,6 +821,8 @@ def main() -> int:
     ap.add_argument("--tile-cols", type=int, default=8192)
     ap.add_argument("--device-argmax-only", action="store_true",
                     help="Return per-tile device argmax summaries instead of fetching full logits tiles")
+    ap.add_argument("--silicon-tail-layernorm", action="store_true",
+                    help="Run final decoder LayerNorm plus logits argmax on ET-SoC1")
     ap.add_argument("--timeout", type=int, default=300)
     ap.add_argument("--encoder", type=Path, default=DEFAULT_ENCODER)
     ap.add_argument("--decoder", type=Path, default=DEFAULT_DECODER)
@@ -703,9 +838,11 @@ def main() -> int:
     tokenizer = WhisperTokenizer.from_pretrained("openai/whisper-tiny.en")
     features, input_meta = prepare_features(args.audio, run_dir)
     encoder = make_session(args.encoder)
-    decoder = make_session(args.decoder, ["/ln/LayerNormalization_output_0"])
+    decoder = make_session(args.decoder, ["/3/Add_2_output_0", "/ln/LayerNormalization_output_0"])
     init = {i.name: numpy_helper.to_array(i) for i in onnx.load(args.decoder).graph.initializer}
     logits_weight = init["onnx::MatMul_3194"].astype(np.float32)
+    ln_weight = init["ln.weight"].astype(np.float32)
+    ln_bias = init["ln.bias"].astype(np.float32)
 
     t_enc0 = time.perf_counter()
     k_cross, v_cross = encoder.run(["k_cache_cross", "v_cache_cross"], {"audio": features})
@@ -726,6 +863,9 @@ def main() -> int:
         silicon = SiliconLogitsRunner(
             run_dir, logits_weight, args.active_harts, args.timeout,
             args.tile_cols, args.device_argmax_only,
+            tail_layernorm=args.silicon_tail_layernorm,
+            ln_weight=ln_weight,
+            ln_bias=ln_bias,
         )
         hybrid_result = decode_loop(
             "hybrid-silicon", run_dir, decoder, tokenizer, k_cross, v_cross,
@@ -739,12 +879,33 @@ def main() -> int:
 
     assert host_result is not None
     comparison = compare_runs(host_result, hybrid_result)
+    if args.silicon_tail_layernorm:
+        hybrid_scope = (
+            "Hybrid uses ET-SoC1 for final decoder LayerNorm plus final logits "
+            "argmax, and host for preprocessing, encoder, remaining decoder "
+            "graph work, tokenization, and text decode."
+        )
+        md_scope = (
+            "Scope: hybrid-silicon is audio-to-text with ET-SoC1 computing "
+            "the final decoder LayerNorm and logits argmax used for greedy "
+            "token choice."
+        )
+    else:
+        hybrid_scope = (
+            "Hybrid uses ET-SoC1 for final decoder logits projection and host "
+            "for preprocessing, encoder, non-logits decoder graph work, "
+            "tokenization, and text decode."
+        )
+        md_scope = (
+            "Scope: hybrid-silicon is audio-to-text with ET-SoC1 computing "
+            "the final decoder logits projection used for greedy token choice."
+        )
+
     report = {
         "timestamp": stamp,
         "scope": (
             "Host-only ONNXRuntime vs host-scheduled ET-SoC1 hybrid. "
-            "Hybrid uses ET-SoC1 for final decoder logits projection and host for preprocessing, "
-            "encoder, non-logits decoder graph work, tokenization, and text decode."
+            + hybrid_scope
         ),
         "input": input_meta,
         "model": {
@@ -760,7 +921,8 @@ def main() -> int:
             "remote_work": f"{REMOTE_ROOT}/{run_dir.name}",
             "active_harts": args.active_harts,
             "tile_cols": args.tile_cols,
-            "device_argmax_only": args.device_argmax_only,
+            "device_argmax_only": args.device_argmax_only or args.silicon_tail_layernorm,
+            "silicon_tail_layernorm": args.silicon_tail_layernorm,
         },
         "encoder": {
             "host_wall_s": encoder_wall_s,
@@ -796,6 +958,7 @@ def main() -> int:
             f"- Hybrid text: `{hybrid_result['text']}`",
             f"- Token sequence match: {comparison['token_sequence_match']}",
             f"- Text match: {comparison['text_match']}",
+            f"- Silicon tail LayerNorm: {args.silicon_tail_layernorm}",
             f"- Silicon logits allclose: {allclose_text}",
             f"- Silicon logits argmax match: {comparison['all_silicon_argmax_match']}",
             f"- Max logits abs diff: {max_abs_text}",
@@ -803,7 +966,7 @@ def main() -> int:
         ])
     lines.extend([
         "",
-        "Scope: hybrid-silicon is audio-to-text with ET-SoC1 computing the final decoder logits projection used for greedy token choice.",
+        md_scope,
         "It is not yet a native full-graph ONNX executor on ET-SoC1.",
     ])
     (run_dir / "E2E_AUDIT_REPORT.md").write_text("\n".join(lines) + "\n")
