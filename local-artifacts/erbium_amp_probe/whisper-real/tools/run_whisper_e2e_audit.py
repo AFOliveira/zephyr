@@ -338,11 +338,20 @@ class SiliconLogitsRunner:
             self.ln_weight = None
             self.ln_bias = None
         self.remote = f"{REMOTE_ROOT}/{run_dir.name}"
+        ln_static_tag = ""
+        if self.tail_layernorm:
+            assert self.ln_weight is not None
+            assert self.ln_bias is not None
+            ln_static_tag = (
+                f"_lnw{sha256_array(self.ln_weight)[:12]}"
+                f"_lnb{sha256_array(self.ln_bias)[:12]}"
+            )
         self.remote_static = (
             f"{REMOTE_ROOT}/static_logits_k{self.k_dim}_n{self.n_total}"
             f"_h{self.active_harts}_tile{self.tile_cols}_auditref0"
             f"_argmax{int(self.device_argmax_only)}"
             f"_tail{int(self.tail_layernorm)}"
+            f"{ln_static_tag}"
             f"{'_fastinvsqrt3_linepart' if self.tail_layernorm else ''}"
         )
         self._build_and_stage_static_assets()

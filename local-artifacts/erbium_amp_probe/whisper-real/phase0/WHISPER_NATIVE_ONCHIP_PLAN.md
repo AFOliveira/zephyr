@@ -64,18 +64,19 @@ It runs both roles in one kernel:
 1. Device-side argmax for logits tiles is implemented and validated on
    `esperanto-soc6`.
 2. The final decoder LayerNorm is now computed on ET-SoC1 before logits argmax.
-3. The seven vocab tiles can launch from one ET runtime process across shires
+3. All 13 decoder LayerNorm nodes have a real ONNX tensor audit on ET-SoC1 at
+   decoder step 3.  Max abs error is `7e-06`.
+4. The seven vocab tiles can launch from one ET runtime process across shires
    `0..6`, avoiding seven independent host launcher processes per decode step.
-4. The 16-hart split smoke passes: even harts do VPU-heavy work and odd harts
+5. The 16-hart split smoke passes: even harts do VPU-heavy work and odd harts
    do scalar LayerNorm-shaped work in one kernel with explicit barriers/cache
    handling.
 
 ## Remaining native steps
 
-1. Add device-side implementations for the decoder's earlier LayerNorm nodes,
-   residual Adds, GELU, Softmax, Slice/Concat, and KV-cache updates.  Each node
-   needs a real ONNX tensor export and an allclose audit before it becomes part
-   of the resident graph.
+1. Add device-side implementations for residual Adds, GELU, Softmax,
+   Slice/Concat, and KV-cache updates.  Each node needs a real ONNX tensor
+   export and an allclose audit before it becomes part of the resident graph.
 2. Merge the already audited decoder MatMul families with those scalar nodes so
    one device-resident decoder-step executor can produce the next token without
    host ONNXRuntime in the loop.

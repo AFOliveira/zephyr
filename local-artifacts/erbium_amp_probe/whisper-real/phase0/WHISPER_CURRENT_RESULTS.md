@@ -220,6 +220,27 @@ The demo still uses ONNXRuntime on the host as the correctness oracle and for
 the graph pieces that are not native yet.  It is the current reproducible
 audio-to-text path, not the final full-native executor.
 
+## Decoder LayerNorm node audit
+
+2026-05-05 update: all 13 decoder LayerNorm nodes are now individually audited
+on ET-SoC1 with real ONNXRuntime tensors from decoder step 3.
+
+Report:
+`phase0/decoder_layernorm_audit_runs/run_20260505-111622/decoder_layernorm_audit_report.json`
+
+| Metric | Result |
+| --- | ---: |
+| Selected decoder LayerNorm nodes | 13 |
+| All nodes pass | true |
+| Max LayerNorm abs diff vs ONNXRuntime | 7e-06 |
+| Mean silicon wait per LayerNorm | 0.000518 s |
+
+This proves the scalar LayerNorm implementation used by the final tail can be
+applied to every decoder block LayerNorm with the node-specific gamma/beta
+parameters.  The remaining decoder-native work is now mostly graph plumbing,
+Softmax/GELU/residual kernels, attention/cache updates, and combining the
+already-audited MatMul families with these scalar nodes.
+
 ## Real encoder and decoder pieces already on silicon
 
 Encoder block-0 MatMul audit:
