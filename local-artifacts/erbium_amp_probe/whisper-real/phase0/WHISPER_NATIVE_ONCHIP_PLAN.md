@@ -9,12 +9,22 @@ Whisper Tiny EN execution path.
 
 - Host: WAV decode/resample, log-mel features, ONNX encoder, decoder control
   flow, decoder scalar/non-logits graph work, tokenizer, text decode.
-- ET-SoC1: final decoder logits projection for every greedy decode step.
-- Audit: every silicon logits vector is compared against the ONNXRuntime
-  decoder logits for the same token step before the next token is accepted.
+- ET-SoC1: final decoder LayerNorm plus final logits projection/argmax for
+  every greedy decode step.
+- Audit: every silicon token choice is checked against the ONNXRuntime decoder
+  for the same token step before the next token is accepted.  In argmax-only
+  mode the full logits vector is not fetched; the gate is token sequence match,
+  text match, LayerNorm error, and per-tile argmax/value agreement.
 
 This gives a mathematically comparable silicon path for token selection, but
 it is still host-orchestrated.
+
+The current real demo entry point is:
+
+`../tools/run_whisper_silicon_demo.py`
+
+It runs the validated seven-shire tail path and fails if the ET-SoC1 token
+sequence diverges from host ONNXRuntime.
 
 ## Hart split hypothesis
 
@@ -49,21 +59,33 @@ It runs both roles in one kernel:
 - The dump summary checks hart participation, logits argmax vs host reference,
   logits max error, and LayerNorm-shaped max error.
 
-## Next native steps
+## Completed native steps
 
-1. Add device-side argmax to the audited logits kernel so ET-SoC1 returns the
-   selected token, not only the logits vector. Implemented locally on
-   2026-05-05 as `--device-argmax-only` in `tools/run_whisper_e2e_audit.py`;
-   silicon validation is pending Tailscale SSH re-auth to `esperanto-soc6`.
-2. Move decoder LayerNorm nodes into the scalar odd-hart path and compare each
-   node against ONNXRuntime tensors.
-3. Move decoder MLP MatMuls and GELU into the same kernel family.
-4. Move self-attention and cross-attention score/value kernels.
-5. Persist KV cache in the 16 MiB argument arena instead of round-tripping it
-   through host ONNXRuntime.
-6. Move encoder blocks after the decoder-step executor is stable.
-7. Only then remove host ONNXRuntime from the execution loop and keep it as an
-   offline audit reference.
+1. Device-side argmax for logits tiles is implemented and validated on
+   `esperanto-soc6`.
+2. The final decoder LayerNorm is now computed on ET-SoC1 before logits argmax.
+3. The seven vocab tiles can launch from one ET runtime process across shires
+   `0..6`, avoiding seven independent host launcher processes per decode step.
+4. The 16-hart split smoke passes: even harts do VPU-heavy work and odd harts
+   do scalar LayerNorm-shaped work in one kernel with explicit barriers/cache
+   handling.
+
+## Remaining native steps
+
+1. Add device-side implementations for the decoder's earlier LayerNorm nodes,
+   residual Adds, GELU, Softmax, Slice/Concat, and KV-cache updates.  Each node
+   needs a real ONNX tensor export and an allclose audit before it becomes part
+   of the resident graph.
+2. Merge the already audited decoder MatMul families with those scalar nodes so
+   one device-resident decoder-step executor can produce the next token without
+   host ONNXRuntime in the loop.
+3. Persist the self-attention KV cache in the 16 MiB argument arena.  Cross
+   attention K/V is too large in FP32, so it needs paging or FP16/INT8 storage.
+4. Move encoder blocks after the decoder-step executor is stable.  The encoder
+   output K/V cache is about 17.6 MiB in FP32, so full-native encoder execution
+   also needs paging or reduced-precision cache storage.
+5. Replace host tokenizer/text decode only after token IDs are device-native and
+   audited.  Text decode is not performance critical, so this is last.
 
 Native success criteria:
 

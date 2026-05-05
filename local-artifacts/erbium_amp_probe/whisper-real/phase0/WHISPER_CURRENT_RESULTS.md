@@ -196,6 +196,30 @@ worse than the sequential single-shire path because the seven shires contend for
 the same memory traffic, but the single runtime launch/fetch path removes enough
 host overhead to improve end-to-end hybrid throughput.
 
+## Demo entry point
+
+The current demo command is:
+
+`local-artifacts/erbium_amp_probe/whisper-real/tools/run_whisper_silicon_demo.py`
+
+Validated full demo run:
+`phase0/demo_runs/both_20260505-110311/e2e_audit_report.json`
+
+| Metric | Result |
+| --- | ---: |
+| Generated non-prompt tokens | 23 |
+| Silicon tail steps | 26 |
+| Host/silicon token sequence match | true |
+| Host/silicon text match | true |
+| Silicon tail audit pass | true |
+| Silicon tail wait | 1.5882443 s |
+| Silicon tail token rate | 14.481399 token/s |
+| Hybrid host-orchestrated wall token rate | 0.078111 token/s |
+
+The demo still uses ONNXRuntime on the host as the correctness oracle and for
+the graph pieces that are not native yet.  It is the current reproducible
+audio-to-text path, not the final full-native executor.
+
 ## Real encoder and decoder pieces already on silicon
 
 Encoder block-0 MatMul audit:
