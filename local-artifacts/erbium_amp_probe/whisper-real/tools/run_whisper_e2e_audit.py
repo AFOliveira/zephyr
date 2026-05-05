@@ -63,6 +63,7 @@ REMOTE_HOST = "root@esperanto-soc6"
 REMOTE_BASE = "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2"
 REMOTE_PARENT = f"{REMOTE_BASE}/erbium-amp-probe"
 REMOTE_ROOT = f"{REMOTE_PARENT}/whisper-real/e2e-audit"
+REMOTE_TAIL_PARALLEL_LAUNCHER = f"{REMOTE_PARENT}/whisper_tail_parallel_argbuf.remote"
 SSH_OPTS = shlex.split(os.environ.get(
     "SSH_OPTS",
     "-o BatchMode=yes -o NumberOfPasswordPrompts=0 "
@@ -274,18 +275,37 @@ def tail_layout_for(k_dim: int, n_cols: int, active_harts: int) -> dict[str, int
     }
 
 
+def parse_shire_list(value: str | None) -> list[int]:
+    if not value:
+        return []
+    out = []
+    for part in value.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        shire = int(part, 0)
+        if shire < 0 or shire > 31:
+            raise SystemExit(f"invalid shire id in --tail-parallel-shires: {shire}")
+        out.append(shire)
+    if len(set(out)) != len(out):
+        raise SystemExit("--tail-parallel-shires must not contain duplicates")
+    return out
+
+
 class SiliconLogitsRunner:
     def __init__(self, run_dir: Path, weight: np.ndarray, active_harts: int,
                  timeout: int, tile_cols: int, device_argmax_only: bool = False,
                  tail_layernorm: bool = False,
                  ln_weight: np.ndarray | None = None,
-                 ln_bias: np.ndarray | None = None) -> None:
+                 ln_bias: np.ndarray | None = None,
+                 tail_parallel_shires: list[int] | None = None) -> None:
         self.run_dir = run_dir
         self.local = run_dir / "silicon_logits"
         self.local.mkdir(parents=True, exist_ok=True)
         self.active_harts = active_harts
         self.timeout = timeout
         self.tail_layernorm = tail_layernorm
+        self.tail_parallel_shires = tail_parallel_shires or []
         self.device_argmax_only = device_argmax_only or tail_layernorm
         self.k_dim, self.n_total = weight.shape
         if self.k_dim % 16 != 0:
@@ -299,6 +319,15 @@ class SiliconLogitsRunner:
             if (col1 - col0) % 2:
                 raise SystemExit(f"odd logits tile cols {col0}:{col1}")
             self.tiles.append((len(self.tiles), col0, col1))
+        if self.tail_parallel_shires:
+            if not self.tail_layernorm:
+                raise SystemExit("--tail-parallel-shires requires --silicon-tail-layernorm")
+            if len(self.tail_parallel_shires) < len(self.tiles):
+                raise SystemExit(
+                    "--tail-parallel-shires must provide at least one shire per logits tile"
+                )
+            run_retry([*SSH_CMD, f"test -x {shlex.quote(REMOTE_TAIL_PARALLEL_LAUNCHER)}"],
+                      timeout=10)
         self.weight_t = weight.T.astype(np.float32).copy()
         if self.tail_layernorm:
             if ln_weight is None or ln_bias is None:
@@ -447,7 +476,62 @@ ZERO=$PARENT/zero2m.bin
 cd "$WORK"
 export LD_LIBRARY_PATH=$BASE:$PARENT:${{LD_LIBRARY_PATH:-}}
 """
-        for tile_id, col0, col1 in self.tiles:
+        if self.tail_parallel_shires:
+            tile_args = []
+            for tile_id, col0, col1 in self.tiles:
+                width = col1 - col0
+                elf = self.elf_for_width[width].name
+                shire = self.tail_parallel_shires[tile_id]
+                tile_args.append(
+                    f"--tile {shire},{elf},weight_t{tile_id:02d}_{col0}_{col1}.bin,"
+                    f"dump_s{step:03d}_t{tile_id:02d}.bin,"
+                    f"run_s{step:03d}_t{tile_id:02d}.log"
+                )
+            script += f"""
+echo "=== step {step} parallel tail tiles on shires {','.join(map(str, self.tail_parallel_shires[:len(self.tiles)]))} ==="
+{shlex.quote(REMOTE_TAIL_PARALLEL_LAUNCHER)} --zero "$ZERO" --act act.bin \\
+  --ln-weight ln_weight.bin --ln-bias ln_bias.bin --ln-ref ln_ref.bin \\
+  {' '.join(tile_args)} --timeout {self.timeout} > run_s{step:03d}_parallel.log 2>&1
+cat run_s{step:03d}_parallel.log
+"""
+            for tile_id, col0, col1 in self.tiles:
+                script += f"""
+python3 - <<'PY'
+import json, re, struct
+from pathlib import Path
+data = Path("dump_s{step:03d}_t{tile_id:02d}.bin").read_bytes()
+slot_struct = struct.Struct("<16I")
+done = 0
+active_mask = 0
+for h in range({self.active_harts}):
+    f = slot_struct.unpack_from(data, h * 64)
+    if f[0] == {TAIL_MAGIC} and f[8] == 1:
+        done += 1
+        active_mask |= 1 << f[1]
+summary = struct.unpack_from("<16I", data, 0x1000)
+argmax_value = struct.unpack("<f", struct.pack("<I", summary[14]))[0]
+text = Path("run_s{step:03d}_t{tile_id:02d}.log").read_text(errors="ignore")
+m = re.search(r"Kernel wait seconds:\\s*([0-9.eE+-]+)", text)
+Path("summary_s{step:03d}_t{tile_id:02d}.json").write_text(json.dumps({{
+    "step": {step}, "tile_id": {tile_id}, "col0": {col0}, "col1": {col1},
+    "wait_s": float(m.group(1)) if m else None,
+    "slot_done_count": done, "slot_active_mask": active_mask,
+    "summary_magic": summary[0],
+    "summary_output_hash": summary[7],
+    "summary_reference_hash": summary[8],
+    "summary_ln_max_abs_scaled": summary[9],
+    "summary_ln_mean_abs_scaled": summary[10],
+    "summary_argmax_local_col": summary[13],
+    "summary_argmax_global_col": {col0} + summary[13],
+    "summary_argmax_value_bits": summary[14],
+    "summary_argmax_value": argmax_value,
+    "summary_argmax_only": bool(summary[15]),
+    "stream_error": "Stream error" in text,
+    "kernel_launch_error": "Error on kernel launch" in text
+}}, indent=2) + "\\n")
+PY
+"""
+        for tile_id, col0, col1 in ([] if self.tail_parallel_shires else self.tiles):
             width = col1 - col0
             mem = (
                 tail_layout_for(self.k_dim, width, self.active_harts)
@@ -528,6 +612,8 @@ PY
             ])
             if not self.device_argmax_only and not self.tail_layernorm:
                 fetch_paths.append(f"{REMOTE_HOST}:{self.remote}/out_s{step:03d}_t{tile_id:02d}.bin")
+        if self.tail_parallel_shires:
+            fetch_paths.append(f"{REMOTE_HOST}:{self.remote}/run_s{step:03d}_parallel.log")
         run(["rsync", "-e", RSYNC_RSH, "-aq", *fetch_paths, str(step_dir) + "/"])
 
         stitched = (
@@ -537,6 +623,7 @@ PY
         )
         tile_reports = []
         total_wait = 0.0
+        tile_waits = []
         tile_ok = True
         best_global_col = 0
         best_value = -np.inf
@@ -544,6 +631,7 @@ PY
             summary = json.loads((step_dir / f"summary_s{step:03d}_t{tile_id:02d}.json").read_text())
             wait = summary["wait_s"] or 0.0
             total_wait += wait
+            tile_waits.append(wait)
             local_ref = ref[col0:col1]
             local_ref_argmax = int(local_ref.argmax())
             local_ref_best = float(local_ref[local_ref_argmax])
@@ -626,6 +714,8 @@ PY
                 "stream_error": summary["stream_error"],
                 "status": "ok" if ok else "fail",
             })
+        if self.tail_parallel_shires and tile_waits:
+            total_wait = max(tile_waits)
 
         if self.device_argmax_only or self.tail_layernorm:
             argmax_silicon = int(best_global_col)
@@ -648,6 +738,7 @@ PY
             "step": step,
             "device_argmax_only": self.device_argmax_only,
             "tail_layernorm": self.tail_layernorm,
+            "tail_parallel_shires": self.tail_parallel_shires[:len(self.tiles)],
             "logits_full_audit_available": not (self.device_argmax_only or self.tail_layernorm),
             "total_wait_s": total_wait,
             "max_abs": max_abs,
@@ -823,6 +914,8 @@ def main() -> int:
                     help="Return per-tile device argmax summaries instead of fetching full logits tiles")
     ap.add_argument("--silicon-tail-layernorm", action="store_true",
                     help="Run final decoder LayerNorm plus logits argmax on ET-SoC1")
+    ap.add_argument("--tail-parallel-shires", default="",
+                    help="Comma-separated shires for one-runtime parallel tail tile launch")
     ap.add_argument("--timeout", type=int, default=300)
     ap.add_argument("--encoder", type=Path, default=DEFAULT_ENCODER)
     ap.add_argument("--decoder", type=Path, default=DEFAULT_DECODER)
@@ -830,6 +923,7 @@ def main() -> int:
 
     if not args.audio.exists():
         raise SystemExit(f"audio file not found: {args.audio}")
+    tail_parallel_shires = parse_shire_list(args.tail_parallel_shires)
 
     stamp = time.strftime("%Y%m%d-%H%M%S")
     run_dir = args.out_dir / f"{args.mode}_{stamp}"
@@ -866,6 +960,7 @@ def main() -> int:
             tail_layernorm=args.silicon_tail_layernorm,
             ln_weight=ln_weight,
             ln_bias=ln_bias,
+            tail_parallel_shires=tail_parallel_shires,
         )
         hybrid_result = decode_loop(
             "hybrid-silicon", run_dir, decoder, tokenizer, k_cross, v_cross,
@@ -923,6 +1018,7 @@ def main() -> int:
             "tile_cols": args.tile_cols,
             "device_argmax_only": args.device_argmax_only or args.silicon_tail_layernorm,
             "silicon_tail_layernorm": args.silicon_tail_layernorm,
+            "tail_parallel_shires": tail_parallel_shires,
         },
         "encoder": {
             "host_wall_s": encoder_wall_s,

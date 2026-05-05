@@ -162,6 +162,40 @@ decoder graph, KV-cache updates, token control, and text decode.  The next
 native step is to keep the decoder state and a sequence of graph kernels resident
 on ET-SoC1 so we stop paying one host launcher round trip per vocab tile.
 
+## Parallel decoder tail across seven shires
+
+2026-05-05 update: the final decoder LayerNorm plus vocab-tile argmax path can
+now launch all seven vocab tiles from one ET runtime process.  Each tile uses a
+different shire, so the host no longer starts seven independent launcher
+processes per decode step.  This keeps the same audit surface as the sequential
+tail path: token sequence match, text match, silicon LayerNorm check, and
+per-tile argmax/value agreement against ONNXRuntime.
+
+Full transcript run:
+`phase0/e2e_audit_runs_tail_parallel/both_20260505-105350/e2e_audit_report.json`
+
+| Metric | Result |
+| --- | ---: |
+| Generated non-prompt tokens | 23 |
+| Silicon tail steps | 26 |
+| Tail shires | `0,1,2,3,4,5,6` |
+| Host/silicon token sequence match | true |
+| Host/silicon text match | true |
+| Silicon tail audit pass | true |
+| Silicon tail wait | 1.5881506 s |
+| Silicon tail token rate | 14.482254 token/s |
+| Hybrid host-orchestrated wall token rate | 0.073919 token/s |
+
+Transcript:
+
+` And so my fellow Americans ask not what your country can do for you ask what you can do for your country`
+
+The parallel launcher improves the host-orchestrated wall rate from 0.057767
+token/s to 0.073919 token/s, about 28 percent.  The raw silicon tail wait is
+worse than the sequential single-shire path because the seven shires contend for
+the same memory traffic, but the single runtime launch/fetch path removes enough
+host overhead to improve end-to-end hybrid throughput.
+
 ## Real encoder and decoder pieces already on silicon
 
 Encoder block-0 MatMul audit:
