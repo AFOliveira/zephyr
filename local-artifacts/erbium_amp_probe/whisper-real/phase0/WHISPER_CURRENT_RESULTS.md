@@ -1,0 +1,153 @@
+# Whisper current results
+
+Date: 2026-05-04
+
+Board: `esperanto-soc6`
+
+Remote root: `/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2/erbium-amp-probe/whisper-real`
+
+## Full audio-to-text audit
+
+Input WAV: `local-artifacts/erbium_amp_probe/whisper-real/audio/openai_whisper_jfk_16k.wav`
+
+Model: Luxonis Whisper Tiny EN encoder/decoder ONNX exports.
+
+Latest optimized run:
+`phase0/e2e_audit_runs/both_20260504-210334/e2e_audit_report.json`
+
+Transcript:
+
+` And so my fellow Americans ask not what your country can do for you ask what you can do for your country`
+
+| Metric | Result |
+| --- | ---: |
+| Generated non-prompt tokens | 23 |
+| Silicon logits steps | 26 |
+| Host/silicon token sequence match | true |
+| Host/silicon text match | true |
+| Silicon logits allclose `1e-4` | true |
+| Silicon logits argmax match | true |
+| Max logits abs diff vs ONNXRuntime | 1.9073486328125e-05 |
+| Silicon logits wait | 1.27618545 s |
+| Silicon logits-only token rate | 18.022459 token/s |
+| Hybrid host-orchestrated wall token rate | 0.045928 token/s |
+| Host-only ONNXRuntime wall token rate | 116.788408 token/s |
+
+This is full audio-to-text and mathematically audited against host ONNXRuntime,
+but it is still host-orchestrated. ET-SoC1 computes the final decoder logits
+projection for every greedy decode step; host code still performs audio
+preprocessing, encoder execution, decoder non-logits graph work, token control,
+and tokenizer decode.
+
+## Optimization delta
+
+Previous full run:
+`phase0/e2e_audit_runs/both_20260504-181738/e2e_audit_report.json`
+
+The latest run removed the duplicate device-side reference tensor path from the
+logits kernel. The host still audits the dumped logits against ONNXRuntime, so
+correctness coverage is unchanged.
+
+| Metric | Before | After |
+| --- | ---: | ---: |
+| Silicon logits wait | 1.57497894 s | 1.27618545 s |
+| Silicon logits-only token rate | 14.603370 token/s | 18.022459 token/s |
+| Hybrid wall token rate | 0.035035 token/s | 0.045928 token/s |
+| Max logits abs diff | 1.9073486328125e-05 | 1.9073486328125e-05 |
+
+The logits kernel improved by about 23.4 percent on silicon wait. Wall time is
+still dominated by the current host launch/fetch loop.
+
+Tile-width follow-up:
+
+`phase0/e2e_audit_runs/both_20260504-211327/e2e_audit_report.json`
+tested 10240-column logits tiles on the first 4 generated tokens. It passed the
+same host-vs-silicon audit, but the silicon wait was effectively flat versus
+8192-column tiles: 0.342200706 s for 7 silicon steps, or about 48.89 ms/step.
+The 8192-column configuration remains the better default because it is already
+staged for the full run and is not measurably slower.
+
+## Native scheduler milestone
+
+Native split smoke:
+`phase0/NATIVE_SPLIT_SMOKE_SUMMARY.md`
+
+The all-core scheduler smoke now passes with 16 harts:
+
+- VPU/thread-0 mask: `0x5555`
+- scalar/thread-1 mask: `0xaaaa`
+- logits argmax match: true
+- LayerNorm-shaped audit: true
+- kernel wait: 0.00187290 s
+- `hpmcounter3` cycles: 888160
+- `hpmcounter6` L2 miss requests: 38519
+
+This proves the practical split for a native Whisper executor: use all 8 minions
+in one shire, with thread 0 doing VPU-heavy MatMul work and thread 1 doing
+scalar graph work. The remaining blocker for full native Whisper is model/state
+memory management and graph paging, not hart coordination.
+
+## Argmax-only silicon token choice
+
+2026-05-05 update: the logits kernel now has an argmax-only mode.  In this
+mode ET-SoC1 computes each logits tile and returns only the tile argmax summary
+instead of dumping the full logits tile for host stitching.  The host still runs
+ONNXRuntime as the reference/audit oracle, but token choice comes from silicon
+argmax summaries.
+
+Full transcript run:
+`phase0/e2e_audit_runs_argmax_only/both_20260505-094529/e2e_audit_report.json`
+
+| Metric | Result |
+| --- | ---: |
+| Generated non-prompt tokens | 23 |
+| Silicon logits steps | 26 |
+| Host/silicon token sequence match | true |
+| Host/silicon text match | true |
+| Silicon argmax audit pass | true |
+| Silicon tile active mask | `0xffff` |
+| Max tile-argmax value diff vs ONNXRuntime | 1.9073486328125e-05 |
+| Silicon logits wait | 1.32065762 s |
+| Silicon logits-only token rate | 17.415566 token/s |
+| Hybrid host-orchestrated wall token rate | 0.063373 token/s |
+
+Short smoke run:
+`phase0/e2e_audit_runs_argmax_only/both_20260505-094122/e2e_audit_report.json`
+
+- Text: ` And so my fellow`
+- 7 silicon steps, all argmax audits passed.
+- Average silicon wait per logits step: 0.050923494 s.
+
+This is more autonomous than the previous hybrid path because the host no
+longer fetches and stitches full logits vectors to pick the token.  It is still
+not a full native graph executor: audio preprocessing, encoder, decoder
+non-logits nodes, KV cache control, and tokenizer decode remain on the host.
+Full-logits allclose is intentionally not available in this mode because those
+tiles are not fetched; the correctness gate is token sequence match plus
+per-tile argmax/value agreement against ONNXRuntime.
+
+## Real encoder and decoder pieces already on silicon
+
+Encoder block-0 MatMul audit:
+`phase0/WHISPER_BLOCK0_MATMUL_AUDIT.md`
+
+- 16 real Whisper encoder block-0 MatMul pieces were stitched from ET-SoC1
+  silicon outputs and compared to ONNXRuntime tensors.
+- All listed pieces pass `allclose_1e-4`.
+- Covered families include QKV, attention score heads, attention value heads,
+  attention output, MLP0, and MLP2.
+
+Decoder token MatMul audit:
+`phase0/WHISPER_DECODER_TOKEN_RATE.md`
+
+- Real Whisper decoder per-token MatMul families were exported from
+  ONNXRuntime, run on ET-SoC1 silicon, and compared back to their ONNX node
+  outputs.
+- Covered families include logits, MLP0, MLP2, self-attention QKV/out,
+  cross-attention score/value, and self-attention score/value.
+
+These are real ONNX tensor audits, not synthetic shapes. The missing native
+piece is a device-resident graph executor that pages the weights/state and
+connects these kernels with LayerNorm, softmax, GELU, residuals, KV-cache
+updates, token control, and audio feature flow without host ONNXRuntime in the
+loop.
