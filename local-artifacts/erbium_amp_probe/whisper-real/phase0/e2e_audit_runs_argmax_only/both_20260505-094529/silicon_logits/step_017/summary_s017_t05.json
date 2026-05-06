@@ -1,0 +1,18 @@
+{
+  "step": 17,
+  "tile_id": 5,
+  "col0": 40960,
+  "col1": 49152,
+  "wait_s": 0.00793927,
+  "slot_done_count": 16,
+  "slot_active_mask": 65535,
+  "summary_magic": 1464093767,
+  "summary_output_hash": 1060148,
+  "summary_argmax_local_col": 7332,
+  "summary_argmax_global_col": 48292,
+  "summary_argmax_value_bits": 1095085484,
+  "summary_argmax_value": 12.354900360107422,
+  "summary_argmax_only": true,
+  "stream_error": false,
+  "kernel_launch_error": false
+}

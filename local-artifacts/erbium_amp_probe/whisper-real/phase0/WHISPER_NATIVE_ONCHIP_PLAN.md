@@ -71,12 +71,22 @@ It runs both roles in one kernel:
 5. The 16-hart split smoke passes: even harts do VPU-heavy work and odd harts
    do scalar LayerNorm-shaped work in one kernel with explicit barriers/cache
    handling.
+6. Encoder conv1 and conv2 have real ONNX tensor audits by lowering each Conv
+   to an equivalent MatMul.  Both pass against ONNXRuntime on ET-SoC1.
+7. Encoder data movement ops have real ONNX tensor audits for Reshape, Concat,
+   Unsqueeze, Split, and Transpose.  The large final Concat nodes are tiled and
+   pass exactly.
+8. Encoder LayerNorm rows have a real ONNX tensor audit for all 9 encoder
+   LayerNorm nodes.  All pass; the worst observed tile is about `1.53e-05`.
+9. Encoder scalar Add/Mul/Div/Erf/Softmax kernels have partial real ONNX tensor
+   coverage through selected node index 52.  The important fix is that long
+   encoder Softmax must be row-owned by harts; cross-hart row reduction is not
+   reliable for this path.
 
 ## Remaining native steps
 
-1. Add device-side implementations for residual Adds, GELU, Softmax,
-   Slice/Concat, and KV-cache updates.  Each node needs a real ONNX tensor
-   export and an allclose audit before it becomes part of the resident graph.
+1. Stop relying on one host launch per tile.  Build a resident or batched graph
+   executor that keeps tensors on device between audited kernels.
 2. Merge the already audited decoder MatMul families with those scalar nodes so
    one device-resident decoder-step executor can produce the next token without
    host ONNXRuntime in the loop.

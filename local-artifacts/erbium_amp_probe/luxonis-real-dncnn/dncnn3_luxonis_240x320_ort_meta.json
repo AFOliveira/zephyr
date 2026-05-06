@@ -1,0 +1,16 @@
+{
+  "model": "local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/dncnn3-240x320.onnx/dncnn3-240x320.onnx",
+  "input": "local-artifacts/erbium_amp_probe/luxonis-real-dncnn/dncnn3_luxonis_240x320_input_f32.bin",
+  "output": "local-artifacts/erbium_amp_probe/luxonis-real-dncnn/dncnn3_luxonis_240x320_ort_output_f32.bin",
+  "seconds_cpu_1thread": 0.9551870822906494,
+  "shape": [
+    1,
+    1,
+    240,
+    320
+  ],
+  "min": 0.01562986895442009,
+  "max": 0.9821235537528992,
+  "mean": 0.5017542243003845,
+  "sum": 38534.7265625
+}

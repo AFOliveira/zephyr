@@ -1,0 +1,19 @@
+{
+  "variant": "whisper_encoder_mlp_tile_p4_o3_unroll_prefab",
+  "remote_work": "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2/erbium-amp-probe/whisper-real/phase0-encoder-mlp-tile-20260503-000710",
+  "local_run_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/run-phase0-encoder-mlp-tile-20260503-000710",
+  "magic": "0x57484d31",
+  "active_harts": 16,
+  "passes": 4,
+  "tokens": 128,
+  "dim": 384,
+  "hidden": 1536,
+  "active_mask": "0xffff",
+  "done_count": 16,
+  "output_sum": 6291456,
+  "slot_checksum_sum": 6291456,
+  "ops": 1308622848,
+  "wait_s": 1.02624,
+  "gops": 1.2751625818521983,
+  "stream_error": false
+}

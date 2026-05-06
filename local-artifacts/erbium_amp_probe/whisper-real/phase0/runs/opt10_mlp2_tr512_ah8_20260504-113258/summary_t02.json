@@ -1,0 +1,102 @@
+{
+  "tile_id": 2,
+  "row0": 1024,
+  "row1": 1500,
+  "rows": 476,
+  "wait_s": 0.947228,
+  "slot_done_count": 8,
+  "slot_active_mask": 255,
+  "summary_magic": 0,
+  "stream_error": true,
+  "kernel_launch_error": true,
+  "slots": [
+    {
+      "magic": 1464683600,
+      "hart_id": 0,
+      "minion_id": 0,
+      "thread_id": 0,
+      "row0": 0,
+      "row1": 59,
+      "active_harts": 8,
+      "checksum": 2900008,
+      "done": 1
+    },
+    {
+      "magic": 1464683600,
+      "hart_id": 1,
+      "minion_id": 0,
+      "thread_id": 1,
+      "row0": 59,
+      "row1": 119,
+      "active_harts": 8,
+      "checksum": 2949157,
+      "done": 1
+    },
+    {
+      "magic": 1464683600,
+      "hart_id": 2,
+      "minion_id": 1,
+      "thread_id": 0,
+      "row0": 119,
+      "row1": 178,
+      "active_harts": 8,
+      "checksum": 2900007,
+      "done": 1
+    },
+    {
+      "magic": 1464683600,
+      "hart_id": 3,
+      "minion_id": 1,
+      "thread_id": 1,
+      "row0": 178,
+      "row1": 238,
+      "active_harts": 8,
+      "checksum": 2949158,
+      "done": 1
+    },
+    {
+      "magic": 1464683600,
+      "hart_id": 4,
+      "minion_id": 2,
+      "thread_id": 0,
+      "row0": 238,
+      "row1": 297,
+      "active_harts": 8,
+      "checksum": 2900010,
+      "done": 1
+    },
+    {
+      "magic": 1464683600,
+      "hart_id": 5,
+      "minion_id": 2,
+      "thread_id": 1,
+      "row0": 297,
+      "row1": 357,
+      "active_harts": 8,
+      "checksum": 2949157,
+      "done": 1
+    },
+    {
+      "magic": 1464683600,
+      "hart_id": 6,
+      "minion_id": 3,
+      "thread_id": 0,
+      "row0": 357,
+      "row1": 416,
+      "active_harts": 8,
+      "checksum": 2900005,
+      "done": 1
+    },
+    {
+      "magic": 1464683600,
+      "hart_id": 7,
+      "minion_id": 3,
+      "thread_id": 1,
+      "row0": 416,
+      "row1": 476,
+      "active_harts": 8,
+      "checksum": 2949163,
+      "done": 1
+    }
+  ]
+}

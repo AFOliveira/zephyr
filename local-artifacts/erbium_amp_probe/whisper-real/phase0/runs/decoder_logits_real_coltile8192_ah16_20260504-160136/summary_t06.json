@@ -1,0 +1,190 @@
+{
+  "tile_id": 6,
+  "col0": 49152,
+  "col1": 51864,
+  "n_cols": 2712,
+  "wait_s": 0.0449589,
+  "slot_done_count": 16,
+  "slot_active_mask": 65535,
+  "summary_magic": 1464093767,
+  "stream_error": true,
+  "kernel_launch_error": true,
+  "slots": [
+    {
+      "magic": 1464093767,
+      "hart_id": 0,
+      "minion_id": 0,
+      "thread_id": 0,
+      "col0": 0,
+      "col1": 168,
+      "active_harts": 16,
+      "checksum": 20994,
+      "done": 1
+    },
+    {
+      "magic": 1464093767,
+      "hart_id": 1,
+      "minion_id": 0,
+      "thread_id": 1,
+      "col0": 168,
+      "col1": 338,
+      "active_harts": 16,
+      "checksum": 21230,
+      "done": 1
+    },
+    {
+      "magic": 1464093767,
+      "hart_id": 2,
+      "minion_id": 1,
+      "thread_id": 0,
+      "col0": 338,
+      "col1": 508,
+      "active_harts": 16,
+      "checksum": 21237,
+      "done": 1
+    },
+    {
+      "magic": 1464093767,
+      "hart_id": 3,
+      "minion_id": 1,
+      "thread_id": 1,
+      "col0": 508,
+      "col1": 678,
+      "active_harts": 16,
+      "checksum": 21238,
+      "done": 1
+    },
+    {
+      "magic": 1464093767,
+      "hart_id": 4,
+      "minion_id": 2,
+      "thread_id": 0,
+      "col0": 678,
+      "col1": 846,
+      "active_harts": 16,
+      "checksum": 20989,
+      "done": 1
+    },
+    {
+      "magic": 1464093767,
+      "hart_id": 5,
+      "minion_id": 2,
+      "thread_id": 1,
+      "col0": 846,
+      "col1": 1016,
+      "active_harts": 16,
+      "checksum": 21235,
+      "done": 1
+    },
+    {
+      "magic": 1464093767,
+      "hart_id": 6,
+      "minion_id": 3,
+      "thread_id": 0,
+      "col0": 1016,
+      "col1": 1186,
+      "active_harts": 16,
+      "checksum": 21172,
+      "done": 1
+    },
+    {
+      "magic": 1464093767,
+      "hart_id": 7,
+      "minion_id": 3,
+      "thread_id": 1,
+      "col0": 1186,
+      "col1": 1356,
+      "active_harts": 16,
+      "checksum": 21532,
+      "done": 1
+    },
+    {
+      "magic": 1464093767,
+      "hart_id": 8,
+      "minion_id": 4,
+      "thread_id": 0,
+      "col0": 1356,
+      "col1": 1524,
+      "active_harts": 16,
+      "checksum": 21336,
+      "done": 1
+    },
+    {
+      "magic": 1464093767,
+      "hart_id": 9,
+      "minion_id": 4,
+      "thread_id": 1,
+      "col0": 1524,
+      "col1": 1694,
+      "active_harts": 16,
+      "checksum": 21480,
+      "done": 1
+    },
+    {
+      "magic": 1464093767,
+      "hart_id": 10,
+      "minion_id": 5,
+      "thread_id": 0,
+      "col0": 1694,
+      "col1": 1864,
+      "active_harts": 16,
+      "checksum": 21449,
+      "done": 1
+    },
+    {
+      "magic": 1464093767,
+      "hart_id": 11,
+      "minion_id": 5,
+      "thread_id": 1,
+      "col0": 1864,
+      "col1": 2034,
+      "active_harts": 16,
+      "checksum": 21439,
+      "done": 1
+    },
+    {
+      "magic": 1464093767,
+      "hart_id": 12,
+      "minion_id": 6,
+      "thread_id": 0,
+      "col0": 2034,
+      "col1": 2202,
+      "active_harts": 16,
+      "checksum": 21166,
+      "done": 1
+    },
+    {
+      "magic": 1464093767,
+      "hart_id": 13,
+      "minion_id": 6,
+      "thread_id": 1,
+      "col0": 2202,
+      "col1": 2372,
+      "active_harts": 16,
+      "checksum": 21352,
+      "done": 1
+    },
+    {
+      "magic": 1464093767,
+      "hart_id": 14,
+      "minion_id": 7,
+      "thread_id": 0,
+      "col0": 2372,
+      "col1": 2542,
+      "active_harts": 16,
+      "checksum": 21279,
+      "done": 1
+    },
+    {
+      "magic": 1464093767,
+      "hart_id": 15,
+      "minion_id": 7,
+      "thread_id": 1,
+      "col0": 2542,
+      "col1": 2712,
+      "active_harts": 16,
+      "checksum": 21416,
+      "done": 1
+    }
+  ]
+}

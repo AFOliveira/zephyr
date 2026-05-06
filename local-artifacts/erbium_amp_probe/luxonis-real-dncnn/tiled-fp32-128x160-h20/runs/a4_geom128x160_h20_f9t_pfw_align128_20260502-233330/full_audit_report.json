@@ -1,0 +1,19 @@
+{
+  "variant": "a4_geom128x160_h20_f9t_pfw_align128",
+  "timestamp": "20260502-233330",
+  "n_tiles_run": 4,
+  "n_tiles_total": 4,
+  "all_tiles_tile_audit_ok": true,
+  "stitched_vs_full_ort_max_abs": 8.940696716308594e-07,
+  "stitched_vs_full_ort_mean_abs": 8.486065894430794e-08,
+  "allclose": true,
+  "total_wait_s": 52.4456,
+  "gops_full_image_useful": 1.9467511936177677,
+  "gops_executed": 2.55511094162332,
+  "useful_ops": 102098534400,
+  "executed_ops": 134004326400,
+  "remote_work": "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2/erbium-amp-probe/luxonis-real-dncnn/tiled-fp32-128x160-h20/a4_geom128x160_h20_f9t_pfw_align128_20260502-233330",
+  "local_run_dir": "local-artifacts/erbium_amp_probe/luxonis-real-dncnn/tiled-fp32-128x160-h20/runs/a4_geom128x160_h20_f9t_pfw_align128_20260502-233330",
+  "geometry": "local-artifacts/erbium_amp_probe/luxonis-real-dncnn/tiled-fp32-128x160-h20/audit_a1_geometry.json",
+  "tiles_dir": "local-artifacts/erbium_amp_probe/luxonis-real-dncnn/tiled-fp32-128x160-h20/tiles"
+}

@@ -266,3 +266,34 @@ piece is a device-resident graph executor that pages the weights/state and
 connects these kernels with LayerNorm, softmax, GELU, residuals, KV-cache
 updates, token control, and audio feature flow without host ONNXRuntime in the
 loop.
+
+## Encoder scalar audit partial sweep
+
+2026-05-05 update: the full encoder scalar sweep was stopped after it became
+clear that the harness, not the silicon kernels, was the bottleneck.  The run
+was a Python orchestrator driving one stock 16 MiB launcher invocation per real
+ONNX tensor tile.  Several large tiles stalled in SSH/rsync for one to two
+minutes before retrying, so continuing the all-node sweep was not a useful use
+of board time.
+
+Partial report:
+`phase0/encoder_scalar_ops_audit_runs/run_20260505-175731/partial_encoder_scalar_ops_summary.json`
+
+| Metric | Result |
+| --- | ---: |
+| Completed tiles | 131 |
+| Covered selected node indexes | 0..52 |
+| Unique selected node indexes covered | 53 |
+| Add tiles | 38 |
+| Div tiles | 12 |
+| Erf tiles | 12 |
+| Mul tiles | 27 |
+| Softmax tiles | 42 |
+| Max abs diff vs ONNXRuntime | 1.329183578491211e-05 |
+
+The important kernel result from this sweep is the Softmax fix: long encoder
+Softmax rows failed when split across harts with cross-hart reduction, but pass
+when each hart owns complete rows.  The next native step should not be another
+exhaustive one-launch-per-tile audit.  It should be a resident or batched graph
+executor that keeps tensors on device between kernels, with representative
+real-ONNX audits for each op and shape class.

@@ -1,0 +1,2 @@
+timestamp	iteration	variant	kind	rc	pass	token_sequence_match	text_match	silicon_argmax_match	silicon_audit_pass	generated_nonprompt_tokens	host_tokens_per_s_wall	hybrid_tokens_per_s_wall	silicon_tokens_per_s	silicon_wait_s	report	log
+20260505-205615	0	native_split_smoke	smoke	2	False											local-artifacts/erbium_amp_probe/whisper-real/phase1/overnight_smoke_runs/overnight_20260505-205611/split_smoke_i0000.log

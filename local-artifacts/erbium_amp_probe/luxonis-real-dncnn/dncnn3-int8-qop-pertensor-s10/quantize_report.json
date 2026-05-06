@@ -1,0 +1,199 @@
+{
+  "onnx": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/dncnn3-240x320.onnx/dncnn3-240x320.onnx",
+  "quantized_onnx": "local-artifacts/erbium_amp_probe/luxonis-real-dncnn/dncnn3-int8-qop-pertensor-s10/dncnn3-240x320-int8.onnx",
+  "input": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-real-dncnn/dncnn3_luxonis_240x320_input_f32.bin",
+  "fp32_reference": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-real-dncnn/dncnn3_luxonis_240x320_ort_output_f32.bin",
+  "int8_ort_output": "local-artifacts/erbium_amp_probe/luxonis-real-dncnn/dncnn3-int8-qop-pertensor-s10/dncnn3_luxonis_240x320_int8_ort_output_f32.bin",
+  "int8_scales": "local-artifacts/erbium_amp_probe/luxonis-real-dncnn/dncnn3-int8-qop-pertensor-s10/int8_scales.json",
+  "input_name": "image",
+  "output_name": "enhanced_image",
+  "calibration": {
+    "samples": 10,
+    "seed": 12345,
+    "noise_std": 0.03,
+    "clip_min": 0.0,
+    "clip_max": 1.0
+  },
+  "quantization": {
+    "format": "qoperator",
+    "op_types": [
+      "Conv"
+    ],
+    "per_channel": false,
+    "activation_type": "quint8",
+    "weight_type": "qint8",
+    "calibrate_method": "MinMax",
+    "n_quant_param_tensors": 120
+  },
+  "metrics_vs_fp32_ort": {
+    "max_abs": 0.05766420066356659,
+    "mean_abs": 0.00972121860831976,
+    "rmse": 0.01209846629228282,
+    "psnr_peak1": 38.34539362344912,
+    "psnr_dynamic_peak": 38.0493738687426,
+    "psnr_gate": 35.0,
+    "passes_psnr_gate_peak1": true
+  },
+  "tile_crop_metrics_vs_fp32_ort": [
+    {
+      "tile_id": 0,
+      "output_h": 64,
+      "output_w": 64,
+      "psnr_peak1": 38.33267700385084,
+      "max_abs": 0.04638272523880005,
+      "mean_abs": 0.009701341390609741
+    },
+    {
+      "tile_id": 1,
+      "output_h": 64,
+      "output_w": 64,
+      "psnr_peak1": 38.492874460465686,
+      "max_abs": 0.039694786071777344,
+      "mean_abs": 0.009592629969120026
+    },
+    {
+      "tile_id": 2,
+      "output_h": 64,
+      "output_w": 64,
+      "psnr_peak1": 38.52829824233413,
+      "max_abs": 0.03741385415196419,
+      "mean_abs": 0.009529858827590942
+    },
+    {
+      "tile_id": 3,
+      "output_h": 64,
+      "output_w": 64,
+      "psnr_peak1": 38.46557536699016,
+      "max_abs": 0.03777515888214111,
+      "mean_abs": 0.009644286707043648
+    },
+    {
+      "tile_id": 4,
+      "output_h": 64,
+      "output_w": 64,
+      "psnr_peak1": 38.51363098311883,
+      "max_abs": 0.03857707977294922,
+      "mean_abs": 0.009545538574457169
+    },
+    {
+      "tile_id": 5,
+      "output_h": 64,
+      "output_w": 64,
+      "psnr_peak1": 38.27811294506403,
+      "max_abs": 0.0414004921913147,
+      "mean_abs": 0.009840401820838451
+    },
+    {
+      "tile_id": 6,
+      "output_h": 64,
+      "output_w": 64,
+      "psnr_peak1": 38.46362012412023,
+      "max_abs": 0.032526254653930664,
+      "mean_abs": 0.00962737388908863
+    },
+    {
+      "tile_id": 7,
+      "output_h": 64,
+      "output_w": 64,
+      "psnr_peak1": 38.42695548848261,
+      "max_abs": 0.032526254653930664,
+      "mean_abs": 0.009685376659035683
+    },
+    {
+      "tile_id": 8,
+      "output_h": 64,
+      "output_w": 64,
+      "psnr_peak1": 38.465751821389496,
+      "max_abs": 0.032526254653930664,
+      "mean_abs": 0.009624938480556011
+    },
+    {
+      "tile_id": 9,
+      "output_h": 64,
+      "output_w": 64,
+      "psnr_peak1": 38.556837914004795,
+      "max_abs": 0.04206973314285278,
+      "mean_abs": 0.009456176310777664
+    },
+    {
+      "tile_id": 10,
+      "output_h": 64,
+      "output_w": 64,
+      "psnr_peak1": 38.32853698315053,
+      "max_abs": 0.040739357471466064,
+      "mean_abs": 0.009767191484570503
+    },
+    {
+      "tile_id": 11,
+      "output_h": 64,
+      "output_w": 64,
+      "psnr_peak1": 38.45568260968712,
+      "max_abs": 0.032526254653930664,
+      "mean_abs": 0.009645592421293259
+    },
+    {
+      "tile_id": 12,
+      "output_h": 64,
+      "output_w": 64,
+      "psnr_peak1": 38.46362012412023,
+      "max_abs": 0.032526254653930664,
+      "mean_abs": 0.00962737388908863
+    },
+    {
+      "tile_id": 13,
+      "output_h": 64,
+      "output_w": 64,
+      "psnr_peak1": 38.42695548848261,
+      "max_abs": 0.032526254653930664,
+      "mean_abs": 0.009685376659035683
+    },
+    {
+      "tile_id": 14,
+      "output_h": 64,
+      "output_w": 64,
+      "psnr_peak1": 38.478596475170015,
+      "max_abs": 0.04303264617919922,
+      "mean_abs": 0.009576523676514626
+    },
+    {
+      "tile_id": 15,
+      "output_h": 48,
+      "output_w": 64,
+      "psnr_peak1": 37.83044439808923,
+      "max_abs": 0.05766420066356659,
+      "mean_abs": 0.01020467933267355
+    },
+    {
+      "tile_id": 16,
+      "output_h": 48,
+      "output_w": 64,
+      "psnr_peak1": 38.08553911621401,
+      "max_abs": 0.046426087617874146,
+      "mean_abs": 0.009980719536542892
+    },
+    {
+      "tile_id": 17,
+      "output_h": 48,
+      "output_w": 64,
+      "psnr_peak1": 38.0537275718448,
+      "max_abs": 0.05229011923074722,
+      "mean_abs": 0.009952615015208721
+    },
+    {
+      "tile_id": 18,
+      "output_h": 48,
+      "output_w": 64,
+      "psnr_peak1": 37.97725424590933,
+      "max_abs": 0.05083233118057251,
+      "mean_abs": 0.010060391388833523
+    },
+    {
+      "tile_id": 19,
+      "output_h": 48,
+      "output_w": 64,
+      "psnr_peak1": 37.90818394738139,
+      "max_abs": 0.05561221390962601,
+      "mean_abs": 0.01009876187890768
+    }
+  ]
+}

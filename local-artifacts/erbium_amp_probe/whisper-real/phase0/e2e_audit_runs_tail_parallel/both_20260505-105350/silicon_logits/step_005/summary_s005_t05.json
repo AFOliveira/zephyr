@@ -1,0 +1,21 @@
+{
+  "step": 5,
+  "tile_id": 5,
+  "col0": 40960,
+  "col1": 49152,
+  "wait_s": 0.0596363,
+  "slot_done_count": 16,
+  "slot_active_mask": 65535,
+  "summary_magic": 1464093780,
+  "summary_output_hash": 49182,
+  "summary_reference_hash": 49182,
+  "summary_ln_max_abs_scaled": 3,
+  "summary_ln_mean_abs_scaled": 0,
+  "summary_argmax_local_col": 2392,
+  "summary_argmax_global_col": 43352,
+  "summary_argmax_value_bits": 1093924229,
+  "summary_argmax_value": 11.247441291809082,
+  "summary_argmax_only": true,
+  "stream_error": false,
+  "kernel_launch_error": false
+}

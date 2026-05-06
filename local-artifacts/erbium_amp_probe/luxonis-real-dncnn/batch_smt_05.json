@@ -1,0 +1,7 @@
+[
+  {"exp_id": 225, "variant": "k0_boundary_predcomm",     "harts": 16, "passes": 4, "flags": ["-fpredictive-commoning"], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]},
+  {"exp_id": 226, "variant": "k1_boundary_movestores",   "harts": 16, "passes": 4, "flags": ["-fmove-loop-stores"], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]},
+  {"exp_id": 227, "variant": "k2_boundary_noipa",        "harts": 16, "passes": 4, "flags": ["-fno-ipa-cp", "-fno-ipa-sra"], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]},
+  {"exp_id": 228, "variant": "k3_boundary_inline2k",     "harts": 16, "passes": 4, "flags": ["-finline-limit=2000"], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]},
+  {"exp_id": 229, "variant": "k4_boundary_rename",       "harts": 16, "passes": 4, "flags": ["-frename-registers"], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]}
+]

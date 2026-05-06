@@ -1,0 +1,201 @@
+{
+  "wait_s": 0.0811358,
+  "summary": [
+    1464419152,
+    344064,
+    16,
+    65535,
+    16,
+    44040192,
+    44040192,
+    0,
+    0,
+    915673,
+    0,
+    1165896,
+    0,
+    1165893,
+    0,
+    64536,
+    0,
+    64536,
+    0,
+    15,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "slots": [
+    {
+      "magic": 1464419152,
+      "hart_id": 0,
+      "minion_id": 0,
+      "thread_id": 0,
+      "i0": 0,
+      "i1": 21504,
+      "checksum": 2752512,
+      "done": 1
+    },
+    {
+      "magic": 1464419152,
+      "hart_id": 1,
+      "minion_id": 0,
+      "thread_id": 1,
+      "i0": 21504,
+      "i1": 43008,
+      "checksum": 2752512,
+      "done": 1
+    },
+    {
+      "magic": 1464419152,
+      "hart_id": 2,
+      "minion_id": 1,
+      "thread_id": 0,
+      "i0": 43008,
+      "i1": 64512,
+      "checksum": 2752512,
+      "done": 1
+    },
+    {
+      "magic": 1464419152,
+      "hart_id": 3,
+      "minion_id": 1,
+      "thread_id": 1,
+      "i0": 64512,
+      "i1": 86016,
+      "checksum": 2752512,
+      "done": 1
+    },
+    {
+      "magic": 1464419152,
+      "hart_id": 4,
+      "minion_id": 2,
+      "thread_id": 0,
+      "i0": 86016,
+      "i1": 107520,
+      "checksum": 2752512,
+      "done": 1
+    },
+    {
+      "magic": 1464419152,
+      "hart_id": 5,
+      "minion_id": 2,
+      "thread_id": 1,
+      "i0": 107520,
+      "i1": 129024,
+      "checksum": 2752512,
+      "done": 1
+    },
+    {
+      "magic": 1464419152,
+      "hart_id": 6,
+      "minion_id": 3,
+      "thread_id": 0,
+      "i0": 129024,
+      "i1": 150528,
+      "checksum": 2752512,
+      "done": 1
+    },
+    {
+      "magic": 1464419152,
+      "hart_id": 7,
+      "minion_id": 3,
+      "thread_id": 1,
+      "i0": 150528,
+      "i1": 172032,
+      "checksum": 2752512,
+      "done": 1
+    },
+    {
+      "magic": 1464419152,
+      "hart_id": 8,
+      "minion_id": 4,
+      "thread_id": 0,
+      "i0": 172032,
+      "i1": 193536,
+      "checksum": 2752512,
+      "done": 1
+    },
+    {
+      "magic": 1464419152,
+      "hart_id": 9,
+      "minion_id": 4,
+      "thread_id": 1,
+      "i0": 193536,
+      "i1": 215040,
+      "checksum": 2752512,
+      "done": 1
+    },
+    {
+      "magic": 1464419152,
+      "hart_id": 10,
+      "minion_id": 5,
+      "thread_id": 0,
+      "i0": 215040,
+      "i1": 236544,
+      "checksum": 2752512,
+      "done": 1
+    },
+    {
+      "magic": 1464419152,
+      "hart_id": 11,
+      "minion_id": 5,
+      "thread_id": 1,
+      "i0": 236544,
+      "i1": 258048,
+      "checksum": 2752512,
+      "done": 1
+    },
+    {
+      "magic": 1464419152,
+      "hart_id": 12,
+      "minion_id": 6,
+      "thread_id": 0,
+      "i0": 258048,
+      "i1": 279552,
+      "checksum": 2752512,
+      "done": 1
+    },
+    {
+      "magic": 1464419152,
+      "hart_id": 13,
+      "minion_id": 6,
+      "thread_id": 1,
+      "i0": 279552,
+      "i1": 301056,
+      "checksum": 2752512,
+      "done": 1
+    },
+    {
+      "magic": 1464419152,
+      "hart_id": 14,
+      "minion_id": 7,
+      "thread_id": 0,
+      "i0": 301056,
+      "i1": 322560,
+      "checksum": 2752512,
+      "done": 1
+    },
+    {
+      "magic": 1464419152,
+      "hart_id": 15,
+      "minion_id": 7,
+      "thread_id": 1,
+      "i0": 322560,
+      "i1": 344064,
+      "checksum": 2752512,
+      "done": 1
+    }
+  ],
+  "stream_error": false,
+  "kernel_launch_error": false
+}

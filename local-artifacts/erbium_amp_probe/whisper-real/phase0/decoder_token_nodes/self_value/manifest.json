@@ -1,0 +1,46 @@
+{
+  "encoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_encoder_qaihub.onnx/whisper_tiny_en_encoder_qaihub.onnx",
+  "decoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_decoder_qaihub.onnx/whisper_tiny_en_decoder_qaihub.onnx",
+  "node_name": "/0/attn/MatMul_1",
+  "act_name": "/0/attn/Softmax_output_0",
+  "weight_name": "/0/attn/Slice_4_output_0",
+  "out_name": "/0/attn/MatMul_1_output_0",
+  "weight_is_initializer": false,
+  "seed": 20260504,
+  "audio_scale": 0.25,
+  "token_id": 50258,
+  "index": 0,
+  "rows": 1,
+  "k_dim_unpadded": 224,
+  "k_dim": 224,
+  "n_cols": 64,
+  "ops": 28672,
+  "padded_ops_executed": 28672,
+  "act_original_shape": [
+    1,
+    1,
+    1,
+    224
+  ],
+  "weight_original_shape": [
+    1,
+    1,
+    224,
+    64
+  ],
+  "out_original_shape": [
+    1,
+    1,
+    1,
+    64
+  ],
+  "k_was_padded": false,
+  "max_abs_numpy_vs_ort": 0.0,
+  "mean_abs_numpy_vs_ort": 0.0,
+  "files": {
+    "act_full": "act_full.bin",
+    "weight_t": "weight_t.bin",
+    "ref_full": "ref_full.bin",
+    "decoder_logits_full": "decoder_logits_full.bin"
+  }
+}

@@ -1,0 +1,853 @@
+{
+  "timestamp": "20260505-140409",
+  "scope": "Real Whisper decoder scalar/Softmax node audit on ET-SoC1",
+  "audio": {
+    "audio_path": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/audio/openai_whisper_jfk_16k.wav",
+    "audio_sha256": "80f71fdab049ca195115a63a738c7aeea50b2e09bc3513f85e627a28dbc5f40e",
+    "original_sample_rate": 16000,
+    "sample_rate": 16000,
+    "original_samples": 176000,
+    "samples": 176000,
+    "feature_shape": [
+      1,
+      80,
+      3000
+    ],
+    "feature_sha256": "51c777823b95b3de044bb07f386a8d435b858a958b90c9702002d26cf8ccea36"
+  },
+  "model": {
+    "encoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_encoder_qaihub.onnx/whisper_tiny_en_encoder_qaihub.onnx",
+    "encoder_sha256": "20bd728e03bff2954da28028e56e57f7eb3252b6a6a08ae4296e411d360a11b2",
+    "decoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_decoder_qaihub.onnx/whisper_tiny_en_decoder_qaihub.onnx",
+    "decoder_sha256": "fef679d932bd9602f96601fb988a6391315ca5530bb18f2eda977b6f7a16a654",
+    "tokenizer": "openai/whisper-tiny.en"
+  },
+  "decoder_step": 3,
+  "tokens_to_step": [
+    50257,
+    50258,
+    50358,
+    50362,
+    843
+  ],
+  "token_text_to_step": [
+    "<|startoftranscript|>",
+    "<|en|>",
+    "<|transcribe|>",
+    "<|notimestamps|>",
+    " And"
+  ],
+  "active_harts": 16,
+  "op_types": [
+    "Add"
+  ],
+  "selected_nodes": 20,
+  "all_pass": true,
+  "max_abs": 0.0,
+  "mean_wait_s": 0.0005157236,
+  "feature_sha256": "51c777823b95b3de044bb07f386a8d435b858a958b90c9702002d26cf8ccea36",
+  "k_cache_cross_sha256": "e0f4b1bdeaae5d6f1fa95e9bffcf70e20509ab7cf521b94efdd39141e25863c3",
+  "v_cache_cross_sha256": "c2ba701500d06e2343f6e4591e51ce6f53473afcd21b4f236a228c8f6c16b658",
+  "results": [
+    {
+      "index": 0,
+      "node": "/1/attn/Add",
+      "op_type": "Add",
+      "inputs": [
+        "/1/attn/MatMul_output_0",
+        "/mask/Gather_output_0"
+      ],
+      "output": "/1/attn/Add_output_0",
+      "shape": [
+        224
+      ],
+      "elem_count": 224,
+      "rows": 1,
+      "cols": 224,
+      "wait_s": 0.000404909,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 23172,
+      "reference_hash": 23172,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 2053,
+        "hpm4_inst0": 1190,
+        "hpm5_inst1": 1517,
+        "hpm6_l2_miss_req": 51,
+        "hpm7_icache_req": 693,
+        "hpm8_icache_etlink_req": 10
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/000_1_attn_Add"
+    },
+    {
+      "index": 1,
+      "node": "/1/attn/Add_1",
+      "op_type": "Add",
+      "inputs": [
+        "/1/attn/MatMul_2_output_0",
+        "/mask/Gather_output_0"
+      ],
+      "output": "/1/attn/Add_1_output_0",
+      "shape": [
+        224
+      ],
+      "elem_count": 224,
+      "rows": 1,
+      "cols": 224,
+      "wait_s": 0.000551829,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 23172,
+      "reference_hash": 23172,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 2050,
+        "hpm4_inst0": 1190,
+        "hpm5_inst1": 1517,
+        "hpm6_l2_miss_req": 51,
+        "hpm7_icache_req": 698,
+        "hpm8_icache_etlink_req": 9
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/001_1_attn_Add_1"
+    },
+    {
+      "index": 2,
+      "node": "/1/attn/Add_2",
+      "op_type": "Add",
+      "inputs": [
+        "/1/attn/MatMul_4_output_0",
+        "/mask/Gather_output_0"
+      ],
+      "output": "/1/attn/Add_2_output_0",
+      "shape": [
+        224
+      ],
+      "elem_count": 224,
+      "rows": 1,
+      "cols": 224,
+      "wait_s": 0.000551005,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 23172,
+      "reference_hash": 23172,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 2185,
+        "hpm4_inst0": 1190,
+        "hpm5_inst1": 1517,
+        "hpm6_l2_miss_req": 51,
+        "hpm7_icache_req": 698,
+        "hpm8_icache_etlink_req": 9
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/002_1_attn_Add_2"
+    },
+    {
+      "index": 3,
+      "node": "/1/attn/Add_3",
+      "op_type": "Add",
+      "inputs": [
+        "/1/attn/MatMul_6_output_0",
+        "/mask/Gather_output_0"
+      ],
+      "output": "/1/attn/Add_3_output_0",
+      "shape": [
+        224
+      ],
+      "elem_count": 224,
+      "rows": 1,
+      "cols": 224,
+      "wait_s": 0.000551734,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 23172,
+      "reference_hash": 23172,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 1910,
+        "hpm4_inst0": 1190,
+        "hpm5_inst1": 1517,
+        "hpm6_l2_miss_req": 51,
+        "hpm7_icache_req": 624,
+        "hpm8_icache_etlink_req": 10
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/003_1_attn_Add_3"
+    },
+    {
+      "index": 4,
+      "node": "/1/attn/Add_4",
+      "op_type": "Add",
+      "inputs": [
+        "/1/attn/MatMul_8_output_0",
+        "/mask/Gather_output_0"
+      ],
+      "output": "/1/attn/Add_4_output_0",
+      "shape": [
+        224
+      ],
+      "elem_count": 224,
+      "rows": 1,
+      "cols": 224,
+      "wait_s": 0.000550166,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 23172,
+      "reference_hash": 23172,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 2032,
+        "hpm4_inst0": 1190,
+        "hpm5_inst1": 1517,
+        "hpm6_l2_miss_req": 51,
+        "hpm7_icache_req": 737,
+        "hpm8_icache_etlink_req": 10
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/004_1_attn_Add_4"
+    },
+    {
+      "index": 5,
+      "node": "/1/attn/Add_5",
+      "op_type": "Add",
+      "inputs": [
+        "/1/attn/MatMul_10_output_0",
+        "/mask/Gather_output_0"
+      ],
+      "output": "/1/attn/Add_5_output_0",
+      "shape": [
+        224
+      ],
+      "elem_count": 224,
+      "rows": 1,
+      "cols": 224,
+      "wait_s": 0.000404165,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 23173,
+      "reference_hash": 23173,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 2041,
+        "hpm4_inst0": 1190,
+        "hpm5_inst1": 1517,
+        "hpm6_l2_miss_req": 51,
+        "hpm7_icache_req": 707,
+        "hpm8_icache_etlink_req": 10
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/005_1_attn_Add_5"
+    },
+    {
+      "index": 6,
+      "node": "/1/attn/out/Add",
+      "op_type": "Add",
+      "inputs": [
+        "onnx::Add_2692",
+        "/1/attn/out/MatMul_output_0"
+      ],
+      "output": "/1/attn/out/Add_output_0",
+      "shape": [
+        384
+      ],
+      "elem_count": 384,
+      "rows": 1,
+      "cols": 384,
+      "wait_s": 0.000549649,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 49152,
+      "reference_hash": 49152,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 2363,
+        "hpm4_inst0": 1504,
+        "hpm5_inst1": 2429,
+        "hpm6_l2_miss_req": 81,
+        "hpm7_icache_req": 847,
+        "hpm8_icache_etlink_req": 11
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/006_1_attn_out_Add"
+    },
+    {
+      "index": 7,
+      "node": "/1/Add",
+      "op_type": "Add",
+      "inputs": [
+        "/0/Add_2_output_0",
+        "/1/attn/out/Add_output_0"
+      ],
+      "output": "/1/Add_output_0",
+      "shape": [
+        384
+      ],
+      "elem_count": 384,
+      "rows": 1,
+      "cols": 384,
+      "wait_s": 0.000553042,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 49152,
+      "reference_hash": 49152,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 2369,
+        "hpm4_inst0": 1504,
+        "hpm5_inst1": 2429,
+        "hpm6_l2_miss_req": 81,
+        "hpm7_icache_req": 835,
+        "hpm8_icache_etlink_req": 12
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/007_1_Add"
+    },
+    {
+      "index": 8,
+      "node": "/1/cross_attn/query/Add",
+      "op_type": "Add",
+      "inputs": [
+        "onnx::Add_2695",
+        "/1/cross_attn/query/MatMul_output_0"
+      ],
+      "output": "/1/cross_attn/query/Add_output_0",
+      "shape": [
+        384
+      ],
+      "elem_count": 384,
+      "rows": 1,
+      "cols": 384,
+      "wait_s": 0.000546078,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 49154,
+      "reference_hash": 49154,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 2364,
+        "hpm4_inst0": 1504,
+        "hpm5_inst1": 2429,
+        "hpm6_l2_miss_req": 81,
+        "hpm7_icache_req": 892,
+        "hpm8_icache_etlink_req": 11
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/008_1_cross_attn_query_Add"
+    },
+    {
+      "index": 9,
+      "node": "/1/cross_attn/out/Add",
+      "op_type": "Add",
+      "inputs": [
+        "onnx::Add_2779",
+        "/1/cross_attn/out/MatMul_output_0"
+      ],
+      "output": "/1/cross_attn/out/Add_output_0",
+      "shape": [
+        384
+      ],
+      "elem_count": 384,
+      "rows": 1,
+      "cols": 384,
+      "wait_s": 0.000551306,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 49152,
+      "reference_hash": 49152,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 2351,
+        "hpm4_inst0": 1504,
+        "hpm5_inst1": 2429,
+        "hpm6_l2_miss_req": 81,
+        "hpm7_icache_req": 886,
+        "hpm8_icache_etlink_req": 11
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/009_1_cross_attn_out_Add"
+    },
+    {
+      "index": 10,
+      "node": "/1/Add_1",
+      "op_type": "Add",
+      "inputs": [
+        "/1/Add_output_0",
+        "/1/cross_attn/out/Add_output_0"
+      ],
+      "output": "/1/Add_1_output_0",
+      "shape": [
+        384
+      ],
+      "elem_count": 384,
+      "rows": 1,
+      "cols": 384,
+      "wait_s": 0.000551203,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 49152,
+      "reference_hash": 49152,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 2332,
+        "hpm4_inst0": 1504,
+        "hpm5_inst1": 2429,
+        "hpm6_l2_miss_req": 81,
+        "hpm7_icache_req": 893,
+        "hpm8_icache_etlink_req": 11
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/010_1_Add_1"
+    },
+    {
+      "index": 11,
+      "node": "/1/mlp/0/Add",
+      "op_type": "Add",
+      "inputs": [
+        "onnx::Add_2782",
+        "/1/mlp/0/MatMul_output_0"
+      ],
+      "output": "/1/mlp/0/Add_output_0",
+      "shape": [
+        1536
+      ],
+      "elem_count": 1536,
+      "rows": 1,
+      "cols": 1536,
+      "wait_s": 0.000652294,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 195716,
+      "reference_hash": 195716,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 5757,
+        "hpm4_inst0": 6080,
+        "hpm5_inst1": 6093,
+        "hpm6_l2_miss_req": 313,
+        "hpm7_icache_req": 18446744073709543519,
+        "hpm8_icache_etlink_req": 11
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/011_1_mlp_0_Add"
+    },
+    {
+      "index": 12,
+      "node": "/1/mlp/1/Add",
+      "op_type": "Add",
+      "inputs": [
+        "/1/mlp/1/Erf_output_0",
+        "/0/mlp/1/Constant_1_output_0"
+      ],
+      "output": "/1/mlp/1/Add_output_0",
+      "shape": [
+        1536
+      ],
+      "elem_count": 1536,
+      "rows": 1,
+      "cols": 1536,
+      "wait_s": 0.00066039,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 196608,
+      "reference_hash": 196608,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 5945,
+        "hpm4_inst0": 6080,
+        "hpm5_inst1": 6093,
+        "hpm6_l2_miss_req": 313,
+        "hpm7_icache_req": 18446744073709542717,
+        "hpm8_icache_etlink_req": 11
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/012_1_mlp_1_Add"
+    },
+    {
+      "index": 13,
+      "node": "/1/mlp/2/Add",
+      "op_type": "Add",
+      "inputs": [
+        "onnx::Add_2785",
+        "/1/mlp/2/MatMul_output_0"
+      ],
+      "output": "/1/mlp/2/Add_output_0",
+      "shape": [
+        384
+      ],
+      "elem_count": 384,
+      "rows": 1,
+      "cols": 384,
+      "wait_s": 0.000551697,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 49152,
+      "reference_hash": 49152,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 2362,
+        "hpm4_inst0": 1504,
+        "hpm5_inst1": 2429,
+        "hpm6_l2_miss_req": 81,
+        "hpm7_icache_req": 854,
+        "hpm8_icache_etlink_req": 9208
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/013_1_mlp_2_Add"
+    },
+    {
+      "index": 14,
+      "node": "/1/Add_2",
+      "op_type": "Add",
+      "inputs": [
+        "/1/Add_1_output_0",
+        "/1/mlp/2/Add_output_0"
+      ],
+      "output": "/1/Add_2_output_0",
+      "shape": [
+        384
+      ],
+      "elem_count": 384,
+      "rows": 1,
+      "cols": 384,
+      "wait_s": 0.00055107,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 49152,
+      "reference_hash": 49152,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 2370,
+        "hpm4_inst0": 1504,
+        "hpm5_inst1": 2429,
+        "hpm6_l2_miss_req": 81,
+        "hpm7_icache_req": 882,
+        "hpm8_icache_etlink_req": 12
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/014_1_Add_2"
+    },
+    {
+      "index": 15,
+      "node": "/2/attn/query/Add",
+      "op_type": "Add",
+      "inputs": [
+        "onnx::Add_2788",
+        "_v_2794"
+      ],
+      "output": "/2/attn/query/Add_output_0",
+      "shape": [
+        384
+      ],
+      "elem_count": 384,
+      "rows": 1,
+      "cols": 384,
+      "wait_s": 0.000406755,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 49151,
+      "reference_hash": 49151,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 2479,
+        "hpm4_inst0": 1504,
+        "hpm5_inst1": 2429,
+        "hpm6_l2_miss_req": 81,
+        "hpm7_icache_req": 878,
+        "hpm8_icache_etlink_req": 11
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/015_2_attn_query_Add"
+    },
+    {
+      "index": 16,
+      "node": "/2/attn/value/Add",
+      "op_type": "Add",
+      "inputs": [
+        "onnx::Add_2803",
+        "_v_2796"
+      ],
+      "output": "/2/attn/value/Add_output_0",
+      "shape": [
+        384
+      ],
+      "elem_count": 384,
+      "rows": 1,
+      "cols": 384,
+      "wait_s": 0.000355094,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 49152,
+      "reference_hash": 49152,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 2341,
+        "hpm4_inst0": 1504,
+        "hpm5_inst1": 2429,
+        "hpm6_l2_miss_req": 81,
+        "hpm7_icache_req": 888,
+        "hpm8_icache_etlink_req": 11
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/016_2_attn_value_Add"
+    },
+    {
+      "index": 17,
+      "node": "/2/attn/Add",
+      "op_type": "Add",
+      "inputs": [
+        "/2/attn/MatMul_output_0",
+        "/mask/Gather_output_0"
+      ],
+      "output": "/2/attn/Add_output_0",
+      "shape": [
+        224
+      ],
+      "elem_count": 224,
+      "rows": 1,
+      "cols": 224,
+      "wait_s": 0.000416723,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 23167,
+      "reference_hash": 23167,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 2159,
+        "hpm4_inst0": 1190,
+        "hpm5_inst1": 1517,
+        "hpm6_l2_miss_req": 51,
+        "hpm7_icache_req": 724,
+        "hpm8_icache_etlink_req": 10
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/017_2_attn_Add"
+    },
+    {
+      "index": 18,
+      "node": "/2/attn/Add_1",
+      "op_type": "Add",
+      "inputs": [
+        "/2/attn/MatMul_2_output_0",
+        "/mask/Gather_output_0"
+      ],
+      "output": "/2/attn/Add_1_output_0",
+      "shape": [
+        224
+      ],
+      "elem_count": 224,
+      "rows": 1,
+      "cols": 224,
+      "wait_s": 0.000550766,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 23173,
+      "reference_hash": 23173,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 2209,
+        "hpm4_inst0": 1190,
+        "hpm5_inst1": 1517,
+        "hpm6_l2_miss_req": 51,
+        "hpm7_icache_req": 660,
+        "hpm8_icache_etlink_req": 10
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/018_2_attn_Add_1"
+    },
+    {
+      "index": 19,
+      "node": "/2/attn/Add_2",
+      "op_type": "Add",
+      "inputs": [
+        "/2/attn/MatMul_4_output_0",
+        "/mask/Gather_output_0"
+      ],
+      "output": "/2/attn/Add_2_output_0",
+      "shape": [
+        224
+      ],
+      "elem_count": 224,
+      "rows": 1,
+      "cols": 224,
+      "wait_s": 0.000404597,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 1,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 23170,
+      "reference_hash": 23170,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 2e-06,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 2046,
+        "hpm4_inst0": 1190,
+        "hpm5_inst1": 1517,
+        "hpm6_l2_miss_req": 51,
+        "hpm7_icache_req": 757,
+        "hpm8_icache_etlink_req": 10
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-140409/019_2_attn_Add_2"
+    }
+  ]
+}

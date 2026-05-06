@@ -1,0 +1,42 @@
+{
+  "run_dir": "local-artifacts/erbium_amp_probe/whisper-real/phase0/encoder_scalar_ops_audit_runs/run_20260505-175731",
+  "completed_tiles": 131,
+  "unique_node_indexes": 53,
+  "node_index_min": 0,
+  "node_index_max": 52,
+  "op_tile_counts": {
+    "Div": 12,
+    "Erf": 12,
+    "Add": 38,
+    "Mul": 27,
+    "Softmax": 42
+  },
+  "max_abs_overall": 1.329183578491211e-05,
+  "op_summary": {
+    "Add": {
+      "tiles": 38,
+      "max_abs": 0.0,
+      "mean_wait_s": 0.1577199894736842
+    },
+    "Div": {
+      "tiles": 12,
+      "max_abs": 9.5367431640625e-07,
+      "mean_wait_s": 0.16862896666666669
+    },
+    "Erf": {
+      "tiles": 12,
+      "max_abs": 1.6093254089355469e-06,
+      "mean_wait_s": 0.18305749999999998
+    },
+    "Mul": {
+      "tiles": 27,
+      "max_abs": 0.0,
+      "mean_wait_s": 0.1613374
+    },
+    "Softmax": {
+      "tiles": 42,
+      "max_abs": 1.329183578491211e-05,
+      "mean_wait_s": 0.24237878571428573
+    }
+  }
+}

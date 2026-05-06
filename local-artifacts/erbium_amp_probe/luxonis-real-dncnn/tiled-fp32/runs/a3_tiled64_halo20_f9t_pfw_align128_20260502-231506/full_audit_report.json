@@ -1,0 +1,17 @@
+{
+  "variant": "a3_tiled64_halo20_f9t_pfw_align128",
+  "timestamp": "20260502-231506",
+  "n_tiles_run": 20,
+  "n_tiles_total": 20,
+  "all_tiles_tile_audit_ok": true,
+  "stitched_vs_full_ort_max_abs": 8.940696716308594e-07,
+  "stitched_vs_full_ort_mean_abs": 8.486065894430794e-08,
+  "allclose": true,
+  "total_wait_s": 95.01769999999998,
+  "gops_full_image_useful": 1.0745212144684624,
+  "gops_executed": 2.4176727325540406,
+  "useful_ops": 102098534400,
+  "executed_ops": 229721702400,
+  "remote_work": "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2/erbium-amp-probe/luxonis-real-dncnn/tiled-fp32/a3_tiled64_halo20_f9t_pfw_align128_20260502-231506",
+  "local_run_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-real-dncnn/tiled-fp32/runs/a3_tiled64_halo20_f9t_pfw_align128_20260502-231506"
+}

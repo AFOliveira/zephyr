@@ -1,0 +1,13 @@
+{
+  "label": "tg01_h20_t64_boundary",
+  "tile_idx": "06",
+  "stamp": "20260505-155022Z",
+  "rc_before": 0,
+  "rc_kernel": 0,
+  "rc_after": 0,
+  "kernel_wait_s": 4.82452,
+  "snap_before": "pmc_before_20260505-155022Z.bin",
+  "snap_after":  "pmc_after_20260505-155022Z.bin",
+  "kernel_dump": "dump_20260505-155022Z.bin",
+  "tile_elf": "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2/erbium-amp-probe/tiled_v2_tg01_h20_t64_boundary/tile_06.elf"
+}

@@ -1,0 +1,11 @@
+variant	tile	harts	wait_s	gops	allclose	bit_exact	max_abs	mean_abs	output_hash	reference_hash	ops	magic_ok	log_status	dump
+o3	16x16	16	2.522780	1.0792	True	False	7.000e-07	1.420e-07	0xafaccd62	0xbd92c224	2722627584	True	ok	dump_h_tile16_o3_16h_20260502-103547.bin
+o3	16x16	8	4.696820	0.5797	True	False	7.000e-07	1.420e-07	0xafaccd62	0xbd92c224	2722627584	True	ok	dump_h_tile16_o3_8h_20260502-103547.bin
+o3_unroll	16x16	16	1.498770	1.8166	True	False	7.000e-07	1.420e-07	0xafaccd62	0xbd92c224	2722627584	True	ok	dump_h_tile16_o3_unroll_16h_20260502-103547.bin
+o3_unroll	16x16	8	3.199830	0.8509	True	False	7.000e-07	1.420e-07	0xafaccd62	0xbd92c224	2722627584	True	ok	dump_h_tile16_o3_unroll_8h_20260502-103547.bin
+o3_unroll_align64	16x16	16	1.705040	1.5968	True	False	7.000e-07	1.420e-07	0xafaccd62	0xbd92c224	2722627584	True	ok	dump_h_tile16_o3_unroll_align64_16h_20260502-103547.bin
+o3_unroll_noipa	16x16	16	1.499190	1.8161	True	False	7.000e-07	1.420e-07	0xafaccd62	0xbd92c224	2722627584	True	ok	dump_h_tile16_o3_unroll_noipa_16h_20260502-103547.bin
+o3	64x64	16	33.499500	1.3004	True	False	1.579e-06	2.850e-07	0xa91ccf40	0xf03a7637	43562041344	True	ok	dump_h_tile64_o3_16h_20260502-103547.bin
+o3_unroll	64x64	16	26.698800	1.6316	True	False	1.579e-06	2.850e-07	0xa91ccf40	0xf03a7637	43562041344	True	ok	dump_h_tile64_o3_unroll_16h_20260502-103547.bin
+o3_unroll_align64	64x64	16	29.695700	1.4669	True	False	1.579e-06	2.850e-07	0xa91ccf40	0xf03a7637	43562041344	True	ok	dump_h_tile64_o3_unroll_align64_16h_20260502-103547.bin
+o3_unroll_noipa	64x64	16	26.710500	1.6309	True	False	1.579e-06	2.850e-07	0xa91ccf40	0xf03a7637	43562041344	True	ok	dump_h_tile64_o3_unroll_noipa_16h_20260502-103547.bin

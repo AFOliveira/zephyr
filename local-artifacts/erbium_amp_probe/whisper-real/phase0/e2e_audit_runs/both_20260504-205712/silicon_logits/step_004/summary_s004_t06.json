@@ -1,0 +1,12 @@
+{
+  "step": 4,
+  "tile_id": 6,
+  "col0": 49152,
+  "col1": 51864,
+  "wait_s": 0.00278368,
+  "slot_done_count": 16,
+  "slot_active_mask": 65535,
+  "summary_magic": 1464093767,
+  "stream_error": false,
+  "kernel_launch_error": false
+}

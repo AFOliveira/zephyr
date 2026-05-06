@@ -1,0 +1,52 @@
+{
+  "magic": "0x57485350",
+  "active_harts": 2,
+  "vpu_harts": 1,
+  "scalar_harts": 1,
+  "vpu_done": 0,
+  "scalar_done": 0,
+  "vpu_active_mask": "0x0",
+  "scalar_active_mask": "0x0",
+  "logits_argmax": 0,
+  "host_logits_argmax": 43,
+  "logits_argmax_match": false,
+  "logits_max_abs": 0.0,
+  "ln_max_abs": 0.0,
+  "ln_mean_abs": 0.0,
+  "ops": 0,
+  "phase": 3,
+  "mode_id": 3,
+  "kernel_wait_s": 0.000551441,
+  "stream_error": false,
+  "kernel_launch_error": false,
+  "slots": [
+    {
+      "magic": "0x57485350",
+      "hart_id": 0,
+      "minion_id": 0,
+      "thread_id": 0,
+      "role": 3,
+      "work0": 0,
+      "work1": 0,
+      "checksum": 1464554320,
+      "done": 1
+    },
+    {
+      "magic": "0x57485350",
+      "hart_id": 1,
+      "minion_id": 0,
+      "thread_id": 1,
+      "role": 3,
+      "work0": 0,
+      "work1": 0,
+      "checksum": 1464554321,
+      "done": 1
+    }
+  ],
+  "mode": "barrier-only",
+  "stop_phase": 3,
+  "remote_work": "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2/erbium-amp-probe/whisper-real/native-split-smoke/run_barrier-only_phase3_ah2_20260504-203236",
+  "local_run_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/native_split_smoke_runs/run_barrier-only_phase3_ah2_20260504-203236",
+  "source": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/whisper_native_hart_split_smoke.c",
+  "ok": true
+}

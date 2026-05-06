@@ -1,0 +1,16 @@
+{
+  "timestamp": "20260505-222129",
+  "remote_host": "root@esperanto-soc6",
+  "remote_run": "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2/erbium-amp-probe/whisper-real/remote-native-scalar/run_20260505-222129",
+  "encoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/native_v1_bundles/bundle_20260505-205553/encoder_fp32.onnx",
+  "encoder_sha256": "20bd728e03bff2954da28028e56e57f7eb3252b6a6a08ae4296e411d360a11b2",
+  "features": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/native_v1_bundles/bundle_20260505-205553/input_features_1x80x3000.bin",
+  "features_sha256": "51c777823b95b3de044bb07f386a8d435b858a958b90c9702002d26cf8ccea36",
+  "elf": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/dyn_scalar_build/whisper_scalar_dyn.elf",
+  "elf_sha256": "8e40dffb6b01e7b6c8b49130f117b28fc8d3d30d0818e5d517642e15194a8818",
+  "start_index": 53,
+  "limit": 1,
+  "mem_size": 268435456,
+  "tile_elements": 0,
+  "output_batch_size": 1
+}

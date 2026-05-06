@@ -1,0 +1,102 @@
+{
+  "img_h": 240,
+  "img_w": 320,
+  "tile_h": 120,
+  "tile_w": 160,
+  "chosen_halo": 20,
+  "n_tiles": 4,
+  "halos_tested": [
+    {
+      "halo": 20,
+      "n_tiles": 4,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "bit_exact": true,
+      "allclose_1e5": true,
+      "input_tile_sizes": [
+        [
+          140,
+          180
+        ]
+      ]
+    }
+  ],
+  "tiles": [
+    {
+      "tile_id": 0,
+      "output_y0": 0,
+      "output_y1": 120,
+      "output_x0": 0,
+      "output_x1": 160,
+      "input_y0": 0,
+      "input_y1": 140,
+      "input_x0": 0,
+      "input_x1": 180,
+      "input_h": 140,
+      "input_w": 180,
+      "output_h": 120,
+      "output_w": 160,
+      "crop_y0": 0,
+      "crop_y1": 120,
+      "crop_x0": 0,
+      "crop_x1": 160
+    },
+    {
+      "tile_id": 1,
+      "output_y0": 0,
+      "output_y1": 120,
+      "output_x0": 160,
+      "output_x1": 320,
+      "input_y0": 0,
+      "input_y1": 140,
+      "input_x0": 140,
+      "input_x1": 320,
+      "input_h": 140,
+      "input_w": 180,
+      "output_h": 120,
+      "output_w": 160,
+      "crop_y0": 0,
+      "crop_y1": 120,
+      "crop_x0": 20,
+      "crop_x1": 180
+    },
+    {
+      "tile_id": 2,
+      "output_y0": 120,
+      "output_y1": 240,
+      "output_x0": 0,
+      "output_x1": 160,
+      "input_y0": 100,
+      "input_y1": 240,
+      "input_x0": 0,
+      "input_x1": 180,
+      "input_h": 140,
+      "input_w": 180,
+      "output_h": 120,
+      "output_w": 160,
+      "crop_y0": 20,
+      "crop_y1": 140,
+      "crop_x0": 0,
+      "crop_x1": 160
+    },
+    {
+      "tile_id": 3,
+      "output_y0": 120,
+      "output_y1": 240,
+      "output_x0": 160,
+      "output_x1": 320,
+      "input_y0": 100,
+      "input_y1": 240,
+      "input_x0": 140,
+      "input_x1": 320,
+      "input_h": 140,
+      "input_w": 180,
+      "output_h": 120,
+      "output_w": 160,
+      "crop_y0": 20,
+      "crop_y1": 140,
+      "crop_x0": 20,
+      "crop_x1": 180
+    }
+  ]
+}

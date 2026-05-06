@@ -1,0 +1,43 @@
+{
+  "encoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_encoder_qaihub.onnx/whisper_tiny_en_encoder_qaihub.onnx",
+  "a_name": "/encoder/blocks.0/attn/Softmax_output_0",
+  "b_name": "/encoder/blocks.0/attn/Transpose_2_output_0",
+  "out_name": "/encoder/blocks.0/attn/MatMul_1_output_0",
+  "prefix": "block0_attn_value",
+  "heads": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "tensor_shapes": {
+    "a": [
+      1,
+      6,
+      1500,
+      1500
+    ],
+    "b": [
+      1,
+      6,
+      1500,
+      64
+    ],
+    "out": [
+      1,
+      6,
+      1500,
+      64
+    ]
+  },
+  "manifests": [
+    "block0_attn_value_h0/manifest.json",
+    "block0_attn_value_h1/manifest.json",
+    "block0_attn_value_h2/manifest.json",
+    "block0_attn_value_h3/manifest.json",
+    "block0_attn_value_h4/manifest.json",
+    "block0_attn_value_h5/manifest.json"
+  ]
+}

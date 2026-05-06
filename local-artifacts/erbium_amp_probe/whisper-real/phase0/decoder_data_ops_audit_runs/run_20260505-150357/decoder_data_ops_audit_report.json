@@ -1,0 +1,78 @@
+{
+  "timestamp": "20260505-150357",
+  "scope": "Real Whisper decoder data-movement node audit on ET-SoC1",
+  "audio": {
+    "audio_path": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/audio/openai_whisper_jfk_16k.wav",
+    "audio_sha256": "80f71fdab049ca195115a63a738c7aeea50b2e09bc3513f85e627a28dbc5f40e",
+    "original_sample_rate": 16000,
+    "sample_rate": 16000,
+    "original_samples": 176000,
+    "samples": 176000,
+    "feature_shape": [
+      1,
+      80,
+      3000
+    ],
+    "feature_sha256": "51c777823b95b3de044bb07f386a8d435b858a958b90c9702002d26cf8ccea36"
+  },
+  "model": {
+    "encoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_encoder_qaihub.onnx/whisper_tiny_en_encoder_qaihub.onnx",
+    "encoder_sha256": "20bd728e03bff2954da28028e56e57f7eb3252b6a6a08ae4296e411d360a11b2",
+    "decoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_decoder_qaihub.onnx/whisper_tiny_en_decoder_qaihub.onnx",
+    "decoder_sha256": "fef679d932bd9602f96601fb988a6391315ca5530bb18f2eda977b6f7a16a654",
+    "tokenizer": "openai/whisper-tiny.en"
+  },
+  "decoder_step": 3,
+  "tokens_to_step": [
+    50257,
+    50258,
+    50358,
+    50362,
+    843
+  ],
+  "token_text_to_step": [
+    "<|startoftranscript|>",
+    "<|en|>",
+    "<|transcribe|>",
+    "<|notimestamps|>",
+    " And"
+  ],
+  "active_harts": 16,
+  "launcher": "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2/erbium_soc1sim_argbuf_dynmem",
+  "mem_size": 16777216,
+  "op_types": [
+    "Slice"
+  ],
+  "selected_nodes": 2,
+  "audited_nodes": 0,
+  "skipped_nodes": 2,
+  "all_pass": false,
+  "max_abs": null,
+  "mean_wait_s": null,
+  "feature_sha256": "51c777823b95b3de044bb07f386a8d435b858a958b90c9702002d26cf8ccea36",
+  "k_cache_cross_sha256": "e0f4b1bdeaae5d6f1fa95e9bffcf70e20509ab7cf521b94efdd39141e25863c3",
+  "v_cache_cross_sha256": "c2ba701500d06e2343f6e4591e51ce6f53473afcd21b4f236a228c8f6c16b658",
+  "decoder_input_hashes": {
+    "x": "ab8090023d8abcba419e3e094c141a4343dc8af348426c04b5f4dc313330d681",
+    "index": "9d9f290527a6be626a8f5985b26e19b237b44872b03631811df4416fc1713178",
+    "k_cache_cross": "e0f4b1bdeaae5d6f1fa95e9bffcf70e20509ab7cf521b94efdd39141e25863c3",
+    "v_cache_cross": "c2ba701500d06e2343f6e4591e51ce6f53473afcd21b4f236a228c8f6c16b658",
+    "k_cache_self": "dde92e87bcbf5444cc8a94b5642493064759228055b0acd8e3e0a9ad62ad24db",
+    "v_cache_self": "d038f61f78155720ee601508f5157a186e67a596b5f6ad9427909c5cbc7d7d3f"
+  },
+  "results": [],
+  "skipped": [
+    {
+      "index": 0,
+      "node": "/Slice_2_fused_with_/0/cross_attn/Slice_1",
+      "op_type": "Slice",
+      "reason": "Command '['ssh', '-o', 'BatchMode=yes', '-o', 'NumberOfPasswordPrompts=0', '-o', 'PreferredAuthentications=publickey', '-o', 'ServerAliveInterval=10', '-o', 'ServerAliveCountMax=12', '-o', 'ConnectTimeout=10', 'root@esperanto-soc6', 'bash', '-s']' returned non-zero exit status 1."
+    },
+    {
+      "index": 1,
+      "node": "/Slice_3_fused_with_/0/cross_attn/Slice_2",
+      "op_type": "Slice",
+      "reason": "Command '['ssh', '-o', 'BatchMode=yes', '-o', 'NumberOfPasswordPrompts=0', '-o', 'PreferredAuthentications=publickey', '-o', 'ServerAliveInterval=10', '-o', 'ServerAliveCountMax=12', '-o', 'ConnectTimeout=10', 'root@esperanto-soc6', 'bash', '-s']' returned non-zero exit status 1."
+    }
+  ]
+}

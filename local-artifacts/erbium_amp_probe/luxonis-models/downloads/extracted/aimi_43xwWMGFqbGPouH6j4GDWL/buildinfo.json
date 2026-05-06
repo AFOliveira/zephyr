@@ -1,0 +1,45 @@
+{
+    "cmd_info": {
+        "dlc_convert": [
+            "snpe-onnx-to-dlc",
+            "-i",
+            "shared_with_container/outputs/dncnn3-240x320_to_rvc4_2024_11_05_16_31_34/intermediate_outputs/dncnn3-240x320-modified.onnx",
+            "--input_dim",
+            "image",
+            "1,1,240,320",
+            "--input_dtype",
+            "image",
+            "float32",
+            "--out_name",
+            "enhanced_image",
+            "--input_layout",
+            "image",
+            "NCHW"
+        ],
+        "quantization_cmd": [
+            "snpe-dlc-quant",
+            "--input_list",
+            "shared_with_container/outputs/dncnn3-240x320_to_rvc4_2024_11_05_16_31_34/intermediate_outputs/img_list.txt",
+            "--input_dlc",
+            "shared_with_container/outputs/dncnn3-240x320_to_rvc4_2024_11_05_16_31_34/intermediate_outputs/dncnn3-240x320-modified.dlc",
+            "--output_dlc",
+            "shared_with_container/outputs/dncnn3-240x320_to_rvc4_2024_11_05_16_31_34/intermediate_outputs/dncnn3-240x320-modified-quantized.dlc"
+        ],
+        "graph_prepare": [
+            "snpe-dlc-graph-prepare",
+            "--input_dlc",
+            "shared_with_container/outputs/dncnn3-240x320_to_rvc4_2024_11_05_16_31_34/intermediate_outputs/dncnn3-240x320-modified-quantized.dlc",
+            "--output_dlc",
+            "shared_with_container/outputs/dncnn3-240x320_to_rvc4_2024_11_05_16_31_34/dncnn3-240x320.dlc",
+            "--set_output_tensors",
+            "enhanced_image",
+            "--htp_socs",
+            "sm8550"
+        ]
+    },
+    "modelconverter_version": "0.3.0",
+    "snpe_version": "SNPE v2.23.0.240531124219_94801",
+    "target_devices": [
+        "sm8550"
+    ]
+}

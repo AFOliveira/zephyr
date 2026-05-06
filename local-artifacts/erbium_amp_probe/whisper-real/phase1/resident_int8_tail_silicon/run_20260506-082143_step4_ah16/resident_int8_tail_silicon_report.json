@@ -1,0 +1,656 @@
+{
+  "schema": "whisper-resident-int8-tail-silicon-report",
+  "version": 1,
+  "timestamp": "20260506-082143",
+  "pass": true,
+  "bundle_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/native_v1_bundles/bundle_20260505-205553",
+  "resident_manifest": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/resident_layout_host/run_20260506-080629/resident_weight_manifest.json",
+  "remote_work": "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2/erbium-amp-probe/whisper-real/resident-int8-tail/run_20260506-082143_step4_ah16",
+  "launcher": "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2/erbium-amp-probe/erbium_soc1sim_argbuf_dynmem.remote.board",
+  "step": {
+    "index": 4,
+    "current_token": 843,
+    "current_text": " And",
+    "host_argmax": 523,
+    "host_argmax_text": " so"
+  },
+  "projection_weight": {
+    "name": "onnx::MatMul_3194",
+    "offset": 35955200,
+    "nbytes": 19915776,
+    "shape": [
+      384,
+      51864
+    ],
+    "scale": 0.003804364542322835,
+    "sha256": "7a75459920a1ebda2046cf010184c01898195ec23ec19be0898b4e05027ffc56"
+  },
+  "artifacts": {
+    "elf": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/resident_int8_tail_silicon/run_20260506-082143_step4_ah16/whisper_resident_int8_tail.elf",
+    "runtime_region": {
+      "path": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/resident_int8_tail_silicon/run_20260506-082143_step4_ah16/runtime_region_16m.bin",
+      "sha256": "0568179914787df41a918b474ae4c5d6de5450880ad4d48cd939d3de2b18086e",
+      "expected_argmax": 523,
+      "expected_argmax_value": 22.375429153442383,
+      "resident_wt_offset": 35955200,
+      "wt_scale": 0.003804364542322835,
+      "ln_in_sha256": "b6e29e010fe297ef6132ec111e1094e40f0732cd3ef3b9574a41ea73eebe9291",
+      "ln_weight_sha256": "edf18d1b4bf697e66d5a5640913e034a6c5802a5138ec0b625e688f83a247cee",
+      "ln_bias_sha256": "a8ca340ff8aa14d2649735105a5ac303ebe79d9fe870f52d482e2d660e43dce1",
+      "ln_ref_sha256": "79e922f33fed25e73603d2fe87310a289e16f2145ddd2b65d56aebe7f0e67fc9"
+    },
+    "weights_region": {
+      "path": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/resident_int8_tail_silicon/run_20260506-082143_step4_ah16/weights_region_64m.bin",
+      "sha256": "10804b2ec65566446c9759975513189324ca5cff3c2d77b72aac7b07c5d28de8",
+      "bytes": 67108864
+    },
+    "dump": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/resident_int8_tail_silicon/run_20260506-082143_step4_ah16/dump.bin",
+    "run_log": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/resident_int8_tail_silicon/run_20260506-082143_step4_ah16/run.log"
+  },
+  "patched_models": {
+    "encoder": {
+      "part": "encoder",
+      "source_model": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/native_v1_bundles/bundle_20260505-205553/encoder_fp32.onnx",
+      "output_model": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/resident_int8_tail_silicon/run_20260506-082143_step4_ah16/encoder_raw_int8_dequant.onnx",
+      "source_sha256": "20bd728e03bff2954da28028e56e57f7eb3252b6a6a08ae4296e411d360a11b2",
+      "output_sha256": "5831300bf8090fda4a5c635bb03299cf57425dd5b6e2a926928a13cb84ccbb09",
+      "replaced_float_initializers": 135,
+      "skipped_nonfloat_initializers": 4,
+      "total_int8_bytes": 9389572,
+      "total_fp32_materialized_bytes": 37558288,
+      "compression_ratio": 4.0,
+      "max_abs_reconstruction_error": 0.06230008602142334,
+      "largest_replaced": [
+        {
+          "name": "onnx::MatMul_780",
+          "shape": [
+            384,
+            1536
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0030046598179133857,
+          "max_abs_reconstruction_error": 0.0015020892024040222
+        },
+        {
+          "name": "onnx::MatMul_783",
+          "shape": [
+            1536,
+            384
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.002614419291338583,
+          "max_abs_reconstruction_error": 0.0013072043657302856
+        },
+        {
+          "name": "onnx::MatMul_812",
+          "shape": [
+            384,
+            1536
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0016926442544291339,
+          "max_abs_reconstruction_error": 0.000846292357891798
+        },
+        {
+          "name": "onnx::MatMul_815",
+          "shape": [
+            1536,
+            384
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0021549735482283465,
+          "max_abs_reconstruction_error": 0.0010774880647659302
+        },
+        {
+          "name": "onnx::MatMul_844",
+          "shape": [
+            384,
+            1536
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.004236897145669292,
+          "max_abs_reconstruction_error": 0.002118388656526804
+        },
+        {
+          "name": "onnx::MatMul_847",
+          "shape": [
+            1536,
+            384
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0026336429625984253,
+          "max_abs_reconstruction_error": 0.0013168156147003174
+        },
+        {
+          "name": "onnx::MatMul_876",
+          "shape": [
+            384,
+            1536
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.003479484498031496,
+          "max_abs_reconstruction_error": 0.001739501953125
+        },
+        {
+          "name": "onnx::MatMul_879",
+          "shape": [
+            1536,
+            384
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0030104269192913384,
+          "max_abs_reconstruction_error": 0.0015052109956741333
+        },
+        {
+          "name": "encoder.positional_embedding",
+          "shape": [
+            1500,
+            384
+          ],
+          "int8_bytes": 576000,
+          "scale": 0.007874015748031496,
+          "max_abs_reconstruction_error": 0.0039370059967041016
+        },
+        {
+          "name": "onnx::Conv_750",
+          "shape": [
+            384,
+            384,
+            3
+          ],
+          "int8_bytes": 442368,
+          "scale": 0.0063438115157480315,
+          "max_abs_reconstruction_error": 0.0031718905083835125
+        },
+        {
+          "name": "_v_648",
+          "shape": [
+            384,
+            1152
+          ],
+          "int8_bytes": 442368,
+          "scale": 0.004852054625984252,
+          "max_abs_reconstruction_error": 0.002425907179713249
+        },
+        {
+          "name": "_v_655",
+          "shape": [
+            384,
+            1152
+          ],
+          "int8_bytes": 442368,
+          "scale": 0.0043906865157480315,
+          "max_abs_reconstruction_error": 0.0021953280083835125
+        },
+        {
+          "name": "_v_662",
+          "shape": [
+            384,
+            1152
+          ],
+          "int8_bytes": 442368,
+          "scale": 0.004632904773622047,
+          "max_abs_reconstruction_error": 0.0023164451122283936
+        },
+        {
+          "name": "_v_669",
+          "shape": [
+            384,
+            1152
+          ],
+          "int8_bytes": 442368,
+          "scale": 0.004294568159448819,
+          "max_abs_reconstruction_error": 0.00214689364656806
+        },
+        {
+          "name": "onnx::MatMul_777",
+          "shape": [
+            384,
+            384
+          ],
+          "int8_bytes": 147456,
+          "scale": 0.003244955708661417,
+          "max_abs_reconstruction_error": 0.0016223578713834286
+        },
+        {
+          "name": "onnx::MatMul_809",
+          "shape": [
+            384,
+            384
+          ],
+          "int8_bytes": 147456,
+          "scale": 0.002276082677165354,
+          "max_abs_reconstruction_error": 0.0011380314826965332
+        }
+      ]
+    },
+    "decoder": {
+      "part": "decoder",
+      "source_model": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/native_v1_bundles/bundle_20260505-205553/decoder_fp32.onnx",
+      "output_model": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/resident_int8_tail_silicon/run_20260506-082143_step4_ah16/decoder_raw_int8_dequant.onnx",
+      "source_sha256": "fef679d932bd9602f96601fb988a6391315ca5530bb18f2eda977b6f7a16a654",
+      "output_sha256": "aef40f1dd4e94faa3e3b638a8b2e856747b8c1ca11e8877e17d009d85e13b779",
+      "replaced_float_initializers": 85,
+      "skipped_nonfloat_initializers": 48,
+      "total_int8_bytes": 48250627,
+      "total_fp32_materialized_bytes": 193002508,
+      "compression_ratio": 4.0,
+      "max_abs_reconstruction_error": 0.06582260131835938,
+      "largest_replaced": [
+        {
+          "name": "token_embedding.weight",
+          "shape": [
+            51864,
+            384
+          ],
+          "int8_bytes": 19915776,
+          "scale": 0.003804364542322835,
+          "max_abs_reconstruction_error": 0.0019021779298782349
+        },
+        {
+          "name": "onnx::MatMul_3194",
+          "shape": [
+            384,
+            51864
+          ],
+          "int8_bytes": 19915776,
+          "scale": 0.003804364542322835,
+          "max_abs_reconstruction_error": 0.0019021779298782349
+        },
+        {
+          "name": "onnx::MatMul_2580",
+          "shape": [
+            384,
+            1536
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0022164892962598425,
+          "max_abs_reconstruction_error": 0.0011081695556640625
+        },
+        {
+          "name": "onnx::MatMul_2583",
+          "shape": [
+            1536,
+            384
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0038389671505905513,
+          "max_abs_reconstruction_error": 0.0019192206673324108
+        },
+        {
+          "name": "onnx::MatMul_2783",
+          "shape": [
+            384,
+            1536
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0021222933070866143,
+          "max_abs_reconstruction_error": 0.0010610716417431831
+        },
+        {
+          "name": "onnx::MatMul_2786",
+          "shape": [
+            1536,
+            384
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0034775621309055117,
+          "max_abs_reconstruction_error": 0.0017385482788085938
+        },
+        {
+          "name": "onnx::MatMul_2986",
+          "shape": [
+            384,
+            1536
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0026201863927165355,
+          "max_abs_reconstruction_error": 0.0013099731877446175
+        },
+        {
+          "name": "onnx::MatMul_2989",
+          "shape": [
+            1536,
+            384
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.003333384596456693,
+          "max_abs_reconstruction_error": 0.0016663619317114353
+        },
+        {
+          "name": "onnx::MatMul_3189",
+          "shape": [
+            384,
+            1536
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0023837352362204725,
+          "max_abs_reconstruction_error": 0.0011918693780899048
+        },
+        {
+          "name": "onnx::MatMul_3192",
+          "shape": [
+            1536,
+            384
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.007078155757874015,
+          "max_abs_reconstruction_error": 0.0035381317138671875
+        },
+        {
+          "name": "_v_2778",
+          "shape": [
+            384,
+            1152
+          ],
+          "int8_bytes": 442368,
+          "scale": 0.0020063545290879376,
+          "max_abs_reconstruction_error": 0.001003175973892212
+        },
+        {
+          "name": "_v_2785",
+          "shape": [
+            384,
+            1152
+          ],
+          "int8_bytes": 442368,
+          "scale": 0.0017080231914370079,
+          "max_abs_reconstruction_error": 0.0008540077833458781
+        },
+        {
+          "name": "_v_2792",
+          "shape": [
+            384,
+            1152
+          ],
+          "int8_bytes": 442368,
+          "scale": 0.0016234390378937007,
+          "max_abs_reconstruction_error": 0.0008115880191326141
+        },
+        {
+          "name": "_v_2799",
+          "shape": [
+            384,
+            1152
+          ],
+          "int8_bytes": 442368,
+          "scale": 0.0024010365403543308,
+          "max_abs_reconstruction_error": 0.001200459897518158
+        },
+        {
+          "name": "onnx::MatMul_2490",
+          "shape": [
+            384,
+            384
+          ],
+          "int8_bytes": 147456,
+          "scale": 0.0016147883858267716,
+          "max_abs_reconstruction_error": 0.0008073970675468445
+        },
+        {
+          "name": "onnx::MatMul_2493",
+          "shape": [
+            384,
+            384
+          ],
+          "int8_bytes": 147456,
+          "scale": 0.0006806788834061209,
+          "max_abs_reconstruction_error": 0.0003403009322937578
+        }
+      ]
+    }
+  },
+  "silicon": {
+    "kernel_wait_s": 0.0604378,
+    "summary": {
+      "magic": "0x57524938",
+      "active_harts": 16,
+      "k_dim": 384,
+      "n_cols": 51864,
+      "active_mask": "0xffff",
+      "done_count": 16,
+      "output_hash": 49172,
+      "reference_hash": 49172,
+      "ln_max_abs": 1.1e-05,
+      "ln_mean_abs": 0.0,
+      "argmax_col": 523,
+      "argmax_value": 22.375417709350586,
+      "expected_argmax_col": 523,
+      "argmax_match": true,
+      "hpm3": 32893516,
+      "hpm4": 52177970,
+      "hpm5": 49765548,
+      "hpm6": 1498855,
+      "hpm7": 14558610,
+      "hpm8": 47,
+      "ops": 39831552
+    },
+    "slots": [
+      {
+        "hart": 0,
+        "magic": "0x57524938",
+        "hart_id": 0,
+        "minion_id": 0,
+        "thread_id": 0,
+        "col0": 0,
+        "col1": 3241,
+        "active_harts": 16,
+        "checksum": 2059,
+        "done": 1,
+        "argmax_col": 523,
+        "argmax_value": 22.375417709350586
+      },
+      {
+        "hart": 1,
+        "magic": "0x57524938",
+        "hart_id": 1,
+        "minion_id": 0,
+        "thread_id": 1,
+        "col0": 3241,
+        "col1": 6483,
+        "active_harts": 16,
+        "checksum": 4077,
+        "done": 1,
+        "argmax_col": 5848,
+        "argmax_value": 16.025121688842773
+      },
+      {
+        "hart": 2,
+        "magic": "0x57524938",
+        "hart_id": 2,
+        "minion_id": 1,
+        "thread_id": 0,
+        "col0": 6483,
+        "col1": 9724,
+        "active_harts": 16,
+        "checksum": 2054,
+        "done": 1,
+        "argmax_col": 8653,
+        "argmax_value": 13.48719596862793
+      },
+      {
+        "hart": 3,
+        "magic": "0x57524938",
+        "hart_id": 3,
+        "minion_id": 1,
+        "thread_id": 1,
+        "col0": 9724,
+        "col1": 12966,
+        "active_harts": 16,
+        "checksum": 4112,
+        "done": 1,
+        "argmax_col": 12809,
+        "argmax_value": 14.0556640625
+      },
+      {
+        "hart": 4,
+        "magic": "0x57524938",
+        "hart_id": 4,
+        "minion_id": 2,
+        "thread_id": 0,
+        "col0": 12966,
+        "col1": 16207,
+        "active_harts": 16,
+        "checksum": 2046,
+        "done": 1,
+        "argmax_col": 15967,
+        "argmax_value": 12.664811134338379
+      },
+      {
+        "hart": 5,
+        "magic": "0x57524938",
+        "hart_id": 5,
+        "minion_id": 2,
+        "thread_id": 1,
+        "col0": 16207,
+        "col1": 19449,
+        "active_harts": 16,
+        "checksum": 4095,
+        "done": 1,
+        "argmax_col": 18240,
+        "argmax_value": 11.339985847473145
+      },
+      {
+        "hart": 6,
+        "magic": "0x57524938",
+        "hart_id": 6,
+        "minion_id": 3,
+        "thread_id": 0,
+        "col0": 19449,
+        "col1": 22690,
+        "active_harts": 16,
+        "checksum": 2035,
+        "done": 1,
+        "argmax_col": 20889,
+        "argmax_value": 12.48194408416748
+      },
+      {
+        "hart": 7,
+        "magic": "0x57524938",
+        "hart_id": 7,
+        "minion_id": 3,
+        "thread_id": 1,
+        "col0": 22690,
+        "col1": 25932,
+        "active_harts": 16,
+        "checksum": 4089,
+        "done": 1,
+        "argmax_col": 22862,
+        "argmax_value": 10.927345275878906
+      },
+      {
+        "hart": 8,
+        "magic": "0x57524938",
+        "hart_id": 8,
+        "minion_id": 4,
+        "thread_id": 0,
+        "col0": 25932,
+        "col1": 29173,
+        "active_harts": 16,
+        "checksum": 2055,
+        "done": 1,
+        "argmax_col": 27347,
+        "argmax_value": 11.860719680786133
+      },
+      {
+        "hart": 9,
+        "magic": "0x57524938",
+        "hart_id": 9,
+        "minion_id": 4,
+        "thread_id": 1,
+        "col0": 29173,
+        "col1": 32415,
+        "active_harts": 16,
+        "checksum": 4103,
+        "done": 1,
+        "argmax_col": 31603,
+        "argmax_value": 11.313461303710938
+      },
+      {
+        "hart": 10,
+        "magic": "0x57524938",
+        "hart_id": 10,
+        "minion_id": 5,
+        "thread_id": 0,
+        "col0": 32415,
+        "col1": 35656,
+        "active_harts": 16,
+        "checksum": 2077,
+        "done": 1,
+        "argmax_col": 34249,
+        "argmax_value": 13.454984664916992
+      },
+      {
+        "hart": 11,
+        "magic": "0x57524938",
+        "hart_id": 11,
+        "minion_id": 5,
+        "thread_id": 1,
+        "col0": 35656,
+        "col1": 38898,
+        "active_harts": 16,
+        "checksum": 4097,
+        "done": 1,
+        "argmax_col": 37965,
+        "argmax_value": 10.504770278930664
+      },
+      {
+        "hart": 12,
+        "magic": "0x57524938",
+        "hart_id": 12,
+        "minion_id": 6,
+        "thread_id": 0,
+        "col0": 38898,
+        "col1": 42139,
+        "active_harts": 16,
+        "checksum": 2052,
+        "done": 1,
+        "argmax_col": 40601,
+        "argmax_value": 11.067159652709961
+      },
+      {
+        "hart": 13,
+        "magic": "0x57524938",
+        "hart_id": 13,
+        "minion_id": 6,
+        "thread_id": 1,
+        "col0": 42139,
+        "col1": 45381,
+        "active_harts": 16,
+        "checksum": 4082,
+        "done": 1,
+        "argmax_col": 45125,
+        "argmax_value": 12.893818855285645
+      },
+      {
+        "hart": 14,
+        "magic": "0x57524938",
+        "hart_id": 14,
+        "minion_id": 7,
+        "thread_id": 0,
+        "col0": 45381,
+        "col1": 48622,
+        "active_harts": 16,
+        "checksum": 2052,
+        "done": 1,
+        "argmax_col": 45687,
+        "argmax_value": 9.071443557739258
+      },
+      {
+        "hart": 15,
+        "magic": "0x57524938",
+        "hart_id": 15,
+        "minion_id": 7,
+        "thread_id": 1,
+        "col0": 48622,
+        "col1": 51864,
+        "active_harts": 16,
+        "checksum": 4087,
+        "done": 1,
+        "argmax_col": 50256,
+        "argmax_value": 15.715025901794434
+      }
+    ],
+    "ops_per_s": 659050329.4295954
+  }
+}

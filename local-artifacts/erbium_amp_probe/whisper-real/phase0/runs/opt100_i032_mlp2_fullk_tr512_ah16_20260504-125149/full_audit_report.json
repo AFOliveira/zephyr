@@ -1,0 +1,72 @@
+{
+  "variant": "opt100_i032_mlp2_fullk_tr512_ah16",
+  "timestamp": "20260504-125149",
+  "onnx_node": "/encoder/blocks.0/mlp/2/MatMul_output_0",
+  "act_name": "/encoder/blocks.0/mlp/1/Mul_1_output_0",
+  "weight_name": "onnx::MatMul_783",
+  "rows": 1500,
+  "k_dim": 1536,
+  "n_cols": 384,
+  "tiles": 3,
+  "tile_rows": 512,
+  "active_harts": 16,
+  "total_wait_s": 1.438223,
+  "ops": 1769472000,
+  "gops": 1.2303182468921718,
+  "max_abs": 1.0728836059570312e-06,
+  "mean_abs": 4.855572655060314e-08,
+  "p99_abs": 2.384185791015625e-07,
+  "allclose_1e4": true,
+  "allclose_1e3": true,
+  "tile_ok": true,
+  "memory_layout": {
+    "out_offset": 16384,
+    "act_offset": 851968,
+    "wt_offset": 3997696,
+    "ref_offset": 6356992,
+    "end": 7143424
+  },
+  "remote_work": "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2/erbium-amp-probe/whisper-real/opt100_i032_mlp2_fullk_tr512_ah16_20260504-125149",
+  "local_run_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/runs/opt100_i032_mlp2_fullk_tr512_ah16_20260504-125149",
+  "tile_rows_report": [
+    {
+      "tile_id": 0,
+      "row0": 0,
+      "row1": 512,
+      "wait_s": 0.496266,
+      "max_abs": 1.0728836059570312e-06,
+      "mean_abs": 4.829189137467438e-08,
+      "slot_done_count": 16,
+      "active_mask": "0xffff",
+      "summary_present": false,
+      "stream_error": true,
+      "status": "ok_stream_error"
+    },
+    {
+      "tile_id": 1,
+      "row0": 512,
+      "row1": 1024,
+      "wait_s": 0.49457,
+      "max_abs": 8.344650268554688e-07,
+      "mean_abs": 4.840971357111812e-08,
+      "slot_done_count": 16,
+      "active_mask": "0xffff",
+      "summary_present": false,
+      "stream_error": true,
+      "status": "ok_stream_error"
+    },
+    {
+      "tile_id": 2,
+      "row0": 1024,
+      "row1": 1500,
+      "wait_s": 0.447387,
+      "max_abs": 9.5367431640625e-07,
+      "mean_abs": 4.899657213286446e-08,
+      "slot_done_count": 16,
+      "active_mask": "0xffff",
+      "summary_present": false,
+      "stream_error": true,
+      "status": "ok_stream_error"
+    }
+  ]
+}

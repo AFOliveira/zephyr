@@ -1,0 +1,12 @@
+[
+  {"exp_id": 21, "batch": "3_fused9tap", "variant": "f9t_o3_unroll",                  "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops"], "macros": ["DNCNN_VPU_FUSED9TAP=1"]},
+  {"exp_id": 22, "batch": "3_fused9tap", "variant": "f9t_o3_unroll_rename",           "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-frename-registers"], "macros": ["DNCNN_VPU_FUSED9TAP=1"]},
+  {"exp_id": 23, "batch": "3_fused9tap", "variant": "f9t_o3_unroll_noipa",            "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-fno-ipa-cp", "-fno-ipa-sra"], "macros": ["DNCNN_VPU_FUSED9TAP=1"]},
+  {"exp_id": 24, "batch": "3_fused9tap", "variant": "f9t_o3_unroll_inline2k",         "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-finline-limit=2000"], "macros": ["DNCNN_VPU_FUSED9TAP=1"]},
+  {"exp_id": 25, "batch": "3_fused9tap", "variant": "f9t_o3_unroll_align64",          "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-falign-functions=64", "-falign-loops=64"], "macros": ["DNCNN_VPU_FUSED9TAP=1"]},
+  {"exp_id": 26, "batch": "3_fused9tap", "variant": "f9t_o3_unroll_movestores",       "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-fmove-loop-stores"], "macros": ["DNCNN_VPU_FUSED9TAP=1"]},
+  {"exp_id": 27, "batch": "3_fused9tap", "variant": "f9t_o3",                         "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3"], "macros": ["DNCNN_VPU_FUSED9TAP=1"]},
+  {"exp_id": 28, "batch": "3_fused9tap", "variant": "f9t_o2_unroll",                  "tile": 64, "harts": 16, "passes": 8, "flags": ["-O2", "-funroll-loops"], "macros": ["DNCNN_VPU_FUSED9TAP=1"]},
+  {"exp_id": 29, "batch": "3_fused9tap", "variant": "f9t_combined_o3_unroll_rename_noipa", "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-frename-registers", "-fno-ipa-cp", "-fno-ipa-sra"], "macros": ["DNCNN_VPU_FUSED9TAP=1"]},
+  {"exp_id": 30, "batch": "3_fused9tap", "variant": "f9t_o3_unroll_predcomm",         "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-fpredictive-commoning"], "macros": ["DNCNN_VPU_FUSED9TAP=1"]}
+]

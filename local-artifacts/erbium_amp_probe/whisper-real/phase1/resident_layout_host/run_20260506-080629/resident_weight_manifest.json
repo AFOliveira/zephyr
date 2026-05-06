@@ -1,0 +1,3174 @@
+{
+  "schema": "whisper-resident-weight-region",
+  "version": 1,
+  "source_bundle": "bundle_20260505-205553",
+  "region_size_bytes": 67108864,
+  "alignment": 64,
+  "entries": [
+    {
+      "name": "onnx::Conv_748",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        80,
+        3
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.00413693405511811,
+      "zero_point": 0,
+      "offset": 0,
+      "nbytes": 92160,
+      "sha256": "98ce0ff3263994c4e1d3079ad0dce4d3506abbedec0dccc0f8edeb289cf298b9",
+      "source_file": "encoder/000_onnx_Conv_748.i8"
+    },
+    {
+      "name": "onnx::Conv_749",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0461675688976378,
+      "zero_point": 0,
+      "offset": 92160,
+      "nbytes": 384,
+      "sha256": "0b6eb785d7714ddcfe8b40d1a41a395f3ca04d8d773f9e9cd71e1c86cc608968",
+      "source_file": "encoder/001_onnx_Conv_749.i8"
+    },
+    {
+      "name": "/encoder/Constant_output_0",
+      "model_part": "encoder",
+      "shape": [],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.011135539670628825,
+      "zero_point": 0,
+      "offset": 92544,
+      "nbytes": 1,
+      "sha256": "620bfdaa346b088fb49998d92f19a7eaf6bfc2fb0aee015753966da1028cb731",
+      "source_file": "encoder/002_encoder_Constant_output_0.i8"
+    },
+    {
+      "name": "/encoder/Constant_1_output_0",
+      "model_part": "encoder",
+      "shape": [],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.007874015748031496,
+      "zero_point": 0,
+      "offset": 92608,
+      "nbytes": 1,
+      "sha256": "620bfdaa346b088fb49998d92f19a7eaf6bfc2fb0aee015753966da1028cb731",
+      "source_file": "encoder/003_encoder_Constant_1_output_0.i8"
+    },
+    {
+      "name": "/encoder/Constant_2_output_0",
+      "model_part": "encoder",
+      "shape": [],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.003937007874015748,
+      "zero_point": 0,
+      "offset": 92672,
+      "nbytes": 1,
+      "sha256": "620bfdaa346b088fb49998d92f19a7eaf6bfc2fb0aee015753966da1028cb731",
+      "source_file": "encoder/004_encoder_Constant_2_output_0.i8"
+    },
+    {
+      "name": "onnx::Conv_750",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        384,
+        3
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0063438115157480315,
+      "zero_point": 0,
+      "offset": 92736,
+      "nbytes": 442368,
+      "sha256": "ec993808201983dd7a6d624fb4149b5aca5203afd4fae5a859c6e47e2fe2971e",
+      "source_file": "encoder/005_onnx_Conv_750.i8"
+    },
+    {
+      "name": "onnx::Conv_751",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0522576279527559,
+      "zero_point": 0,
+      "offset": 535104,
+      "nbytes": 384,
+      "sha256": "2f71e7a82629a0f342e37759d3ce9a748338e219e821f2c7eda2eedd3a8c8969",
+      "source_file": "encoder/006_onnx_Conv_751.i8"
+    },
+    {
+      "name": "encoder.positional_embedding",
+      "model_part": "encoder",
+      "shape": [
+        1500,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.007874015748031496,
+      "zero_point": 0,
+      "offset": 535488,
+      "nbytes": 576000,
+      "sha256": "dc9d2a8ed1d92e74b2a087d2f18fce3c41c7166938127b1fb762807a7839d142",
+      "source_file": "encoder/007_encoder.positional_embedding.i8"
+    },
+    {
+      "name": "encoder.blocks.0.attn_ln.weight",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.06366879921259842,
+      "zero_point": 0,
+      "offset": 1111488,
+      "nbytes": 384,
+      "sha256": "87dfb00bc47150e52b2500298142b1e34d13d616ca7e175f4067c82f1cbee8be",
+      "source_file": "encoder/008_encoder.blocks.0.attn_ln.weight.i8"
+    },
+    {
+      "name": "encoder.blocks.0.attn_ln.bias",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.03241879921259842,
+      "zero_point": 0,
+      "offset": 1111872,
+      "nbytes": 384,
+      "sha256": "f66e93293e4a87bf003532021ce2be5bcaf86be6455474af7644c737f1e688bd",
+      "source_file": "encoder/009_encoder.blocks.0.attn_ln.bias.i8"
+    },
+    {
+      "name": "_v_648",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        1152
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.004852054625984252,
+      "zero_point": 0,
+      "offset": 1112256,
+      "nbytes": 442368,
+      "sha256": "c528589f92ec6dd76e3c19bc97e66f9c5b101c5dc020224aeeed11c8cc118f49",
+      "source_file": "encoder/010_v_648.i8"
+    },
+    {
+      "name": "onnx::Add_753",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.05570250984251968,
+      "zero_point": 0,
+      "offset": 1554624,
+      "nbytes": 384,
+      "sha256": "b3352cb1dfe396c5dc5409f69b60824ef2a708027a6807fc79189f60721e4994",
+      "source_file": "encoder/012_onnx_Add_753.i8"
+    },
+    {
+      "name": "onnx::Add_758",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.003441037155511811,
+      "zero_point": 0,
+      "offset": 1555008,
+      "nbytes": 384,
+      "sha256": "c275e745bec40dd3c6e16b6081a4c76bad6be62bdf843409c6fd923ade3c6ac3",
+      "source_file": "encoder/013_onnx_Add_758.i8"
+    },
+    {
+      "name": "/encoder/blocks.0/attn/Pow_output_0",
+      "model_part": "encoder",
+      "shape": [],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0027838849176572062,
+      "zero_point": 0,
+      "offset": 1555392,
+      "nbytes": 1,
+      "sha256": "620bfdaa346b088fb49998d92f19a7eaf6bfc2fb0aee015753966da1028cb731",
+      "source_file": "encoder/015_encoder_blocks.0_attn_Pow_output_0.i8"
+    },
+    {
+      "name": "onnx::MatMul_777",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.003244955708661417,
+      "zero_point": 0,
+      "offset": 1555456,
+      "nbytes": 147456,
+      "sha256": "d7accab6b25f1ad76f9aa2001dd378730e7bd4afae609b72e6564b4aed2653c2",
+      "source_file": "encoder/017_onnx_MatMul_777.i8"
+    },
+    {
+      "name": "onnx::Add_776",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.04195374015748032,
+      "zero_point": 0,
+      "offset": 1702912,
+      "nbytes": 384,
+      "sha256": "b71dc165bf0537a14652e7904c69b393d019d9f0ba78b097f1bd39b75a89aa1c",
+      "source_file": "encoder/018_onnx_Add_776.i8"
+    },
+    {
+      "name": "encoder.blocks.0.mlp_ln.weight",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.04936638779527559,
+      "zero_point": 0,
+      "offset": 1703296,
+      "nbytes": 384,
+      "sha256": "4efb2480d1b64a7b6458417a45231b2500172167f25cc4db278a19e5f103697f",
+      "source_file": "encoder/019_encoder.blocks.0.mlp_ln.weight.i8"
+    },
+    {
+      "name": "encoder.blocks.0.mlp_ln.bias",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.02297613188976378,
+      "zero_point": 0,
+      "offset": 1703680,
+      "nbytes": 384,
+      "sha256": "b96ac1bed313612024942ecb3eb3f5379031188f084cb9b9700340a337717ff8",
+      "source_file": "encoder/020_encoder.blocks.0.mlp_ln.bias.i8"
+    },
+    {
+      "name": "onnx::MatMul_780",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        1536
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0030046598179133857,
+      "zero_point": 0,
+      "offset": 1704064,
+      "nbytes": 589824,
+      "sha256": "d24044fea4a2c1d2d1c32163daebe68a015b2e284c2dfaa64c0879187b708385",
+      "source_file": "encoder/021_onnx_MatMul_780.i8"
+    },
+    {
+      "name": "onnx::Add_779",
+      "model_part": "encoder",
+      "shape": [
+        1536
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.03138841043307087,
+      "zero_point": 0,
+      "offset": 2293888,
+      "nbytes": 1536,
+      "sha256": "87729d60558d9169def00497aaa3888b82a5bf9a4acd509e00839a6f45c82a90",
+      "source_file": "encoder/022_onnx_Add_779.i8"
+    },
+    {
+      "name": "onnx::MatMul_783",
+      "model_part": "encoder",
+      "shape": [
+        1536,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.002614419291338583,
+      "zero_point": 0,
+      "offset": 2295424,
+      "nbytes": 589824,
+      "sha256": "0c00a7a7ddcfe8fac6dc45f29bafd4a3801d988edc23a7ed102a8f101f3561b1",
+      "source_file": "encoder/023_onnx_MatMul_783.i8"
+    },
+    {
+      "name": "onnx::Add_782",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.024344857283464565,
+      "zero_point": 0,
+      "offset": 2885248,
+      "nbytes": 384,
+      "sha256": "63eeaf58077d2673e78f10a87357770106907d8d62ac0d29c6ea311bc6ac1d23",
+      "source_file": "encoder/024_onnx_Add_782.i8"
+    },
+    {
+      "name": "encoder.blocks.1.attn_ln.weight",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0414923720472441,
+      "zero_point": 0,
+      "offset": 2885632,
+      "nbytes": 384,
+      "sha256": "8611205f1496f91d134fb1b746d568ea05176fb16cd7ca91a8f1667a799a96b1",
+      "source_file": "encoder/025_encoder.blocks.1.attn_ln.weight.i8"
+    },
+    {
+      "name": "encoder.blocks.1.attn_ln.bias",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.058839812992125984,
+      "zero_point": 0,
+      "offset": 2886016,
+      "nbytes": 384,
+      "sha256": "2f32169f6fa58463010923b55691400903d58448ef658708b8b538e72f8d295f",
+      "source_file": "encoder/026_encoder.blocks.1.attn_ln.bias.i8"
+    },
+    {
+      "name": "_v_655",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        1152
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0043906865157480315,
+      "zero_point": 0,
+      "offset": 2886400,
+      "nbytes": 442368,
+      "sha256": "78f7301a950d131f8a941f674159c8610f524c5b255c9b54249c685cf2582070",
+      "source_file": "encoder/027_v_655.i8"
+    },
+    {
+      "name": "onnx::Add_785",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.04173843503937008,
+      "zero_point": 0,
+      "offset": 3328768,
+      "nbytes": 384,
+      "sha256": "e681de5b859e70a7a290fa0e80737aa3ee0d3de2561f9977042a100630828ffa",
+      "source_file": "encoder/028_onnx_Add_785.i8"
+    },
+    {
+      "name": "onnx::Add_790",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0013264333169291339,
+      "zero_point": 0,
+      "offset": 3329152,
+      "nbytes": 384,
+      "sha256": "dfb7e3339f7d0d82f706e8328560c4cd0e1a868eb51dd505cd5b2f59332a3f8b",
+      "source_file": "encoder/029_onnx_Add_790.i8"
+    },
+    {
+      "name": "onnx::MatMul_809",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.002276082677165354,
+      "zero_point": 0,
+      "offset": 3329536,
+      "nbytes": 147456,
+      "sha256": "bcbb7416f8e269e77f21811d02fd610312ea5a343962ea459b4c8e1775b23927",
+      "source_file": "encoder/030_onnx_MatMul_809.i8"
+    },
+    {
+      "name": "onnx::Add_808",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.02436023622047244,
+      "zero_point": 0,
+      "offset": 3476992,
+      "nbytes": 384,
+      "sha256": "8105cf23189ee04473138c92649f2ee9327c1291168b905a7b35870087d07e0e",
+      "source_file": "encoder/031_onnx_Add_808.i8"
+    },
+    {
+      "name": "encoder.blocks.1.mlp_ln.weight",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.03694020669291338,
+      "zero_point": 0,
+      "offset": 3477376,
+      "nbytes": 384,
+      "sha256": "172d8c492480794308a3f4f95ebae6cbc29537110d9ac2f6a147426e02ad8beb",
+      "source_file": "encoder/032_encoder.blocks.1.mlp_ln.weight.i8"
+    },
+    {
+      "name": "encoder.blocks.1.mlp_ln.bias",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.031065452755905512,
+      "zero_point": 0,
+      "offset": 3477760,
+      "nbytes": 384,
+      "sha256": "6d95497e2c387b8c40ac3d161bfb9cdbe95b44190ee013178db56ffd0260824d",
+      "source_file": "encoder/033_encoder.blocks.1.mlp_ln.bias.i8"
+    },
+    {
+      "name": "onnx::MatMul_812",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        1536
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0016926442544291339,
+      "zero_point": 0,
+      "offset": 3478144,
+      "nbytes": 589824,
+      "sha256": "c9e70be35113491f746c0b73651921db3b593168def32cd3b5a4139334b511ce",
+      "source_file": "encoder/034_onnx_MatMul_812.i8"
+    },
+    {
+      "name": "onnx::Add_811",
+      "model_part": "encoder",
+      "shape": [
+        1536
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.03940083661417323,
+      "zero_point": 0,
+      "offset": 4067968,
+      "nbytes": 1536,
+      "sha256": "fa001b2e61758ca0e211560987e46f56fb697b1c35e5cf396bd26f3e47b5dc9a",
+      "source_file": "encoder/035_onnx_Add_811.i8"
+    },
+    {
+      "name": "onnx::MatMul_815",
+      "model_part": "encoder",
+      "shape": [
+        1536,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0021549735482283465,
+      "zero_point": 0,
+      "offset": 4069504,
+      "nbytes": 589824,
+      "sha256": "4603c4f05dc02fe0324969b7744b920df3b2bd6d668fe89a39b9f99cc7a545ea",
+      "source_file": "encoder/036_onnx_MatMul_815.i8"
+    },
+    {
+      "name": "onnx::Add_814",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.015348179133858268,
+      "zero_point": 0,
+      "offset": 4659328,
+      "nbytes": 384,
+      "sha256": "db0b53d0689de2ae0934d6a4ea07c9e6496da48e97074137801d7281ae4bc448",
+      "source_file": "encoder/037_onnx_Add_814.i8"
+    },
+    {
+      "name": "encoder.blocks.2.attn_ln.weight",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.03841658464566929,
+      "zero_point": 0,
+      "offset": 4659712,
+      "nbytes": 384,
+      "sha256": "01c80ac2af0cc48516dfb06027094bfde023de7fd53475d28f489b589956a134",
+      "source_file": "encoder/038_encoder.blocks.2.attn_ln.weight.i8"
+    },
+    {
+      "name": "encoder.blocks.2.attn_ln.bias",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.04536786417322835,
+      "zero_point": 0,
+      "offset": 4660096,
+      "nbytes": 384,
+      "sha256": "503e19a96341ea48aa6f324515ebb75c1da327ce03fc03d2a387840a33653979",
+      "source_file": "encoder/039_encoder.blocks.2.attn_ln.bias.i8"
+    },
+    {
+      "name": "_v_662",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        1152
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.004632904773622047,
+      "zero_point": 0,
+      "offset": 4660480,
+      "nbytes": 442368,
+      "sha256": "d3b911b10b807633a3bd3aa6672ce9cb12cbf1a00667a807f000f2c6f5d1cc9f",
+      "source_file": "encoder/040_v_662.i8"
+    },
+    {
+      "name": "onnx::Add_817",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.05284202755905512,
+      "zero_point": 0,
+      "offset": 5102848,
+      "nbytes": 384,
+      "sha256": "2da2805428b56cd7eafbace1fd162bebc7cfa2ad390b41e036899d774611a2e6",
+      "source_file": "encoder/041_onnx_Add_817.i8"
+    },
+    {
+      "name": "onnx::Add_822",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.002639410063976378,
+      "zero_point": 0,
+      "offset": 5103232,
+      "nbytes": 384,
+      "sha256": "3023031caa55ccbe2de97d8e4c755ee461eb4766c74e40d758ea4aaaabf9fe4d",
+      "source_file": "encoder/042_onnx_Add_822.i8"
+    },
+    {
+      "name": "onnx::MatMul_841",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0027297613188976377,
+      "zero_point": 0,
+      "offset": 5103616,
+      "nbytes": 147456,
+      "sha256": "394fda77119d4945dccaa64a7962073955e3be644e722c54b7df7654e074d7f6",
+      "source_file": "encoder/043_onnx_MatMul_841.i8"
+    },
+    {
+      "name": "onnx::Add_840",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.01613250492125984,
+      "zero_point": 0,
+      "offset": 5251072,
+      "nbytes": 384,
+      "sha256": "9f50d912613317f82a102c08beefee1f34c63334bc6f2cfeb5b641f4ac2d5d38",
+      "source_file": "encoder/044_onnx_Add_840.i8"
+    },
+    {
+      "name": "encoder.blocks.2.mlp_ln.weight",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.02628260334645669,
+      "zero_point": 0,
+      "offset": 5251456,
+      "nbytes": 384,
+      "sha256": "c86628942bdadb048c6b321e576c88e66ab6384b69b81b283f6f5bfa4f2097bb",
+      "source_file": "encoder/045_encoder.blocks.2.mlp_ln.weight.i8"
+    },
+    {
+      "name": "encoder.blocks.2.mlp_ln.bias",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.04084645669291338,
+      "zero_point": 0,
+      "offset": 5251840,
+      "nbytes": 384,
+      "sha256": "d55917bb81542e09a983febe4f1eeb8ea0b520c23edaa365537cc12949454af5",
+      "source_file": "encoder/046_encoder.blocks.2.mlp_ln.bias.i8"
+    },
+    {
+      "name": "onnx::MatMul_844",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        1536
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.004236897145669292,
+      "zero_point": 0,
+      "offset": 5252224,
+      "nbytes": 589824,
+      "sha256": "88630b72ea13fd44cdc301e45edac966ca32f36ff50760b71c11898183bf26d7",
+      "source_file": "encoder/047_onnx_MatMul_844.i8"
+    },
+    {
+      "name": "onnx::Add_843",
+      "model_part": "encoder",
+      "shape": [
+        1536
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0514886811023622,
+      "zero_point": 0,
+      "offset": 5842048,
+      "nbytes": 1536,
+      "sha256": "697b59ef678776f579ae041f49a0ee234b1690b16cdb69ad1f0befe819a9dc64",
+      "source_file": "encoder/048_onnx_Add_843.i8"
+    },
+    {
+      "name": "onnx::MatMul_847",
+      "model_part": "encoder",
+      "shape": [
+        1536,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0026336429625984253,
+      "zero_point": 0,
+      "offset": 5843584,
+      "nbytes": 589824,
+      "sha256": "a0bf3ce955c26320774c5be9e951467436d636a180275a8eef0b75e08509598d",
+      "source_file": "encoder/049_onnx_MatMul_847.i8"
+    },
+    {
+      "name": "onnx::Add_846",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.028343380905511813,
+      "zero_point": 0,
+      "offset": 6433408,
+      "nbytes": 384,
+      "sha256": "2db7ef6bc92510c4a24d2dccd3c135220def1db6cefcad3fb9b6471394d9ac36",
+      "source_file": "encoder/050_onnx_Add_846.i8"
+    },
+    {
+      "name": "encoder.blocks.3.attn_ln.weight",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.050104576771653545,
+      "zero_point": 0,
+      "offset": 6433792,
+      "nbytes": 384,
+      "sha256": "cfb3e68c4ebc5cb5029f3a843237e2a3e49a59f7beb11323b7e771af658a4d58",
+      "source_file": "encoder/051_encoder.blocks.3.attn_ln.weight.i8"
+    },
+    {
+      "name": "encoder.blocks.3.attn_ln.bias",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.05136564960629921,
+      "zero_point": 0,
+      "offset": 6434176,
+      "nbytes": 384,
+      "sha256": "79901d046d79caf718c5d5873d76203c424b725e909fcf5b44431bbddb177d83",
+      "source_file": "encoder/052_encoder.blocks.3.attn_ln.bias.i8"
+    },
+    {
+      "name": "_v_669",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        1152
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.004294568159448819,
+      "zero_point": 0,
+      "offset": 6434560,
+      "nbytes": 442368,
+      "sha256": "76e62c1920d6117fb107f53dba3594500c7178145afa99c162f9de353ece3be9",
+      "source_file": "encoder/053_v_669.i8"
+    },
+    {
+      "name": "onnx::Add_849",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.04398375984251968,
+      "zero_point": 0,
+      "offset": 6876928,
+      "nbytes": 384,
+      "sha256": "eacdab0fff265d21e9c205170bc4807eee977ca02452fb0121d07498e83a73e5",
+      "source_file": "encoder/054_onnx_Add_849.i8"
+    },
+    {
+      "name": "onnx::Add_854",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0036409633366141733,
+      "zero_point": 0,
+      "offset": 6877312,
+      "nbytes": 384,
+      "sha256": "7749d2fd7b2cc507cd89396347e6fe5d352e1f828697d9f8abaddb6c2ba5635e",
+      "source_file": "encoder/055_onnx_Add_854.i8"
+    },
+    {
+      "name": "onnx::MatMul_873",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0025298351377952754,
+      "zero_point": 0,
+      "offset": 6877696,
+      "nbytes": 147456,
+      "sha256": "fe885847ebe224c8ca37f23fc777c896a984e86394d2d727dca93bdc00a7e714",
+      "source_file": "encoder/056_onnx_MatMul_873.i8"
+    },
+    {
+      "name": "onnx::Add_872",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.04807455708661417,
+      "zero_point": 0,
+      "offset": 7025152,
+      "nbytes": 384,
+      "sha256": "a3024eeb097d6e925f25ed34324b50b9cbc8e3d07d27c94636a16792829b2712",
+      "source_file": "encoder/057_onnx_Add_872.i8"
+    },
+    {
+      "name": "encoder.blocks.3.mlp_ln.weight",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.11497293307086615,
+      "zero_point": 0,
+      "offset": 7025536,
+      "nbytes": 384,
+      "sha256": "7e4587c4423842314e427c450f38238de170e54996a5deeceef742f025b92302",
+      "source_file": "encoder/058_encoder.blocks.3.mlp_ln.weight.i8"
+    },
+    {
+      "name": "encoder.blocks.3.mlp_ln.bias",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.12543061023622049,
+      "zero_point": 0,
+      "offset": 7025920,
+      "nbytes": 384,
+      "sha256": "563bf992e5ace71f8d63a7bdafc3f35597f6b141e1e8b55d9cb190e975269bac",
+      "source_file": "encoder/059_encoder.blocks.3.mlp_ln.bias.i8"
+    },
+    {
+      "name": "onnx::MatMul_876",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        1536
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.003479484498031496,
+      "zero_point": 0,
+      "offset": 7026304,
+      "nbytes": 589824,
+      "sha256": "c6b096ca90b2bb01010075be5fb60e23fa3b8587214967ae3a61e3c0ee6fdc49",
+      "source_file": "encoder/060_onnx_MatMul_876.i8"
+    },
+    {
+      "name": "onnx::Add_875",
+      "model_part": "encoder",
+      "shape": [
+        1536
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.07726377952755906,
+      "zero_point": 0,
+      "offset": 7616128,
+      "nbytes": 1536,
+      "sha256": "1572afef095faca8084b2a249ae8f9efddad213c71fdbe41c0d1bf4d105d9030",
+      "source_file": "encoder/061_onnx_Add_875.i8"
+    },
+    {
+      "name": "onnx::MatMul_879",
+      "model_part": "encoder",
+      "shape": [
+        1536,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0030104269192913384,
+      "zero_point": 0,
+      "offset": 7617664,
+      "nbytes": 589824,
+      "sha256": "468220b4c1a7574ee5399b709af5a3366b45815d9247eeea9fcf32da70ecb039",
+      "source_file": "encoder/062_onnx_MatMul_879.i8"
+    },
+    {
+      "name": "onnx::Add_878",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.06957431102362205,
+      "zero_point": 0,
+      "offset": 8207488,
+      "nbytes": 384,
+      "sha256": "27c62683fe04c43c5705ae7c045534d29e82b08c211ec5dc17b8ee0415facdaa",
+      "source_file": "encoder/063_onnx_Add_878.i8"
+    },
+    {
+      "name": "encoder.ln_post.weight",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.027251476377952756,
+      "zero_point": 0,
+      "offset": 8207872,
+      "nbytes": 384,
+      "sha256": "185d2f3e264ef4ce752468e74812a660c6b83aee04da1b4776b0ef7ef6fdcc71",
+      "source_file": "encoder/064_encoder.ln_post.weight.i8"
+    },
+    {
+      "name": "encoder.ln_post.bias",
+      "model_part": "encoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.04875123031496063,
+      "zero_point": 0,
+      "offset": 8208256,
+      "nbytes": 384,
+      "sha256": "7aa379388d116f02dff9e78640b6ac6dc7829646bc6e56faff1ff3d92fa21c9f",
+      "source_file": "encoder/065_encoder.ln_post.bias.i8"
+    },
+    {
+      "name": "onnx::MatMul_880",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0004040575109598205,
+      "zero_point": 0,
+      "offset": 8208640,
+      "nbytes": 24576,
+      "sha256": "c2eb3bc85ae45997d25fb29b43374f6d3dd88c2496ec2c8897230b53bb50aab6",
+      "source_file": "encoder/066_onnx_MatMul_880.i8"
+    },
+    {
+      "name": "onnx::MatMul_881",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.00030975477901969367,
+      "zero_point": 0,
+      "offset": 8233216,
+      "nbytes": 24576,
+      "sha256": "0b6a76026a163c26b2400a47598d4d709cb636a7e3e17b2c091a1a6219c929cb",
+      "source_file": "encoder/067_onnx_MatMul_881.i8"
+    },
+    {
+      "name": "onnx::MatMul_882",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0012498936784549023,
+      "zero_point": 0,
+      "offset": 8257792,
+      "nbytes": 24576,
+      "sha256": "80b9399375cb13267d20f1011dd6a5f3eff0e30ceaa11b153483b7f7f6e46340",
+      "source_file": "encoder/068_onnx_MatMul_882.i8"
+    },
+    {
+      "name": "onnx::MatMul_883",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.00041697103911497464,
+      "zero_point": 0,
+      "offset": 8282368,
+      "nbytes": 24576,
+      "sha256": "9341dfdb4029c23858f9d28442b73564185e26e5ec104a69dad5af324bfdc4bc",
+      "source_file": "encoder/069_onnx_MatMul_883.i8"
+    },
+    {
+      "name": "onnx::MatMul_884",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.000654172181613802,
+      "zero_point": 0,
+      "offset": 8306944,
+      "nbytes": 24576,
+      "sha256": "deddf6a23c4fe80b867b1c0cc19e8aad910f7015dff769051d38f303fbe80510",
+      "source_file": "encoder/070_onnx_MatMul_884.i8"
+    },
+    {
+      "name": "onnx::MatMul_885",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0003734728482764537,
+      "zero_point": 0,
+      "offset": 8331520,
+      "nbytes": 24576,
+      "sha256": "f434653097fc03490955747c20b7454448a0bee70e242ca5d5ba060faccebf7e",
+      "source_file": "encoder/071_onnx_MatMul_885.i8"
+    },
+    {
+      "name": "onnx::MatMul_886",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.000827145506077864,
+      "zero_point": 0,
+      "offset": 8356096,
+      "nbytes": 24576,
+      "sha256": "14d02ca71e43ba566260d85bbb47dc050f46acea293dcac682363f135116e538",
+      "source_file": "encoder/072_onnx_MatMul_886.i8"
+    },
+    {
+      "name": "onnx::MatMul_887",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0003925033031016823,
+      "zero_point": 0,
+      "offset": 8380672,
+      "nbytes": 24576,
+      "sha256": "41a696be9b88f540b53973df22ceda6f3879449a46eae584ca8faf7144e3b3d9",
+      "source_file": "encoder/073_onnx_MatMul_887.i8"
+    },
+    {
+      "name": "onnx::MatMul_888",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.000827145506077864,
+      "zero_point": 0,
+      "offset": 8405248,
+      "nbytes": 24576,
+      "sha256": "3acfd7809153baf6f6d57814648e6b8644ce48718c32c49cc393a928d8e2e4c8",
+      "source_file": "encoder/074_onnx_MatMul_888.i8"
+    },
+    {
+      "name": "onnx::MatMul_889",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0006718433161420147,
+      "zero_point": 0,
+      "offset": 8429824,
+      "nbytes": 24576,
+      "sha256": "cb4df38a5f7295bd2896f17cb05ecad2e07aecaf6b9f59bf04834dcd3e4d37ae",
+      "source_file": "encoder/075_onnx_MatMul_889.i8"
+    },
+    {
+      "name": "onnx::MatMul_890",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0003676957443473846,
+      "zero_point": 0,
+      "offset": 8454400,
+      "nbytes": 24576,
+      "sha256": "6063136857195be61e70bdda6cb508834a5d0adf2672b0d335e2ae9efdaac736",
+      "source_file": "encoder/076_onnx_MatMul_890.i8"
+    },
+    {
+      "name": "onnx::MatMul_891",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0011696938689299457,
+      "zero_point": 0,
+      "offset": 8478976,
+      "nbytes": 24576,
+      "sha256": "75d015f7f87ac96892746eb9b7714903ac1d5cf80c77951638043fb8ea075e88",
+      "source_file": "encoder/077_onnx_MatMul_891.i8"
+    },
+    {
+      "name": "onnx::MatMul_892",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0007034475057143864,
+      "zero_point": 0,
+      "offset": 8503552,
+      "nbytes": 24576,
+      "sha256": "2f7f48a198bf95328dd2e72a955a6fa55b3588e573804da365c0f945dfb89cd4",
+      "source_file": "encoder/078_onnx_MatMul_892.i8"
+    },
+    {
+      "name": "onnx::MatMul_893",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0011187193431253508,
+      "zero_point": 0,
+      "offset": 8528128,
+      "nbytes": 24576,
+      "sha256": "1c4cdfab39ddf1bad2be23b89baf2b846a747842bd8ed7924e140d176f7748f0",
+      "source_file": "encoder/079_onnx_MatMul_893.i8"
+    },
+    {
+      "name": "onnx::MatMul_894",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0005760113672008665,
+      "zero_point": 0,
+      "offset": 8552704,
+      "nbytes": 24576,
+      "sha256": "fa2225b85152bfa5660b6b14bfc31ddbf5857360d203258125c584a85cae1430",
+      "source_file": "encoder/080_onnx_MatMul_894.i8"
+    },
+    {
+      "name": "onnx::MatMul_895",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0009093843107148418,
+      "zero_point": 0,
+      "offset": 8577280,
+      "nbytes": 24576,
+      "sha256": "30b50697cd31f4991fdd31b44185d83e1b9b2ab806f9ea5f677c8768ff5fcc07",
+      "source_file": "encoder/081_onnx_MatMul_895.i8"
+    },
+    {
+      "name": "onnx::MatMul_896",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0012974698008514764,
+      "zero_point": 0,
+      "offset": 8601856,
+      "nbytes": 24576,
+      "sha256": "4f4a8c6a2e388d3440ffa35e2e560420e369818d0c288ae4a340198af915c878",
+      "source_file": "encoder/082_onnx_MatMul_896.i8"
+    },
+    {
+      "name": "onnx::MatMul_897",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.001178529436194052,
+      "zero_point": 0,
+      "offset": 8626432,
+      "nbytes": 24576,
+      "sha256": "2e1e0148eee9f8d60705e1101bab0a12df4470d18ca78fd1022b4f6f783f5efd",
+      "source_file": "encoder/083_onnx_MatMul_897.i8"
+    },
+    {
+      "name": "onnx::MatMul_898",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0009868654209797777,
+      "zero_point": 0,
+      "offset": 8651008,
+      "nbytes": 24576,
+      "sha256": "d8f06146a180323c027b755c89b7d19bd67ecf642381f500c0b7d9f8373c3b3d",
+      "source_file": "encoder/084_onnx_MatMul_898.i8"
+    },
+    {
+      "name": "onnx::MatMul_899",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0011024074995611597,
+      "zero_point": 0,
+      "offset": 8675584,
+      "nbytes": 24576,
+      "sha256": "3b64d91ff03c9fa37bc244f0d41c7acc28bf95b125fbf5d99a79446b1189a993",
+      "source_file": "encoder/085_onnx_MatMul_899.i8"
+    },
+    {
+      "name": "onnx::MatMul_900",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.000959679073705448,
+      "zero_point": 0,
+      "offset": 8700160,
+      "nbytes": 24576,
+      "sha256": "522174f433aa7c21ddd5e611f2cea69af139d7af64b424df725103154071a5be",
+      "source_file": "encoder/086_onnx_MatMul_900.i8"
+    },
+    {
+      "name": "onnx::MatMul_901",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.001147265040029691,
+      "zero_point": 0,
+      "offset": 8724736,
+      "nbytes": 24576,
+      "sha256": "ccabedeb38838aba213d996194eddb9a1ba2c1d4e1d78d350a5029616154b365",
+      "source_file": "encoder/087_onnx_MatMul_901.i8"
+    },
+    {
+      "name": "onnx::MatMul_902",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0009528825015533627,
+      "zero_point": 0,
+      "offset": 8749312,
+      "nbytes": 24576,
+      "sha256": "7537f6558cdaa5727dbb2f3a0db4388eb77b8b9d362c45ae23ee9e0cd8df74ca",
+      "source_file": "encoder/088_onnx_MatMul_902.i8"
+    },
+    {
+      "name": "onnx::MatMul_903",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0009358910125071608,
+      "zero_point": 0,
+      "offset": 8773888,
+      "nbytes": 24576,
+      "sha256": "30e291e7584d5e288de9124752c37d88a9c8cc321025bd228b518f43aebc0a64",
+      "source_file": "encoder/089_onnx_MatMul_903.i8"
+    },
+    {
+      "name": "onnx::MatMul_904",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0012101301058070866,
+      "zero_point": 0,
+      "offset": 8798464,
+      "nbytes": 24576,
+      "sha256": "90109f6368967f5b48799c579ce634ce91788bd64860365370c2e1769467e3d4",
+      "source_file": "encoder/090_onnx_MatMul_904.i8"
+    },
+    {
+      "name": "onnx::MatMul_905",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.001106322281003937,
+      "zero_point": 0,
+      "offset": 8823040,
+      "nbytes": 24576,
+      "sha256": "ae313a95337df84b7f0caebdbd95a06292ae32bd944732ae2c485c241759dcba",
+      "source_file": "encoder/091_onnx_MatMul_905.i8"
+    },
+    {
+      "name": "onnx::MatMul_906",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0007526067298228346,
+      "zero_point": 0,
+      "offset": 8847616,
+      "nbytes": 24576,
+      "sha256": "5c0162bd48f33c34add8f5588a4e7512413f3c362c5376e2d651b44f3ffd603b",
+      "source_file": "encoder/092_onnx_MatMul_906.i8"
+    },
+    {
+      "name": "onnx::MatMul_907",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0009967473548228346,
+      "zero_point": 0,
+      "offset": 8872192,
+      "nbytes": 24576,
+      "sha256": "9db81a1d083267ff4491c7fff388cd2c4c6fc528bd479a930d205de570381e96",
+      "source_file": "encoder/093_onnx_MatMul_907.i8"
+    },
+    {
+      "name": "onnx::MatMul_908",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0009693536232775591,
+      "zero_point": 0,
+      "offset": 8896768,
+      "nbytes": 24576,
+      "sha256": "59d77d340ba1bb4f1db5b4057988af4f2b6fd05939e15f1b88d9258aba8701d5",
+      "source_file": "encoder/094_onnx_MatMul_908.i8"
+    },
+    {
+      "name": "onnx::MatMul_909",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0006901297982283464,
+      "zero_point": 0,
+      "offset": 8921344,
+      "nbytes": 24576,
+      "sha256": "32a48aa436ca42cb7a7911997530216798cd370c7cd76d01e1058478b5f4877a",
+      "source_file": "encoder/095_onnx_MatMul_909.i8"
+    },
+    {
+      "name": "onnx::MatMul_910",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0008371908833661418,
+      "zero_point": 0,
+      "offset": 8945920,
+      "nbytes": 24576,
+      "sha256": "e3ecb6e7a94db4748deba4fab7f7cc3dc5e787f1cfdf155a04dcdd04912eda2a",
+      "source_file": "encoder/096_onnx_MatMul_910.i8"
+    },
+    {
+      "name": "onnx::MatMul_911",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0010265440452755905,
+      "zero_point": 0,
+      "offset": 8970496,
+      "nbytes": 24576,
+      "sha256": "e65570ff5c214b6782030ad55967f72f5070daca53476f9411a553979176ffc1",
+      "source_file": "encoder/097_onnx_MatMul_911.i8"
+    },
+    {
+      "name": "onnx::MatMul_912",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0013869878813976377,
+      "zero_point": 0,
+      "offset": 8995072,
+      "nbytes": 24576,
+      "sha256": "8ca1355346f985ecd62d92c7515ed2aa67d230b83b65ac58a89c566ca0e8dfd4",
+      "source_file": "encoder/098_onnx_MatMul_912.i8"
+    },
+    {
+      "name": "onnx::MatMul_913",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0009482075848917323,
+      "zero_point": 0,
+      "offset": 9019648,
+      "nbytes": 24576,
+      "sha256": "5269f2baee589a4f984331ba715f211e7a663d60ea699dc1ff143e6eb4d6814f",
+      "source_file": "encoder/099_onnx_MatMul_913.i8"
+    },
+    {
+      "name": "onnx::MatMul_914",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0008991872231791339,
+      "zero_point": 0,
+      "offset": 9044224,
+      "nbytes": 24576,
+      "sha256": "7d4e7d423c7df74d0dd9994bcbef0593086b16093c2095535845ddd1f0d40dac",
+      "source_file": "encoder/100_onnx_MatMul_914.i8"
+    },
+    {
+      "name": "onnx::MatMul_915",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0007679856668307087,
+      "zero_point": 0,
+      "offset": 9068800,
+      "nbytes": 24576,
+      "sha256": "61323ebe05e0672e8f2229b85808385c33e4fb186a5d34e9e80b63a7e5ad09b7",
+      "source_file": "encoder/101_onnx_MatMul_915.i8"
+    },
+    {
+      "name": "onnx::MatMul_916",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0007843257874015748,
+      "zero_point": 0,
+      "offset": 9093376,
+      "nbytes": 24576,
+      "sha256": "ab78fc4ac94a2d222ee145d3cca6b6a330c2a78305ea8d55d8daba58af2e856c",
+      "source_file": "encoder/102_onnx_MatMul_916.i8"
+    },
+    {
+      "name": "onnx::MatMul_917",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0008953424889271654,
+      "zero_point": 0,
+      "offset": 9117952,
+      "nbytes": 24576,
+      "sha256": "d9403d665e43910d157b9ac0cec1f7cf76ae5fffea1d3952a0e180ace8a06c18",
+      "source_file": "encoder/103_onnx_MatMul_917.i8"
+    },
+    {
+      "name": "onnx::MatMul_918",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0010409617987204725,
+      "zero_point": 0,
+      "offset": 9142528,
+      "nbytes": 24576,
+      "sha256": "e10dc6727f4e91d843b8ad9478c510c6365544c81b7493c5f1a25cada99c6a44",
+      "source_file": "encoder/104_onnx_MatMul_918.i8"
+    },
+    {
+      "name": "onnx::MatMul_919",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0010957492618110236,
+      "zero_point": 0,
+      "offset": 9167104,
+      "nbytes": 24576,
+      "sha256": "b6599ad3a2994837b4c168b6dd93c30f2ad0f44e1faa9d58752ae701efdf23da",
+      "source_file": "encoder/105_onnx_MatMul_919.i8"
+    },
+    {
+      "name": "onnx::MatMul_920",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0013427734375,
+      "zero_point": 0,
+      "offset": 9191680,
+      "nbytes": 24576,
+      "sha256": "630bf773460e05ec34a63787379b92257b591239fb84f673510136a09fc30a7c",
+      "source_file": "encoder/106_onnx_MatMul_920.i8"
+    },
+    {
+      "name": "onnx::MatMul_921",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0008516086368110236,
+      "zero_point": 0,
+      "offset": 9216256,
+      "nbytes": 24576,
+      "sha256": "1b1c8fddfdd6b220b4fea303d5dc820a51ed38f9aab14ae889a2fedbd82a2f7c",
+      "source_file": "encoder/107_onnx_MatMul_921.i8"
+    },
+    {
+      "name": "onnx::MatMul_922",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.001318743848425197,
+      "zero_point": 0,
+      "offset": 9240832,
+      "nbytes": 24576,
+      "sha256": "4d843c120fa9679fe08c48ef69000163290be188f9b26ed0c0af8724260ff59f",
+      "source_file": "encoder/108_onnx_MatMul_922.i8"
+    },
+    {
+      "name": "onnx::MatMul_923",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.001121701218011811,
+      "zero_point": 0,
+      "offset": 9265408,
+      "nbytes": 24576,
+      "sha256": "209c53dcfa28e3f8c366ab7e50eb80f24c8a29609e17e35943e7be8c19a78ea4",
+      "source_file": "encoder/109_onnx_MatMul_923.i8"
+    },
+    {
+      "name": "onnx::MatMul_924",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0013418122539370079,
+      "zero_point": 0,
+      "offset": 9289984,
+      "nbytes": 24576,
+      "sha256": "4a929b32e158980518ec756d619c73f1fe328f374e3639334b4269a5ce0c30ec",
+      "source_file": "encoder/110_onnx_MatMul_924.i8"
+    },
+    {
+      "name": "onnx::MatMul_925",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0016003706323818897,
+      "zero_point": 0,
+      "offset": 9314560,
+      "nbytes": 24576,
+      "sha256": "4957d17ee8c45f944e8de5913693d44e1b75dbaba0cc78a06b87622b4b0bed4b",
+      "source_file": "encoder/111_onnx_MatMul_925.i8"
+    },
+    {
+      "name": "onnx::MatMul_926",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0013206662155511811,
+      "zero_point": 0,
+      "offset": 9339136,
+      "nbytes": 24576,
+      "sha256": "a8bf719d90e87a8927bd356867a8a642c0da5db91dac181bb327155e300a3dbc",
+      "source_file": "encoder/112_onnx_MatMul_926.i8"
+    },
+    {
+      "name": "onnx::MatMul_927",
+      "model_part": "encoder",
+      "shape": [
+        384,
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0012783741387795275,
+      "zero_point": 0,
+      "offset": 9363712,
+      "nbytes": 24576,
+      "sha256": "5bd35ec732501c70629821ea795804a60a5745bf545113b4f405905ba338046d",
+      "source_file": "encoder/113_onnx_MatMul_927.i8"
+    },
+    {
+      "name": "cross_attn_value_list.0.split_linears.0.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0003851943128690945,
+      "zero_point": 0,
+      "offset": 9388288,
+      "nbytes": 64,
+      "sha256": "82ddd1769c316c766eac30c03c56e0d91cccb3d9c03790990d6e0450d3fd45a4",
+      "source_file": "encoder/114_cross_attn_value_list.0.split_linears.0.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.0.split_linears.1.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0008097971518208661,
+      "zero_point": 0,
+      "offset": 9388352,
+      "nbytes": 64,
+      "sha256": "8564855c7c811b11fa1295e93ab49e661405f5d665af8848984596448ba3f043",
+      "source_file": "encoder/115_cross_attn_value_list.0.split_linears.1.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.0.split_linears.2.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.005151943897637796,
+      "zero_point": 0,
+      "offset": 9388416,
+      "nbytes": 64,
+      "sha256": "618fbe9df7b26ad976ef613c41afec0fcd95e97096ae14844fcad26f43735014",
+      "source_file": "encoder/116_cross_attn_value_list.0.split_linears.2.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.0.split_linears.3.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0005473940391240158,
+      "zero_point": 0,
+      "offset": 9388480,
+      "nbytes": 64,
+      "sha256": "6d62e50c9db74406620aa882e35a46cfa9ecd201dfcd2eeabde6a4003710d308",
+      "source_file": "encoder/117_cross_attn_value_list.0.split_linears.3.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.0.split_linears.4.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0011399637057086613,
+      "zero_point": 0,
+      "offset": 9388544,
+      "nbytes": 64,
+      "sha256": "912d4fda805e417e576704770e76c2d5eba3ec79e3abe82b055675c676004159",
+      "source_file": "encoder/118_cross_attn_value_list.0.split_linears.4.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.0.split_linears.5.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.001510980561023622,
+      "zero_point": 0,
+      "offset": 9388608,
+      "nbytes": 64,
+      "sha256": "3822501789b56777f1c9de645235f9eecc79e45922880222dbb8aec1e2f87487",
+      "source_file": "encoder/119_cross_attn_value_list.0.split_linears.5.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.1.split_linears.0.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0005425881213090551,
+      "zero_point": 0,
+      "offset": 9388672,
+      "nbytes": 64,
+      "sha256": "f1f747c2ca0eba2148bc7b6575247d93998b148d6e50d094e37b58895c4a988b",
+      "source_file": "encoder/120_cross_attn_value_list.1.split_linears.0.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.1.split_linears.1.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0008573757381889764,
+      "zero_point": 0,
+      "offset": 9388736,
+      "nbytes": 64,
+      "sha256": "73a98a16759f6a20ca9870874dedde538b479ece22f6df016e1bd7b975f24779",
+      "source_file": "encoder/121_cross_attn_value_list.1.split_linears.1.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.1.split_linears.2.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0009361927903543307,
+      "zero_point": 0,
+      "offset": 9388800,
+      "nbytes": 64,
+      "sha256": "68d227a84e5ec325f4c156731fcc0d64d757680abf472be2990d62f5c6faedbb",
+      "source_file": "encoder/122_cross_attn_value_list.1.split_linears.2.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.1.split_linears.3.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0005488358144685039,
+      "zero_point": 0,
+      "offset": 9388864,
+      "nbytes": 64,
+      "sha256": "21e0c78c012645ff30f2c506a470cae3ea01b57f6ec5012ce57d008a75154799",
+      "source_file": "encoder/123_cross_attn_value_list.1.split_linears.3.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.1.split_linears.4.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0004789097102608268,
+      "zero_point": 0,
+      "offset": 9388928,
+      "nbytes": 64,
+      "sha256": "e770b8072b6fb88de1ab3995d04e21ed773a182bc7c6a05244cd466f7fa9adb9",
+      "source_file": "encoder/124_cross_attn_value_list.1.split_linears.4.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.1.split_linears.5.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0011351577878937007,
+      "zero_point": 0,
+      "offset": 9388992,
+      "nbytes": 64,
+      "sha256": "b7bcbb081c6ed541adfb5fa775a68fd647c8b1638ff6e43a641a556fc0563030",
+      "source_file": "encoder/125_cross_attn_value_list.1.split_linears.5.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.2.split_linears.0.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0020723117618110234,
+      "zero_point": 0,
+      "offset": 9389056,
+      "nbytes": 64,
+      "sha256": "cd041c124d97800812888e5e52dbb32e4873bd9db89fc3c358e4088c1c41e1b8",
+      "source_file": "encoder/126_cross_attn_value_list.2.split_linears.0.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.2.split_linears.1.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0013725701279527559,
+      "zero_point": 0,
+      "offset": 9389120,
+      "nbytes": 64,
+      "sha256": "c2ca27b1d86eee70584920384bb506452617970ec4c1d503354e90d08252ac82",
+      "source_file": "encoder/127_cross_attn_value_list.2.split_linears.1.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.2.split_linears.2.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.004479115403543307,
+      "zero_point": 0,
+      "offset": 9389184,
+      "nbytes": 64,
+      "sha256": "81029968d79d9febb54f5db94c989135524faf32805dca2ef5c32b09dd87d8c0",
+      "source_file": "encoder/128_cross_attn_value_list.2.split_linears.2.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.2.split_linears.3.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0010111651082677165,
+      "zero_point": 0,
+      "offset": 9389248,
+      "nbytes": 64,
+      "sha256": "2a6a9567d01d4ff57f1982dd3655b46dbf11b9facca95714ab10f5576e2f113d",
+      "source_file": "encoder/129_cross_attn_value_list.2.split_linears.3.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.2.split_linears.4.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0029642901082677165,
+      "zero_point": 0,
+      "offset": 9389312,
+      "nbytes": 64,
+      "sha256": "f95ea46e30c7527e7c5620b03fc38f531eaf4b4a3ffc5510d583ed84c593100b",
+      "source_file": "encoder/130_cross_attn_value_list.2.split_linears.4.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.2.split_linears.5.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.001319705031988189,
+      "zero_point": 0,
+      "offset": 9389376,
+      "nbytes": 64,
+      "sha256": "4699c7b49b6eb282259fc0c21cf7f490b4e05ad3b346a77adb3522cfdbe1ae1f",
+      "source_file": "encoder/131_cross_attn_value_list.2.split_linears.5.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.3.split_linears.0.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.002575971948818898,
+      "zero_point": 0,
+      "offset": 9389440,
+      "nbytes": 64,
+      "sha256": "c6b290c6c4cdba1535d1a2266fbb298fa0132758134f8d2b10262e6fabb01278",
+      "source_file": "encoder/132_cross_attn_value_list.3.split_linears.0.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.3.split_linears.1.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.001633050873523622,
+      "zero_point": 0,
+      "offset": 9389504,
+      "nbytes": 64,
+      "sha256": "758de13d629cc6c0d8544db78b1c5bc985ea33ab204afc5d9354b89ab7879c96",
+      "source_file": "encoder/133_cross_attn_value_list.3.split_linears.1.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.3.split_linears.2.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0024375615157480315,
+      "zero_point": 0,
+      "offset": 9389568,
+      "nbytes": 64,
+      "sha256": "a4545628c0d4760dcdb5d47edcbad881e8fc4b2216f4ed0960a6ef32192415aa",
+      "source_file": "encoder/134_cross_attn_value_list.3.split_linears.2.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.3.split_linears.3.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0019934947096456692,
+      "zero_point": 0,
+      "offset": 9389632,
+      "nbytes": 64,
+      "sha256": "34777f0c2dce8f71bb22aaaccc7658c04d47269b6357a668463765bf0bf34566",
+      "source_file": "encoder/135_cross_attn_value_list.3.split_linears.3.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.3.split_linears.4.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.001976193405511811,
+      "zero_point": 0,
+      "offset": 9389696,
+      "nbytes": 64,
+      "sha256": "b7e607600fad8594c6966910d6cf70cfd544e3805065103f52825ae11b68e2c8",
+      "source_file": "encoder/136_cross_attn_value_list.3.split_linears.4.bias.i8"
+    },
+    {
+      "name": "cross_attn_value_list.3.split_linears.5.bias",
+      "model_part": "encoder",
+      "shape": [
+        64
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0018329770546259842,
+      "zero_point": 0,
+      "offset": 9389760,
+      "nbytes": 64,
+      "sha256": "94e7ecf5fdccf1b86a04bba8f46e5e5fc003fef6add033795511e650d290aa99",
+      "source_file": "encoder/137_cross_attn_value_list.3.split_linears.5.bias.i8"
+    },
+    {
+      "name": "token_embedding.weight",
+      "model_part": "decoder",
+      "shape": [
+        51864,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.003804364542322835,
+      "zero_point": 0,
+      "offset": 9389824,
+      "nbytes": 19915776,
+      "sha256": "f046c9afd31fb670ba8a9d4efe5e6dcaa7e6d11567d3efa7180281f73a346f6f",
+      "source_file": "decoder/000_token_embedding.weight.i8"
+    },
+    {
+      "name": "positional_embedding.weight",
+      "model_part": "decoder",
+      "shape": [
+        224,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0018089474655511811,
+      "zero_point": 0,
+      "offset": 29305600,
+      "nbytes": 86016,
+      "sha256": "26fb172cb6d62fb64e0d9f98d9207aa9db9552903a209841d3e5d5e3f70eca51",
+      "source_file": "decoder/001_positional_embedding.weight.i8"
+    },
+    {
+      "name": "mask.weight",
+      "model_part": "decoder",
+      "shape": [
+        224,
+        224
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.7874015748031497,
+      "zero_point": 0,
+      "offset": 29391616,
+      "nbytes": 50176,
+      "sha256": "75326545db964839510d7643218890ddd10eafca5c5750c8fb4fd94b884718c5",
+      "source_file": "decoder/002_mask.weight.i8"
+    },
+    {
+      "name": "blocks.0.attn_ln.bias",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.015994094488188976,
+      "zero_point": 0,
+      "offset": 29441792,
+      "nbytes": 384,
+      "sha256": "3edb328fd90354a5efcf8ec798b7c47c266bbae83babf40a1b391024026ca0cb",
+      "source_file": "decoder/003_blocks.0.attn_ln.bias.i8"
+    },
+    {
+      "name": "blocks.0.attn_ln.weight",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.015025221456692913,
+      "zero_point": 0,
+      "offset": 29442176,
+      "nbytes": 384,
+      "sha256": "b9c704f0e02423c9682374ef7cfad3b03121f1f4185ca3d4d28c40b18e8a2b4c",
+      "source_file": "decoder/004_blocks.0.attn_ln.weight.i8"
+    },
+    {
+      "name": "blocks.0.cross_attn_ln.bias",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.021284448818897638,
+      "zero_point": 0,
+      "offset": 29442560,
+      "nbytes": 384,
+      "sha256": "93f58fa974f774b0bddae74289512b69c00b08aaab940842636f20e2e0e9debd",
+      "source_file": "decoder/005_blocks.0.cross_attn_ln.bias.i8"
+    },
+    {
+      "name": "blocks.0.cross_attn_ln.weight",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.06908218503937008,
+      "zero_point": 0,
+      "offset": 29442944,
+      "nbytes": 384,
+      "sha256": "fe2aa7c9e24e1b716d586378e3a041809fb21be0a3fd8c74b5c62c71e19b0c77",
+      "source_file": "decoder/006_blocks.0.cross_attn_ln.weight.i8"
+    },
+    {
+      "name": "blocks.0.mlp_ln.bias",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.026743971456692914,
+      "zero_point": 0,
+      "offset": 29443328,
+      "nbytes": 384,
+      "sha256": "ef89373c6b36bed7d9e98816cb349d0d4c13bc676c4bcbe4374748c597e69298",
+      "source_file": "decoder/007_blocks.0.mlp_ln.bias.i8"
+    },
+    {
+      "name": "blocks.0.mlp_ln.weight",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.029635211614173228,
+      "zero_point": 0,
+      "offset": 29443712,
+      "nbytes": 384,
+      "sha256": "13b38cc6e4e9c49e55001c6b23259b96f77bff5ee09d9acdcbfe0970b6f44a7d",
+      "source_file": "decoder/008_blocks.0.mlp_ln.weight.i8"
+    },
+    {
+      "name": "blocks.1.attn_ln.bias",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.041830708661417325,
+      "zero_point": 0,
+      "offset": 29444096,
+      "nbytes": 384,
+      "sha256": "14ff0ec2383a20ebf670daeae76afbdb3077c8f1d09959dd26ad623d2ad2d7f3",
+      "source_file": "decoder/009_blocks.1.attn_ln.bias.i8"
+    },
+    {
+      "name": "blocks.1.attn_ln.weight",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.034787155511811024,
+      "zero_point": 0,
+      "offset": 29444480,
+      "nbytes": 384,
+      "sha256": "448e3f335d930d711b8d6327b418ec97c04c4442bcd1a0bc2d799505da1a75d1",
+      "source_file": "decoder/010_blocks.1.attn_ln.weight.i8"
+    },
+    {
+      "name": "blocks.1.cross_attn_ln.bias",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.03810900590551181,
+      "zero_point": 0,
+      "offset": 29444864,
+      "nbytes": 384,
+      "sha256": "ee3ddd574ad80ba511d532330af6d1b844e625efbdee887eaf66c66755806868",
+      "source_file": "decoder/011_blocks.1.cross_attn_ln.bias.i8"
+    },
+    {
+      "name": "blocks.1.cross_attn_ln.weight",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.05481053149606299,
+      "zero_point": 0,
+      "offset": 29445248,
+      "nbytes": 384,
+      "sha256": "11353b0403edad4e25f3ee317adc30971cace1730300c8713d7522d16b7c806f",
+      "source_file": "decoder/012_blocks.1.cross_attn_ln.weight.i8"
+    },
+    {
+      "name": "blocks.1.mlp_ln.bias",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.01788570374015748,
+      "zero_point": 0,
+      "offset": 29445632,
+      "nbytes": 384,
+      "sha256": "e67f678f6fb2586d0d638603f58c6cb4b8ac97dffffd2e40bc4ded5c58bd6035",
+      "source_file": "decoder/013_blocks.1.mlp_ln.bias.i8"
+    },
+    {
+      "name": "blocks.1.mlp_ln.weight",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.029942790354330708,
+      "zero_point": 0,
+      "offset": 29446016,
+      "nbytes": 384,
+      "sha256": "54aa5bde48d79882faba50e93c384ef0fd3261eeb343d4bb1d255dda6246486b",
+      "source_file": "decoder/014_blocks.1.mlp_ln.weight.i8"
+    },
+    {
+      "name": "blocks.2.attn_ln.bias",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.07480314960629922,
+      "zero_point": 0,
+      "offset": 29446400,
+      "nbytes": 384,
+      "sha256": "2a8f1373db978f90ec9606f88af93267e930b0b16a63f3d3610b32cfcfff7144",
+      "source_file": "decoder/015_blocks.2.attn_ln.bias.i8"
+    },
+    {
+      "name": "blocks.2.attn_ln.weight",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.03647883858267716,
+      "zero_point": 0,
+      "offset": 29446784,
+      "nbytes": 384,
+      "sha256": "1bbe8fb90234482daedc8a42c9ba1df2e88ed252a920b2ebf23a2524ef5c0390",
+      "source_file": "decoder/016_blocks.2.attn_ln.weight.i8"
+    },
+    {
+      "name": "blocks.2.cross_attn_ln.bias",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0405388779527559,
+      "zero_point": 0,
+      "offset": 29447168,
+      "nbytes": 384,
+      "sha256": "c2debc400ecded77b3cf2115f0403898f802a4fa3fd9dfbf8d2ac025f56c6bae",
+      "source_file": "decoder/017_blocks.2.cross_attn_ln.bias.i8"
+    },
+    {
+      "name": "blocks.2.cross_attn_ln.weight",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.06649852362204725,
+      "zero_point": 0,
+      "offset": 29447552,
+      "nbytes": 384,
+      "sha256": "54d56fcb4dd256531f66b9abb40aab1835844719643d28300a98cd0d5c4473b4",
+      "source_file": "decoder/018_blocks.2.cross_attn_ln.weight.i8"
+    },
+    {
+      "name": "blocks.2.mlp_ln.bias",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.03469488188976378,
+      "zero_point": 0,
+      "offset": 29447936,
+      "nbytes": 384,
+      "sha256": "eee7db5c104f7fea66d850e1b7b3a154256d9530e06c34db9bf113e88aaa903c",
+      "source_file": "decoder/019_blocks.2.mlp_ln.bias.i8"
+    },
+    {
+      "name": "blocks.2.mlp_ln.weight",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.02668245570866142,
+      "zero_point": 0,
+      "offset": 29448320,
+      "nbytes": 384,
+      "sha256": "fc0ee64aca79a1bd238ab288fe19ac4f92244d3b60e1878ae6c58bc902a52abb",
+      "source_file": "decoder/020_blocks.2.mlp_ln.weight.i8"
+    },
+    {
+      "name": "blocks.3.attn_ln.bias",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.10439222440944881,
+      "zero_point": 0,
+      "offset": 29448704,
+      "nbytes": 384,
+      "sha256": "5d99498e4c206dbf67d7f21fa618ddcbbb82697292c0169aadd84cd6bf219498",
+      "source_file": "decoder/021_blocks.3.attn_ln.bias.i8"
+    },
+    {
+      "name": "blocks.3.attn_ln.weight",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.03074249507874016,
+      "zero_point": 0,
+      "offset": 29449088,
+      "nbytes": 384,
+      "sha256": "713e49fd62fd5b07a964e87c7cfb6bde9b0e0657f8b4b4654ba7749e6c3e797f",
+      "source_file": "decoder/022_blocks.3.attn_ln.weight.i8"
+    },
+    {
+      "name": "blocks.3.cross_attn_ln.bias",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.05576402559055118,
+      "zero_point": 0,
+      "offset": 29449472,
+      "nbytes": 384,
+      "sha256": "fdfd2dfb1ee65ff20a3743fdfec348b6c944a166d92cbea3207d609292f65bc8",
+      "source_file": "decoder/023_blocks.3.cross_attn_ln.bias.i8"
+    },
+    {
+      "name": "blocks.3.cross_attn_ln.weight",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0717273622047244,
+      "zero_point": 0,
+      "offset": 29449856,
+      "nbytes": 384,
+      "sha256": "5e5b7a5f847091e87ec72c93f862e30882ecef032ab2d2d436f5abcf97b19bc9",
+      "source_file": "decoder/024_blocks.3.cross_attn_ln.weight.i8"
+    },
+    {
+      "name": "blocks.3.mlp_ln.bias",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.06699064960629922,
+      "zero_point": 0,
+      "offset": 29450240,
+      "nbytes": 384,
+      "sha256": "adc8b9c8754a950d49346cb08f3a04002b332a6b0b4a22064c925c6f8876f49e",
+      "source_file": "decoder/025_blocks.3.mlp_ln.bias.i8"
+    },
+    {
+      "name": "blocks.3.mlp_ln.weight",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.05271899606299212,
+      "zero_point": 0,
+      "offset": 29450624,
+      "nbytes": 384,
+      "sha256": "ee1ecdd2b77e2c6d51a83700fa8ca4de61428f264b018900a1ee42e982ddc643",
+      "source_file": "decoder/026_blocks.3.mlp_ln.weight.i8"
+    },
+    {
+      "name": "ln.bias",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.08649114173228346,
+      "zero_point": 0,
+      "offset": 29451008,
+      "nbytes": 384,
+      "sha256": "9682432f5d52ebe1c12f695542f41c55f7817963083ca988b1bdbd403b1cff0a",
+      "source_file": "decoder/027_ln.bias.i8"
+    },
+    {
+      "name": "ln.weight",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.1327509842519685,
+      "zero_point": 0,
+      "offset": 29451392,
+      "nbytes": 384,
+      "sha256": "7abf3e92d8de3c2cc357a5d0634ee23907fcc814dd2f3d118f79df35b252ef5d",
+      "source_file": "decoder/028_ln.weight.i8"
+    },
+    {
+      "name": "onnx::Add_2382",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.016213953964353548,
+      "zero_point": 0,
+      "offset": 29451776,
+      "nbytes": 384,
+      "sha256": "758be029829b0bf6075bfb378c9f6af26dece4c9e1466fa90226412380624b45",
+      "source_file": "decoder/029_onnx_Add_2382.i8"
+    },
+    {
+      "name": "onnx::Add_2397",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0039004828986220473,
+      "zero_point": 0,
+      "offset": 29452160,
+      "nbytes": 384,
+      "sha256": "b1a7efd57dcc7cc2db67635a46f186af5974ccb300e2cf1029bd3e99480fc2bf",
+      "source_file": "decoder/030_onnx_Add_2397.i8"
+    },
+    {
+      "name": "onnx::Add_2489",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.008750615157480315,
+      "zero_point": 0,
+      "offset": 29452544,
+      "nbytes": 384,
+      "sha256": "e4c07c748adf3f7201b3ad6c44f187cbe1d17123986ee1a3ab54d0fd885fca57",
+      "source_file": "decoder/031_onnx_Add_2489.i8"
+    },
+    {
+      "name": "onnx::MatMul_2490",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0016147883858267716,
+      "zero_point": 0,
+      "offset": 29452928,
+      "nbytes": 147456,
+      "sha256": "6ed95af540afaadb5a9a00a303f018296d545f4b3504a681b191335398265aa4",
+      "source_file": "decoder/032_onnx_MatMul_2490.i8"
+    },
+    {
+      "name": "onnx::Add_2492",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.02233632718484233,
+      "zero_point": 0,
+      "offset": 29600384,
+      "nbytes": 384,
+      "sha256": "1ee44ef168870fcfc3533e21416f49a9ecd9c9dc47eb5e22cb45ea6c81d15ffb",
+      "source_file": "decoder/033_onnx_Add_2492.i8"
+    },
+    {
+      "name": "onnx::MatMul_2493",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0006806788834061209,
+      "zero_point": 0,
+      "offset": 29600768,
+      "nbytes": 147456,
+      "sha256": "59fc2c1cc9d789166935ca1983a5246bc3cfe7ae7a985f6aa0614a704b26f5ca",
+      "source_file": "decoder/034_onnx_MatMul_2493.i8"
+    },
+    {
+      "name": "onnx::Add_2576",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.007935531496062992,
+      "zero_point": 0,
+      "offset": 29748224,
+      "nbytes": 384,
+      "sha256": "cc842ddc21c5ad06ac43d1129dddf76121d45540f0e8462bc9043d7bff69c25c",
+      "source_file": "decoder/035_onnx_Add_2576.i8"
+    },
+    {
+      "name": "onnx::MatMul_2577",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0018339382381889764,
+      "zero_point": 0,
+      "offset": 29748608,
+      "nbytes": 147456,
+      "sha256": "39bde618a172a30912404d33ff7da43a8c26d7a06e2fddd65e47625df267a877",
+      "source_file": "decoder/036_onnx_MatMul_2577.i8"
+    },
+    {
+      "name": "onnx::Add_2579",
+      "model_part": "decoder",
+      "shape": [
+        1536
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.04176919291338583,
+      "zero_point": 0,
+      "offset": 29896064,
+      "nbytes": 1536,
+      "sha256": "8d966e362f10fa72dedbae750f0cddd5186fe2b07917eb48f3408be7877d4ada",
+      "source_file": "decoder/037_onnx_Add_2579.i8"
+    },
+    {
+      "name": "onnx::MatMul_2580",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        1536
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0022164892962598425,
+      "zero_point": 0,
+      "offset": 29897600,
+      "nbytes": 589824,
+      "sha256": "66e77d254efeed7c3da023e52442d0f4cadc71b82a07a84e356821a6e124eec6",
+      "source_file": "decoder/038_onnx_MatMul_2580.i8"
+    },
+    {
+      "name": "onnx::Add_2582",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.018700787401574805,
+      "zero_point": 0,
+      "offset": 30487424,
+      "nbytes": 384,
+      "sha256": "612744de1dcf0978671f7c6428b891ae8a5ea528253e845be7e2e822576b2ec0",
+      "source_file": "decoder/039_onnx_Add_2582.i8"
+    },
+    {
+      "name": "onnx::MatMul_2583",
+      "model_part": "decoder",
+      "shape": [
+        1536,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0038389671505905513,
+      "zero_point": 0,
+      "offset": 30487808,
+      "nbytes": 589824,
+      "sha256": "61e9fe842f3f504d55efd4f6a7611f5e0e32242565079eb39eab6a19da1605be",
+      "source_file": "decoder/040_onnx_MatMul_2583.i8"
+    },
+    {
+      "name": "onnx::Add_2585",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.021444613539327785,
+      "zero_point": 0,
+      "offset": 31077632,
+      "nbytes": 384,
+      "sha256": "6fcba2feb20e391b1868635707a6c1fc47c9abed735d3de91a11e02038f364eb",
+      "source_file": "decoder/041_onnx_Add_2585.i8"
+    },
+    {
+      "name": "onnx::Add_2600",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.005409541092519685,
+      "zero_point": 0,
+      "offset": 31078016,
+      "nbytes": 384,
+      "sha256": "b6b2afe0e35d1c05b94e8f47ed212875266aa8c8fd79206c38f73dd1dfe6fada",
+      "source_file": "decoder/042_onnx_Add_2600.i8"
+    },
+    {
+      "name": "onnx::Add_2692",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.010380782480314961,
+      "zero_point": 0,
+      "offset": 31078400,
+      "nbytes": 384,
+      "sha256": "497dc50fabb832fe9e927b4e1c0bb3e63a67ea18d64998b95e1ebe3516a2d804",
+      "source_file": "decoder/043_onnx_Add_2692.i8"
+    },
+    {
+      "name": "onnx::MatMul_2693",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.002253014271653543,
+      "zero_point": 0,
+      "offset": 31078784,
+      "nbytes": 147456,
+      "sha256": "d98ea85f68c8a44a1427078f9cbfe32c80fc43d1782bba12adf6ef59e56de388",
+      "source_file": "decoder/044_onnx_MatMul_2693.i8"
+    },
+    {
+      "name": "onnx::Add_2695",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.019965674933486097,
+      "zero_point": 0,
+      "offset": 31226240,
+      "nbytes": 384,
+      "sha256": "d9eb81d60586bd11fd55f9acdb8c728c98722ac1b3fe7d2f71050d45e0a31c42",
+      "source_file": "decoder/045_onnx_Add_2695.i8"
+    },
+    {
+      "name": "onnx::MatMul_2696",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0009073453156028207,
+      "zero_point": 0,
+      "offset": 31226624,
+      "nbytes": 147456,
+      "sha256": "b2a64efd8ede2245e8fc8ce40d18aa995ab5e8cd9af8b1e2677729bdbe3ea483",
+      "source_file": "decoder/046_onnx_MatMul_2696.i8"
+    },
+    {
+      "name": "onnx::Add_2779",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.006078524852362204,
+      "zero_point": 0,
+      "offset": 31374080,
+      "nbytes": 384,
+      "sha256": "d46a0d585f3fffd9df6f9fe884d9b28000a24bebaac592c445c63ccf5433b359",
+      "source_file": "decoder/047_onnx_Add_2779.i8"
+    },
+    {
+      "name": "onnx::MatMul_2780",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0019973394438976377,
+      "zero_point": 0,
+      "offset": 31374464,
+      "nbytes": 147456,
+      "sha256": "51809745babbc9ecccb7c29d2f539f61fbeb0c5937b9e198233675168d0a57ff",
+      "source_file": "decoder/048_onnx_MatMul_2780.i8"
+    },
+    {
+      "name": "onnx::Add_2782",
+      "model_part": "decoder",
+      "shape": [
+        1536
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.038693405511811024,
+      "zero_point": 0,
+      "offset": 31521920,
+      "nbytes": 1536,
+      "sha256": "a32b115da61de6a0e24a1697c5e8045a4fdd596e465e1947a8492058130a6f24",
+      "source_file": "decoder/049_onnx_Add_2782.i8"
+    },
+    {
+      "name": "onnx::MatMul_2783",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        1536
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0021222933070866143,
+      "zero_point": 0,
+      "offset": 31523456,
+      "nbytes": 589824,
+      "sha256": "fc2bac0e7ba46e45a17ecbf91a5a4896f87a847ae94dcfed19177feffe595fbd",
+      "source_file": "decoder/050_onnx_MatMul_2783.i8"
+    },
+    {
+      "name": "onnx::Add_2785",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.027974286417322834,
+      "zero_point": 0,
+      "offset": 32113280,
+      "nbytes": 384,
+      "sha256": "2dad44e0b3b3ad562bd63f02346bc2c02c2f999b20f14936d209bef1b07051ee",
+      "source_file": "decoder/051_onnx_Add_2785.i8"
+    },
+    {
+      "name": "onnx::MatMul_2786",
+      "model_part": "decoder",
+      "shape": [
+        1536,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0034775621309055117,
+      "zero_point": 0,
+      "offset": 32113664,
+      "nbytes": 589824,
+      "sha256": "f400e40aa12319d6bfb2b9400586f2f936748e8fcd3f19e2bd341d00c7d8af51",
+      "source_file": "decoder/052_onnx_MatMul_2786.i8"
+    },
+    {
+      "name": "onnx::Add_2788",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.016192205308929203,
+      "zero_point": 0,
+      "offset": 32703488,
+      "nbytes": 384,
+      "sha256": "be2912775775ec32be9df8c3b55ba68718a22b4b9a048a671abe32458c2d75f7",
+      "source_file": "decoder/053_onnx_Add_2788.i8"
+    },
+    {
+      "name": "onnx::Add_2803",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0015753798597440945,
+      "zero_point": 0,
+      "offset": 32703872,
+      "nbytes": 384,
+      "sha256": "19088cd7fd6225bbec05d6a0d8453858e13e3c56882179253425219245587403",
+      "source_file": "decoder/054_onnx_Add_2803.i8"
+    },
+    {
+      "name": "onnx::Add_2895",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.01321050688976378,
+      "zero_point": 0,
+      "offset": 32704256,
+      "nbytes": 384,
+      "sha256": "43fc9e9a51d5df2b7d6c9232913efc92df9c09249652ce051a6413f15afae975",
+      "source_file": "decoder/055_onnx_Add_2895.i8"
+    },
+    {
+      "name": "onnx::MatMul_2896",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.001991572342519685,
+      "zero_point": 0,
+      "offset": 32704640,
+      "nbytes": 147456,
+      "sha256": "06e981236fb0403616d424b8b03be5c44cc9499a37dfdd1ca9f5f139f1b1c2f6",
+      "source_file": "decoder/056_onnx_MatMul_2896.i8"
+    },
+    {
+      "name": "onnx::Add_2898",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.02253206883828471,
+      "zero_point": 0,
+      "offset": 32852096,
+      "nbytes": 384,
+      "sha256": "0135b3ffa7bf44b6281fb88abf4558f00f11947c8b89c6ac0ca9a96bfa7973f4",
+      "source_file": "decoder/057_onnx_Add_2898.i8"
+    },
+    {
+      "name": "onnx::MatMul_2899",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0009127825967908844,
+      "zero_point": 0,
+      "offset": 32852480,
+      "nbytes": 147456,
+      "sha256": "5b0fd95e8a658e772324d993d18ca9f3eb12a2fa9fa657f751b6d57d5fdd0f1a",
+      "source_file": "decoder/058_onnx_MatMul_2899.i8"
+    },
+    {
+      "name": "onnx::Add_2982",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.008020115649606299,
+      "zero_point": 0,
+      "offset": 32999936,
+      "nbytes": 384,
+      "sha256": "ac2849f0c58a699b3888b99b1bfbedb5e6af5ac928ea06dfcec0fc2cd2746f7b",
+      "source_file": "decoder/059_onnx_Add_2982.i8"
+    },
+    {
+      "name": "onnx::MatMul_2983",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0020434762549212597,
+      "zero_point": 0,
+      "offset": 33000320,
+      "nbytes": 147456,
+      "sha256": "bfab573cf36acd06a7225ad594df4a246d4b535efa9cc92621500d929c63372a",
+      "source_file": "decoder/060_onnx_MatMul_2983.i8"
+    },
+    {
+      "name": "onnx::Add_2985",
+      "model_part": "decoder",
+      "shape": [
+        1536
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0359251968503937,
+      "zero_point": 0,
+      "offset": 33147776,
+      "nbytes": 1536,
+      "sha256": "2b92a51a290389b4bb3757f47a2e6196a4f7933191122365b0793c62ba6a0d33",
+      "source_file": "decoder/061_onnx_Add_2985.i8"
+    },
+    {
+      "name": "onnx::MatMul_2986",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        1536
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0026201863927165355,
+      "zero_point": 0,
+      "offset": 33149312,
+      "nbytes": 589824,
+      "sha256": "e72405dbdcb9b46f448ea7329f8d2d62d18f50e2249f87dffca1ae3b834b6fe6",
+      "source_file": "decoder/062_onnx_MatMul_2986.i8"
+    },
+    {
+      "name": "onnx::Add_2988",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.01628629429133858,
+      "zero_point": 0,
+      "offset": 33739136,
+      "nbytes": 384,
+      "sha256": "c10da288262544b9e5de172a9efc91eca4975563f052169066e15f37ead1fc0a",
+      "source_file": "decoder/063_onnx_Add_2988.i8"
+    },
+    {
+      "name": "onnx::MatMul_2989",
+      "model_part": "decoder",
+      "shape": [
+        1536,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.003333384596456693,
+      "zero_point": 0,
+      "offset": 33739520,
+      "nbytes": 589824,
+      "sha256": "e20b710af61828f85e4a374ab154c6924bacf7650d5ea0b032c587f0a619e054",
+      "source_file": "decoder/064_onnx_MatMul_2989.i8"
+    },
+    {
+      "name": "onnx::Add_2991",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.02355427629365696,
+      "zero_point": 0,
+      "offset": 34329344,
+      "nbytes": 384,
+      "sha256": "3735df10ae4d3716bd82cbcc4cedb3bdcd3d642746c125970995ae337bf9dff9",
+      "source_file": "decoder/065_onnx_Add_2991.i8"
+    },
+    {
+      "name": "onnx::Add_3006",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.004286878690944882,
+      "zero_point": 0,
+      "offset": 34329728,
+      "nbytes": 384,
+      "sha256": "28711c07d5e98aefdbea3eff5205422d166fd91a17bba1c72a1fc8024a1949b0",
+      "source_file": "decoder/066_onnx_Add_3006.i8"
+    },
+    {
+      "name": "onnx::Add_3098",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.04622908464566929,
+      "zero_point": 0,
+      "offset": 34330112,
+      "nbytes": 384,
+      "sha256": "2eb1b1a53b9ec06c926190fde3bfaa90c55e0b2e53398cb4ab0fa89fe1eea182",
+      "source_file": "decoder/067_onnx_Add_3098.i8"
+    },
+    {
+      "name": "onnx::MatMul_3099",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.002860482283464567,
+      "zero_point": 0,
+      "offset": 34330496,
+      "nbytes": 147456,
+      "sha256": "07b98afd6332ad3e7252d644efa35ca009c447331cb02417202b1a82c5373662",
+      "source_file": "decoder/068_onnx_MatMul_3099.i8"
+    },
+    {
+      "name": "onnx::Add_3101",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.023815265790684017,
+      "zero_point": 0,
+      "offset": 34477952,
+      "nbytes": 384,
+      "sha256": "757ea149179e7f308dd6269bf0414eb4c62a5d801afc07c84b35d2a23906ef56",
+      "source_file": "decoder/069_onnx_Add_3101.i8"
+    },
+    {
+      "name": "onnx::MatMul_3102",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0006796593858501104,
+      "zero_point": 0,
+      "offset": 34478336,
+      "nbytes": 147456,
+      "sha256": "f1476bd2c1b7128cd9efe9b581458650f9b0afbb727b363f8e4b2e9c3e65766f",
+      "source_file": "decoder/070_onnx_MatMul_3102.i8"
+    },
+    {
+      "name": "onnx::Add_3185",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.05336491141732284,
+      "zero_point": 0,
+      "offset": 34625792,
+      "nbytes": 384,
+      "sha256": "2b24b5eda933141471b8bc45b36e4ffe3bbc586934cd3a4a9382ac6e9d414b62",
+      "source_file": "decoder/071_onnx_Add_3185.i8"
+    },
+    {
+      "name": "onnx::MatMul_3186",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0030334953248031494,
+      "zero_point": 0,
+      "offset": 34626176,
+      "nbytes": 147456,
+      "sha256": "9f1baf79145c241e7b1a75e6de209f2087b8b3ae2b9917b2f5c93ec63ffd45f0",
+      "source_file": "decoder/072_onnx_MatMul_3186.i8"
+    },
+    {
+      "name": "onnx::Add_3188",
+      "model_part": "decoder",
+      "shape": [
+        1536
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.06016240157480315,
+      "zero_point": 0,
+      "offset": 34773632,
+      "nbytes": 1536,
+      "sha256": "e9b5abb5630318829d5aa9ae32b382d20b10785265816dcac95ada4f570889c6",
+      "source_file": "decoder/073_onnx_Add_3188.i8"
+    },
+    {
+      "name": "onnx::MatMul_3189",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        1536
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0023837352362204725,
+      "zero_point": 0,
+      "offset": 34775168,
+      "nbytes": 589824,
+      "sha256": "e822fe7e8117d09c1138518e8f7715d6a95c8b16c2b5a39c8e641a882bf988d6",
+      "source_file": "decoder/074_onnx_MatMul_3189.i8"
+    },
+    {
+      "name": "onnx::Add_3191",
+      "model_part": "decoder",
+      "shape": [
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0336183562992126,
+      "zero_point": 0,
+      "offset": 35364992,
+      "nbytes": 384,
+      "sha256": "65a121e8fda2fce05ab6a99ef1f9cc182d636b1fac5596e4b07ba358108ea024",
+      "source_file": "decoder/075_onnx_Add_3191.i8"
+    },
+    {
+      "name": "onnx::MatMul_3192",
+      "model_part": "decoder",
+      "shape": [
+        1536,
+        384
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.007078155757874015,
+      "zero_point": 0,
+      "offset": 35365376,
+      "nbytes": 589824,
+      "sha256": "5a187754930d1715a3c3a6df137fa60bd5ceddb31ebc70ffa1766f23e282a2c1",
+      "source_file": "decoder/076_onnx_MatMul_3192.i8"
+    },
+    {
+      "name": "onnx::MatMul_3194",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        51864
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.003804364542322835,
+      "zero_point": 0,
+      "offset": 35955200,
+      "nbytes": 19915776,
+      "sha256": "7a75459920a1ebda2046cf010184c01898195ec23ec19be0898b4e05027ffc56",
+      "source_file": "decoder/077_onnx_MatMul_3194.i8"
+    },
+    {
+      "name": "/0/mlp/1/Constant_output_0",
+      "model_part": "decoder",
+      "shape": [],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.011135539670628825,
+      "zero_point": 0,
+      "offset": 55870976,
+      "nbytes": 1,
+      "sha256": "620bfdaa346b088fb49998d92f19a7eaf6bfc2fb0aee015753966da1028cb731",
+      "source_file": "decoder/088_0_mlp_1_Constant_output_0.i8"
+    },
+    {
+      "name": "/0/mlp/1/Constant_1_output_0",
+      "model_part": "decoder",
+      "shape": [],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.007874015748031496,
+      "zero_point": 0,
+      "offset": 55871040,
+      "nbytes": 1,
+      "sha256": "620bfdaa346b088fb49998d92f19a7eaf6bfc2fb0aee015753966da1028cb731",
+      "source_file": "decoder/089_0_mlp_1_Constant_1_output_0.i8"
+    },
+    {
+      "name": "/0/mlp/1/Constant_2_output_0",
+      "model_part": "decoder",
+      "shape": [],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.003937007874015748,
+      "zero_point": 0,
+      "offset": 55871104,
+      "nbytes": 1,
+      "sha256": "620bfdaa346b088fb49998d92f19a7eaf6bfc2fb0aee015753966da1028cb731",
+      "source_file": "decoder/090_0_mlp_1_Constant_2_output_0.i8"
+    },
+    {
+      "name": "_v_2778",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        1152
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0020063545290879376,
+      "zero_point": 0,
+      "offset": 55871168,
+      "nbytes": 442368,
+      "sha256": "e96a22f6418186c456b44236dbca4f5fe6475e61064901b2d6fb93c5a233f8cb",
+      "source_file": "decoder/092_v_2778.i8"
+    },
+    {
+      "name": "_v_2785",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        1152
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0017080231914370079,
+      "zero_point": 0,
+      "offset": 56313536,
+      "nbytes": 442368,
+      "sha256": "891f8410e9d8d04288d801d780d612f3c44976969406a3d2547ac0965026f02f",
+      "source_file": "decoder/106_v_2785.i8"
+    },
+    {
+      "name": "_v_2792",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        1152
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0016234390378937007,
+      "zero_point": 0,
+      "offset": 56755904,
+      "nbytes": 442368,
+      "sha256": "059c819bf2ec332ad59f4397d84a3617be468567e7828b61a8ec7b7fd7f0ae1d",
+      "source_file": "decoder/115_v_2792.i8"
+    },
+    {
+      "name": "_v_2799",
+      "model_part": "decoder",
+      "shape": [
+        384,
+        1152
+      ],
+      "dtype": "int8_symmetric_per_tensor",
+      "scale": 0.0024010365403543308,
+      "zero_point": 0,
+      "offset": 57198272,
+      "nbytes": 442368,
+      "sha256": "5d4dd591e9dd4ab8bfc42a11565bbc41e39c07039b5bf4d702cdd15412c8c082",
+      "source_file": "decoder/124_v_2799.i8"
+    }
+  ],
+  "manifest_region_offset": 57640640,
+  "manifest_region_nbytes": 68398
+}

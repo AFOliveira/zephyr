@@ -1,0 +1,14 @@
+# Copyright (c) 2026 AIFoundry
+# SPDX-License-Identifier: Apache-2.0
+
+cmake_minimum_required(VERSION 3.20.0)
+
+find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
+project(twoelf_payload)
+
+set(TWOELF_PAYLOAD_BASE "1000" CACHE STRING "Base value published by this payload")
+
+target_sources(app PRIVATE src/main.c)
+target_compile_definitions(app PRIVATE TWOELF_PAYLOAD_BASE=${TWOELF_PAYLOAD_BASE})
+
+zephyr_ld_options(-Wl,--emit-relocs)

@@ -1,0 +1,861 @@
+{
+  "schema": "whisper-raw-int8-host-executor-report",
+  "version": 1,
+  "timestamp": "20260506-081131",
+  "ok": true,
+  "bundle_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/native_v1_bundles/bundle_20260505-205553",
+  "resident_manifest": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/resident_layout_host/run_20260506-080629/resident_weight_manifest.json",
+  "patched_models": {
+    "encoder": {
+      "part": "encoder",
+      "source_model": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/native_v1_bundles/bundle_20260505-205553/encoder_fp32.onnx",
+      "output_model": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/raw_int8_host_executor/run_20260506-081131/encoder_raw_int8_dequant.onnx",
+      "source_sha256": "20bd728e03bff2954da28028e56e57f7eb3252b6a6a08ae4296e411d360a11b2",
+      "output_sha256": "5831300bf8090fda4a5c635bb03299cf57425dd5b6e2a926928a13cb84ccbb09",
+      "replaced_float_initializers": 135,
+      "skipped_nonfloat_initializers": 4,
+      "total_int8_bytes": 9389572,
+      "total_fp32_materialized_bytes": 37558288,
+      "compression_ratio": 4.0,
+      "max_abs_reconstruction_error": 0.06230008602142334,
+      "largest_replaced": [
+        {
+          "name": "onnx::MatMul_780",
+          "shape": [
+            384,
+            1536
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0030046598179133857,
+          "max_abs_reconstruction_error": 0.0015020892024040222
+        },
+        {
+          "name": "onnx::MatMul_783",
+          "shape": [
+            1536,
+            384
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.002614419291338583,
+          "max_abs_reconstruction_error": 0.0013072043657302856
+        },
+        {
+          "name": "onnx::MatMul_812",
+          "shape": [
+            384,
+            1536
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0016926442544291339,
+          "max_abs_reconstruction_error": 0.000846292357891798
+        },
+        {
+          "name": "onnx::MatMul_815",
+          "shape": [
+            1536,
+            384
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0021549735482283465,
+          "max_abs_reconstruction_error": 0.0010774880647659302
+        },
+        {
+          "name": "onnx::MatMul_844",
+          "shape": [
+            384,
+            1536
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.004236897145669292,
+          "max_abs_reconstruction_error": 0.002118388656526804
+        },
+        {
+          "name": "onnx::MatMul_847",
+          "shape": [
+            1536,
+            384
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0026336429625984253,
+          "max_abs_reconstruction_error": 0.0013168156147003174
+        },
+        {
+          "name": "onnx::MatMul_876",
+          "shape": [
+            384,
+            1536
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.003479484498031496,
+          "max_abs_reconstruction_error": 0.001739501953125
+        },
+        {
+          "name": "onnx::MatMul_879",
+          "shape": [
+            1536,
+            384
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0030104269192913384,
+          "max_abs_reconstruction_error": 0.0015052109956741333
+        },
+        {
+          "name": "encoder.positional_embedding",
+          "shape": [
+            1500,
+            384
+          ],
+          "int8_bytes": 576000,
+          "scale": 0.007874015748031496,
+          "max_abs_reconstruction_error": 0.0039370059967041016
+        },
+        {
+          "name": "onnx::Conv_750",
+          "shape": [
+            384,
+            384,
+            3
+          ],
+          "int8_bytes": 442368,
+          "scale": 0.0063438115157480315,
+          "max_abs_reconstruction_error": 0.0031718905083835125
+        },
+        {
+          "name": "_v_648",
+          "shape": [
+            384,
+            1152
+          ],
+          "int8_bytes": 442368,
+          "scale": 0.004852054625984252,
+          "max_abs_reconstruction_error": 0.002425907179713249
+        },
+        {
+          "name": "_v_655",
+          "shape": [
+            384,
+            1152
+          ],
+          "int8_bytes": 442368,
+          "scale": 0.0043906865157480315,
+          "max_abs_reconstruction_error": 0.0021953280083835125
+        },
+        {
+          "name": "_v_662",
+          "shape": [
+            384,
+            1152
+          ],
+          "int8_bytes": 442368,
+          "scale": 0.004632904773622047,
+          "max_abs_reconstruction_error": 0.0023164451122283936
+        },
+        {
+          "name": "_v_669",
+          "shape": [
+            384,
+            1152
+          ],
+          "int8_bytes": 442368,
+          "scale": 0.004294568159448819,
+          "max_abs_reconstruction_error": 0.00214689364656806
+        },
+        {
+          "name": "onnx::MatMul_777",
+          "shape": [
+            384,
+            384
+          ],
+          "int8_bytes": 147456,
+          "scale": 0.003244955708661417,
+          "max_abs_reconstruction_error": 0.0016223578713834286
+        },
+        {
+          "name": "onnx::MatMul_809",
+          "shape": [
+            384,
+            384
+          ],
+          "int8_bytes": 147456,
+          "scale": 0.002276082677165354,
+          "max_abs_reconstruction_error": 0.0011380314826965332
+        }
+      ]
+    },
+    "decoder": {
+      "part": "decoder",
+      "source_model": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/native_v1_bundles/bundle_20260505-205553/decoder_fp32.onnx",
+      "output_model": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase1/raw_int8_host_executor/run_20260506-081131/decoder_raw_int8_dequant.onnx",
+      "source_sha256": "fef679d932bd9602f96601fb988a6391315ca5530bb18f2eda977b6f7a16a654",
+      "output_sha256": "aef40f1dd4e94faa3e3b638a8b2e856747b8c1ca11e8877e17d009d85e13b779",
+      "replaced_float_initializers": 85,
+      "skipped_nonfloat_initializers": 48,
+      "total_int8_bytes": 48250627,
+      "total_fp32_materialized_bytes": 193002508,
+      "compression_ratio": 4.0,
+      "max_abs_reconstruction_error": 0.06582260131835938,
+      "largest_replaced": [
+        {
+          "name": "token_embedding.weight",
+          "shape": [
+            51864,
+            384
+          ],
+          "int8_bytes": 19915776,
+          "scale": 0.003804364542322835,
+          "max_abs_reconstruction_error": 0.0019021779298782349
+        },
+        {
+          "name": "onnx::MatMul_3194",
+          "shape": [
+            384,
+            51864
+          ],
+          "int8_bytes": 19915776,
+          "scale": 0.003804364542322835,
+          "max_abs_reconstruction_error": 0.0019021779298782349
+        },
+        {
+          "name": "onnx::MatMul_2580",
+          "shape": [
+            384,
+            1536
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0022164892962598425,
+          "max_abs_reconstruction_error": 0.0011081695556640625
+        },
+        {
+          "name": "onnx::MatMul_2583",
+          "shape": [
+            1536,
+            384
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0038389671505905513,
+          "max_abs_reconstruction_error": 0.0019192206673324108
+        },
+        {
+          "name": "onnx::MatMul_2783",
+          "shape": [
+            384,
+            1536
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0021222933070866143,
+          "max_abs_reconstruction_error": 0.0010610716417431831
+        },
+        {
+          "name": "onnx::MatMul_2786",
+          "shape": [
+            1536,
+            384
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0034775621309055117,
+          "max_abs_reconstruction_error": 0.0017385482788085938
+        },
+        {
+          "name": "onnx::MatMul_2986",
+          "shape": [
+            384,
+            1536
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0026201863927165355,
+          "max_abs_reconstruction_error": 0.0013099731877446175
+        },
+        {
+          "name": "onnx::MatMul_2989",
+          "shape": [
+            1536,
+            384
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.003333384596456693,
+          "max_abs_reconstruction_error": 0.0016663619317114353
+        },
+        {
+          "name": "onnx::MatMul_3189",
+          "shape": [
+            384,
+            1536
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.0023837352362204725,
+          "max_abs_reconstruction_error": 0.0011918693780899048
+        },
+        {
+          "name": "onnx::MatMul_3192",
+          "shape": [
+            1536,
+            384
+          ],
+          "int8_bytes": 589824,
+          "scale": 0.007078155757874015,
+          "max_abs_reconstruction_error": 0.0035381317138671875
+        },
+        {
+          "name": "_v_2778",
+          "shape": [
+            384,
+            1152
+          ],
+          "int8_bytes": 442368,
+          "scale": 0.0020063545290879376,
+          "max_abs_reconstruction_error": 0.001003175973892212
+        },
+        {
+          "name": "_v_2785",
+          "shape": [
+            384,
+            1152
+          ],
+          "int8_bytes": 442368,
+          "scale": 0.0017080231914370079,
+          "max_abs_reconstruction_error": 0.0008540077833458781
+        },
+        {
+          "name": "_v_2792",
+          "shape": [
+            384,
+            1152
+          ],
+          "int8_bytes": 442368,
+          "scale": 0.0016234390378937007,
+          "max_abs_reconstruction_error": 0.0008115880191326141
+        },
+        {
+          "name": "_v_2799",
+          "shape": [
+            384,
+            1152
+          ],
+          "int8_bytes": 442368,
+          "scale": 0.0024010365403543308,
+          "max_abs_reconstruction_error": 0.001200459897518158
+        },
+        {
+          "name": "onnx::MatMul_2490",
+          "shape": [
+            384,
+            384
+          ],
+          "int8_bytes": 147456,
+          "scale": 0.0016147883858267716,
+          "max_abs_reconstruction_error": 0.0008073970675468445
+        },
+        {
+          "name": "onnx::MatMul_2493",
+          "shape": [
+            384,
+            384
+          ],
+          "int8_bytes": 147456,
+          "scale": 0.0006806788834061209,
+          "max_abs_reconstruction_error": 0.0003403009322937578
+        }
+      ]
+    }
+  },
+  "encoder": {
+    "wall_s": 0.7751563119963976,
+    "k_cache_cross_shape": [
+      4,
+      6,
+      64,
+      1500
+    ],
+    "v_cache_cross_shape": [
+      4,
+      6,
+      1500,
+      64
+    ],
+    "k_cache_cross_sha256": "daefe18c379b6f1b841f595fad43e81315fac25a6f6cceb7ec42ad242937d31a",
+    "v_cache_cross_sha256": "8f9033a9e02e21275602f4ed27a6b458bdad840b81da3b099da55cf9335ae4e0"
+  },
+  "raw_int8_result": {
+    "mode": "host-only",
+    "tokens": [
+      50257,
+      50258,
+      50358,
+      50362,
+      843,
+      523,
+      616,
+      5891,
+      3399,
+      1265,
+      407,
+      644,
+      534,
+      1499,
+      460,
+      466,
+      329,
+      345,
+      1265,
+      644,
+      345,
+      460,
+      466,
+      329,
+      534,
+      1499,
+      50256
+    ],
+    "token_text": [
+      "<|startoftranscript|>",
+      "<|en|>",
+      "<|transcribe|>",
+      "<|notimestamps|>",
+      " And",
+      " so",
+      " my",
+      " fellow",
+      " Americans",
+      " ask",
+      " not",
+      " what",
+      " your",
+      " country",
+      " can",
+      " do",
+      " for",
+      " you",
+      " ask",
+      " what",
+      " you",
+      " can",
+      " do",
+      " for",
+      " your",
+      " country",
+      "<|endoftext|>"
+    ],
+    "text": " And so my fellow Americans ask not what your country can do for you ask what you can do for your country",
+    "steps": [
+      {
+        "step": 0,
+        "input_token": 50257,
+        "input_text": "<|startoftranscript|>",
+        "host_argmax": 50362,
+        "host_argmax_text": "<|notimestamps|>",
+        "chosen_argmax": 50362,
+        "chosen_argmax_text": "<|notimestamps|>",
+        "next_token": 50258,
+        "next_text": "<|en|>",
+        "forced": true,
+        "silicon": null
+      },
+      {
+        "step": 1,
+        "input_token": 50258,
+        "input_text": "<|en|>",
+        "host_argmax": 13,
+        "host_argmax_text": ".",
+        "chosen_argmax": 13,
+        "chosen_argmax_text": ".",
+        "next_token": 50358,
+        "next_text": "<|transcribe|>",
+        "forced": true,
+        "silicon": null
+      },
+      {
+        "step": 2,
+        "input_token": 50358,
+        "input_text": "<|transcribe|>",
+        "host_argmax": 50256,
+        "host_argmax_text": "<|endoftext|>",
+        "chosen_argmax": 50256,
+        "chosen_argmax_text": "<|endoftext|>",
+        "next_token": 50362,
+        "next_text": "<|notimestamps|>",
+        "forced": true,
+        "silicon": null
+      },
+      {
+        "step": 3,
+        "input_token": 50362,
+        "input_text": "<|notimestamps|>",
+        "host_argmax": 843,
+        "host_argmax_text": " And",
+        "chosen_argmax": 843,
+        "chosen_argmax_text": " And",
+        "next_token": 843,
+        "next_text": " And",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 4,
+        "input_token": 843,
+        "input_text": " And",
+        "host_argmax": 523,
+        "host_argmax_text": " so",
+        "chosen_argmax": 523,
+        "chosen_argmax_text": " so",
+        "next_token": 523,
+        "next_text": " so",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 5,
+        "input_token": 523,
+        "input_text": " so",
+        "host_argmax": 616,
+        "host_argmax_text": " my",
+        "chosen_argmax": 616,
+        "chosen_argmax_text": " my",
+        "next_token": 616,
+        "next_text": " my",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 6,
+        "input_token": 616,
+        "input_text": " my",
+        "host_argmax": 5891,
+        "host_argmax_text": " fellow",
+        "chosen_argmax": 5891,
+        "chosen_argmax_text": " fellow",
+        "next_token": 5891,
+        "next_text": " fellow",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 7,
+        "input_token": 5891,
+        "input_text": " fellow",
+        "host_argmax": 3399,
+        "host_argmax_text": " Americans",
+        "chosen_argmax": 3399,
+        "chosen_argmax_text": " Americans",
+        "next_token": 3399,
+        "next_text": " Americans",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 8,
+        "input_token": 3399,
+        "input_text": " Americans",
+        "host_argmax": 1265,
+        "host_argmax_text": " ask",
+        "chosen_argmax": 1265,
+        "chosen_argmax_text": " ask",
+        "next_token": 1265,
+        "next_text": " ask",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 9,
+        "input_token": 1265,
+        "input_text": " ask",
+        "host_argmax": 407,
+        "host_argmax_text": " not",
+        "chosen_argmax": 407,
+        "chosen_argmax_text": " not",
+        "next_token": 407,
+        "next_text": " not",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 10,
+        "input_token": 407,
+        "input_text": " not",
+        "host_argmax": 644,
+        "host_argmax_text": " what",
+        "chosen_argmax": 644,
+        "chosen_argmax_text": " what",
+        "next_token": 644,
+        "next_text": " what",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 11,
+        "input_token": 644,
+        "input_text": " what",
+        "host_argmax": 534,
+        "host_argmax_text": " your",
+        "chosen_argmax": 534,
+        "chosen_argmax_text": " your",
+        "next_token": 534,
+        "next_text": " your",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 12,
+        "input_token": 534,
+        "input_text": " your",
+        "host_argmax": 1499,
+        "host_argmax_text": " country",
+        "chosen_argmax": 1499,
+        "chosen_argmax_text": " country",
+        "next_token": 1499,
+        "next_text": " country",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 13,
+        "input_token": 1499,
+        "input_text": " country",
+        "host_argmax": 460,
+        "host_argmax_text": " can",
+        "chosen_argmax": 460,
+        "chosen_argmax_text": " can",
+        "next_token": 460,
+        "next_text": " can",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 14,
+        "input_token": 460,
+        "input_text": " can",
+        "host_argmax": 466,
+        "host_argmax_text": " do",
+        "chosen_argmax": 466,
+        "chosen_argmax_text": " do",
+        "next_token": 466,
+        "next_text": " do",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 15,
+        "input_token": 466,
+        "input_text": " do",
+        "host_argmax": 329,
+        "host_argmax_text": " for",
+        "chosen_argmax": 329,
+        "chosen_argmax_text": " for",
+        "next_token": 329,
+        "next_text": " for",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 16,
+        "input_token": 329,
+        "input_text": " for",
+        "host_argmax": 345,
+        "host_argmax_text": " you",
+        "chosen_argmax": 345,
+        "chosen_argmax_text": " you",
+        "next_token": 345,
+        "next_text": " you",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 17,
+        "input_token": 345,
+        "input_text": " you",
+        "host_argmax": 1265,
+        "host_argmax_text": " ask",
+        "chosen_argmax": 1265,
+        "chosen_argmax_text": " ask",
+        "next_token": 1265,
+        "next_text": " ask",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 18,
+        "input_token": 1265,
+        "input_text": " ask",
+        "host_argmax": 644,
+        "host_argmax_text": " what",
+        "chosen_argmax": 644,
+        "chosen_argmax_text": " what",
+        "next_token": 644,
+        "next_text": " what",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 19,
+        "input_token": 644,
+        "input_text": " what",
+        "host_argmax": 345,
+        "host_argmax_text": " you",
+        "chosen_argmax": 345,
+        "chosen_argmax_text": " you",
+        "next_token": 345,
+        "next_text": " you",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 20,
+        "input_token": 345,
+        "input_text": " you",
+        "host_argmax": 460,
+        "host_argmax_text": " can",
+        "chosen_argmax": 460,
+        "chosen_argmax_text": " can",
+        "next_token": 460,
+        "next_text": " can",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 21,
+        "input_token": 460,
+        "input_text": " can",
+        "host_argmax": 466,
+        "host_argmax_text": " do",
+        "chosen_argmax": 466,
+        "chosen_argmax_text": " do",
+        "next_token": 466,
+        "next_text": " do",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 22,
+        "input_token": 466,
+        "input_text": " do",
+        "host_argmax": 329,
+        "host_argmax_text": " for",
+        "chosen_argmax": 329,
+        "chosen_argmax_text": " for",
+        "next_token": 329,
+        "next_text": " for",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 23,
+        "input_token": 329,
+        "input_text": " for",
+        "host_argmax": 534,
+        "host_argmax_text": " your",
+        "chosen_argmax": 534,
+        "chosen_argmax_text": " your",
+        "next_token": 534,
+        "next_text": " your",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 24,
+        "input_token": 534,
+        "input_text": " your",
+        "host_argmax": 1499,
+        "host_argmax_text": " country",
+        "chosen_argmax": 1499,
+        "chosen_argmax_text": " country",
+        "next_token": 1499,
+        "next_text": " country",
+        "forced": false,
+        "silicon": null
+      },
+      {
+        "step": 25,
+        "input_token": 1499,
+        "input_text": " country",
+        "host_argmax": 50256,
+        "host_argmax_text": "<|endoftext|>",
+        "chosen_argmax": 50256,
+        "chosen_argmax_text": "<|endoftext|>",
+        "next_token": 50256,
+        "next_text": "<|endoftext|>",
+        "forced": false,
+        "silicon": null
+      }
+    ],
+    "decode_wall_s": 0.4961749089998193,
+    "silicon_logits_wait_s": 0.0,
+    "generated_nonprompt_tokens": 23,
+    "tokens_per_s_wall": 46.35462128942191,
+    "tokens_per_s_silicon_logits_only": null
+  },
+  "references": {
+    "fp32_tokens": [
+      50257,
+      50258,
+      50358,
+      50362,
+      843,
+      523,
+      616,
+      5891,
+      3399,
+      1265,
+      407,
+      644,
+      534,
+      1499,
+      460,
+      466,
+      329,
+      345,
+      1265,
+      644,
+      345,
+      460,
+      466,
+      329,
+      534,
+      1499,
+      50256
+    ],
+    "fp32_text": " And so my fellow Americans ask not what your country can do for you ask what you can do for your country",
+    "dynamic_int8_tokens": [
+      50257,
+      50258,
+      50358,
+      50362,
+      843,
+      523,
+      616,
+      5891,
+      3399,
+      1265,
+      407,
+      644,
+      534,
+      1499,
+      460,
+      466,
+      329,
+      345,
+      1265,
+      644,
+      345,
+      460,
+      466,
+      329,
+      534,
+      1499,
+      50256
+    ],
+    "dynamic_int8_text": " And so my fellow Americans ask not what your country can do for you ask what you can do for your country"
+  },
+  "comparisons": {
+    "vs_fp32": {
+      "match": true,
+      "mismatch_count": 0,
+      "mismatches": [],
+      "text_match": true
+    },
+    "vs_dynamic_int8": {
+      "match": true,
+      "mismatch_count": 0,
+      "mismatches": [],
+      "text_match": true
+    }
+  }
+}

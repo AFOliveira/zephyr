@@ -1,0 +1,2153 @@
+{
+  "models": [
+    {
+      "model": "encoder",
+      "onnx": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_encoder_qaihub.onnx/whisper_tiny_en_encoder_qaihub.onnx",
+      "nodes": 257,
+      "initializers": 139,
+      "op_counts": {
+        "MatMul": 72,
+        "Add": 59,
+        "Transpose": 41,
+        "Mul": 20,
+        "Reshape": 16,
+        "Concat": 10,
+        "LayerNormalization": 9,
+        "Unsqueeze": 8,
+        "Div": 6,
+        "Erf": 6,
+        "Split": 4,
+        "Softmax": 4,
+        "Conv": 2
+      },
+      "totals": {
+        "actual_mib": 35.818458557128906,
+        "float_weight_fp32_mib": 35.81837463378906,
+        "float_weight_fp16_mib": 17.90918731689453,
+        "float_weight_int8_mib": 8.954593658447266,
+        "float_weight_int4_mib": 4.477296829223633
+      },
+      "io": {
+        "rows": [
+          {
+            "kind": "input",
+            "name": "audio",
+            "dtype": "float32",
+            "shape": [
+              1,
+              80,
+              3000
+            ],
+            "bytes": 960000,
+            "mib": 0.91552734375
+          },
+          {
+            "kind": "output",
+            "name": "k_cache_cross",
+            "dtype": "float32",
+            "shape": [
+              4,
+              6,
+              64,
+              1500
+            ],
+            "bytes": 9216000,
+            "mib": 8.7890625
+          },
+          {
+            "kind": "output",
+            "name": "v_cache_cross",
+            "dtype": "float32",
+            "shape": [
+              4,
+              6,
+              1500,
+              64
+            ],
+            "bytes": 9216000,
+            "mib": 8.7890625
+          }
+        ],
+        "total_bytes": 19392000,
+        "total_mib": 18.49365234375,
+        "precision_mib": {
+          "actual": 18.49365234375,
+          "fp32": 18.49365234375,
+          "fp16": 9.246826171875,
+          "int8": 4.6234130859375,
+          "int4": 2.31170654296875
+        }
+      },
+      "largest_initializers": [
+        {
+          "name": "onnx::MatMul_780",
+          "dims": [
+            384,
+            1536
+          ],
+          "data_type": "FLOAT",
+          "elements": 589824,
+          "actual_bytes": 2359296,
+          "actual_mib": 2.25,
+          "fp32_bytes": 2359296,
+          "fp16_bytes": 1179648,
+          "int8_bytes": 589824,
+          "int4_bytes": 294912
+        },
+        {
+          "name": "onnx::MatMul_783",
+          "dims": [
+            1536,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 589824,
+          "actual_bytes": 2359296,
+          "actual_mib": 2.25,
+          "fp32_bytes": 2359296,
+          "fp16_bytes": 1179648,
+          "int8_bytes": 589824,
+          "int4_bytes": 294912
+        },
+        {
+          "name": "onnx::MatMul_812",
+          "dims": [
+            384,
+            1536
+          ],
+          "data_type": "FLOAT",
+          "elements": 589824,
+          "actual_bytes": 2359296,
+          "actual_mib": 2.25,
+          "fp32_bytes": 2359296,
+          "fp16_bytes": 1179648,
+          "int8_bytes": 589824,
+          "int4_bytes": 294912
+        },
+        {
+          "name": "onnx::MatMul_815",
+          "dims": [
+            1536,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 589824,
+          "actual_bytes": 2359296,
+          "actual_mib": 2.25,
+          "fp32_bytes": 2359296,
+          "fp16_bytes": 1179648,
+          "int8_bytes": 589824,
+          "int4_bytes": 294912
+        },
+        {
+          "name": "onnx::MatMul_844",
+          "dims": [
+            384,
+            1536
+          ],
+          "data_type": "FLOAT",
+          "elements": 589824,
+          "actual_bytes": 2359296,
+          "actual_mib": 2.25,
+          "fp32_bytes": 2359296,
+          "fp16_bytes": 1179648,
+          "int8_bytes": 589824,
+          "int4_bytes": 294912
+        },
+        {
+          "name": "onnx::MatMul_847",
+          "dims": [
+            1536,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 589824,
+          "actual_bytes": 2359296,
+          "actual_mib": 2.25,
+          "fp32_bytes": 2359296,
+          "fp16_bytes": 1179648,
+          "int8_bytes": 589824,
+          "int4_bytes": 294912
+        },
+        {
+          "name": "onnx::MatMul_876",
+          "dims": [
+            384,
+            1536
+          ],
+          "data_type": "FLOAT",
+          "elements": 589824,
+          "actual_bytes": 2359296,
+          "actual_mib": 2.25,
+          "fp32_bytes": 2359296,
+          "fp16_bytes": 1179648,
+          "int8_bytes": 589824,
+          "int4_bytes": 294912
+        },
+        {
+          "name": "onnx::MatMul_879",
+          "dims": [
+            1536,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 589824,
+          "actual_bytes": 2359296,
+          "actual_mib": 2.25,
+          "fp32_bytes": 2359296,
+          "fp16_bytes": 1179648,
+          "int8_bytes": 589824,
+          "int4_bytes": 294912
+        },
+        {
+          "name": "encoder.positional_embedding",
+          "dims": [
+            1500,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 576000,
+          "actual_bytes": 2304000,
+          "actual_mib": 2.197265625,
+          "fp32_bytes": 2304000,
+          "fp16_bytes": 1152000,
+          "int8_bytes": 576000,
+          "int4_bytes": 288000
+        },
+        {
+          "name": "onnx::Conv_750",
+          "dims": [
+            384,
+            384,
+            3
+          ],
+          "data_type": "FLOAT",
+          "elements": 442368,
+          "actual_bytes": 1769472,
+          "actual_mib": 1.6875,
+          "fp32_bytes": 1769472,
+          "fp16_bytes": 884736,
+          "int8_bytes": 442368,
+          "int4_bytes": 221184
+        },
+        {
+          "name": "_v_648",
+          "dims": [
+            384,
+            1152
+          ],
+          "data_type": "FLOAT",
+          "elements": 442368,
+          "actual_bytes": 1769472,
+          "actual_mib": 1.6875,
+          "fp32_bytes": 1769472,
+          "fp16_bytes": 884736,
+          "int8_bytes": 442368,
+          "int4_bytes": 221184
+        },
+        {
+          "name": "_v_655",
+          "dims": [
+            384,
+            1152
+          ],
+          "data_type": "FLOAT",
+          "elements": 442368,
+          "actual_bytes": 1769472,
+          "actual_mib": 1.6875,
+          "fp32_bytes": 1769472,
+          "fp16_bytes": 884736,
+          "int8_bytes": 442368,
+          "int4_bytes": 221184
+        },
+        {
+          "name": "_v_662",
+          "dims": [
+            384,
+            1152
+          ],
+          "data_type": "FLOAT",
+          "elements": 442368,
+          "actual_bytes": 1769472,
+          "actual_mib": 1.6875,
+          "fp32_bytes": 1769472,
+          "fp16_bytes": 884736,
+          "int8_bytes": 442368,
+          "int4_bytes": 221184
+        },
+        {
+          "name": "_v_669",
+          "dims": [
+            384,
+            1152
+          ],
+          "data_type": "FLOAT",
+          "elements": 442368,
+          "actual_bytes": 1769472,
+          "actual_mib": 1.6875,
+          "fp32_bytes": 1769472,
+          "fp16_bytes": 884736,
+          "int8_bytes": 442368,
+          "int4_bytes": 221184
+        },
+        {
+          "name": "onnx::MatMul_777",
+          "dims": [
+            384,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 147456,
+          "actual_bytes": 589824,
+          "actual_mib": 0.5625,
+          "fp32_bytes": 589824,
+          "fp16_bytes": 294912,
+          "int8_bytes": 147456,
+          "int4_bytes": 73728
+        },
+        {
+          "name": "onnx::MatMul_809",
+          "dims": [
+            384,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 147456,
+          "actual_bytes": 589824,
+          "actual_mib": 0.5625,
+          "fp32_bytes": 589824,
+          "fp16_bytes": 294912,
+          "int8_bytes": 147456,
+          "int4_bytes": 73728
+        },
+        {
+          "name": "onnx::MatMul_841",
+          "dims": [
+            384,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 147456,
+          "actual_bytes": 589824,
+          "actual_mib": 0.5625,
+          "fp32_bytes": 589824,
+          "fp16_bytes": 294912,
+          "int8_bytes": 147456,
+          "int4_bytes": 73728
+        },
+        {
+          "name": "onnx::MatMul_873",
+          "dims": [
+            384,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 147456,
+          "actual_bytes": 589824,
+          "actual_mib": 0.5625,
+          "fp32_bytes": 589824,
+          "fp16_bytes": 294912,
+          "int8_bytes": 147456,
+          "int4_bytes": 73728
+        },
+        {
+          "name": "onnx::Conv_748",
+          "dims": [
+            384,
+            80,
+            3
+          ],
+          "data_type": "FLOAT",
+          "elements": 92160,
+          "actual_bytes": 368640,
+          "actual_mib": 0.3515625,
+          "fp32_bytes": 368640,
+          "fp16_bytes": 184320,
+          "int8_bytes": 92160,
+          "int4_bytes": 46080
+        },
+        {
+          "name": "onnx::MatMul_880",
+          "dims": [
+            384,
+            64
+          ],
+          "data_type": "FLOAT",
+          "elements": 24576,
+          "actual_bytes": 98304,
+          "actual_mib": 0.09375,
+          "fp32_bytes": 98304,
+          "fp16_bytes": 49152,
+          "int8_bytes": 24576,
+          "int4_bytes": 12288
+        },
+        {
+          "name": "onnx::MatMul_881",
+          "dims": [
+            384,
+            64
+          ],
+          "data_type": "FLOAT",
+          "elements": 24576,
+          "actual_bytes": 98304,
+          "actual_mib": 0.09375,
+          "fp32_bytes": 98304,
+          "fp16_bytes": 49152,
+          "int8_bytes": 24576,
+          "int4_bytes": 12288
+        },
+        {
+          "name": "onnx::MatMul_882",
+          "dims": [
+            384,
+            64
+          ],
+          "data_type": "FLOAT",
+          "elements": 24576,
+          "actual_bytes": 98304,
+          "actual_mib": 0.09375,
+          "fp32_bytes": 98304,
+          "fp16_bytes": 49152,
+          "int8_bytes": 24576,
+          "int4_bytes": 12288
+        },
+        {
+          "name": "onnx::MatMul_883",
+          "dims": [
+            384,
+            64
+          ],
+          "data_type": "FLOAT",
+          "elements": 24576,
+          "actual_bytes": 98304,
+          "actual_mib": 0.09375,
+          "fp32_bytes": 98304,
+          "fp16_bytes": 49152,
+          "int8_bytes": 24576,
+          "int4_bytes": 12288
+        },
+        {
+          "name": "onnx::MatMul_884",
+          "dims": [
+            384,
+            64
+          ],
+          "data_type": "FLOAT",
+          "elements": 24576,
+          "actual_bytes": 98304,
+          "actual_mib": 0.09375,
+          "fp32_bytes": 98304,
+          "fp16_bytes": 49152,
+          "int8_bytes": 24576,
+          "int4_bytes": 12288
+        },
+        {
+          "name": "onnx::MatMul_885",
+          "dims": [
+            384,
+            64
+          ],
+          "data_type": "FLOAT",
+          "elements": 24576,
+          "actual_bytes": 98304,
+          "actual_mib": 0.09375,
+          "fp32_bytes": 98304,
+          "fp16_bytes": 49152,
+          "int8_bytes": 24576,
+          "int4_bytes": 12288
+        }
+      ],
+      "matmul_weight_initializers": [
+        {
+          "node": "/encoder/blocks.0/mlp/0/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_780",
+          "dims": [
+            384,
+            1536
+          ],
+          "elements": 589824,
+          "fp32_mib": 2.25,
+          "int8_mib": 0.5625,
+          "int4_mib": 0.28125
+        },
+        {
+          "node": "/encoder/blocks.0/mlp/2/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_783",
+          "dims": [
+            1536,
+            384
+          ],
+          "elements": 589824,
+          "fp32_mib": 2.25,
+          "int8_mib": 0.5625,
+          "int4_mib": 0.28125
+        },
+        {
+          "node": "/encoder/blocks.1/mlp/0/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_812",
+          "dims": [
+            384,
+            1536
+          ],
+          "elements": 589824,
+          "fp32_mib": 2.25,
+          "int8_mib": 0.5625,
+          "int4_mib": 0.28125
+        },
+        {
+          "node": "/encoder/blocks.1/mlp/2/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_815",
+          "dims": [
+            1536,
+            384
+          ],
+          "elements": 589824,
+          "fp32_mib": 2.25,
+          "int8_mib": 0.5625,
+          "int4_mib": 0.28125
+        },
+        {
+          "node": "/encoder/blocks.2/mlp/0/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_844",
+          "dims": [
+            384,
+            1536
+          ],
+          "elements": 589824,
+          "fp32_mib": 2.25,
+          "int8_mib": 0.5625,
+          "int4_mib": 0.28125
+        },
+        {
+          "node": "/encoder/blocks.2/mlp/2/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_847",
+          "dims": [
+            1536,
+            384
+          ],
+          "elements": 589824,
+          "fp32_mib": 2.25,
+          "int8_mib": 0.5625,
+          "int4_mib": 0.28125
+        },
+        {
+          "node": "/encoder/blocks.3/mlp/0/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_876",
+          "dims": [
+            384,
+            1536
+          ],
+          "elements": 589824,
+          "fp32_mib": 2.25,
+          "int8_mib": 0.5625,
+          "int4_mib": 0.28125
+        },
+        {
+          "node": "/encoder/blocks.3/mlp/2/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_879",
+          "dims": [
+            1536,
+            384
+          ],
+          "elements": 589824,
+          "fp32_mib": 2.25,
+          "int8_mib": 0.5625,
+          "int4_mib": 0.28125
+        },
+        {
+          "node": "MatMul_from_/encoder/blocks.0/attn/query/MatMul_and_/encoder/blocks.0/attn/key/MatMul_and_/encoder/blocks.0/attn/value/MatMul",
+          "input_index": 1,
+          "initializer": "_v_648",
+          "dims": [
+            384,
+            1152
+          ],
+          "elements": 442368,
+          "fp32_mib": 1.6875,
+          "int8_mib": 0.421875,
+          "int4_mib": 0.2109375
+        },
+        {
+          "node": "MatMul_from_/encoder/blocks.1/attn/query/MatMul_and_/encoder/blocks.1/attn/key/MatMul_and_/encoder/blocks.1/attn/value/MatMul",
+          "input_index": 1,
+          "initializer": "_v_655",
+          "dims": [
+            384,
+            1152
+          ],
+          "elements": 442368,
+          "fp32_mib": 1.6875,
+          "int8_mib": 0.421875,
+          "int4_mib": 0.2109375
+        },
+        {
+          "node": "MatMul_from_/encoder/blocks.2/attn/query/MatMul_and_/encoder/blocks.2/attn/key/MatMul_and_/encoder/blocks.2/attn/value/MatMul",
+          "input_index": 1,
+          "initializer": "_v_662",
+          "dims": [
+            384,
+            1152
+          ],
+          "elements": 442368,
+          "fp32_mib": 1.6875,
+          "int8_mib": 0.421875,
+          "int4_mib": 0.2109375
+        },
+        {
+          "node": "MatMul_from_/encoder/blocks.3/attn/query/MatMul_and_/encoder/blocks.3/attn/key/MatMul_and_/encoder/blocks.3/attn/value/MatMul",
+          "input_index": 1,
+          "initializer": "_v_669",
+          "dims": [
+            384,
+            1152
+          ],
+          "elements": 442368,
+          "fp32_mib": 1.6875,
+          "int8_mib": 0.421875,
+          "int4_mib": 0.2109375
+        },
+        {
+          "node": "/encoder/blocks.0/attn/out/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_777",
+          "dims": [
+            384,
+            384
+          ],
+          "elements": 147456,
+          "fp32_mib": 0.5625,
+          "int8_mib": 0.140625,
+          "int4_mib": 0.0703125
+        },
+        {
+          "node": "/encoder/blocks.1/attn/out/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_809",
+          "dims": [
+            384,
+            384
+          ],
+          "elements": 147456,
+          "fp32_mib": 0.5625,
+          "int8_mib": 0.140625,
+          "int4_mib": 0.0703125
+        },
+        {
+          "node": "/encoder/blocks.2/attn/out/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_841",
+          "dims": [
+            384,
+            384
+          ],
+          "elements": 147456,
+          "fp32_mib": 0.5625,
+          "int8_mib": 0.140625,
+          "int4_mib": 0.0703125
+        },
+        {
+          "node": "/encoder/blocks.3/attn/out/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_873",
+          "dims": [
+            384,
+            384
+          ],
+          "elements": 147456,
+          "fp32_mib": 0.5625,
+          "int8_mib": 0.140625,
+          "int4_mib": 0.0703125
+        },
+        {
+          "node": "/0/0/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_880",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/0/1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_881",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/0/2/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_882",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/0/3/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_883",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/0/4/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_884",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/0/5/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_885",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/1/0/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_886",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/1/1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_887",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/1/2/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_888",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/1/3/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_889",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/1/4/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_890",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/1/5/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_891",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/2/0/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_892",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/2/1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_893",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/2/2/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_894",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/2/3/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_895",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/2/4/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_896",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/2/5/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_897",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/3/0/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_898",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/3/1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_899",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/3/2/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_900",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/3/3/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_901",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/3/4/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_902",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/3/5/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_903",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/0/0_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_904",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/0/1_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_905",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/0/2_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_906",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/0/3_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_907",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/0/4_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_908",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/0/5_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_909",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/1/0_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_910",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/1/1_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_911",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/1/2_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_912",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/1/3_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_913",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/1/4_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_914",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/1/5_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_915",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/2/0_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_916",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/2/1_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_917",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/2/2_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_918",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/2/3_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_919",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/2/4_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_920",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/2/5_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_921",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/3/0_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_922",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/3/1_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_923",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/3/2_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_924",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/3/3_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_925",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/3/4_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_926",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        },
+        {
+          "node": "/3/5_1/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_927",
+          "dims": [
+            384,
+            64
+          ],
+          "elements": 24576,
+          "fp32_mib": 0.09375,
+          "int8_mib": 0.0234375,
+          "int4_mib": 0.01171875
+        }
+      ]
+    },
+    {
+      "model": "decoder",
+      "onnx": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_decoder_qaihub.onnx/whisper_tiny_en_decoder_qaihub.onnx",
+      "nodes": 476,
+      "initializers": 133,
+      "op_counts": {
+        "Slice": 152,
+        "MatMul": 121,
+        "Add": 69,
+        "Softmax": 48,
+        "Reshape": 24,
+        "Concat": 18,
+        "LayerNormalization": 13,
+        "Unsqueeze": 8,
+        "Mul": 8,
+        "Split": 4,
+        "Div": 4,
+        "Erf": 4,
+        "Gather": 3
+      },
+      "totals": {
+        "actual_mib": 184.06225967407227,
+        "float_weight_fp32_mib": 184.0615348815918,
+        "float_weight_fp16_mib": 92.0307674407959,
+        "float_weight_int8_mib": 46.01538372039795,
+        "float_weight_int4_mib": 23.007692337036133
+      },
+      "io": {
+        "rows": [
+          {
+            "kind": "input",
+            "name": "x",
+            "dtype": "int32",
+            "shape": [
+              1,
+              1
+            ],
+            "bytes": 4,
+            "mib": 3.814697265625e-06
+          },
+          {
+            "kind": "input",
+            "name": "index",
+            "dtype": "int32",
+            "shape": [
+              1,
+              1
+            ],
+            "bytes": 4,
+            "mib": 3.814697265625e-06
+          },
+          {
+            "kind": "input",
+            "name": "k_cache_cross",
+            "dtype": "float32",
+            "shape": [
+              4,
+              6,
+              64,
+              1500
+            ],
+            "bytes": 9216000,
+            "mib": 8.7890625
+          },
+          {
+            "kind": "input",
+            "name": "v_cache_cross",
+            "dtype": "float32",
+            "shape": [
+              4,
+              6,
+              1500,
+              64
+            ],
+            "bytes": 9216000,
+            "mib": 8.7890625
+          },
+          {
+            "kind": "input",
+            "name": "k_cache_self",
+            "dtype": "float32",
+            "shape": [
+              4,
+              6,
+              64,
+              224
+            ],
+            "bytes": 1376256,
+            "mib": 1.3125
+          },
+          {
+            "kind": "input",
+            "name": "v_cache_self",
+            "dtype": "float32",
+            "shape": [
+              4,
+              6,
+              224,
+              64
+            ],
+            "bytes": 1376256,
+            "mib": 1.3125
+          },
+          {
+            "kind": "output",
+            "name": "logits",
+            "dtype": "float32",
+            "shape": [
+              1,
+              1,
+              51864
+            ],
+            "bytes": 207456,
+            "mib": 0.197845458984375
+          },
+          {
+            "kind": "output",
+            "name": "k_cache",
+            "dtype": "float32",
+            "shape": [
+              4,
+              6,
+              64,
+              224
+            ],
+            "bytes": 1376256,
+            "mib": 1.3125
+          },
+          {
+            "kind": "output",
+            "name": "v_cache",
+            "dtype": "float32",
+            "shape": [
+              4,
+              6,
+              224,
+              64
+            ],
+            "bytes": 1376256,
+            "mib": 1.3125
+          }
+        ],
+        "total_bytes": 24144488,
+        "total_mib": 23.025978088378906,
+        "precision_mib": {
+          "actual": 23.025978088378906,
+          "fp32": 23.025978088378906,
+          "fp16": 11.512992858886719,
+          "int8": 5.756500244140625,
+          "int4": 2.878253936767578
+        }
+      },
+      "largest_initializers": [
+        {
+          "name": "token_embedding.weight",
+          "dims": [
+            51864,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 19915776,
+          "actual_bytes": 79663104,
+          "actual_mib": 75.97265625,
+          "fp32_bytes": 79663104,
+          "fp16_bytes": 39831552,
+          "int8_bytes": 19915776,
+          "int4_bytes": 9957888
+        },
+        {
+          "name": "onnx::MatMul_3194",
+          "dims": [
+            384,
+            51864
+          ],
+          "data_type": "FLOAT",
+          "elements": 19915776,
+          "actual_bytes": 79663104,
+          "actual_mib": 75.97265625,
+          "fp32_bytes": 79663104,
+          "fp16_bytes": 39831552,
+          "int8_bytes": 19915776,
+          "int4_bytes": 9957888
+        },
+        {
+          "name": "onnx::MatMul_2580",
+          "dims": [
+            384,
+            1536
+          ],
+          "data_type": "FLOAT",
+          "elements": 589824,
+          "actual_bytes": 2359296,
+          "actual_mib": 2.25,
+          "fp32_bytes": 2359296,
+          "fp16_bytes": 1179648,
+          "int8_bytes": 589824,
+          "int4_bytes": 294912
+        },
+        {
+          "name": "onnx::MatMul_2583",
+          "dims": [
+            1536,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 589824,
+          "actual_bytes": 2359296,
+          "actual_mib": 2.25,
+          "fp32_bytes": 2359296,
+          "fp16_bytes": 1179648,
+          "int8_bytes": 589824,
+          "int4_bytes": 294912
+        },
+        {
+          "name": "onnx::MatMul_2783",
+          "dims": [
+            384,
+            1536
+          ],
+          "data_type": "FLOAT",
+          "elements": 589824,
+          "actual_bytes": 2359296,
+          "actual_mib": 2.25,
+          "fp32_bytes": 2359296,
+          "fp16_bytes": 1179648,
+          "int8_bytes": 589824,
+          "int4_bytes": 294912
+        },
+        {
+          "name": "onnx::MatMul_2786",
+          "dims": [
+            1536,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 589824,
+          "actual_bytes": 2359296,
+          "actual_mib": 2.25,
+          "fp32_bytes": 2359296,
+          "fp16_bytes": 1179648,
+          "int8_bytes": 589824,
+          "int4_bytes": 294912
+        },
+        {
+          "name": "onnx::MatMul_2986",
+          "dims": [
+            384,
+            1536
+          ],
+          "data_type": "FLOAT",
+          "elements": 589824,
+          "actual_bytes": 2359296,
+          "actual_mib": 2.25,
+          "fp32_bytes": 2359296,
+          "fp16_bytes": 1179648,
+          "int8_bytes": 589824,
+          "int4_bytes": 294912
+        },
+        {
+          "name": "onnx::MatMul_2989",
+          "dims": [
+            1536,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 589824,
+          "actual_bytes": 2359296,
+          "actual_mib": 2.25,
+          "fp32_bytes": 2359296,
+          "fp16_bytes": 1179648,
+          "int8_bytes": 589824,
+          "int4_bytes": 294912
+        },
+        {
+          "name": "onnx::MatMul_3189",
+          "dims": [
+            384,
+            1536
+          ],
+          "data_type": "FLOAT",
+          "elements": 589824,
+          "actual_bytes": 2359296,
+          "actual_mib": 2.25,
+          "fp32_bytes": 2359296,
+          "fp16_bytes": 1179648,
+          "int8_bytes": 589824,
+          "int4_bytes": 294912
+        },
+        {
+          "name": "onnx::MatMul_3192",
+          "dims": [
+            1536,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 589824,
+          "actual_bytes": 2359296,
+          "actual_mib": 2.25,
+          "fp32_bytes": 2359296,
+          "fp16_bytes": 1179648,
+          "int8_bytes": 589824,
+          "int4_bytes": 294912
+        },
+        {
+          "name": "_v_2778",
+          "dims": [
+            384,
+            1152
+          ],
+          "data_type": "FLOAT",
+          "elements": 442368,
+          "actual_bytes": 1769472,
+          "actual_mib": 1.6875,
+          "fp32_bytes": 1769472,
+          "fp16_bytes": 884736,
+          "int8_bytes": 442368,
+          "int4_bytes": 221184
+        },
+        {
+          "name": "_v_2785",
+          "dims": [
+            384,
+            1152
+          ],
+          "data_type": "FLOAT",
+          "elements": 442368,
+          "actual_bytes": 1769472,
+          "actual_mib": 1.6875,
+          "fp32_bytes": 1769472,
+          "fp16_bytes": 884736,
+          "int8_bytes": 442368,
+          "int4_bytes": 221184
+        },
+        {
+          "name": "_v_2792",
+          "dims": [
+            384,
+            1152
+          ],
+          "data_type": "FLOAT",
+          "elements": 442368,
+          "actual_bytes": 1769472,
+          "actual_mib": 1.6875,
+          "fp32_bytes": 1769472,
+          "fp16_bytes": 884736,
+          "int8_bytes": 442368,
+          "int4_bytes": 221184
+        },
+        {
+          "name": "_v_2799",
+          "dims": [
+            384,
+            1152
+          ],
+          "data_type": "FLOAT",
+          "elements": 442368,
+          "actual_bytes": 1769472,
+          "actual_mib": 1.6875,
+          "fp32_bytes": 1769472,
+          "fp16_bytes": 884736,
+          "int8_bytes": 442368,
+          "int4_bytes": 221184
+        },
+        {
+          "name": "onnx::MatMul_2490",
+          "dims": [
+            384,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 147456,
+          "actual_bytes": 589824,
+          "actual_mib": 0.5625,
+          "fp32_bytes": 589824,
+          "fp16_bytes": 294912,
+          "int8_bytes": 147456,
+          "int4_bytes": 73728
+        },
+        {
+          "name": "onnx::MatMul_2493",
+          "dims": [
+            384,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 147456,
+          "actual_bytes": 589824,
+          "actual_mib": 0.5625,
+          "fp32_bytes": 589824,
+          "fp16_bytes": 294912,
+          "int8_bytes": 147456,
+          "int4_bytes": 73728
+        },
+        {
+          "name": "onnx::MatMul_2577",
+          "dims": [
+            384,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 147456,
+          "actual_bytes": 589824,
+          "actual_mib": 0.5625,
+          "fp32_bytes": 589824,
+          "fp16_bytes": 294912,
+          "int8_bytes": 147456,
+          "int4_bytes": 73728
+        },
+        {
+          "name": "onnx::MatMul_2693",
+          "dims": [
+            384,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 147456,
+          "actual_bytes": 589824,
+          "actual_mib": 0.5625,
+          "fp32_bytes": 589824,
+          "fp16_bytes": 294912,
+          "int8_bytes": 147456,
+          "int4_bytes": 73728
+        },
+        {
+          "name": "onnx::MatMul_2696",
+          "dims": [
+            384,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 147456,
+          "actual_bytes": 589824,
+          "actual_mib": 0.5625,
+          "fp32_bytes": 589824,
+          "fp16_bytes": 294912,
+          "int8_bytes": 147456,
+          "int4_bytes": 73728
+        },
+        {
+          "name": "onnx::MatMul_2780",
+          "dims": [
+            384,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 147456,
+          "actual_bytes": 589824,
+          "actual_mib": 0.5625,
+          "fp32_bytes": 589824,
+          "fp16_bytes": 294912,
+          "int8_bytes": 147456,
+          "int4_bytes": 73728
+        },
+        {
+          "name": "onnx::MatMul_2896",
+          "dims": [
+            384,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 147456,
+          "actual_bytes": 589824,
+          "actual_mib": 0.5625,
+          "fp32_bytes": 589824,
+          "fp16_bytes": 294912,
+          "int8_bytes": 147456,
+          "int4_bytes": 73728
+        },
+        {
+          "name": "onnx::MatMul_2899",
+          "dims": [
+            384,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 147456,
+          "actual_bytes": 589824,
+          "actual_mib": 0.5625,
+          "fp32_bytes": 589824,
+          "fp16_bytes": 294912,
+          "int8_bytes": 147456,
+          "int4_bytes": 73728
+        },
+        {
+          "name": "onnx::MatMul_2983",
+          "dims": [
+            384,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 147456,
+          "actual_bytes": 589824,
+          "actual_mib": 0.5625,
+          "fp32_bytes": 589824,
+          "fp16_bytes": 294912,
+          "int8_bytes": 147456,
+          "int4_bytes": 73728
+        },
+        {
+          "name": "onnx::MatMul_3099",
+          "dims": [
+            384,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 147456,
+          "actual_bytes": 589824,
+          "actual_mib": 0.5625,
+          "fp32_bytes": 589824,
+          "fp16_bytes": 294912,
+          "int8_bytes": 147456,
+          "int4_bytes": 73728
+        },
+        {
+          "name": "onnx::MatMul_3102",
+          "dims": [
+            384,
+            384
+          ],
+          "data_type": "FLOAT",
+          "elements": 147456,
+          "actual_bytes": 589824,
+          "actual_mib": 0.5625,
+          "fp32_bytes": 589824,
+          "fp16_bytes": 294912,
+          "int8_bytes": 147456,
+          "int4_bytes": 73728
+        }
+      ],
+      "matmul_weight_initializers": [
+        {
+          "node": "/logits/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_3194",
+          "dims": [
+            384,
+            51864
+          ],
+          "elements": 19915776,
+          "fp32_mib": 75.97265625,
+          "int8_mib": 18.9931640625,
+          "int4_mib": 9.49658203125
+        },
+        {
+          "node": "/0/mlp/0/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_2580",
+          "dims": [
+            384,
+            1536
+          ],
+          "elements": 589824,
+          "fp32_mib": 2.25,
+          "int8_mib": 0.5625,
+          "int4_mib": 0.28125
+        },
+        {
+          "node": "/0/mlp/2/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_2583",
+          "dims": [
+            1536,
+            384
+          ],
+          "elements": 589824,
+          "fp32_mib": 2.25,
+          "int8_mib": 0.5625,
+          "int4_mib": 0.28125
+        },
+        {
+          "node": "/1/mlp/0/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_2783",
+          "dims": [
+            384,
+            1536
+          ],
+          "elements": 589824,
+          "fp32_mib": 2.25,
+          "int8_mib": 0.5625,
+          "int4_mib": 0.28125
+        },
+        {
+          "node": "/1/mlp/2/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_2786",
+          "dims": [
+            1536,
+            384
+          ],
+          "elements": 589824,
+          "fp32_mib": 2.25,
+          "int8_mib": 0.5625,
+          "int4_mib": 0.28125
+        },
+        {
+          "node": "/2/mlp/0/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_2986",
+          "dims": [
+            384,
+            1536
+          ],
+          "elements": 589824,
+          "fp32_mib": 2.25,
+          "int8_mib": 0.5625,
+          "int4_mib": 0.28125
+        },
+        {
+          "node": "/2/mlp/2/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_2989",
+          "dims": [
+            1536,
+            384
+          ],
+          "elements": 589824,
+          "fp32_mib": 2.25,
+          "int8_mib": 0.5625,
+          "int4_mib": 0.28125
+        },
+        {
+          "node": "/3/mlp/0/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_3189",
+          "dims": [
+            384,
+            1536
+          ],
+          "elements": 589824,
+          "fp32_mib": 2.25,
+          "int8_mib": 0.5625,
+          "int4_mib": 0.28125
+        },
+        {
+          "node": "/3/mlp/2/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_3192",
+          "dims": [
+            1536,
+            384
+          ],
+          "elements": 589824,
+          "fp32_mib": 2.25,
+          "int8_mib": 0.5625,
+          "int4_mib": 0.28125
+        },
+        {
+          "node": "MatMul_from_/0/attn/query/MatMul_and_/0/attn/key/MatMul_and_/0/attn/value/MatMul",
+          "input_index": 1,
+          "initializer": "_v_2778",
+          "dims": [
+            384,
+            1152
+          ],
+          "elements": 442368,
+          "fp32_mib": 1.6875,
+          "int8_mib": 0.421875,
+          "int4_mib": 0.2109375
+        },
+        {
+          "node": "MatMul_from_/1/attn/query/MatMul_and_/1/attn/key/MatMul_and_/1/attn/value/MatMul",
+          "input_index": 1,
+          "initializer": "_v_2785",
+          "dims": [
+            384,
+            1152
+          ],
+          "elements": 442368,
+          "fp32_mib": 1.6875,
+          "int8_mib": 0.421875,
+          "int4_mib": 0.2109375
+        },
+        {
+          "node": "MatMul_from_/2/attn/query/MatMul_and_/2/attn/key/MatMul_and_/2/attn/value/MatMul",
+          "input_index": 1,
+          "initializer": "_v_2792",
+          "dims": [
+            384,
+            1152
+          ],
+          "elements": 442368,
+          "fp32_mib": 1.6875,
+          "int8_mib": 0.421875,
+          "int4_mib": 0.2109375
+        },
+        {
+          "node": "MatMul_from_/3/attn/query/MatMul_and_/3/attn/key/MatMul_and_/3/attn/value/MatMul",
+          "input_index": 1,
+          "initializer": "_v_2799",
+          "dims": [
+            384,
+            1152
+          ],
+          "elements": 442368,
+          "fp32_mib": 1.6875,
+          "int8_mib": 0.421875,
+          "int4_mib": 0.2109375
+        },
+        {
+          "node": "/0/attn/out/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_2490",
+          "dims": [
+            384,
+            384
+          ],
+          "elements": 147456,
+          "fp32_mib": 0.5625,
+          "int8_mib": 0.140625,
+          "int4_mib": 0.0703125
+        },
+        {
+          "node": "/0/cross_attn/query/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_2493",
+          "dims": [
+            384,
+            384
+          ],
+          "elements": 147456,
+          "fp32_mib": 0.5625,
+          "int8_mib": 0.140625,
+          "int4_mib": 0.0703125
+        },
+        {
+          "node": "/0/cross_attn/out/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_2577",
+          "dims": [
+            384,
+            384
+          ],
+          "elements": 147456,
+          "fp32_mib": 0.5625,
+          "int8_mib": 0.140625,
+          "int4_mib": 0.0703125
+        },
+        {
+          "node": "/1/attn/out/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_2693",
+          "dims": [
+            384,
+            384
+          ],
+          "elements": 147456,
+          "fp32_mib": 0.5625,
+          "int8_mib": 0.140625,
+          "int4_mib": 0.0703125
+        },
+        {
+          "node": "/1/cross_attn/query/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_2696",
+          "dims": [
+            384,
+            384
+          ],
+          "elements": 147456,
+          "fp32_mib": 0.5625,
+          "int8_mib": 0.140625,
+          "int4_mib": 0.0703125
+        },
+        {
+          "node": "/1/cross_attn/out/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_2780",
+          "dims": [
+            384,
+            384
+          ],
+          "elements": 147456,
+          "fp32_mib": 0.5625,
+          "int8_mib": 0.140625,
+          "int4_mib": 0.0703125
+        },
+        {
+          "node": "/2/attn/out/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_2896",
+          "dims": [
+            384,
+            384
+          ],
+          "elements": 147456,
+          "fp32_mib": 0.5625,
+          "int8_mib": 0.140625,
+          "int4_mib": 0.0703125
+        },
+        {
+          "node": "/2/cross_attn/query/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_2899",
+          "dims": [
+            384,
+            384
+          ],
+          "elements": 147456,
+          "fp32_mib": 0.5625,
+          "int8_mib": 0.140625,
+          "int4_mib": 0.0703125
+        },
+        {
+          "node": "/2/cross_attn/out/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_2983",
+          "dims": [
+            384,
+            384
+          ],
+          "elements": 147456,
+          "fp32_mib": 0.5625,
+          "int8_mib": 0.140625,
+          "int4_mib": 0.0703125
+        },
+        {
+          "node": "/3/attn/out/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_3099",
+          "dims": [
+            384,
+            384
+          ],
+          "elements": 147456,
+          "fp32_mib": 0.5625,
+          "int8_mib": 0.140625,
+          "int4_mib": 0.0703125
+        },
+        {
+          "node": "/3/cross_attn/query/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_3102",
+          "dims": [
+            384,
+            384
+          ],
+          "elements": 147456,
+          "fp32_mib": 0.5625,
+          "int8_mib": 0.140625,
+          "int4_mib": 0.0703125
+        },
+        {
+          "node": "/3/cross_attn/out/MatMul",
+          "input_index": 1,
+          "initializer": "onnx::MatMul_3186",
+          "dims": [
+            384,
+            384
+          ],
+          "elements": 147456,
+          "fp32_mib": 0.5625,
+          "int8_mib": 0.140625,
+          "int4_mib": 0.0703125
+        }
+      ]
+    }
+  ]
+}

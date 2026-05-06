@@ -1,0 +1,2 @@
+index	op_type	node	case_label	elem_count	full_elem_count	tile_offset	rows	cols	required_bytes	wait_s	wall_s	host_max_abs	host_mean_abs	threshold	audit_pass	hpm3_cycles	hpm4_inst0	hpm5_inst1	hpm6_l2_miss_req	hpm7_icache_req	hpm8_icache_etlink_req
+53	Mul	/encoder/blocks.2/mlp/1/Mul_1		2304000	2304000	0	1	2304000	36880384	0.654671	0.9788107872009277	0.0	0.0	2e-06	True	9960730	18466536	18466541	432080	7020184	8

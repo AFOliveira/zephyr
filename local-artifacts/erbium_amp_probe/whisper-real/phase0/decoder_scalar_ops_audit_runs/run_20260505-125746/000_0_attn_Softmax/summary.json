@@ -1,0 +1,52 @@
+{
+  "wait_s": 0.00154218,
+  "summary": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "slots": [
+    {
+      "magic": 0,
+      "hart_id": 0,
+      "minion_id": 0,
+      "thread_id": 0,
+      "op_mode": 0,
+      "i0": 0,
+      "i1": 0,
+      "checksum": 0,
+      "done": 0
+    }
+  ],
+  "stream_error": true,
+  "kernel_launch_error": true
+}

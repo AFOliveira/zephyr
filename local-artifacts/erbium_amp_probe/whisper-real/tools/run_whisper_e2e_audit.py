@@ -434,23 +434,29 @@ class SiliconLogitsRunner:
             self.ln_weight.astype("<f4").tofile(ln_weight_path)
             self.ln_bias.astype("<f4").tofile(ln_bias_path)
             extra_static_paths.extend([ln_weight_path, ln_bias_path])
-        static_names = (
-            [p.name for p in self.elf_for_width.values()]
-            + [p.name for p in weight_paths]
-            + [p.name for p in extra_static_paths]
+        static_paths = (
+            list(self.elf_for_width.values())
+            + weight_paths
+            + extra_static_paths
         )
-        static_check = " && ".join(f"test -s {shlex.quote(name)}" for name in static_names)
+        static_names = [p.name for p in static_paths]
+        static_check = " && ".join(
+            f"test -f {shlex.quote(p.name)} && "
+            f"test \"$(stat -c %s {shlex.quote(p.name)})\" = {p.stat().st_size}"
+            for p in static_paths
+        )
         have_static = subprocess.run(
             [*SSH_CMD, f"cd {shlex.quote(self.remote_static)} && {static_check}"],
             text=True,
         ).returncode == 0
         if not have_static:
-            run_retry(["rsync", "-e", RSYNC_RSH, "-aq", "--partial", "--inplace",
+            run_retry(["rsync", "-e", RSYNC_RSH, "-aq", "--timeout=60",
+                       "--partial", "--inplace",
                        *(str(p) for p in self.elf_for_width.values()),
                        *(str(p) for p in weight_paths),
                        *(str(p) for p in extra_static_paths),
                        f"{REMOTE_HOST}:{self.remote_static}/"],
-                      attempts=5, delay_s=10.0)
+                      attempts=5, delay_s=10.0, timeout=300)
 
         link_cmd = "set -e; " + "; ".join(
             f"ln -sf {shlex.quote(self.remote_static + '/' + name)} {shlex.quote(self.remote + '/' + name)}"
@@ -473,7 +479,8 @@ class SiliconLogitsRunner:
             ln_ref_path = step_dir / "ln_ref.bin"
             np.asarray(ln_ref, dtype=np.float32).reshape(self.k_dim).astype("<f4").tofile(ln_ref_path)
             rsync_inputs.append(str(ln_ref_path))
-        run(["rsync", "-e", RSYNC_RSH, "-aq", "--partial", "--inplace",
+        run(["rsync", "-e", RSYNC_RSH, "-aq", "--timeout=60",
+             "--partial", "--inplace",
              *rsync_inputs, f"{REMOTE_HOST}:{self.remote}/"])
 
         script = f"""set -euo pipefail
@@ -623,7 +630,8 @@ PY
                 fetch_paths.append(f"{REMOTE_HOST}:{self.remote}/out_s{step:03d}_t{tile_id:02d}.bin")
         if self.tail_parallel_shires:
             fetch_paths.append(f"{REMOTE_HOST}:{self.remote}/run_s{step:03d}_parallel.log")
-        run(["rsync", "-e", RSYNC_RSH, "-aq", *fetch_paths, str(step_dir) + "/"])
+        run(["rsync", "-e", RSYNC_RSH, "-aq", "--timeout=60",
+             *fetch_paths, str(step_dir) + "/"])
 
         stitched = (
             None

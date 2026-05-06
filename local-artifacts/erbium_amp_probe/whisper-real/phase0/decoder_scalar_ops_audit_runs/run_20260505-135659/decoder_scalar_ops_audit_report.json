@@ -1,0 +1,521 @@
+{
+  "timestamp": "20260505-135659",
+  "scope": "Real Whisper decoder scalar/Softmax node audit on ET-SoC1",
+  "audio": {
+    "audio_path": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/audio/openai_whisper_jfk_16k.wav",
+    "audio_sha256": "80f71fdab049ca195115a63a738c7aeea50b2e09bc3513f85e627a28dbc5f40e",
+    "original_sample_rate": 16000,
+    "sample_rate": 16000,
+    "original_samples": 176000,
+    "samples": 176000,
+    "feature_shape": [
+      1,
+      80,
+      3000
+    ],
+    "feature_sha256": "51c777823b95b3de044bb07f386a8d435b858a958b90c9702002d26cf8ccea36"
+  },
+  "model": {
+    "encoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_encoder_qaihub.onnx/whisper_tiny_en_encoder_qaihub.onnx",
+    "encoder_sha256": "20bd728e03bff2954da28028e56e57f7eb3252b6a6a08ae4296e411d360a11b2",
+    "decoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_decoder_qaihub.onnx/whisper_tiny_en_decoder_qaihub.onnx",
+    "decoder_sha256": "fef679d932bd9602f96601fb988a6391315ca5530bb18f2eda977b6f7a16a654",
+    "tokenizer": "openai/whisper-tiny.en"
+  },
+  "decoder_step": 3,
+  "tokens_to_step": [
+    50257,
+    50258,
+    50358,
+    50362,
+    843
+  ],
+  "token_text_to_step": [
+    "<|startoftranscript|>",
+    "<|en|>",
+    "<|transcribe|>",
+    "<|notimestamps|>",
+    " And"
+  ],
+  "active_harts": 16,
+  "op_types": [
+    "Softmax"
+  ],
+  "selected_nodes": 12,
+  "all_pass": true,
+  "max_abs": 1.1175870895385742e-07,
+  "mean_wait_s": 0.0006158472500000001,
+  "feature_sha256": "51c777823b95b3de044bb07f386a8d435b858a958b90c9702002d26cf8ccea36",
+  "k_cache_cross_sha256": "e0f4b1bdeaae5d6f1fa95e9bffcf70e20509ab7cf521b94efdd39141e25863c3",
+  "v_cache_cross_sha256": "c2ba701500d06e2343f6e4591e51ce6f53473afcd21b4f236a228c8f6c16b658",
+  "results": [
+    {
+      "index": 0,
+      "node": "/3/attn/Softmax",
+      "op_type": "Softmax",
+      "inputs": [
+        "/3/attn/Add_output_0"
+      ],
+      "output": "/3/attn/Softmax_output_0",
+      "shape": [
+        224
+      ],
+      "elem_count": 224,
+      "rows": 1,
+      "cols": 224,
+      "wait_s": 0.00055169,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 5,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 28672,
+      "reference_hash": 28672,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 5.960464477539063e-08,
+      "host_mean_abs": 3.035113826932445e-10,
+      "threshold": 0.0005,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 11099,
+        "hpm4_inst0": 3540,
+        "hpm5_inst1": 4248,
+        "hpm6_l2_miss_req": 167,
+        "hpm7_icache_req": 18446744073709543154,
+        "hpm8_icache_etlink_req": 41
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-135659/000_3_attn_Softmax"
+    },
+    {
+      "index": 1,
+      "node": "/3/attn/Softmax_1",
+      "op_type": "Softmax",
+      "inputs": [
+        "/3/attn/Add_1_output_0"
+      ],
+      "output": "/3/attn/Softmax_1_output_0",
+      "shape": [
+        224
+      ],
+      "elem_count": 224,
+      "rows": 1,
+      "cols": 224,
+      "wait_s": 0.000549328,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 5,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 28672,
+      "reference_hash": 28672,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 1.1175870895385742e-07,
+      "host_mean_abs": 8.024341746626362e-10,
+      "threshold": 0.0005,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 10786,
+        "hpm4_inst0": 3540,
+        "hpm5_inst1": 4248,
+        "hpm6_l2_miss_req": 167,
+        "hpm7_icache_req": 18446744073709543114,
+        "hpm8_icache_etlink_req": 41
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-135659/001_3_attn_Softmax_1"
+    },
+    {
+      "index": 2,
+      "node": "/3/attn/Softmax_2",
+      "op_type": "Softmax",
+      "inputs": [
+        "/3/attn/Add_2_output_0"
+      ],
+      "output": "/3/attn/Softmax_2_output_0",
+      "shape": [
+        224
+      ],
+      "elem_count": 224,
+      "rows": 1,
+      "cols": 224,
+      "wait_s": 0.000552113,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 5,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 28672,
+      "reference_hash": 28672,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 9.313225746154785e-09,
+      "host_mean_abs": 4.157690164374728e-11,
+      "threshold": 0.0005,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 10886,
+        "hpm4_inst0": 3540,
+        "hpm5_inst1": 4248,
+        "hpm6_l2_miss_req": 167,
+        "hpm7_icache_req": 18446744073709543592,
+        "hpm8_icache_etlink_req": 41
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-135659/002_3_attn_Softmax_2"
+    },
+    {
+      "index": 3,
+      "node": "/3/attn/Softmax_3",
+      "op_type": "Softmax",
+      "inputs": [
+        "/3/attn/Add_3_output_0"
+      ],
+      "output": "/3/attn/Softmax_3_output_0",
+      "shape": [
+        224
+      ],
+      "elem_count": 224,
+      "rows": 1,
+      "cols": 224,
+      "wait_s": 0.000552747,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 5,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 28672,
+      "reference_hash": 28672,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 0.0,
+      "host_mean_abs": 0.0,
+      "threshold": 0.0005,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 10934,
+        "hpm4_inst0": 3540,
+        "hpm5_inst1": 4248,
+        "hpm6_l2_miss_req": 167,
+        "hpm7_icache_req": 18446744073709544132,
+        "hpm8_icache_etlink_req": 41
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-135659/003_3_attn_Softmax_3"
+    },
+    {
+      "index": 4,
+      "node": "/3/attn/Softmax_4",
+      "op_type": "Softmax",
+      "inputs": [
+        "/3/attn/Add_4_output_0"
+      ],
+      "output": "/3/attn/Softmax_4_output_0",
+      "shape": [
+        224
+      ],
+      "elem_count": 224,
+      "rows": 1,
+      "cols": 224,
+      "wait_s": 0.000553405,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 5,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 28672,
+      "reference_hash": 28672,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 5.960464477539063e-08,
+      "host_mean_abs": 4.3655745685100555e-10,
+      "threshold": 0.0005,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 10912,
+        "hpm4_inst0": 3540,
+        "hpm5_inst1": 4248,
+        "hpm6_l2_miss_req": 167,
+        "hpm7_icache_req": 18446744073709543614,
+        "hpm8_icache_etlink_req": 41
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-135659/004_3_attn_Softmax_4"
+    },
+    {
+      "index": 5,
+      "node": "/3/attn/Softmax_5",
+      "op_type": "Softmax",
+      "inputs": [
+        "/3/attn/Add_5_output_0"
+      ],
+      "output": "/3/attn/Softmax_5_output_0",
+      "shape": [
+        224
+      ],
+      "elem_count": 224,
+      "rows": 1,
+      "cols": 224,
+      "wait_s": 0.000399612,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 5,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 28672,
+      "reference_hash": 28672,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 7.450580596923828e-09,
+      "host_mean_abs": 7.068073210048098e-11,
+      "threshold": 0.0005,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 11039,
+        "hpm4_inst0": 3540,
+        "hpm5_inst1": 4248,
+        "hpm6_l2_miss_req": 167,
+        "hpm7_icache_req": 18446744073709543510,
+        "hpm8_icache_etlink_req": 41
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-135659/005_3_attn_Softmax_5"
+    },
+    {
+      "index": 6,
+      "node": "/3/cross_attn/Softmax",
+      "op_type": "Softmax",
+      "inputs": [
+        "/3/cross_attn/MatMul_output_0"
+      ],
+      "output": "/3/cross_attn/Softmax_output_0",
+      "shape": [
+        1500
+      ],
+      "elem_count": 1500,
+      "rows": 1,
+      "cols": 1500,
+      "wait_s": 0.000653785,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 5,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 192000,
+      "reference_hash": 192000,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 1.6763806343078613e-08,
+      "host_mean_abs": 3.7848046918753653e-10,
+      "threshold": 0.0005,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 30025,
+        "hpm4_inst0": 37619,
+        "hpm5_inst1": 38863,
+        "hpm6_l2_miss_req": 498,
+        "hpm7_icache_req": 18446744073709543726,
+        "hpm8_icache_etlink_req": 43
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-135659/006_3_cross_attn_Softmax"
+    },
+    {
+      "index": 7,
+      "node": "/3/cross_attn/Softmax_1",
+      "op_type": "Softmax",
+      "inputs": [
+        "/3/cross_attn/MatMul_2_output_0"
+      ],
+      "output": "/3/cross_attn/Softmax_1_output_0",
+      "shape": [
+        1500
+      ],
+      "elem_count": 1500,
+      "rows": 1,
+      "cols": 1500,
+      "wait_s": 0.000709945,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 5,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 192000,
+      "reference_hash": 192000,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 5.21540641784668e-08,
+      "host_mean_abs": 6.940195085292089e-10,
+      "threshold": 0.0005,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 29882,
+        "hpm4_inst0": 37621,
+        "hpm5_inst1": 38848,
+        "hpm6_l2_miss_req": 502,
+        "hpm7_icache_req": 18446744073709544366,
+        "hpm8_icache_etlink_req": 43
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-135659/007_3_cross_attn_Softmax_1"
+    },
+    {
+      "index": 8,
+      "node": "/3/cross_attn/Softmax_2",
+      "op_type": "Softmax",
+      "inputs": [
+        "/3/cross_attn/MatMul_4_output_0"
+      ],
+      "output": "/3/cross_attn/Softmax_2_output_0",
+      "shape": [
+        1500
+      ],
+      "elem_count": 1500,
+      "rows": 1,
+      "cols": 1500,
+      "wait_s": 0.000741889,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 5,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 192000,
+      "reference_hash": 192000,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 5.029141902923584e-08,
+      "host_mean_abs": 3.2819358342095484e-10,
+      "threshold": 0.0005,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 29866,
+        "hpm4_inst0": 37612,
+        "hpm5_inst1": 38834,
+        "hpm6_l2_miss_req": 18446744073709545742,
+        "hpm7_icache_req": 18446744073709543412,
+        "hpm8_icache_etlink_req": 43
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-135659/008_3_cross_attn_Softmax_2"
+    },
+    {
+      "index": 9,
+      "node": "/3/cross_attn/Softmax_3",
+      "op_type": "Softmax",
+      "inputs": [
+        "/3/cross_attn/MatMul_6_output_0"
+      ],
+      "output": "/3/cross_attn/Softmax_3_output_0",
+      "shape": [
+        1500
+      ],
+      "elem_count": 1500,
+      "rows": 1,
+      "cols": 1500,
+      "wait_s": 0.000652954,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 5,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 192000,
+      "reference_hash": 192000,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 2.7939677238464355e-08,
+      "host_mean_abs": 2.1111930259554157e-10,
+      "threshold": 0.0005,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 29945,
+        "hpm4_inst0": 37610,
+        "hpm5_inst1": 38812,
+        "hpm6_l2_miss_req": 502,
+        "hpm7_icache_req": 18446744073709544775,
+        "hpm8_icache_etlink_req": 43
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-135659/009_3_cross_attn_Softmax_3"
+    },
+    {
+      "index": 10,
+      "node": "/3/cross_attn/Softmax_4",
+      "op_type": "Softmax",
+      "inputs": [
+        "/3/cross_attn/MatMul_8_output_0"
+      ],
+      "output": "/3/cross_attn/Softmax_4_output_0",
+      "shape": [
+        1500
+      ],
+      "elem_count": 1500,
+      "rows": 1,
+      "cols": 1500,
+      "wait_s": 0.000709532,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 5,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 192000,
+      "reference_hash": 192000,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 3.166496753692627e-08,
+      "host_mean_abs": 2.554837730261994e-10,
+      "threshold": 0.0005,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 30064,
+        "hpm4_inst0": 37614,
+        "hpm5_inst1": 38851,
+        "hpm6_l2_miss_req": 18446744073709545362,
+        "hpm7_icache_req": 18446744073709543659,
+        "hpm8_icache_etlink_req": 43
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-135659/010_3_cross_attn_Softmax_4"
+    },
+    {
+      "index": 11,
+      "node": "/3/cross_attn/Softmax_5",
+      "op_type": "Softmax",
+      "inputs": [
+        "/3/cross_attn/MatMul_10_output_0"
+      ],
+      "output": "/3/cross_attn/Softmax_5_output_0",
+      "shape": [
+        1500
+      ],
+      "elem_count": 1500,
+      "rows": 1,
+      "cols": 1500,
+      "wait_s": 0.000763167,
+      "summary_magic": 1465077584,
+      "summary_op_mode": 5,
+      "active_mask": 65535,
+      "done_count": 16,
+      "output_hash": 192000,
+      "reference_hash": 192000,
+      "summary_max_abs": 0.0,
+      "summary_mean_abs": 0.0,
+      "host_max_abs": 2.9802322387695312e-08,
+      "host_mean_abs": 2.707928603573606e-10,
+      "threshold": 0.0005,
+      "audit_pass": true,
+      "stream_error": false,
+      "kernel_launch_error": false,
+      "hpm": {
+        "hpm3_cycles": 29949,
+        "hpm4_inst0": 37619,
+        "hpm5_inst1": 38822,
+        "hpm6_l2_miss_req": 18446744073709545809,
+        "hpm7_icache_req": 18446744073709543477,
+        "hpm8_icache_etlink_req": 43
+      },
+      "node_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/decoder_scalar_ops_audit_runs/run_20260505-135659/011_3_cross_attn_Softmax_5"
+    }
+  ]
+}

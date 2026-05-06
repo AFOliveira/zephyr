@@ -1,0 +1,46 @@
+{
+    "cmd_info": {
+        "dlc_convert": [
+            "snpe-onnx-to-dlc",
+            "-i",
+            "shared_with_container/outputs/depth-anything-v2-vits-420x560_to_rvc4_2025_07_29_14_14_39/intermediate_outputs/depth-anything-v2-vits-420x560-modified.onnx",
+            "--input_dim",
+            "image",
+            "1,3,420,560",
+            "--input_dtype",
+            "image",
+            "float32",
+            "--out_name",
+            "relative_depth",
+            "--input_layout",
+            "image",
+            "NCHW"
+        ],
+        "quantization_cmd": [
+            "snpe-dlc-quant",
+            "--input_list",
+            "shared_with_container/outputs/depth-anything-v2-vits-420x560_to_rvc4_2025_07_29_14_14_39/intermediate_outputs/img_list.txt",
+            "--input_dlc",
+            "shared_with_container/outputs/depth-anything-v2-vits-420x560_to_rvc4_2025_07_29_14_14_39/intermediate_outputs/depth-anything-v2-vits-420x560-modified.dlc",
+            "--output_dlc",
+            "shared_with_container/outputs/depth-anything-v2-vits-420x560_to_rvc4_2025_07_29_14_14_39/intermediate_outputs/depth-anything-v2-vits-420x560-modified-quantized.dlc",
+            "--use_per_channel_quantization"
+        ],
+        "graph_prepare": [
+            "snpe-dlc-graph-prepare",
+            "--input_dlc",
+            "shared_with_container/outputs/depth-anything-v2-vits-420x560_to_rvc4_2025_07_29_14_14_39/intermediate_outputs/depth-anything-v2-vits-420x560-modified-quantized.dlc",
+            "--output_dlc",
+            "shared_with_container/outputs/depth-anything-v2-vits-420x560_to_rvc4_2025_07_29_14_14_39/depth-anything-v2-vits-420x560.dlc",
+            "--set_output_tensors",
+            "relative_depth",
+            "--htp_socs",
+            "sm8550"
+        ]
+    },
+    "modelconverter_version": "0.4.2",
+    "snpe_version": "SNPE v2.32.6.250402152434_116405",
+    "target_devices": [
+        "sm8550"
+    ]
+}

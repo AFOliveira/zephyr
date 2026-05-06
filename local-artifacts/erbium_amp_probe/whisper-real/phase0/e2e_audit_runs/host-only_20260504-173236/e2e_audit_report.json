@@ -1,0 +1,129 @@
+{
+  "timestamp": "20260504-173236",
+  "scope": "Host-only ONNXRuntime vs host-scheduled ET-SoC1 hybrid. Hybrid uses ET-SoC1 for final decoder logits projection and host for preprocessing, encoder, non-logits decoder graph work, tokenization, and text decode.",
+  "input": {
+    "audio_path": "local-artifacts/erbium_amp_probe/whisper-real/audio/wikimedia_desert_16.wav",
+    "audio_sha256": "b52e8c93424daf8c2374442c8a138d9c452e1d8bdc16c753a86778c3a8b134b4",
+    "original_sample_rate": 48000,
+    "sample_rate": 16000,
+    "original_samples": 71040,
+    "samples": 23680,
+    "feature_shape": [
+      1,
+      80,
+      3000
+    ],
+    "feature_sha256": "f30a9389c3b92d76e7a9495c44cf103b1ea734396faa5f6cd977f642a850d32f"
+  },
+  "model": {
+    "encoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_encoder_qaihub.onnx/whisper_tiny_en_encoder_qaihub.onnx",
+    "encoder_sha256": "20bd728e03bff2954da28028e56e57f7eb3252b6a6a08ae4296e411d360a11b2",
+    "decoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_decoder_qaihub.onnx/whisper_tiny_en_decoder_qaihub.onnx",
+    "decoder_sha256": "fef679d932bd9602f96601fb988a6391315ca5530bb18f2eda977b6f7a16a654",
+    "tokenizer": "openai/whisper-tiny.en"
+  },
+  "environment": {
+    "board_host": "esperanto-soc6",
+    "remote_root": "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2",
+    "remote_work": "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2/erbium-amp-probe/whisper-real/e2e-audit/host-only_20260504-173236",
+    "active_harts": 16
+  },
+  "encoder": {
+    "host_wall_s": 0.4172444790019654,
+    "k_cache_cross_shape": [
+      4,
+      6,
+      64,
+      1500
+    ],
+    "v_cache_cross_shape": [
+      4,
+      6,
+      1500,
+      64
+    ],
+    "k_cache_cross_sha256": "90c0464303d596cb5690e698a953f72c98effa067a357d92cf6bb31e8085e96f",
+    "v_cache_cross_sha256": "d0d98b916dbe3b62d206db7a86ef1b6fdef0483db976669cd109ff62dcf19af2"
+  },
+  "host_only": {
+    "mode": "host-only",
+    "tokens": [
+      50257,
+      50258,
+      50358,
+      50362,
+      50256
+    ],
+    "token_text": [
+      "<|startoftranscript|>",
+      "<|en|>",
+      "<|transcribe|>",
+      "<|notimestamps|>",
+      "<|endoftext|>"
+    ],
+    "text": "",
+    "steps": [
+      {
+        "step": 0,
+        "input_token": 50257,
+        "input_text": "<|startoftranscript|>",
+        "host_argmax": 50362,
+        "host_argmax_text": "<|notimestamps|>",
+        "chosen_argmax": 50362,
+        "chosen_argmax_text": "<|notimestamps|>",
+        "next_token": 50258,
+        "next_text": "<|en|>",
+        "forced": true,
+        "silicon": null
+      },
+      {
+        "step": 1,
+        "input_token": 50258,
+        "input_text": "<|en|>",
+        "host_argmax": 13,
+        "host_argmax_text": ".",
+        "chosen_argmax": 13,
+        "chosen_argmax_text": ".",
+        "next_token": 50358,
+        "next_text": "<|transcribe|>",
+        "forced": true,
+        "silicon": null
+      },
+      {
+        "step": 2,
+        "input_token": 50358,
+        "input_text": "<|transcribe|>",
+        "host_argmax": 13,
+        "host_argmax_text": ".",
+        "chosen_argmax": 13,
+        "chosen_argmax_text": ".",
+        "next_token": 50362,
+        "next_text": "<|notimestamps|>",
+        "forced": true,
+        "silicon": null
+      },
+      {
+        "step": 3,
+        "input_token": 50362,
+        "input_text": "<|notimestamps|>",
+        "host_argmax": 50256,
+        "host_argmax_text": "<|endoftext|>",
+        "chosen_argmax": 50256,
+        "chosen_argmax_text": "<|endoftext|>",
+        "next_token": 50256,
+        "next_text": "<|endoftext|>",
+        "forced": false,
+        "silicon": null
+      }
+    ],
+    "decode_wall_s": 0.034217807988170534,
+    "silicon_logits_wait_s": 0.0,
+    "generated_nonprompt_tokens": 1,
+    "tokens_per_s_wall": 29.224548818139105,
+    "tokens_per_s_silicon_logits_only": null
+  },
+  "hybrid_silicon": null,
+  "comparison": {
+    "available": false
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "variant": "optfill_attnout_fullk_tr512_ah16",
+  "timestamp": "20260504-134504",
+  "onnx_node": "/encoder/blocks.0/attn/out/MatMul_output_0",
+  "act_name": "/encoder/blocks.0/attn/Reshape_3_output_0",
+  "weight_name": "onnx::MatMul_777",
+  "rows": 1500,
+  "k_dim": 384,
+  "n_cols": 384,
+  "tiles": 3,
+  "tile_rows": 512,
+  "active_harts": 16,
+  "total_wait_s": 0.46600299999999995,
+  "ops": 442368000,
+  "gops": 0.9492814423941478,
+  "max_abs": 2.086162567138672e-06,
+  "mean_abs": 1.0282154505603103e-07,
+  "p99_abs": 5.960464477539062e-07,
+  "allclose_1e4": true,
+  "allclose_1e3": true,
+  "tile_ok": true,
+  "memory_layout": {
+    "out_offset": 16384,
+    "act_offset": 851968,
+    "wt_offset": 1638400,
+    "ref_offset": 2228224,
+    "end": 3014656
+  },
+  "remote_work": "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2/erbium-amp-probe/whisper-real/optfill_attnout_fullk_tr512_ah16_20260504-134504",
+  "local_run_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/runs/optfill_attnout_fullk_tr512_ah16_20260504-134504",
+  "tile_rows_report": [
+    {
+      "tile_id": 0,
+      "row0": 0,
+      "row1": 512,
+      "wait_s": 0.156596,
+      "max_abs": 1.9669532775878906e-06,
+      "mean_abs": 1.0108220038773652e-07,
+      "slot_done_count": 16,
+      "active_mask": "0xffff",
+      "summary_present": false,
+      "stream_error": true,
+      "status": "ok_stream_error"
+    },
+    {
+      "tile_id": 1,
+      "row0": 512,
+      "row1": 1024,
+      "wait_s": 0.156544,
+      "max_abs": 2.086162567138672e-06,
+      "mean_abs": 1.033766920954804e-07,
+      "slot_done_count": 16,
+      "active_mask": "0xffff",
+      "summary_present": false,
+      "stream_error": true,
+      "status": "ok_stream_error"
+    },
+    {
+      "tile_id": 2,
+      "row0": 1024,
+      "row1": 1500,
+      "wait_s": 0.152863,
+      "max_abs": 1.7881393432617188e-06,
+      "mean_abs": 1.0409529238586401e-07,
+      "slot_done_count": 16,
+      "active_mask": "0xffff",
+      "summary_present": false,
+      "stream_error": true,
+      "status": "ok_stream_error"
+    }
+  ]
+}

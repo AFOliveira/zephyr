@@ -1,0 +1,7 @@
+[
+  {"exp_id": 235, "variant": "n0_boundary_p1",            "harts": 16, "passes": 1, "flags": [], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]},
+  {"exp_id": 236, "variant": "n1_boundary_p1_align64",    "harts": 16, "passes": 1, "flags": ["-falign-functions=64", "-falign-loops=64"], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]},
+  {"exp_id": 237, "variant": "n2_boundary_p1_predcomm",   "harts": 16, "passes": 1, "flags": ["-fpredictive-commoning"], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]},
+  {"exp_id": 238, "variant": "n3_boundary_p1_movestores", "harts": 16, "passes": 1, "flags": ["-fmove-loop-stores"], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]},
+  {"exp_id": 239, "variant": "n4_boundary_p1_align256",   "harts": 16, "passes": 1, "flags": ["-falign-functions=256", "-falign-loops=256"], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]}
+]

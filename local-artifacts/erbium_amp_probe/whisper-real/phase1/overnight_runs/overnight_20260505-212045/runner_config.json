@@ -1,0 +1,12 @@
+{
+  "duration_hours": 10.0,
+  "max_new_tokens": 80,
+  "timeout": 120,
+  "out_dir": "local-artifacts/erbium_amp_probe/whisper-real/phase1/overnight_runs",
+  "audio": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/audio/openai_whisper_jfk_16k.wav",
+  "once": false,
+  "skip_bundle": true,
+  "smoke_every": 6,
+  "start_tmux": false,
+  "session": "whisper-native-overnight"
+}

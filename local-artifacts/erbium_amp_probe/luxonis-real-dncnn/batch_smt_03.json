@@ -1,0 +1,7 @@
+[
+  {"exp_id": 215, "variant": "i0_oc4_p4",                "harts": 16, "passes": 4, "flags": [], "macros": ["DNCNN_VPU_FUSED9TAP_OC4=1"]},
+  {"exp_id": 216, "variant": "i1_spatial2_p4",           "harts": 16, "passes": 4, "flags": [], "macros": ["DNCNN_VPU_SPATIAL2=1"]},
+  {"exp_id": 217, "variant": "i2_ofast_16h_p4",          "harts": 16, "passes": 4, "flags": ["-Ofast", "-frename-registers"], "macros": []},
+  {"exp_id": 218, "variant": "i3_p4_boundary_only_evict","harts": 16, "passes": 4, "flags": [], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]},
+  {"exp_id": 219, "variant": "i4_p4_predcomm",           "harts": 16, "passes": 4, "flags": ["-fpredictive-commoning"], "macros": []}
+]

@@ -1,0 +1,13 @@
+{
+  "label": "tg09_h20_t64_skip_read",
+  "tile_idx": "06",
+  "stamp": "20260505-155048Z",
+  "rc_before": 0,
+  "rc_kernel": 0,
+  "rc_after": 0,
+  "kernel_wait_s": 4.56241,
+  "snap_before": "pmc_before_20260505-155048Z.bin",
+  "snap_after":  "pmc_after_20260505-155048Z.bin",
+  "kernel_dump": "dump_20260505-155048Z.bin",
+  "tile_elf": "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2/erbium-amp-probe/tiled_v2_tg09_h20_t64_skip_read/tile_06.elf"
+}

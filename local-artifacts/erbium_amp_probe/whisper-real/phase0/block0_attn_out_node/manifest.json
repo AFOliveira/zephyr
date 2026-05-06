@@ -1,0 +1,40 @@
+{
+  "encoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_encoder_qaihub.onnx/whisper_tiny_en_encoder_qaihub.onnx",
+  "act_name": "/encoder/blocks.0/attn/Reshape_3_output_0",
+  "weight_name": "onnx::MatMul_777",
+  "out_name": "/encoder/blocks.0/attn/out/MatMul_output_0",
+  "seed": 20260503,
+  "audio_shape": [
+    1,
+    80,
+    3000
+  ],
+  "act_shape": [
+    1500,
+    384
+  ],
+  "weight_shape": [
+    384,
+    384
+  ],
+  "weight_t_shape": [
+    384,
+    384
+  ],
+  "ref_shape": [
+    1500,
+    384
+  ],
+  "rows": 1500,
+  "k_dim": 384,
+  "n_cols": 384,
+  "ops": 442368000,
+  "max_abs_numpy_vs_ort": 2.1457672119140625e-06,
+  "files": {
+    "audio": "audio_input.bin",
+    "act_full": "act_full.bin",
+    "weight": "weight.bin",
+    "weight_t": "weight_t.bin",
+    "ref_full": "ref_full.bin"
+  }
+}

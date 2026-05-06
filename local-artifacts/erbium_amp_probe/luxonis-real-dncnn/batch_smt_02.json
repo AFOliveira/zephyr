@@ -1,0 +1,7 @@
+[
+  {"exp_id": 210, "variant": "h5_uniform_16h_p4_repeat",  "harts": 16, "passes": 4, "flags": [], "macros": []},
+  {"exp_id": 211, "variant": "h6_uniform_16h_p2",         "harts": 16, "passes": 2, "flags": [], "macros": []},
+  {"exp_id": 212, "variant": "h7_uniform_16h_p4_align64", "harts": 16, "passes": 4, "flags": ["-falign-functions=64", "-falign-loops=64"], "macros": []},
+  {"exp_id": 213, "variant": "h8_uniform_16h_p4_align256","harts": 16, "passes": 4, "flags": ["-falign-functions=256", "-falign-loops=256"], "macros": []},
+  {"exp_id": 214, "variant": "h9_uniform_16h_p16",        "harts": 16, "passes": 16, "flags": [], "macros": []}
+]

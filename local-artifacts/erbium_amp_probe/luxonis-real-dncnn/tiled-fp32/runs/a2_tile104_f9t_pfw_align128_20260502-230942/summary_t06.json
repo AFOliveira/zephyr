@@ -1,0 +1,19 @@
+{
+  "tile_id": 6,
+  "magic": 0,
+  "active_harts": 0,
+  "passes": 0,
+  "width": 0,
+  "height": 0,
+  "channels": 0,
+  "layers": 0,
+  "active_mask": 0,
+  "done_count": 0,
+  "output_hash": 0,
+  "reference_hash": 0,
+  "ops": 0,
+  "max_abs": 0.0,
+  "mean_abs": 0.0,
+  "slot_checksum_sum": 0,
+  "wait_s": 5.68295
+}

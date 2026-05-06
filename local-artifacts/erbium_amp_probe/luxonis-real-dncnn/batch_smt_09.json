@@ -1,0 +1,7 @@
+[
+  {"exp_id": 245, "variant": "q0_boundary_p1_inline2k",   "harts": 16, "passes": 1, "flags": ["-finline-limit=2000"], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]},
+  {"exp_id": 246, "variant": "q1_boundary_p1_combined4",  "harts": 16, "passes": 1, "flags": ["-falign-functions=256", "-falign-loops=256", "-fmove-loop-stores", "-fpredictive-commoning"], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]},
+  {"exp_id": 247, "variant": "q2_no_boundary_p4_basic",   "harts": 16, "passes": 4, "flags": [], "macros": []},
+  {"exp_id": 248, "variant": "q3_passes32_boundary",      "harts": 16, "passes": 32,"flags": [], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]},
+  {"exp_id": 249, "variant": "q4_boundary_p1_combined6",  "harts": 16, "passes": 1, "flags": ["-falign-functions=128", "-falign-loops=128", "-fmove-loop-stores", "-fpredictive-commoning", "-frename-registers", "-fno-ipa-cp", "-fno-ipa-sra"], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]}
+]

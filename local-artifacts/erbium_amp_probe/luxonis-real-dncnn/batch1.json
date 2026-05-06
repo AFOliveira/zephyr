@@ -1,0 +1,12 @@
+[
+  {"exp_id": 1,  "batch": "1_compile", "variant": "o3_unroll_align128",       "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-falign-functions=128", "-falign-loops=128"], "macros": []},
+  {"exp_id": 2,  "batch": "1_compile", "variant": "o3_unroll_predcomm",       "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-fpredictive-commoning"], "macros": []},
+  {"exp_id": 3,  "batch": "1_compile", "variant": "o3_unroll_modsched",       "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-fmodulo-sched"], "macros": []},
+  {"exp_id": 4,  "batch": "1_compile", "variant": "o3_unroll_movestores",     "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-fmove-loop-stores"], "macros": []},
+  {"exp_id": 5,  "batch": "1_compile", "variant": "o3_unroll_inline2k",       "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-finline-limit=2000"], "macros": []},
+  {"exp_id": 6,  "batch": "1_compile", "variant": "o3_unroll_inline600",      "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-finline-limit=600"], "macros": []},
+  {"exp_id": 7,  "batch": "1_compile", "variant": "o3_unroll_rename",         "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-frename-registers"], "macros": []},
+  {"exp_id": 8,  "batch": "1_compile", "variant": "o3_unroll_rename_noipa",   "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-frename-registers", "-fno-ipa-cp", "-fno-ipa-sra"], "macros": []},
+  {"exp_id": 9,  "batch": "1_compile", "variant": "o3_unroll_no_distrib",     "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-fno-tree-loop-distribute-patterns"], "macros": []},
+  {"exp_id": 10, "batch": "1_compile", "variant": "o3_unroll_no_vec",         "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-fno-tree-loop-vectorize"], "macros": []}
+]

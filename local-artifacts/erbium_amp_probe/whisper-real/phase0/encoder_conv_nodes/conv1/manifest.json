@@ -1,0 +1,66 @@
+{
+  "kind": "whisper_encoder_conv_as_matmul",
+  "node_name": "/encoder/conv1/Conv",
+  "input_name": "audio",
+  "output_name": "/encoder/conv1/Conv_output_0",
+  "encoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_encoder_qaihub.onnx/whisper_tiny_en_encoder_qaihub.onnx",
+  "encoder_sha256": "20bd728e03bff2954da28028e56e57f7eb3252b6a6a08ae4296e411d360a11b2",
+  "audio": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/audio/openai_whisper_jfk_16k.wav",
+  "audio_meta": {
+    "audio_path": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/audio/openai_whisper_jfk_16k.wav",
+    "audio_sha256": "80f71fdab049ca195115a63a738c7aeea50b2e09bc3513f85e627a28dbc5f40e",
+    "original_sample_rate": 16000,
+    "sample_rate": 16000,
+    "original_samples": 176000,
+    "samples": 176000,
+    "feature_shape": [
+      1,
+      80,
+      3000
+    ],
+    "feature_sha256": "51c777823b95b3de044bb07f386a8d435b858a958b90c9702002d26cf8ccea36"
+  },
+  "audio_sha256": "51c777823b95b3de044bb07f386a8d435b858a958b90c9702002d26cf8ccea36",
+  "input_shape": [
+    1,
+    80,
+    3000
+  ],
+  "weight_shape": [
+    384,
+    80,
+    3
+  ],
+  "bias_shape": [
+    384
+  ],
+  "output_shape": [
+    1,
+    384,
+    3000
+  ],
+  "rows": 3000,
+  "k_dim": 256,
+  "raw_k_dim": 241,
+  "n_cols": 384,
+  "ops": 589824000,
+  "model_ops_unpadded": 555264000,
+  "kernel_shape": [
+    3
+  ],
+  "pads": [
+    1,
+    1
+  ],
+  "strides": [
+    1
+  ],
+  "max_abs_numpy_vs_ort": 2.86102294921875e-06,
+  "files": {
+    "audio": "audio_input.bin",
+    "act_full": "act_full.bin",
+    "weight": "weight.bin",
+    "weight_t": "weight_t.bin",
+    "ref_full": "ref_full.bin"
+  }
+}

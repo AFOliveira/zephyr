@@ -1,0 +1,17 @@
+variant	tile	harts	wait_s	gops	allclose	bit_exact	max_abs	mean_abs	output_hash	reference_hash	ops	magic_ok	log_status	dump
+baseline	1x1	1	0.030856	0.3447	True	True	0.000e+00	0.000e+00	0x8210f159	0x8210f159	10635264	True	ok	dump_a_tile1_baseline_1h_20260502-100656.bin
+o3	1x1	1	0.030690	0.3465	True	True	0.000e+00	0.000e+00	0x8210f159	0x8210f159	10635264	True	ok	dump_a_tile1_o3_1h_20260502-100656.bin
+o3_unroll	1x1	1	0.017607	0.6040	True	True	0.000e+00	0.000e+00	0x8210f159	0x8210f159	10635264	True	ok	dump_a_tile1_o3_unroll_1h_20260502-100656.bin
+ofast	1x1	1	0.027462	0.3873	True	True	0.000e+00	0.000e+00	0x8210f159	0x8210f159	10635264	True	ok	dump_a_tile1_ofast_1h_20260502-100656.bin
+ofast_align64	1x1	1	0.024702	0.4305	True	True	0.000e+00	0.000e+00	0x8210f159	0x8210f159	10635264	True	ok	dump_a_tile1_ofast_align64_1h_20260502-100656.bin
+ofast_noipa	1x1	1	0.027648	0.3847	True	True	0.000e+00	0.000e+00	0x8210f159	0x8210f159	10635264	True	ok	dump_a_tile1_ofast_noipa_1h_20260502-100656.bin
+ofast_rename	1x1	1	0.030791	0.3454	True	True	0.000e+00	0.000e+00	0x8210f159	0x8210f159	10635264	True	ok	dump_a_tile1_ofast_rename_1h_20260502-100656.bin
+ofast_rename_unroll	1x1	1	0.018891	0.5630	True	True	0.000e+00	0.000e+00	0x8210f159	0x8210f159	10635264	True	ok	dump_a_tile1_ofast_rename_unroll_1h_20260502-100656.bin
+baseline	4x4	1	2.541070	0.0670	True	False	2.980e-07	1.220e-07	0x4d633e81	0x1e8fb52e	170164224	True	ok	dump_a_tile4_baseline_1h_20260502-100656.bin
+o3	4x4	1	2.156610	0.0789	True	False	3.720e-07	1.320e-07	0x8c8992b6	0x1e8fb52e	170164224	True	ok	dump_a_tile4_o3_1h_20260502-100656.bin
+o3_unroll	4x4	1	1.388420	0.1226	True	False	3.720e-07	1.320e-07	0x8c8992b6	0x1e8fb52e	170164224	True	ok	dump_a_tile4_o3_unroll_1h_20260502-100656.bin
+ofast	4x4	1	2.121070	0.0802	True	False	4.730e-07	1.300e-07	0xb58e2885	0x1e8fb52e	170164224	True	ok	dump_a_tile4_ofast_1h_20260502-100656.bin
+ofast_align64	4x4	1	2.106110	0.0808	True	False	4.730e-07	1.300e-07	0xb58e2885	0x1e8fb52e	170164224	True	ok	dump_a_tile4_ofast_align64_1h_20260502-100656.bin
+ofast_noipa	4x4	1	2.121300	0.0802	True	False	4.730e-07	1.300e-07	0xb58e2885	0x1e8fb52e	170164224	True	ok	dump_a_tile4_ofast_noipa_1h_20260502-100656.bin
+ofast_rename	4x4	1	2.162670	0.0787	True	False	4.730e-07	1.300e-07	0xb58e2885	0x1e8fb52e	170164224	True	ok	dump_a_tile4_ofast_rename_1h_20260502-100656.bin
+ofast_rename_unroll	4x4	1	1.468000	0.1159	True	False	4.730e-07	1.300e-07	0xb58e2885	0x1e8fb52e	170164224	True	ok	dump_a_tile4_ofast_rename_unroll_1h_20260502-100656.bin

@@ -1,0 +1,105 @@
+# Whisper Encoder Scalar Remote-Native Audit
+
+- Selected nodes: `95`
+- Audited tiles: `95`
+- All pass: `True`
+- Max abs diff: `1.31726265e-05`
+- Mean silicon wait: `0.469212 s`
+
+| index | op | node | tile | elems | max abs | wait s | pass |
+| ---: | --- | --- | --- | ---: | ---: | ---: | --- |
+| 0 | `Div` | `/encoder/Div` | `` | 1152000 | 0 | 0.358123 | True |
+| 1 | `Erf` | `/encoder/Erf` | `` | 1152000 | 1.54972076e-06 | 0.365581 | True |
+| 2 | `Add` | `/encoder/Add` | `` | 1152000 | 0 | 0.340895 | True |
+| 3 | `Mul` | `/encoder/Mul` | `` | 1152000 | 0 | 0.338268 | True |
+| 4 | `Mul` | `/encoder/Mul_1` | `` | 1152000 | 0 | 0.338300 | True |
+| 5 | `Div` | `/encoder/Div_1` | `` | 576000 | 0 | 0.179639 | True |
+| 6 | `Erf` | `/encoder/Erf_1` | `` | 576000 | 1.54972076e-06 | 0.183830 | True |
+| 7 | `Add` | `/encoder/Add_1` | `` | 576000 | 0 | 0.170687 | True |
+| 8 | `Mul` | `/encoder/Mul_2` | `` | 576000 | 0 | 0.169429 | True |
+| 9 | `Mul` | `/encoder/Mul_3` | `` | 576000 | 0 | 0.169434 | True |
+| 10 | `Add` | `/encoder/Add_2` | `` | 576000 | 0 | 0.170653 | True |
+| 11 | `Add` | `/encoder/blocks.0/attn/query/Add` | `` | 576000 | 0 | 0.170598 | True |
+| 12 | `Add` | `/encoder/blocks.0/attn/value/Add` | `` | 576000 | 0 | 0.170634 | True |
+| 13 | `Mul` | `/encoder/blocks.0/attn/Mul_1` | `` | 576000 | 0 | 0.169436 | True |
+| 14 | `Mul` | `/encoder/blocks.0/attn/Mul` | `` | 576000 | 0 | 0.169457 | True |
+| 15 | `Softmax` | `/encoder/blocks.0/attn/Softmax` | `` | 13500000 | 3.60608101e-06 | 4.684460 | True |
+| 16 | `Add` | `/encoder/blocks.0/attn/out/Add` | `` | 576000 | 0 | 0.170759 | True |
+| 17 | `Add` | `/encoder/blocks.0/Add` | `` | 576000 | 0 | 0.170634 | True |
+| 18 | `Add` | `/encoder/blocks.0/mlp/0/Add` | `` | 2304000 | 0 | 0.696031 | True |
+| 19 | `Div` | `/encoder/blocks.0/mlp/1/Div` | `` | 2304000 | 0 | 0.729556 | True |
+| 20 | `Erf` | `/encoder/blocks.0/mlp/1/Erf` | `` | 2304000 | 1.54972076e-06 | 0.744253 | True |
+| 21 | `Add` | `/encoder/blocks.0/mlp/1/Add` | `` | 2304000 | 0 | 0.696039 | True |
+| 22 | `Mul` | `/encoder/blocks.0/mlp/1/Mul` | `` | 2304000 | 0 | 0.691786 | True |
+| 23 | `Mul` | `/encoder/blocks.0/mlp/1/Mul_1` | `` | 2304000 | 0 | 0.691700 | True |
+| 24 | `Add` | `/encoder/blocks.0/mlp/2/Add` | `` | 576000 | 0 | 0.170597 | True |
+| 25 | `Add` | `/encoder/blocks.0/Add_1` | `` | 576000 | 0 | 0.170646 | True |
+| 26 | `Add` | `/encoder/blocks.1/attn/query/Add` | `` | 576000 | 0 | 0.170636 | True |
+| 27 | `Add` | `/encoder/blocks.1/attn/value/Add` | `` | 576000 | 0 | 0.170581 | True |
+| 28 | `Mul` | `/encoder/blocks.1/attn/Mul_1` | `` | 576000 | 0 | 0.169329 | True |
+| 29 | `Mul` | `/encoder/blocks.1/attn/Mul` | `` | 576000 | 0 | 0.169613 | True |
+| 30 | `Softmax` | `/encoder/blocks.1/attn/Softmax` | `` | 13500000 | 3.21865082e-06 | 4.660750 | True |
+| 31 | `Add` | `/encoder/blocks.1/attn/out/Add` | `` | 576000 | 0 | 0.170656 | True |
+| 32 | `Add` | `/encoder/blocks.1/Add` | `` | 576000 | 0 | 0.170504 | True |
+| 33 | `Add` | `/encoder/blocks.1/mlp/0/Add` | `` | 2304000 | 0 | 0.695937 | True |
+| 34 | `Div` | `/encoder/blocks.1/mlp/1/Div` | `` | 2304000 | 0 | 0.729662 | True |
+| 35 | `Erf` | `/encoder/blocks.1/mlp/1/Erf` | `` | 2304000 | 1.54972076e-06 | 0.747776 | True |
+| 36 | `Add` | `/encoder/blocks.1/mlp/1/Add` | `` | 2304000 | 0 | 0.696050 | True |
+| 37 | `Mul` | `/encoder/blocks.1/mlp/1/Mul` | `` | 2304000 | 0 | 0.691714 | True |
+| 38 | `Mul` | `/encoder/blocks.1/mlp/1/Mul_1` | `` | 2304000 | 0 | 0.691850 | True |
+| 39 | `Add` | `/encoder/blocks.1/mlp/2/Add` | `` | 576000 | 0 | 0.170597 | True |
+| 40 | `Add` | `/encoder/blocks.1/Add_1` | `` | 576000 | 0 | 0.170699 | True |
+| 41 | `Add` | `/encoder/blocks.2/attn/query/Add` | `` | 576000 | 0 | 0.170560 | True |
+| 42 | `Add` | `/encoder/blocks.2/attn/value/Add` | `` | 576000 | 0 | 0.170644 | True |
+| 43 | `Mul` | `/encoder/blocks.2/attn/Mul_1` | `` | 576000 | 0 | 0.169389 | True |
+| 44 | `Mul` | `/encoder/blocks.2/attn/Mul` | `` | 576000 | 0 | 0.169291 | True |
+| 45 | `Softmax` | `/encoder/blocks.2/attn/Softmax` | `` | 13500000 | 1.31726265e-05 | 4.646970 | True |
+| 46 | `Add` | `/encoder/blocks.2/attn/out/Add` | `` | 576000 | 0 | 0.170521 | True |
+| 47 | `Add` | `/encoder/blocks.2/Add` | `` | 576000 | 0 | 0.170580 | True |
+| 48 | `Add` | `/encoder/blocks.2/mlp/0/Add` | `` | 2304000 | 0 | 0.695913 | True |
+| 49 | `Div` | `/encoder/blocks.2/mlp/1/Div` | `` | 2304000 | 0 | 0.729551 | True |
+| 50 | `Erf` | `/encoder/blocks.2/mlp/1/Erf` | `` | 2304000 | 1.54972076e-06 | 0.753111 | True |
+| 51 | `Add` | `/encoder/blocks.2/mlp/1/Add` | `` | 2304000 | 0 | 0.695899 | True |
+| 52 | `Mul` | `/encoder/blocks.2/mlp/1/Mul` | `` | 2304000 | 0 | 0.691661 | True |
+| 53 | `Mul` | `/encoder/blocks.2/mlp/1/Mul_1` | `` | 2304000 | 0 | 0.691673 | True |
+| 54 | `Add` | `/encoder/blocks.2/mlp/2/Add` | `` | 576000 | 0 | 0.170729 | True |
+| 55 | `Add` | `/encoder/blocks.2/Add_1` | `` | 576000 | 0 | 0.170605 | True |
+| 56 | `Add` | `/encoder/blocks.3/attn/query/Add` | `` | 576000 | 0 | 0.170726 | True |
+| 57 | `Add` | `/encoder/blocks.3/attn/value/Add` | `` | 576000 | 0 | 0.170580 | True |
+| 58 | `Mul` | `/encoder/blocks.3/attn/Mul_1` | `` | 576000 | 0 | 0.169372 | True |
+| 59 | `Mul` | `/encoder/blocks.3/attn/Mul` | `` | 576000 | 0 | 0.169443 | True |
+| 60 | `Softmax` | `/encoder/blocks.3/attn/Softmax` | `` | 13500000 | 8.34465027e-06 | 4.661820 | True |
+| 61 | `Add` | `/encoder/blocks.3/attn/out/Add` | `` | 576000 | 0 | 0.170692 | True |
+| 62 | `Add` | `/encoder/blocks.3/Add` | `` | 576000 | 0 | 0.170498 | True |
+| 63 | `Add` | `/encoder/blocks.3/mlp/0/Add` | `` | 2304000 | 0 | 0.696085 | True |
+| 64 | `Div` | `/encoder/blocks.3/mlp/1/Div` | `` | 2304000 | 0 | 0.729630 | True |
+| 65 | `Erf` | `/encoder/blocks.3/mlp/1/Erf` | `` | 2304000 | 1.49011612e-06 | 0.749446 | True |
+| 66 | `Add` | `/encoder/blocks.3/mlp/1/Add` | `` | 2304000 | 0 | 0.695918 | True |
+| 67 | `Mul` | `/encoder/blocks.3/mlp/1/Mul` | `` | 2304000 | 0 | 0.691732 | True |
+| 68 | `Mul` | `/encoder/blocks.3/mlp/1/Mul_1` | `` | 2304000 | 0 | 0.691915 | True |
+| 69 | `Add` | `/encoder/blocks.3/mlp/2/Add` | `` | 576000 | 0 | 0.170676 | True |
+| 70 | `Add` | `/encoder/blocks.3/Add_1` | `` | 576000 | 0 | 0.170648 | True |
+| 71 | `Add` | `/0/0_1/Add` | `` | 96000 | 0 | 0.027981 | True |
+| 72 | `Add` | `/0/1_1/Add` | `` | 96000 | 0 | 0.027923 | True |
+| 73 | `Add` | `/0/2_1/Add` | `` | 96000 | 0 | 0.028037 | True |
+| 74 | `Add` | `/0/3_1/Add` | `` | 96000 | 0 | 0.027959 | True |
+| 75 | `Add` | `/0/4_1/Add` | `` | 96000 | 0 | 0.027982 | True |
+| 76 | `Add` | `/0/5_1/Add` | `` | 96000 | 0 | 0.027965 | True |
+| 77 | `Add` | `/1/0_1/Add` | `` | 96000 | 0 | 0.027893 | True |
+| 78 | `Add` | `/1/1_1/Add` | `` | 96000 | 0 | 0.027945 | True |
+| 79 | `Add` | `/1/2_1/Add` | `` | 96000 | 0 | 0.028011 | True |
+| 80 | `Add` | `/1/3_1/Add` | `` | 96000 | 0 | 0.027964 | True |
+| 81 | `Add` | `/1/4_1/Add` | `` | 96000 | 0 | 0.027988 | True |
+| 82 | `Add` | `/1/5_1/Add` | `` | 96000 | 0 | 0.027862 | True |
+| 83 | `Add` | `/2/0_1/Add` | `` | 96000 | 0 | 0.027987 | True |
+| 84 | `Add` | `/2/1_1/Add` | `` | 96000 | 0 | 0.027903 | True |
+| 85 | `Add` | `/2/2_1/Add` | `` | 96000 | 0 | 0.028044 | True |
+| 86 | `Add` | `/2/3_1/Add` | `` | 96000 | 0 | 0.028066 | True |
+| 87 | `Add` | `/2/4_1/Add` | `` | 96000 | 0 | 0.027915 | True |
+| 88 | `Add` | `/2/5_1/Add` | `` | 96000 | 0 | 0.027891 | True |
+| 89 | `Add` | `/3/0_1/Add` | `` | 96000 | 0 | 0.027942 | True |
+| 90 | `Add` | `/3/1_1/Add` | `` | 96000 | 0 | 0.027905 | True |
+| 91 | `Add` | `/3/2_1/Add` | `` | 96000 | 0 | 0.027973 | True |
+| 92 | `Add` | `/3/3_1/Add` | `` | 96000 | 0 | 0.027988 | True |
+| 93 | `Add` | `/3/4_1/Add` | `` | 96000 | 0 | 0.027976 | True |
+| 94 | `Add` | `/3/5_1/Add` | `` | 96000 | 0 | 0.027990 | True |

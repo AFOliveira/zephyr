@@ -1,0 +1,2 @@
+magic	active_harts	done_count	shire	hart0	syscall_records	sc_banks	ms_count	hpmcounter3_cycles_delta_sum	hpmcounter4_retired_inst0_delta_sum	hpmcounter5_retired_inst1_delta_sum	hpmcounter6_l2_miss_req_delta_sum	hpmcounter7_minion_icache_req_delta_sum	hpmcounter8_icache_etlink_req_delta_sum
+0x53554d50	16	11	0	0	108	4	8	162381984	353703639	353596107	2105262	132225870	103

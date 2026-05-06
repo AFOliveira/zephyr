@@ -1,0 +1,125 @@
+{
+  "atol": 1e-05,
+  "ok": true,
+  "onnx": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/dncnn3-240x320.onnx/dncnn3-240x320.onnx",
+  "root": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-real-dncnn",
+  "rtol": 1e-05,
+  "tiles": [
+    {
+      "host_reference_vs_onnxruntime": {
+        "actual_hash": "0xbd92c224",
+        "allclose": true,
+        "bit_exact": false,
+        "expected_hash": "0x28f6227b",
+        "max_abs": 4.470348358154297e-07,
+        "mean_abs": 1.0067742550745606e-07
+      },
+      "input": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-real-dncnn/dncnn3_luxonis_16x16_input_f32.bin",
+      "ok": true,
+      "saved_reference": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-real-dncnn/dncnn3_luxonis_16x16_ort_output_f32.bin",
+      "tile": "16x16"
+    },
+    {
+      "host_reference_vs_onnxruntime": {
+        "actual_hash": "0x8210f159",
+        "allclose": true,
+        "bit_exact": true,
+        "expected_hash": "0x8210f159",
+        "max_abs": 0.0,
+        "mean_abs": 0.0
+      },
+      "input": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-real-dncnn/dncnn3_luxonis_1x1_input_f32.bin",
+      "ok": true,
+      "saved_reference": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-real-dncnn/dncnn3_luxonis_1x1_ort_output_f32.bin",
+      "silicon_summary": {
+        "active_harts": 1,
+        "active_mask": "0x1",
+        "allclose": true,
+        "bit_exact": true,
+        "channels": 64,
+        "done_count": 1,
+        "dump": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-real-dncnn/remote-logs/dump_dncnn3_luxonis_real_tile1_static_1h_20260502-060153.bin",
+        "height": 1,
+        "layers": 20,
+        "magic": 3552645124,
+        "max_abs": 0.0,
+        "mean_abs": 0.0,
+        "ops": 1329408,
+        "output_hash": "0x8210f159",
+        "passes": 1,
+        "reference_hash": "0x8210f159",
+        "slot_checksum_sum": "0x8210f159",
+        "width": 1
+      },
+      "tile": "1x1"
+    },
+    {
+      "host_reference_vs_onnxruntime": {
+        "actual_hash": "0x800bc06a",
+        "allclose": true,
+        "bit_exact": true,
+        "expected_hash": "0x800bc06a",
+        "max_abs": 0.0,
+        "mean_abs": 0.0
+      },
+      "input": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-real-dncnn/dncnn3_luxonis_240x320_input_f32.bin",
+      "ok": true,
+      "saved_reference": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-real-dncnn/dncnn3_luxonis_240x320_ort_output_f32.bin",
+      "tile": "240x320"
+    },
+    {
+      "host_reference_vs_onnxruntime": {
+        "actual_hash": "0x1e8fb52e",
+        "allclose": true,
+        "bit_exact": false,
+        "expected_hash": "0xb0e2a72f",
+        "max_abs": 2.7939677238464355e-07,
+        "mean_abs": 9.452924132347107e-08
+      },
+      "input": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-real-dncnn/dncnn3_luxonis_4x4_input_f32.bin",
+      "ok": true,
+      "saved_reference": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-real-dncnn/dncnn3_luxonis_4x4_ort_output_f32.bin",
+      "silicon_summary": {
+        "active_harts": 1,
+        "active_mask": "0x1",
+        "allclose": true,
+        "bit_exact": false,
+        "channels": 64,
+        "done_count": 1,
+        "dump": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-real-dncnn/remote-logs/dump_dncnn3_luxonis_real_tile4_static_1h_20260502-060321.bin",
+        "height": 4,
+        "layers": 20,
+        "magic": 3552645124,
+        "max_abs": 4.73e-07,
+        "mean_abs": 1.3e-07,
+        "ops": 21270528,
+        "output_hash": "0xb58e2885",
+        "passes": 1,
+        "reference_hash": "0x1e8fb52e",
+        "slot_checksum_sum": "0xb58e2885",
+        "width": 4
+      },
+      "tile": "4x4"
+    },
+    {
+      "host_reference_vs_onnxruntime": {
+        "actual_hash": "0xf03a7637",
+        "allclose": true,
+        "bit_exact": false,
+        "expected_hash": "0x0df7dfec",
+        "max_abs": 1.4603137969970703e-06,
+        "mean_abs": 2.8117392503190786e-07
+      },
+      "input": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-real-dncnn/dncnn3_luxonis_64x64_input_f32.bin",
+      "ok": true,
+      "saved_reference": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-real-dncnn/dncnn3_luxonis_64x64_ort_output_f32.bin",
+      "tile": "64x64"
+    }
+  ],
+  "weights": {
+    "bit_exact": true,
+    "expected_floats": 665921,
+    "floats": 665921,
+    "path": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-real-dncnn/dncnn3_luxonis_240x320_weights_packed_f32.bin"
+  }
+}

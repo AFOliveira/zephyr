@@ -1,0 +1,59 @@
+{
+  "variant": "opt100_i007_block0_score_h4_fullk_tr1280_ah16",
+  "timestamp": "20260504-133422",
+  "onnx_node": "/encoder/blocks.0/attn/MatMul_output_0",
+  "act_name": "/encoder/blocks.0/attn/Mul_output_0",
+  "weight_name": "/encoder/blocks.0/attn/Mul_1_output_0",
+  "rows": 1500,
+  "k_dim": 64,
+  "n_cols": 1500,
+  "tiles": 2,
+  "tile_rows": 1280,
+  "active_harts": 16,
+  "total_wait_s": 0.919521,
+  "ops": 288000000,
+  "gops": 0.31320654993197544,
+  "max_abs": 1.9073486328125e-05,
+  "mean_abs": 1.2418363439792302e-06,
+  "p99_abs": 5.7220458984375e-06,
+  "allclose_1e4": true,
+  "allclose_1e3": true,
+  "tile_ok": true,
+  "memory_layout": {
+    "out_offset": 16384,
+    "act_offset": 7733248,
+    "wt_offset": 8060928,
+    "ref_offset": 8454144,
+    "end": 16134144
+  },
+  "remote_work": "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2/erbium-amp-probe/whisper-real/opt100_i007_block0_score_h4_fullk_tr1280_ah16_20260504-133422",
+  "local_run_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/runs/opt100_i007_block0_score_h4_fullk_tr1280_ah16_20260504-133422",
+  "tile_rows_report": [
+    {
+      "tile_id": 0,
+      "row0": 0,
+      "row1": 1280,
+      "wait_s": 0.781077,
+      "max_abs": 1.52587890625e-05,
+      "mean_abs": 1.243736619471747e-06,
+      "slot_done_count": 16,
+      "active_mask": "0xffff",
+      "summary_present": false,
+      "stream_error": true,
+      "status": "ok_stream_error"
+    },
+    {
+      "tile_id": 1,
+      "row0": 1280,
+      "row1": 1500,
+      "wait_s": 0.138444,
+      "max_abs": 1.9073486328125e-05,
+      "mean_abs": 1.2307808674449916e-06,
+      "slot_done_count": 16,
+      "active_mask": "0xffff",
+      "summary_present": false,
+      "stream_error": true,
+      "status": "ok_stream_error"
+    }
+  ]
+}

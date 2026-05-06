@@ -1,0 +1,12 @@
+[
+  {"exp_id": 11, "batch": "2_fused64x2", "variant": "fused_o3_unroll",                  "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops"], "macros": ["DNCNN_VPU_FUSED64X2=1"]},
+  {"exp_id": 12, "batch": "2_fused64x2", "variant": "fused_o3_unroll_rename",           "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-frename-registers"], "macros": ["DNCNN_VPU_FUSED64X2=1"]},
+  {"exp_id": 13, "batch": "2_fused64x2", "variant": "fused_o3_unroll_noipa",            "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-fno-ipa-cp", "-fno-ipa-sra"], "macros": ["DNCNN_VPU_FUSED64X2=1"]},
+  {"exp_id": 14, "batch": "2_fused64x2", "variant": "fused_o3_unroll_align64",          "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-falign-functions=64", "-falign-loops=64"], "macros": ["DNCNN_VPU_FUSED64X2=1"]},
+  {"exp_id": 15, "batch": "2_fused64x2", "variant": "fused_o3_unroll_inline2k",         "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-finline-limit=2000"], "macros": ["DNCNN_VPU_FUSED64X2=1"]},
+  {"exp_id": 16, "batch": "2_fused64x2", "variant": "fused_o3",                         "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3"], "macros": ["DNCNN_VPU_FUSED64X2=1"]},
+  {"exp_id": 17, "batch": "2_fused64x2", "variant": "fused_o2",                         "tile": 64, "harts": 16, "passes": 8, "flags": ["-O2"], "macros": ["DNCNN_VPU_FUSED64X2=1"]},
+  {"exp_id": 18, "batch": "2_fused64x2", "variant": "fused_o3_unroll_movestores",       "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-fmove-loop-stores"], "macros": ["DNCNN_VPU_FUSED64X2=1"]},
+  {"exp_id": 19, "batch": "2_fused64x2", "variant": "fused_o3_unroll_predcomm",         "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-fpredictive-commoning"], "macros": ["DNCNN_VPU_FUSED64X2=1"]},
+  {"exp_id": 20, "batch": "2_fused64x2", "variant": "fused_o3_unroll_no_distrib",       "tile": 64, "harts": 16, "passes": 8, "flags": ["-O3", "-funroll-loops", "-fno-tree-loop-distribute-patterns"], "macros": ["DNCNN_VPU_FUSED64X2=1"]}
+]

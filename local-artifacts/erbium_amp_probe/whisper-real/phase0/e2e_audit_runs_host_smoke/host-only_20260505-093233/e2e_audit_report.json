@@ -1,0 +1,131 @@
+{
+  "timestamp": "20260505-093233",
+  "scope": "Host-only ONNXRuntime vs host-scheduled ET-SoC1 hybrid. Hybrid uses ET-SoC1 for final decoder logits projection and host for preprocessing, encoder, non-logits decoder graph work, tokenization, and text decode.",
+  "input": {
+    "audio_path": "local-artifacts/erbium_amp_probe/whisper-real/audio/openai_whisper_jfk_16k.wav",
+    "audio_sha256": "80f71fdab049ca195115a63a738c7aeea50b2e09bc3513f85e627a28dbc5f40e",
+    "original_sample_rate": 16000,
+    "sample_rate": 16000,
+    "original_samples": 176000,
+    "samples": 176000,
+    "feature_shape": [
+      1,
+      80,
+      3000
+    ],
+    "feature_sha256": "51c777823b95b3de044bb07f386a8d435b858a958b90c9702002d26cf8ccea36"
+  },
+  "model": {
+    "encoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_encoder_qaihub.onnx/whisper_tiny_en_encoder_qaihub.onnx",
+    "encoder_sha256": "20bd728e03bff2954da28028e56e57f7eb3252b6a6a08ae4296e411d360a11b2",
+    "decoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_decoder_qaihub.onnx/whisper_tiny_en_decoder_qaihub.onnx",
+    "decoder_sha256": "fef679d932bd9602f96601fb988a6391315ca5530bb18f2eda977b6f7a16a654",
+    "tokenizer": "openai/whisper-tiny.en"
+  },
+  "environment": {
+    "board_host": "esperanto-soc6",
+    "remote_root": "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2",
+    "remote_work": "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2/erbium-amp-probe/whisper-real/e2e-audit/host-only_20260505-093233",
+    "active_harts": 16,
+    "tile_cols": 8192,
+    "device_argmax_only": false
+  },
+  "encoder": {
+    "host_wall_s": 0.7896274819995597,
+    "k_cache_cross_shape": [
+      4,
+      6,
+      64,
+      1500
+    ],
+    "v_cache_cross_shape": [
+      4,
+      6,
+      1500,
+      64
+    ],
+    "k_cache_cross_sha256": "e0f4b1bdeaae5d6f1fa95e9bffcf70e20509ab7cf521b94efdd39141e25863c3",
+    "v_cache_cross_sha256": "c2ba701500d06e2343f6e4591e51ce6f53473afcd21b4f236a228c8f6c16b658"
+  },
+  "host_only": {
+    "mode": "host-only",
+    "tokens": [
+      50257,
+      50258,
+      50358,
+      50362,
+      843
+    ],
+    "token_text": [
+      "<|startoftranscript|>",
+      "<|en|>",
+      "<|transcribe|>",
+      "<|notimestamps|>",
+      " And"
+    ],
+    "text": " And",
+    "steps": [
+      {
+        "step": 0,
+        "input_token": 50257,
+        "input_text": "<|startoftranscript|>",
+        "host_argmax": 50362,
+        "host_argmax_text": "<|notimestamps|>",
+        "chosen_argmax": 50362,
+        "chosen_argmax_text": "<|notimestamps|>",
+        "next_token": 50258,
+        "next_text": "<|en|>",
+        "forced": true,
+        "silicon": null
+      },
+      {
+        "step": 1,
+        "input_token": 50258,
+        "input_text": "<|en|>",
+        "host_argmax": 13,
+        "host_argmax_text": ".",
+        "chosen_argmax": 13,
+        "chosen_argmax_text": ".",
+        "next_token": 50358,
+        "next_text": "<|transcribe|>",
+        "forced": true,
+        "silicon": null
+      },
+      {
+        "step": 2,
+        "input_token": 50358,
+        "input_text": "<|transcribe|>",
+        "host_argmax": 13,
+        "host_argmax_text": ".",
+        "chosen_argmax": 13,
+        "chosen_argmax_text": ".",
+        "next_token": 50362,
+        "next_text": "<|notimestamps|>",
+        "forced": true,
+        "silicon": null
+      },
+      {
+        "step": 3,
+        "input_token": 50362,
+        "input_text": "<|notimestamps|>",
+        "host_argmax": 843,
+        "host_argmax_text": " And",
+        "chosen_argmax": 843,
+        "chosen_argmax_text": " And",
+        "next_token": 843,
+        "next_text": " And",
+        "forced": false,
+        "silicon": null
+      }
+    ],
+    "decode_wall_s": 0.06590034100008779,
+    "silicon_logits_wait_s": 0.0,
+    "generated_nonprompt_tokens": 1,
+    "tokens_per_s_wall": 15.174428308324957,
+    "tokens_per_s_silicon_logits_only": null
+  },
+  "hybrid_silicon": null,
+  "comparison": {
+    "available": false
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variant": "whisper_decoder_vocab_tile_vpu_argbuf_p4_o3_unroll_prefab",
+  "remote_work": "/root/afonso/zephyr-u-mode/zephyr-emlearn-silicon-v2/erbium-amp-probe/whisper-real/phase0-decoder-vocab-tile-20260503-001116",
+  "local_run_dir": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/whisper-real/phase0/run-phase0-decoder-vocab-tile-20260503-001116",
+  "magic": "0x57485631",
+  "active_harts": 16,
+  "passes": 4,
+  "tokens": 32,
+  "dim": 384,
+  "hidden": 4096,
+  "active_mask": "0xffff",
+  "done_count": 16,
+  "output_sum": 1572864,
+  "slot_checksum_sum": 1572864,
+  "ops": 811597824,
+  "wait_s": 0.799069,
+  "gops": 1.0156792767583276,
+  "stream_error": false
+}

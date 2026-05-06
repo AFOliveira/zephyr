@@ -1,0 +1,92 @@
+{
+  "step": 4,
+  "total_wait_s": 0.048865356,
+  "max_abs": 1.1920928955078125e-05,
+  "mean_abs": 1.8134950323656085e-06,
+  "p99_abs": 6.198883056640625e-06,
+  "allclose_1e4": true,
+  "tile_ok": true,
+  "argmax_silicon": 523,
+  "argmax_host": 523,
+  "argmax_match": true,
+  "tiles": [
+    {
+      "tile_id": 0,
+      "col0": 0,
+      "col1": 10240,
+      "wait_s": 0.00957556,
+      "max_abs": 1.049041748046875e-05,
+      "mean_abs": 1.912430207084981e-06,
+      "slot_done_count": 16,
+      "active_mask": "0xffff",
+      "summary_present": true,
+      "stream_error": false,
+      "status": "ok"
+    },
+    {
+      "tile_id": 1,
+      "col0": 10240,
+      "col1": 20480,
+      "wait_s": 0.00959433,
+      "max_abs": 1.1920928955078125e-05,
+      "mean_abs": 1.809014065656811e-06,
+      "slot_done_count": 16,
+      "active_mask": "0xffff",
+      "summary_present": true,
+      "stream_error": false,
+      "status": "ok"
+    },
+    {
+      "tile_id": 2,
+      "col0": 20480,
+      "col1": 30720,
+      "wait_s": 0.00959521,
+      "max_abs": 1.049041748046875e-05,
+      "mean_abs": 1.7871527688839706e-06,
+      "slot_done_count": 16,
+      "active_mask": "0xffff",
+      "summary_present": true,
+      "stream_error": false,
+      "status": "ok"
+    },
+    {
+      "tile_id": 3,
+      "col0": 30720,
+      "col1": 40960,
+      "wait_s": 0.00958508,
+      "max_abs": 9.5367431640625e-06,
+      "mean_abs": 1.7606587334739743e-06,
+      "slot_done_count": 16,
+      "active_mask": "0xffff",
+      "summary_present": true,
+      "stream_error": false,
+      "status": "ok"
+    },
+    {
+      "tile_id": 4,
+      "col0": 40960,
+      "col1": 51200,
+      "wait_s": 0.00955728,
+      "max_abs": 9.5367431640625e-06,
+      "mean_abs": 1.778536557139887e-06,
+      "slot_done_count": 16,
+      "active_mask": "0xffff",
+      "summary_present": true,
+      "stream_error": false,
+      "status": "ok"
+    },
+    {
+      "tile_id": 5,
+      "col0": 51200,
+      "col1": 51864,
+      "wait_s": 0.000957896,
+      "max_abs": 8.106231689453125e-06,
+      "mean_abs": 2.1170421860006172e-06,
+      "slot_done_count": 16,
+      "active_mask": "0xffff",
+      "summary_present": true,
+      "stream_error": false,
+      "status": "ok"
+    }
+  ]
+}

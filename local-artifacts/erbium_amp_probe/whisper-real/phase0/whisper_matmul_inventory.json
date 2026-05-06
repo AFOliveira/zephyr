@@ -1,0 +1,445 @@
+{
+  "models": [
+    {
+      "model": "encoder",
+      "matmul_count": 72,
+      "groups": [
+        {
+          "a": [
+            1,
+            1500,
+            384
+          ],
+          "b": [
+            384,
+            1536
+          ],
+          "out": [
+            1,
+            1500,
+            1536
+          ],
+          "count": 4,
+          "ops_each": 1769472000,
+          "ops_total": 7077888000,
+          "examples": [
+            "/encoder/blocks.0/mlp/0/MatMul",
+            "/encoder/blocks.1/mlp/0/MatMul",
+            "/encoder/blocks.2/mlp/0/MatMul",
+            "/encoder/blocks.3/mlp/0/MatMul"
+          ]
+        },
+        {
+          "a": [
+            1,
+            1500,
+            1536
+          ],
+          "b": [
+            1536,
+            384
+          ],
+          "out": [
+            1,
+            1500,
+            384
+          ],
+          "count": 4,
+          "ops_each": 1769472000,
+          "ops_total": 7077888000,
+          "examples": [
+            "/encoder/blocks.0/mlp/2/MatMul",
+            "/encoder/blocks.1/mlp/2/MatMul",
+            "/encoder/blocks.2/mlp/2/MatMul",
+            "/encoder/blocks.3/mlp/2/MatMul"
+          ]
+        },
+        {
+          "a": [
+            1,
+            6,
+            1500,
+            64
+          ],
+          "b": [
+            1,
+            6,
+            64,
+            1500
+          ],
+          "out": [
+            1,
+            6,
+            1500,
+            1500
+          ],
+          "count": 4,
+          "ops_each": 1728000000,
+          "ops_total": 6912000000,
+          "examples": [
+            "/encoder/blocks.0/attn/MatMul",
+            "/encoder/blocks.1/attn/MatMul",
+            "/encoder/blocks.2/attn/MatMul",
+            "/encoder/blocks.3/attn/MatMul"
+          ]
+        },
+        {
+          "a": [
+            1,
+            6,
+            1500,
+            1500
+          ],
+          "b": [
+            1,
+            6,
+            1500,
+            64
+          ],
+          "out": [
+            1,
+            6,
+            1500,
+            64
+          ],
+          "count": 4,
+          "ops_each": 1728000000,
+          "ops_total": 6912000000,
+          "examples": [
+            "/encoder/blocks.0/attn/MatMul_1",
+            "/encoder/blocks.1/attn/MatMul_1",
+            "/encoder/blocks.2/attn/MatMul_1",
+            "/encoder/blocks.3/attn/MatMul_1"
+          ]
+        },
+        {
+          "a": [
+            1,
+            1500,
+            384
+          ],
+          "b": [
+            384,
+            1152
+          ],
+          "out": [
+            1,
+            1500,
+            1152
+          ],
+          "count": 4,
+          "ops_each": 1327104000,
+          "ops_total": 5308416000,
+          "examples": [
+            "MatMul_from_/encoder/blocks.0/attn/query/MatMul_and_/encoder/blocks.0/attn/key/MatMul_and_/encoder/blocks.0/attn/value/MatMul",
+            "MatMul_from_/encoder/blocks.1/attn/query/MatMul_and_/encoder/blocks.1/attn/key/MatMul_and_/encoder/blocks.1/attn/value/MatMul",
+            "MatMul_from_/encoder/blocks.2/attn/query/MatMul_and_/encoder/blocks.2/attn/key/MatMul_and_/encoder/blocks.2/attn/value/MatMul",
+            "MatMul_from_/encoder/blocks.3/attn/query/MatMul_and_/encoder/blocks.3/attn/key/MatMul_and_/encoder/blocks.3/attn/value/MatMul"
+          ]
+        },
+        {
+          "a": [
+            1,
+            1500,
+            384
+          ],
+          "b": [
+            384,
+            64
+          ],
+          "out": [
+            1,
+            1500,
+            64
+          ],
+          "count": 48,
+          "ops_each": 73728000,
+          "ops_total": 3538944000,
+          "examples": [
+            "/0/0/MatMul",
+            "/0/1/MatMul",
+            "/0/2/MatMul",
+            "/0/3/MatMul",
+            "/0/4/MatMul"
+          ]
+        },
+        {
+          "a": [
+            1,
+            1500,
+            384
+          ],
+          "b": [
+            384,
+            384
+          ],
+          "out": [
+            1,
+            1500,
+            384
+          ],
+          "count": 4,
+          "ops_each": 442368000,
+          "ops_total": 1769472000,
+          "examples": [
+            "/encoder/blocks.0/attn/out/MatMul",
+            "/encoder/blocks.1/attn/out/MatMul",
+            "/encoder/blocks.2/attn/out/MatMul",
+            "/encoder/blocks.3/attn/out/MatMul"
+          ]
+        }
+      ],
+      "total_ops": 38596608000
+    },
+    {
+      "model": "decoder",
+      "matmul_count": 121,
+      "groups": [
+        {
+          "a": [
+            1,
+            1,
+            384
+          ],
+          "b": [
+            384,
+            51864
+          ],
+          "out": [
+            1,
+            1,
+            51864
+          ],
+          "count": 1,
+          "ops_each": 39831552,
+          "ops_total": 39831552,
+          "examples": [
+            "/logits/MatMul"
+          ]
+        },
+        {
+          "a": [
+            1,
+            1,
+            384
+          ],
+          "b": [
+            384,
+            1536
+          ],
+          "out": [
+            1,
+            1,
+            1536
+          ],
+          "count": 4,
+          "ops_each": 1179648,
+          "ops_total": 4718592,
+          "examples": [
+            "/0/mlp/0/MatMul",
+            "/1/mlp/0/MatMul",
+            "/2/mlp/0/MatMul",
+            "/3/mlp/0/MatMul"
+          ]
+        },
+        {
+          "a": [
+            1,
+            1,
+            1536
+          ],
+          "b": [
+            1536,
+            384
+          ],
+          "out": [
+            1,
+            1,
+            384
+          ],
+          "count": 4,
+          "ops_each": 1179648,
+          "ops_total": 4718592,
+          "examples": [
+            "/0/mlp/2/MatMul",
+            "/1/mlp/2/MatMul",
+            "/2/mlp/2/MatMul",
+            "/3/mlp/2/MatMul"
+          ]
+        },
+        {
+          "a": [
+            1,
+            1,
+            1,
+            64
+          ],
+          "b": [
+            1,
+            1,
+            64,
+            1500
+          ],
+          "out": [
+            1,
+            1,
+            1,
+            1500
+          ],
+          "count": 24,
+          "ops_each": 192000,
+          "ops_total": 4608000,
+          "examples": [
+            "/0/cross_attn/MatMul",
+            "/0/cross_attn/MatMul_2",
+            "/0/cross_attn/MatMul_4",
+            "/0/cross_attn/MatMul_6",
+            "/0/cross_attn/MatMul_8"
+          ]
+        },
+        {
+          "a": [
+            1,
+            1,
+            1,
+            1500
+          ],
+          "b": [
+            1,
+            1,
+            1500,
+            64
+          ],
+          "out": [
+            1,
+            1,
+            1,
+            64
+          ],
+          "count": 24,
+          "ops_each": 192000,
+          "ops_total": 4608000,
+          "examples": [
+            "/0/cross_attn/MatMul_1",
+            "/0/cross_attn/MatMul_3",
+            "/0/cross_attn/MatMul_5",
+            "/0/cross_attn/MatMul_7",
+            "/0/cross_attn/MatMul_9"
+          ]
+        },
+        {
+          "a": [
+            1,
+            1,
+            384
+          ],
+          "b": [
+            384,
+            1152
+          ],
+          "out": [
+            1,
+            1,
+            1152
+          ],
+          "count": 4,
+          "ops_each": 884736,
+          "ops_total": 3538944,
+          "examples": [
+            "MatMul_from_/0/attn/query/MatMul_and_/0/attn/key/MatMul_and_/0/attn/value/MatMul",
+            "MatMul_from_/1/attn/query/MatMul_and_/1/attn/key/MatMul_and_/1/attn/value/MatMul",
+            "MatMul_from_/2/attn/query/MatMul_and_/2/attn/key/MatMul_and_/2/attn/value/MatMul",
+            "MatMul_from_/3/attn/query/MatMul_and_/3/attn/key/MatMul_and_/3/attn/value/MatMul"
+          ]
+        },
+        {
+          "a": [
+            1,
+            1,
+            384
+          ],
+          "b": [
+            384,
+            384
+          ],
+          "out": [
+            1,
+            1,
+            384
+          ],
+          "count": 12,
+          "ops_each": 294912,
+          "ops_total": 3538944,
+          "examples": [
+            "/0/attn/out/MatMul",
+            "/0/cross_attn/query/MatMul",
+            "/0/cross_attn/out/MatMul",
+            "/1/attn/out/MatMul",
+            "/1/cross_attn/query/MatMul"
+          ]
+        },
+        {
+          "a": [
+            1,
+            1,
+            1,
+            64
+          ],
+          "b": [
+            1,
+            1,
+            64,
+            224
+          ],
+          "out": [
+            1,
+            1,
+            1,
+            224
+          ],
+          "count": 24,
+          "ops_each": 28672,
+          "ops_total": 688128,
+          "examples": [
+            "/0/attn/MatMul",
+            "/0/attn/MatMul_2",
+            "/0/attn/MatMul_4",
+            "/0/attn/MatMul_6",
+            "/0/attn/MatMul_8"
+          ]
+        },
+        {
+          "a": [
+            1,
+            1,
+            1,
+            224
+          ],
+          "b": [
+            1,
+            1,
+            224,
+            64
+          ],
+          "out": [
+            1,
+            1,
+            1,
+            64
+          ],
+          "count": 24,
+          "ops_each": 28672,
+          "ops_total": 688128,
+          "examples": [
+            "/0/attn/MatMul_1",
+            "/0/attn/MatMul_3",
+            "/0/attn/MatMul_5",
+            "/0/attn/MatMul_7",
+            "/0/attn/MatMul_9"
+          ]
+        }
+      ],
+      "total_ops": 66938880
+    }
+  ]
+}

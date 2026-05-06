@@ -1,0 +1,7 @@
+[
+  {"exp_id": 220, "variant": "j0_boundary_p3",            "harts": 16, "passes": 3, "flags": [], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]},
+  {"exp_id": 221, "variant": "j1_boundary_p5",            "harts": 16, "passes": 5, "flags": [], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]},
+  {"exp_id": 222, "variant": "j2_boundary_p6",            "harts": 16, "passes": 6, "flags": [], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]},
+  {"exp_id": 223, "variant": "j3_boundary_p8",            "harts": 16, "passes": 8, "flags": [], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]},
+  {"exp_id": 224, "variant": "j4_boundary_p4_align256",   "harts": 16, "passes": 4, "flags": ["-falign-functions=256", "-falign-loops=256"], "macros": ["DNCNN_VPU_BOUNDARY_ONLY_EVICT=1"]}
+]

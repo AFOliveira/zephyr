@@ -1,0 +1,1055 @@
+[
+  {
+    "file_size_bytes": 2671116,
+    "initializer_bytes": 2663684,
+    "initializers": 40,
+    "inputs": [
+      {
+        "name": "image",
+        "shape": [
+          1,
+          1,
+          240,
+          320
+        ]
+      }
+    ],
+    "ir_version": 7,
+    "name": "dncnn3_240x320",
+    "nodes": 40,
+    "op_counts": {
+      "Conv": 20,
+      "Relu": 19,
+      "Sub": 1
+    },
+    "opset_import": [
+      {
+        "domain": "ai.onnx",
+        "version": 14
+      }
+    ],
+    "outputs": [
+      {
+        "name": "enhanced_image",
+        "shape": [
+          1,
+          1,
+          240,
+          320
+        ]
+      }
+    ],
+    "path": "local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/dncnn3-240x320.onnx/dncnn3-240x320.onnx",
+    "producer": "pytorch",
+    "top_ops": [
+      [
+        "Conv",
+        20
+      ],
+      [
+        "Relu",
+        19
+      ],
+      [
+        "Sub",
+        1
+      ]
+    ]
+  },
+  {
+    "file_size_bytes": 2671116,
+    "initializer_bytes": 2663684,
+    "initializers": 40,
+    "inputs": [
+      {
+        "name": "image",
+        "shape": [
+          1,
+          1,
+          480,
+          640
+        ]
+      }
+    ],
+    "ir_version": 7,
+    "name": "dncnn3_480x640",
+    "nodes": 40,
+    "op_counts": {
+      "Conv": 20,
+      "Relu": 19,
+      "Sub": 1
+    },
+    "opset_import": [
+      {
+        "domain": "ai.onnx",
+        "version": 14
+      }
+    ],
+    "outputs": [
+      {
+        "name": "enhanced_image",
+        "shape": [
+          1,
+          1,
+          480,
+          640
+        ]
+      }
+    ],
+    "path": "local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/dncnn3-480x640.onnx/dncnn3-480x640.onnx",
+    "producer": "pytorch",
+    "top_ops": [
+      [
+        "Conv",
+        20
+      ],
+      [
+        "Relu",
+        19
+      ],
+      [
+        "Sub",
+        1
+      ]
+    ]
+  },
+  {
+    "file_size_bytes": 98998202,
+    "initializer_bytes": 98841892,
+    "initializers": 235,
+    "inputs": [
+      {
+        "name": "image",
+        "shape": [
+          1,
+          3,
+          252,
+          336
+        ]
+      }
+    ],
+    "ir_version": 8,
+    "name": "depth_anything_v2_252x336",
+    "nodes": 1108,
+    "op_counts": {
+      "Add": 95,
+      "Cast": 49,
+      "Concat": 35,
+      "Constant": 284,
+      "ConstantOfShape": 1,
+      "Conv": 31,
+      "ConvTranspose": 2,
+      "Div": 36,
+      "Equal": 1,
+      "Erf": 12,
+      "Expand": 1,
+      "Gather": 81,
+      "Identity": 1,
+      "LayerNormalization": 28,
+      "MatMul": 72,
+      "Mul": 73,
+      "Relu": 17,
+      "Reshape": 30,
+      "Resize": 6,
+      "Shape": 61,
+      "Slice": 21,
+      "Softmax": 12,
+      "Sqrt": 36,
+      "Transpose": 42,
+      "Unsqueeze": 80,
+      "Where": 1
+    },
+    "opset_import": [
+      {
+        "domain": "ai.onnx",
+        "version": 17
+      }
+    ],
+    "outputs": [
+      {
+        "name": "relative_depth",
+        "shape": [
+          1,
+          252,
+          336
+        ]
+      }
+    ],
+    "path": "local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/depth-anything-v2-vits-252x336.onnx/depth-anything-v2-vits-252x336.onnx",
+    "producer": "pytorch",
+    "top_ops": [
+      [
+        "Constant",
+        284
+      ],
+      [
+        "Add",
+        95
+      ],
+      [
+        "Gather",
+        81
+      ],
+      [
+        "Unsqueeze",
+        80
+      ],
+      [
+        "Mul",
+        73
+      ],
+      [
+        "MatMul",
+        72
+      ],
+      [
+        "Shape",
+        61
+      ],
+      [
+        "Cast",
+        49
+      ],
+      [
+        "Transpose",
+        42
+      ],
+      [
+        "Div",
+        36
+      ],
+      [
+        "Sqrt",
+        36
+      ],
+      [
+        "Concat",
+        35
+      ],
+      [
+        "Conv",
+        31
+      ],
+      [
+        "Reshape",
+        30
+      ],
+      [
+        "LayerNormalization",
+        28
+      ],
+      [
+        "Slice",
+        21
+      ],
+      [
+        "Relu",
+        17
+      ],
+      [
+        "Softmax",
+        12
+      ],
+      [
+        "Erf",
+        12
+      ],
+      [
+        "Resize",
+        6
+      ]
+    ]
+  },
+  {
+    "file_size_bytes": 98998202,
+    "initializer_bytes": 98841892,
+    "initializers": 235,
+    "inputs": [
+      {
+        "name": "image",
+        "shape": [
+          1,
+          3,
+          420,
+          560
+        ]
+      }
+    ],
+    "ir_version": 8,
+    "name": "depth_anything_v2_420x560",
+    "nodes": 1108,
+    "op_counts": {
+      "Add": 95,
+      "Cast": 49,
+      "Concat": 35,
+      "Constant": 284,
+      "ConstantOfShape": 1,
+      "Conv": 31,
+      "ConvTranspose": 2,
+      "Div": 36,
+      "Equal": 1,
+      "Erf": 12,
+      "Expand": 1,
+      "Gather": 81,
+      "Identity": 1,
+      "LayerNormalization": 28,
+      "MatMul": 72,
+      "Mul": 73,
+      "Relu": 17,
+      "Reshape": 30,
+      "Resize": 6,
+      "Shape": 61,
+      "Slice": 21,
+      "Softmax": 12,
+      "Sqrt": 36,
+      "Transpose": 42,
+      "Unsqueeze": 80,
+      "Where": 1
+    },
+    "opset_import": [
+      {
+        "domain": "ai.onnx",
+        "version": 17
+      }
+    ],
+    "outputs": [
+      {
+        "name": "relative_depth",
+        "shape": [
+          1,
+          420,
+          560
+        ]
+      }
+    ],
+    "path": "local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/depth-anything-v2-vits-420x560.onnx/depth-anything-v2-vits-420x560.onnx",
+    "producer": "pytorch",
+    "top_ops": [
+      [
+        "Constant",
+        284
+      ],
+      [
+        "Add",
+        95
+      ],
+      [
+        "Gather",
+        81
+      ],
+      [
+        "Unsqueeze",
+        80
+      ],
+      [
+        "Mul",
+        73
+      ],
+      [
+        "MatMul",
+        72
+      ],
+      [
+        "Shape",
+        61
+      ],
+      [
+        "Cast",
+        49
+      ],
+      [
+        "Transpose",
+        42
+      ],
+      [
+        "Div",
+        36
+      ],
+      [
+        "Sqrt",
+        36
+      ],
+      [
+        "Concat",
+        35
+      ],
+      [
+        "Conv",
+        31
+      ],
+      [
+        "Reshape",
+        30
+      ],
+      [
+        "LayerNormalization",
+        28
+      ],
+      [
+        "Slice",
+        21
+      ],
+      [
+        "Relu",
+        17
+      ],
+      [
+        "Softmax",
+        12
+      ],
+      [
+        "Erf",
+        12
+      ],
+      [
+        "Resize",
+        6
+      ]
+    ]
+  },
+  {
+    "file_size_bytes": 37612939,
+    "initializer_bytes": 37558376,
+    "initializers": 139,
+    "inputs": [
+      {
+        "name": "audio",
+        "shape": [
+          1,
+          80,
+          3000
+        ]
+      }
+    ],
+    "ir_version": 8,
+    "name": "whisper_tiny_en_encoder",
+    "nodes": 257,
+    "op_counts": {
+      "Add": 59,
+      "Concat": 10,
+      "Conv": 2,
+      "Div": 6,
+      "Erf": 6,
+      "LayerNormalization": 9,
+      "MatMul": 72,
+      "Mul": 20,
+      "Reshape": 16,
+      "Softmax": 4,
+      "Split": 4,
+      "Transpose": 41,
+      "Unsqueeze": 8
+    },
+    "opset_import": [
+      {
+        "domain": "ai.onnx",
+        "version": 17
+      }
+    ],
+    "outputs": [
+      {
+        "name": "k_cache_cross",
+        "shape": [
+          4,
+          6,
+          64,
+          1500
+        ]
+      },
+      {
+        "name": "v_cache_cross",
+        "shape": [
+          4,
+          6,
+          1500,
+          64
+        ]
+      }
+    ],
+    "path": "local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_encoder_qaihub.onnx/whisper_tiny_en_encoder_qaihub.onnx",
+    "producer": "pytorch",
+    "top_ops": [
+      [
+        "MatMul",
+        72
+      ],
+      [
+        "Add",
+        59
+      ],
+      [
+        "Transpose",
+        41
+      ],
+      [
+        "Mul",
+        20
+      ],
+      [
+        "Reshape",
+        16
+      ],
+      [
+        "Concat",
+        10
+      ],
+      [
+        "LayerNormalization",
+        9
+      ],
+      [
+        "Unsqueeze",
+        8
+      ],
+      [
+        "Div",
+        6
+      ],
+      [
+        "Erf",
+        6
+      ],
+      [
+        "Split",
+        4
+      ],
+      [
+        "Softmax",
+        4
+      ],
+      [
+        "Conv",
+        2
+      ]
+    ]
+  },
+  {
+    "file_size_bytes": 193092891,
+    "initializer_bytes": 193003268,
+    "initializers": 133,
+    "inputs": [
+      {
+        "name": "x",
+        "shape": [
+          1,
+          1
+        ]
+      },
+      {
+        "name": "index",
+        "shape": [
+          1,
+          1
+        ]
+      },
+      {
+        "name": "k_cache_cross",
+        "shape": [
+          4,
+          6,
+          64,
+          1500
+        ]
+      },
+      {
+        "name": "v_cache_cross",
+        "shape": [
+          4,
+          6,
+          1500,
+          64
+        ]
+      },
+      {
+        "name": "k_cache_self",
+        "shape": [
+          4,
+          6,
+          64,
+          224
+        ]
+      },
+      {
+        "name": "v_cache_self",
+        "shape": [
+          4,
+          6,
+          224,
+          64
+        ]
+      }
+    ],
+    "ir_version": 8,
+    "name": "whisper_tiny_en_decoder",
+    "nodes": 476,
+    "op_counts": {
+      "Add": 69,
+      "Concat": 18,
+      "Div": 4,
+      "Erf": 4,
+      "Gather": 3,
+      "LayerNormalization": 13,
+      "MatMul": 121,
+      "Mul": 8,
+      "Reshape": 24,
+      "Slice": 152,
+      "Softmax": 48,
+      "Split": 4,
+      "Unsqueeze": 8
+    },
+    "opset_import": [
+      {
+        "domain": "ai.onnx",
+        "version": 17
+      }
+    ],
+    "outputs": [
+      {
+        "name": "logits",
+        "shape": [
+          1,
+          1,
+          51864
+        ]
+      },
+      {
+        "name": "k_cache",
+        "shape": [
+          4,
+          6,
+          64,
+          224
+        ]
+      },
+      {
+        "name": "v_cache",
+        "shape": [
+          4,
+          6,
+          224,
+          64
+        ]
+      }
+    ],
+    "path": "local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_decoder_qaihub.onnx/whisper_tiny_en_decoder_qaihub.onnx",
+    "producer": "pytorch",
+    "top_ops": [
+      [
+        "Slice",
+        152
+      ],
+      [
+        "MatMul",
+        121
+      ],
+      [
+        "Add",
+        69
+      ],
+      [
+        "Softmax",
+        48
+      ],
+      [
+        "Reshape",
+        24
+      ],
+      [
+        "Concat",
+        18
+      ],
+      [
+        "LayerNormalization",
+        13
+      ],
+      [
+        "Unsqueeze",
+        8
+      ],
+      [
+        "Mul",
+        8
+      ],
+      [
+        "Split",
+        4
+      ],
+      [
+        "Div",
+        4
+      ],
+      [
+        "Erf",
+        4
+      ],
+      [
+        "Gather",
+        3
+      ]
+    ]
+  },
+  {
+    "file_size_bytes": 939186522,
+    "initializer_bytes": 746560108,
+    "initializers": 1237,
+    "inputs": [
+      {
+        "name": "left",
+        "shape": [
+          1,
+          3,
+          416,
+          640
+        ]
+      },
+      {
+        "name": "right",
+        "shape": [
+          1,
+          3,
+          416,
+          640
+        ]
+      }
+    ],
+    "ir_version": 8,
+    "name": "foundation_stereo_640x416_32",
+    "nodes": 37817,
+    "op_counts": {
+      "Add": 1210,
+      "AveragePool": 66,
+      "BatchNormalization": 75,
+      "Cast": 1194,
+      "Clip": 216,
+      "Concat": 1422,
+      "Constant": 13179,
+      "ConstantOfShape": 1562,
+      "Conv": 1230,
+      "ConvTranspose": 10,
+      "Cos": 2,
+      "CumSum": 2,
+      "Div": 682,
+      "Einsum": 1,
+      "Equal": 1561,
+      "Erf": 110,
+      "Expand": 2090,
+      "Gather": 391,
+      "GlobalAveragePool": 3,
+      "GridSample": 128,
+      "Identity": 124,
+      "InstanceNormalization": 16,
+      "LeakyRelu": 24,
+      "MatMul": 352,
+      "MaxPool": 3,
+      "Mul": 3059,
+      "Pad": 1,
+      "Pow": 85,
+      "Range": 2,
+      "ReduceL2": 216,
+      "ReduceMax": 3,
+      "ReduceMean": 173,
+      "ReduceSum": 106,
+      "Relu": 489,
+      "Reshape": 808,
+      "Resize": 74,
+      "ScatterND": 312,
+      "Shape": 921,
+      "Sigmoid": 396,
+      "Sin": 2,
+      "Slice": 1135,
+      "Softmax": 33,
+      "Split": 131,
+      "Sqrt": 97,
+      "Squeeze": 10,
+      "Sub": 476,
+      "Tanh": 195,
+      "Tile": 1,
+      "Transpose": 301,
+      "Unsqueeze": 1577,
+      "Where": 1561
+    },
+    "opset_import": [
+      {
+        "domain": "ai.onnx",
+        "version": 16
+      }
+    ],
+    "outputs": [
+      {
+        "name": "disp",
+        "shape": [
+          1,
+          1,
+          416,
+          640
+        ]
+      }
+    ],
+    "path": "local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/foundation_stereo_640x416_32.onnx",
+    "producer": "pytorch",
+    "top_ops": [
+      [
+        "Constant",
+        13179
+      ],
+      [
+        "Mul",
+        3059
+      ],
+      [
+        "Expand",
+        2090
+      ],
+      [
+        "Unsqueeze",
+        1577
+      ],
+      [
+        "ConstantOfShape",
+        1562
+      ],
+      [
+        "Equal",
+        1561
+      ],
+      [
+        "Where",
+        1561
+      ],
+      [
+        "Concat",
+        1422
+      ],
+      [
+        "Conv",
+        1230
+      ],
+      [
+        "Add",
+        1210
+      ],
+      [
+        "Cast",
+        1194
+      ],
+      [
+        "Slice",
+        1135
+      ],
+      [
+        "Shape",
+        921
+      ],
+      [
+        "Reshape",
+        808
+      ],
+      [
+        "Div",
+        682
+      ],
+      [
+        "Relu",
+        489
+      ],
+      [
+        "Sub",
+        476
+      ],
+      [
+        "Sigmoid",
+        396
+      ],
+      [
+        "Gather",
+        391
+      ],
+      [
+        "MatMul",
+        352
+      ]
+    ]
+  },
+  {
+    "file_size_bytes": 752917815,
+    "initializer_bytes": 746560108,
+    "initializers": 1237,
+    "inputs": [
+      {
+        "name": "left",
+        "shape": [
+          "batch_size",
+          3,
+          800,
+          1280
+        ]
+      },
+      {
+        "name": "right",
+        "shape": [
+          "batch_size",
+          3,
+          800,
+          1280
+        ]
+      }
+    ],
+    "ir_version": 8,
+    "name": "foundation_stereo_1280x800_32",
+    "nodes": 58447,
+    "op_counts": {
+      "Add": 2458,
+      "AveragePool": 66,
+      "BatchNormalization": 75,
+      "Cast": 2907,
+      "Clip": 216,
+      "Concat": 1993,
+      "Constant": 19192,
+      "ConstantOfShape": 1629,
+      "Conv": 1230,
+      "ConvTranspose": 10,
+      "Cos": 2,
+      "CumSum": 2,
+      "Div": 814,
+      "Einsum": 1,
+      "Equal": 1561,
+      "Erf": 110,
+      "Expand": 2090,
+      "Gather": 2462,
+      "GlobalAveragePool": 3,
+      "GridSample": 128,
+      "Identity": 124,
+      "InstanceNormalization": 16,
+      "LeakyRelu": 24,
+      "MatMul": 352,
+      "MaxPool": 3,
+      "Mul": 3133,
+      "Not": 1,
+      "Pad": 1,
+      "Pow": 85,
+      "Range": 1251,
+      "ReduceL2": 216,
+      "ReduceMax": 3,
+      "ReduceMean": 173,
+      "ReduceSum": 106,
+      "Relu": 489,
+      "Reshape": 1747,
+      "Resize": 74,
+      "ScatterND": 312,
+      "Shape": 4932,
+      "Sigmoid": 396,
+      "Sin": 2,
+      "Slice": 1553,
+      "Softmax": 33,
+      "Split": 131,
+      "Sqrt": 97,
+      "Squeeze": 10,
+      "Sub": 480,
+      "Tanh": 195,
+      "Tile": 1,
+      "Transpose": 302,
+      "Unsqueeze": 3695,
+      "Where": 1561
+    },
+    "opset_import": [
+      {
+        "domain": "ai.onnx",
+        "version": 16
+      }
+    ],
+    "outputs": [
+      {
+        "name": "disp",
+        "shape": [
+          "batch_size",
+          1,
+          "Castdisp_dim_2",
+          "Castdisp_dim_3"
+        ]
+      }
+    ],
+    "path": "local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/foundation_stereo_1280x800_32.onnx",
+    "producer": "pytorch",
+    "top_ops": [
+      [
+        "Constant",
+        19192
+      ],
+      [
+        "Shape",
+        4932
+      ],
+      [
+        "Unsqueeze",
+        3695
+      ],
+      [
+        "Mul",
+        3133
+      ],
+      [
+        "Cast",
+        2907
+      ],
+      [
+        "Gather",
+        2462
+      ],
+      [
+        "Add",
+        2458
+      ],
+      [
+        "Expand",
+        2090
+      ],
+      [
+        "Concat",
+        1993
+      ],
+      [
+        "Reshape",
+        1747
+      ],
+      [
+        "ConstantOfShape",
+        1629
+      ],
+      [
+        "Equal",
+        1561
+      ],
+      [
+        "Where",
+        1561
+      ],
+      [
+        "Slice",
+        1553
+      ],
+      [
+        "Range",
+        1251
+      ],
+      [
+        "Conv",
+        1230
+      ],
+      [
+        "Div",
+        814
+      ],
+      [
+        "Relu",
+        489
+      ],
+      [
+        "Sub",
+        480
+      ],
+      [
+        "Sigmoid",
+        396
+      ]
+    ]
+  }
+]

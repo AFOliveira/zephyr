@@ -1,0 +1,13 @@
+{
+  "img_w": 320,
+  "img_h": 240,
+  "channels": 64,
+  "layers": 20,
+  "passes": 1,
+  "input_bytes": 76800,
+  "weights_bytes": 664704,
+  "ops": 102098534400,
+  "input_sha256": "4fd50d5d1864e5a918405f5137dd097720a200d611a18aec32c0afb0b7d35278",
+  "weights_sha256": "3829e418c51260255c3dd1fb250135a33e8a7813877f60d3cc86b65ef0876f8a",
+  "note": "Synthetic full-size scalar INT8 DnCNN-shaped single-shot throughput probe, not real Luxonis INT8 inference."
+}

@@ -1,0 +1,56 @@
+{
+  "encoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_encoder_qaihub.onnx/whisper_tiny_en_encoder_qaihub.onnx",
+  "a_name": "/encoder/blocks.0/attn/Mul_output_0",
+  "b_name": "/encoder/blocks.0/attn/Mul_1_output_0",
+  "act_name": "/encoder/blocks.0/attn/Mul_output_0",
+  "weight_name": "/encoder/blocks.0/attn/Mul_1_output_0",
+  "out_name": "/encoder/blocks.0/attn/MatMul_output_0",
+  "head": 1,
+  "seed": 20260503,
+  "audio_shape": [
+    1,
+    80,
+    3000
+  ],
+  "source_act_shape": [
+    1500,
+    64
+  ],
+  "source_weight_shape": [
+    64,
+    1500
+  ],
+  "source_ref_shape": [
+    1500,
+    1500
+  ],
+  "act_shape": [
+    1500,
+    64
+  ],
+  "weight_shape": [
+    64,
+    1500
+  ],
+  "weight_t_shape": [
+    1500,
+    64
+  ],
+  "ref_shape": [
+    1500,
+    1500
+  ],
+  "rows": 1500,
+  "k_dim": 64,
+  "source_k_dim": 64,
+  "n_cols": 1500,
+  "ops": 288000000,
+  "useful_ops": 288000000,
+  "max_abs_numpy_vs_ort": 9.5367431640625e-06,
+  "files": {
+    "act_full": "act_full.bin",
+    "weight": "weight.bin",
+    "weight_t": "weight_t.bin",
+    "ref_full": "ref_full.bin"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "encoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_encoder_qaihub.onnx/whisper_tiny_en_encoder_qaihub.onnx",
+  "decoder": "/home/afonso/zephyr/local-artifacts/erbium_amp_probe/luxonis-models/downloads/onnx/extracted/whisper_tiny_en_decoder_qaihub.onnx/whisper_tiny_en_decoder_qaihub.onnx",
+  "node_name": "MatMul_from_/0/attn/query/MatMul_and_/0/attn/key/MatMul_and_/0/attn/value/MatMul",
+  "act_name": "/0/attn_ln/LayerNormalization_output_0",
+  "weight_name": "_v_2778",
+  "out_name": "_v_2779",
+  "weight_is_initializer": true,
+  "seed": 20260504,
+  "audio_scale": 0.25,
+  "token_id": 50258,
+  "index": 0,
+  "rows": 1,
+  "k_dim_unpadded": 384,
+  "k_dim": 384,
+  "n_cols": 1152,
+  "ops": 884736,
+  "padded_ops_executed": 884736,
+  "act_original_shape": [
+    1,
+    1,
+    384
+  ],
+  "weight_original_shape": [
+    384,
+    1152
+  ],
+  "out_original_shape": [
+    1,
+    1,
+    1152
+  ],
+  "k_was_padded": false,
+  "max_abs_numpy_vs_ort": 3.5762786865234375e-07,
+  "mean_abs_numpy_vs_ort": 4.059539548961766e-08,
+  "files": {
+    "act_full": "act_full.bin",
+    "weight_t": "weight_t.bin",
+    "ref_full": "ref_full.bin",
+    "decoder_logits_full": "decoder_logits_full.bin"
+  }
+}

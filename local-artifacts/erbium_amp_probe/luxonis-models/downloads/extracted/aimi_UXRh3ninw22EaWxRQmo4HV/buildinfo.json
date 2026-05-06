@@ -1,0 +1,42 @@
+{
+    "cmd_info": {
+        "dlc_convert": [
+            "snpe-onnx-to-dlc",
+            "--float_bitwidth",
+            "16",
+            "--preserve_io",
+            "-i",
+            "shared_with_container/outputs/whisper_tiny_en_encoder_qaihub_to_rvc4_2024_11_22_11_26_38/intermediate_outputs/whisper_tiny_en_encoder_qaihub-modified.onnx",
+            "--input_dim",
+            "audio",
+            "1,80,3000",
+            "--input_dtype",
+            "audio",
+            "float32",
+            "--out_name",
+            "k_cache_cross",
+            "--out_name",
+            "v_cache_cross",
+            "--input_layout",
+            "audio",
+            "NCF"
+        ],
+        "graph_prepare": [
+            "snpe-dlc-graph-prepare",
+            "--use_float_io",
+            "--input_dlc",
+            "shared_with_container/outputs/whisper_tiny_en_encoder_qaihub_to_rvc4_2024_11_22_11_26_38/intermediate_outputs/whisper_tiny_en_encoder_qaihub-modified.dlc",
+            "--output_dlc",
+            "shared_with_container/outputs/whisper_tiny_en_encoder_qaihub_to_rvc4_2024_11_22_11_26_38/whisper_tiny_en_encoder_qaihub.dlc",
+            "--set_output_tensors",
+            "k_cache_cross,v_cache_cross",
+            "--htp_socs",
+            "sm8550"
+        ]
+    },
+    "modelconverter_version": "0.3.0",
+    "snpe_version": "SNPE v2.23.0.240531124219_94801",
+    "target_devices": [
+        "sm8550"
+    ]
+}
