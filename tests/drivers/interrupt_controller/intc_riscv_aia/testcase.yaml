@@ -1,0 +1,20 @@
+# Copyright (c) 2025 Synopsys, Inc.
+# SPDX-License-Identifier: Apache-2.0
+
+common:
+  arch_allow: riscv
+  tags:
+    - drivers
+    - interrupt
+    - riscv
+    - aia
+    - aplic
+    - imsic
+  platform_allow:
+    - qemu_riscv32/qemu_virt_riscv32/aia
+    - qemu_riscv32/qemu_virt_riscv32/aia/smp
+  integration_platforms:
+    - qemu_riscv32/qemu_virt_riscv32/aia
+
+tests:
+  drivers.interrupt_controller.intc_riscv_aia: {}
