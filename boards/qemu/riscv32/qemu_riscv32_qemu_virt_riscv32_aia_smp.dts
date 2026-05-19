@@ -1,0 +1,115 @@
+/*
+ * Copyright (c) 2025 Synopsys, Inc.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+
+/dts-v1/;
+
+#include <qemu/virt-riscv32.dtsi>
+
+/ {
+	model = "QEMU RISC-V virt (AIA SMP)";
+	compatible = "qemu,virt-riscv32-aia-smp";
+
+	chosen {
+		zephyr,console = &uart0;
+		zephyr,shell-uart = &uart0;
+		zephyr,sram = &ram0;
+	};
+};
+
+&{/cpus/cpu@0} {
+	riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicsr", "zifencei", "smcsrind";
+};
+
+&{/cpus/cpu@1} {
+	riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicsr", "zifencei", "smcsrind";
+};
+
+&{/cpus/cpu@2} {
+	riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicsr", "zifencei", "smcsrind";
+};
+
+&{/cpus/cpu@3} {
+	riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicsr", "zifencei", "smcsrind";
+};
+
+&{/cpus/cpu@4} {
+	riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicsr", "zifencei", "smcsrind";
+};
+
+&{/cpus/cpu@5} {
+	riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicsr", "zifencei", "smcsrind";
+};
+
+&{/cpus/cpu@6} {
+	riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicsr", "zifencei", "smcsrind";
+};
+
+&{/cpus/cpu@7} {
+	riscv,isa-extensions = "i", "m", "a", "f", "d", "c", "zicsr", "zifencei", "smcsrind";
+};
+
+&uart0 {
+	/* Wire UART to APLIC parent */
+	interrupt-parent = <&aplic>;
+	interrupts = <10 1 6>; /* source 10, priority 1, sense 6 (level high) */
+	status = "okay";
+};
+
+&pcie {
+	interrupt-map = <0x0000 0x00 0x00 1 &aplic 32 1 6
+			 0x0000 0x00 0x00 2 &aplic 33 1 6
+			 0x0000 0x00 0x00 3 &aplic 34 1 6
+			 0x0000 0x00 0x00 4 &aplic 35 1 6
+			 0x0800 0x00 0x00 1 &aplic 33 1 6
+			 0x0800 0x00 0x00 2 &aplic 34 1 6
+			 0x0800 0x00 0x00 3 &aplic 35 1 6
+			 0x0800 0x00 0x00 4 &aplic 32 1 6
+			 0x1000 0x00 0x00 1 &aplic 34 1 6
+			 0x1000 0x00 0x00 2 &aplic 35 1 6
+			 0x1000 0x00 0x00 3 &aplic 32 1 6
+			 0x1000 0x00 0x00 4 &aplic 33 1 6
+			 0x1800 0x00 0x00 1 &aplic 35 1 6
+			 0x1800 0x00 0x00 2 &aplic 32 1 6
+			 0x1800 0x00 0x00 3 &aplic 33 1 6
+			 0x1800 0x00 0x00 4 &aplic 34 1 6>;
+};
+
+&{/soc} {
+	/* Define an explicit APLIC M-domain node at 0x0C000000 */
+	aplic: interrupt-controller@c000000 {
+		compatible = "riscv,aplic";
+		reg = <0x0c000000 0x00008000>;
+		riscv,num-sources = <64>;
+		msi-parent = <&imsic0>;
+		interrupts-extended = <&hlic0 0x0b &hlic1 0x0b>;
+		interrupt-controller;
+		#address-cells = <0>;
+		#interrupt-cells = <3>;
+		status = "okay";
+	};
+
+	/* IMSIC for hart 0 */
+	imsic0: interrupt-controller@24000000 {
+		compatible = "riscv,imsic";
+		reg = <0x24000000 0x1000>;
+		riscv,num-ids = <256>;
+		riscv,hart-id = <0>;
+		interrupt-controller;
+		#interrupt-cells = <1>;
+		status = "okay";
+	};
+
+	/* IMSIC for hart 1 */
+	imsic1: interrupt-controller@24001000 {
+		compatible = "riscv,imsic";
+		reg = <0x24001000 0x1000>;
+		riscv,num-ids = <256>;
+		riscv,hart-id = <1>;
+		interrupt-controller;
+		#interrupt-cells = <1>;
+		status = "okay";
+	};
+};
