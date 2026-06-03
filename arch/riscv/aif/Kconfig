@@ -1,0 +1,10 @@
+# Copyright (c) 2026 AIFoundry
+# SPDX-License-Identifier: Apache-2.0
+
+config AIF_ET_ISA_MIGRATION
+	bool "AIFoundry ET ISA migration custom instruction intrinsics"
+	help
+	  Enable include/zephyr/arch/riscv/aif/xaifet.h wrappers for the nine
+	  approved custom-0/custom-1 migration targets in
+	  harness/config/encoding_plan.yaml.  Emission uses raw .word when the
+	  Zephyr SDK assembler does not yet provide the migrated mnemonics.

@@ -603,4 +603,6 @@ rsource "Kconfig.isa"
 
 rsource "custom/Kconfig"
 
+rsource "aif/Kconfig"
+
 endmenu
