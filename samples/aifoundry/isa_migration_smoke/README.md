@@ -18,6 +18,12 @@ Canonical NEW words emitted (see `AIF_NEW_WORD_*` in `xaifet.h`):
 `0x0005500b`, `0x0005502b`, `0x0400802b`, `0x0400902b`, `0x1c20a02b`,
 `0x0020802b`, `0x80c5e52b`, `0x80c5f52b`, `0x02a5c52b`.
 
+With `CONFIG_AIF_ET_ISA_MIGRATION_PATCHED_ASM=y`, `src/aif_mnemonic_emitters.S`
+is assembled by the patched Phase 2 `as-new` (`rv64i_xaifet`, `-mabi=lp64f`)
+and verified with patched `objdump` during the build (`build/aif_patched_binutils_verify.log`).
+Stock Zephyr SDK still links C sources; patched objdump on the final ELF shows
+`aif.*` mnemonics under `aif_mn_emit_*`.
+
 ## Build
 
 ```sh

@@ -7,3 +7,13 @@ config AIF_ET_ISA_MIGRATION
 	  Enable include/zephyr/arch/riscv/aif/xaifet.h encoders and the
 	  isa_migration_smoke sample for the nine approved custom-0/custom-1
 	  migration targets in harness/config/encoding_plan.yaml.
+
+config AIF_ET_ISA_MIGRATION_PATCHED_ASM
+	bool "Assemble migration mnemonics with patched Binutils"
+	depends on AIF_ET_ISA_MIGRATION
+	default y
+	help
+	  Build src/aif_mnemonic_emitters.S with the patched xaifet assembler
+	  from the Phase 2 toolchain workspace and verify disassembly with the
+	  patched objdump. Stock Zephyr SDK .word emitters remain as compile-only
+	  fallback in aif_compile_only_emitters.c.
