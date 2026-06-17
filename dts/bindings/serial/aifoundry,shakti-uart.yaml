@@ -1,0 +1,25 @@
+# Copyright (c) 2025 AIFoundry
+# SPDX-License-Identifier: Apache-2.0
+
+description: AIFoundry Shakti UART
+
+compatible: "aifoundry,shakti-uart"
+
+include: uart-controller.yaml
+
+properties:
+  reg:
+    required: true
+
+  interrupts:
+    required: true
+
+  reg-shift:
+    type: int
+    required: true
+    description: quantity to shift the register offsets by
+
+  clock-frequency:
+    required: true
+  current-speed:
+    required: true
